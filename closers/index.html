@@ -1073,9 +1073,10 @@ table.acc td,table.acc th{text-align:left!important}
 #tcl tr.sinprod td{color:#9ca3af}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .nottot{color:#8B978C}
  :root:not([data-theme="light"]) #tcl tr.sinprod td{color:#6b756d}}
-.usec .lab{font-family:"IBM Plex Mono",monospace;font-size:10px;text-transform:uppercase;
+.usec .lab,.hab2 .lab{font-family:"IBM Plex Mono",monospace;font-size:10px;text-transform:uppercase;
  letter-spacing:.08em;color:#6b7280;font-weight:600;margin:22px 0 8px}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .usec .lab{color:#A2AEB9}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .usec .lab,
+ :root:not([data-theme="light"]) .hab2 .lab{color:#A2AEB9}}
 .acc td.v.gris{color:#6b7280!important;font-weight:500}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .acc td.v.gris{color:#8B978C!important}}
 
@@ -1103,9 +1104,11 @@ table.acc td,table.acc th{text-align:left!important}
 .usec{margin-top:56px!important}
 .uln{margin:0!important}
 /* 5.4 · el cuerpo no pasa de 90ch */
-/* 90 caracteres reales: el ch de CSS mide el cero, mas angosto que la letra media */
-.gnota p,.notavent,.hab2 p,.nottot,.notatab,.usec>.sub,.uexp p,
-.metahead,details.met>p{max-width:64ch}
+/* 5.4 · el limite de linea aplica SOLO a texto que corre libre sobre el fondo.
+   Dentro de una caja con fondo o borde el ancho lo define la caja, no el parrafo:
+   .gnota, .uexp, .ucard y .act quedan fuera a proposito.
+   64ch da ~90 caracteres reales: el ch de CSS mide el cero, mas angosto que la letra media. */
+.notavent,.hab2 p,.nottot,.notatab,.usec>.sub,.metahead,details.met>p{max-width:64ch}
 
 
 .metahead{font-size:12.5px;color:#4b5563;margin:56px 0 14px;max-width:64ch;line-height:1.6}

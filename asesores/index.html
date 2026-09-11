@@ -237,6 +237,10 @@ details.anx[open]{padding-bottom:18px}
 .sh .big2 .arr{color:var(--faint);font-size:26px}
 .sh .big2 .to{color:var(--accent)}
 .sh .big2 .no{color:var(--red)}
+.sh .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:22px 24px 10px}
+.sh .trio span{display:block;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:40px;font-weight:600;letter-spacing:-.02em;line-height:1}
+.sh .trio small{display:block;margin-top:6px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);letter-spacing:.04em}
+.sh .trio .to{color:var(--accent)} .sh .trio .no{color:var(--red)}
 .sh .d{padding:0 24px 16px;font-size:14px;color:var(--ink-2);line-height:1.55}
 .sh .d b{color:var(--ink)}
 .sh .who{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-top:1px solid var(--line);margin-top:auto}
@@ -245,12 +249,13 @@ details.anx[open]{padding-bottom:18px}
 .sh .alert{margin:0 24px 18px;padding:16px 20px;border-left:3px solid var(--red);background:var(--red-soft);border-radius:0 5px 5px 0}
 .sh .alert .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:30px;font-weight:600;letter-spacing:-.02em;line-height:1;color:var(--red)}
 .sh .alert p{margin:6px 0 0;font-size:13.5px;color:var(--ink-2);line-height:1.5}
-.grp{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:5px;overflow:hidden}
+.grp{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:5px;overflow:hidden}
 .grp .g{background:var(--panel);padding:20px 22px}
 .grp .g.top{background:var(--accent-soft)} .grp .g.bot{background:var(--red-soft)}
 .grp .k{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .grp .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:38px;font-weight:600;letter-spacing:-.02em;line-height:1;margin-top:8px}
 .grp .v small{font-size:14px;color:var(--muted);font-weight:500;margin-left:6px}
+.grp .v .arr{color:var(--faint);font-size:24px;margin:0 6px}
 .grp .d{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.5}
 @media (max-width:760px){.grp{grid-template-columns:1fr}}
 .dcard.o .hd{background:var(--ink-2)}
@@ -276,18 +281,18 @@ details.anx[open]{padding-bottom:18px}
 <!-- ============================================================ 1 -->
 <section>
 <div class="step">1 &middot; Lo que compartimos</div>
-<h2>Dos cosas que el closer puede dejar listas.</h2>
-<p class="sub">Las dos est&aacute;n en el tablero de closers. Las dos las necesita el asesor.</p>
+<h2>Dos cosas que no dependen de uno solo.</h2>
+<p class="sub">Las dos est&aacute;n en el tablero de closers. Ninguna se mueve sin los dos equipos.</p>
 <div class="share">
  <div class="sh"><div class="hd">Show-up</div>
   <div class="big2">66% <span class="arr">&rarr;</span> <span class="to">80%</span><small>agosto &rarr; meta</small></div>
-  <div class="d"><b>60 de las 94 efectivas</b> de la palanca 2 dependen de la doble confirmaci&oacute;n. El grupo devuelve 34. La ventana de ocho d&iacute;as sin grupo cost&oacute; 19 efectivas.</div>
+  <div class="d"><b>60 de las 94 efectivas</b> que vale subir el show-up a 80% dependen de la doble confirmaci&oacute;n. El grupo devuelve 34. La ventana de ocho d&iacute;as sin grupo cost&oacute; 19 efectivas.</div>
   <div class="who"><div><b>Closer</b>Abre el grupo de WhatsApp y sostiene al lead hasta la sesi&oacute;n.</div><div><b>Asesor</b>Manda la bienvenida y la nota de voz el mismo d&iacute;a, y apoya al lead para conectarse.</div></div>
  </div>
  <div class="sh b"><div class="hd">AFORE</div>
-  <div class="big2"><span class="to">51%</span><small>firma con AFORE</small> <span class="no">16%</span><small>sin AFORE</small></div>
-  <div class="d"><b>195 de 348</b> llegaron con estado de cuenta. El AFORE ya no es requisito y no va a volver a serlo: exigirlo tumbar&iacute;a las agendas. Pero mueve la firma 35 puntos, as&iacute; que conseguirlo antes vale, y por eso se paga en el esquema del closer.</div>
-  <div class="alert"><div class="v">96</div><p><b>efectivas llegaron con AFORE y no firmaron.</b> De las 195 con estado de cuenta, firmaron 99. La mitad de lo que llega completo tampoco cierra, y eso no lo explica el AFORE.</p></div>
+  <div class="trio"><div><span class="to">51%</span><small>firma con AFORE</small></div><div><span class="no">16%</span><small>firma sin AFORE</small></div><div><span class="no">96</span><small>con AFORE y sin firma</small></div></div>
+  <div class="d"><b>195 de 348</b> llegaron con estado de cuenta. El AFORE no es requisito y no va a volver a serlo: exigirlo tumbar&iacute;a las agendas. Pero mueve la firma 35 puntos, de 16% a 51%, as&iacute; que conseguirlo antes de la sesi&oacute;n vale, y por eso se paga en el esquema del closer.</div>
+  <div class="d"><b>Lo que el AFORE no explica:</b> 96 efectivas llegaron con estado de cuenta y no firmaron. La mitad de lo que llega completo tampoco cierra.</div>
   <div class="who"><div><b>Closer</b>Pide el estado de cuenta en la llamada y lo sube al expediente antes de la sesi&oacute;n.</div><div><b>Asesor</b>Con AFORE, la firma sale en la sesi&oacute;n: 66 de 113 firmas con fecha fueron el mismo d&iacute;a.</div></div>
  </div>
 </div>
@@ -307,11 +312,11 @@ details.anx[open]{padding-bottom:18px}
 
 <!-- ============================================================ 3 -->
 <section>
-<div class="step">3 &middot; C&oacute;mo est&aacute; el equipo de asesores</div>
-<h2>Los 11 asesores en tres grupos, por lo que firmaron de lo que atendieron.</h2>
-<p class="sub">Sin nombres, igual que los tercios del tablero de closers. Cortes en 40% y 20% de firma sobre efectivas atendidas. Solo asesores con 5 asistidas o m&aacute;s.</p>
-<div class="grp"><div class="g top"><div class="k">Firma 40% o m&aacute;s</div><div class="v">51%<small>firma</small></div><div class="d">5 asesores &middot; 166 efectivas atendidas &middot; 84 firmas. AFORE previo en 69% de sus efectivas.</div></div><div class="g"><div class="k">Firma entre 20% y 39%</div><div class="v">26%<small>firma</small></div><div class="d">2 asesores &middot; 88 efectivas atendidas &middot; 23 firmas. AFORE previo en 57% de sus efectivas.</div></div><div class="g bot"><div class="k">Firma abajo de 20%</div><div class="v">14%<small>firma</small></div><div class="d">4 asesores &middot; 90 efectivas atendidas &middot; 13 firmas. AFORE previo en 30% de sus efectivas.</div></div></div>
-<p class="capn">Entre el grupo que m&aacute;s firma y el que menos hay 37 puntos. Parte de esa distancia viene con el lead: el grupo de arriba recibi&oacute; AFORE previo en 69% de sus efectivas y el de abajo en 30%.</p>
+<div class="step">3 &middot; Lo que entregamos predice lo que se firma</div>
+<h2>La firma sigue al AFORE, tambi&eacute;n entre asesores.</h2>
+<p class="sub">Los 11 asesores agrupados por la proporci&oacute;n de sus efectivas que lleg&oacute; con AFORE. Sin nombres. Corte en 40%; con tres grupos el de en medio quedaba en 65 efectivas y no dice nada. Solo asesores con 5 asistidas o m&aacute;s.</p>
+<div class="grp"><div class="g top"><div class="k">AFORE previo en 40% o m&aacute;s de sus efectivas</div><div class="v">64%<small>AFORE</small> <span class="arr">&rarr;</span> 41%<small>firma</small></div><div class="d">7 asesores &middot; 260 efectivas atendidas &middot; 167 con AFORE &middot; 107 firmas.</div></div><div class="g bot"><div class="k">AFORE previo en menos de 40%</div><div class="v">29%<small>AFORE</small> <span class="arr">&rarr;</span> 15%<small>firma</small></div><div class="d">4 asesores &middot; 84 efectivas atendidas &middot; 24 con AFORE &middot; 13 firmas.</div></div></div>
+<p class="capn">El grupo que recibi&oacute; AFORE en 64% de sus efectivas firm&oacute; 41%. El que lo recibi&oacute; en 29% firm&oacute; 15%. Parte de la distancia entre asesores llega con el lead, no se genera en la sesi&oacute;n.</p>
 </section>
 
 <!-- ============================================================ 4 -->
@@ -386,7 +391,7 @@ details.anx[open]{padding-bottom:18px}
 </section>
 
 <p class="metahead">Todo n&uacute;mero de esta p&aacute;gina se puede rastrear a una columna del tracker o al tablero de closers. Los detalles est&aacute;n abajo.</p>
-<details class="met"><summary>Poblaci&oacute;n y corte</summary><p><b>Fuente.</b> Tracker_080926.csv, corte del 8 de septiembre de 2026, filas con fecha de agenda (columna A) en agosto y closer dentro del roster de 28 del tablero de closers. <b>Julio</b> con la misma regla: 232 efectivas, la misma cifra que el +50% MoM del tablero de closers. Los asesores se leen de la columna Asesor con nombres unificados. <b>Asistida:</b> Asistencia = Si. <b>Efectiva:</b> Asistencia Si, Calificaci&oacute;n Si y &iquest;Necesita financiamiento? Si; nada de expediente ni AFORE. <b>Firma de solicitud:</b> fecha en &ldquo;Fecha Exacto&rdquo; de Fechas de Firma de solicitud. La fecha aproximada solo est&aacute; capturada en 39 efectivas y no se usa como firma. <b>Ejecutado:</b> fecha en &ldquo;Ejecutado&rdquo; de Fecha del pr&eacute;stamo. <b>AFORE previo:</b> AFORE pre-asesor&iacute;a = Si. <b>D&iacute;as a la firma:</b> fecha de firma exacta menos fecha de asesor&iacute;a (columna B), solo firmas con las dos fechas y entre 0 y 120 d&iacute;as: 113 de 123. <b>Show-up, 60 de 94, 34 del grupo, 19 perdidas, 27 de 40 sin causa:</b> tal cual los reporta el tablero de closers de agosto. <b>Grupos de asesores:</b> firma exacta entre efectivas atendidas, cortes en 40% y 20%.</p></details>
+<details class="met"><summary>Poblaci&oacute;n y corte</summary><p><b>Fuente.</b> Tracker_080926.csv, corte del 8 de septiembre de 2026, filas con fecha de agenda (columna A) en agosto y closer dentro del roster de 28 del tablero de closers. <b>Julio</b> con la misma regla: 232 efectivas, la misma cifra que el +50% MoM del tablero de closers. Los asesores se leen de la columna Asesor con nombres unificados. <b>Asistida:</b> Asistencia = Si. <b>Efectiva:</b> Asistencia Si, Calificaci&oacute;n Si y &iquest;Necesita financiamiento? Si; nada de expediente ni AFORE. <b>Firma de solicitud:</b> fecha en &ldquo;Fecha Exacto&rdquo; de Fechas de Firma de solicitud. La fecha aproximada solo est&aacute; capturada en 39 efectivas y no se usa como firma. <b>Ejecutado:</b> fecha en &ldquo;Ejecutado&rdquo; de Fecha del pr&eacute;stamo. <b>AFORE previo:</b> AFORE pre-asesor&iacute;a = Si. <b>D&iacute;as a la firma:</b> fecha de firma exacta menos fecha de asesor&iacute;a (columna B), solo firmas con las dos fechas y entre 0 y 120 d&iacute;as: 113 de 123. <b>Show-up, 60 de 94, 34 del grupo, 19 perdidas, 27 de 40 sin causa:</b> tal cual los reporta el tablero de closers de agosto. <b>Grupos de asesores:</b> AFORE pre-asesor&iacute;a entre efectivas atendidas, corte en 40%; la firma de cada grupo es firma exacta entre sus efectivas.</p></details>
 <details class="met"><summary>Objeciones</summary><p>Poblaci&oacute;n: asistidas de agosto que no son efectivas (51) m&aacute;s efectivas sin fecha de firma exacta ni aproximada (195; las 225 sin firma exacta incluyen 30 con fecha aproximada, que s&iacute; firmaron algo y quedan fuera). De esas 246, 167 tienen texto en Observaci&oacute;n del asesor. Cada una se ley&oacute; y se asign&oacute; a una sola categor&iacute;a. 73 se clasificaron &ldquo;en proceso&rdquo; y quedan fuera de los porcentajes. Reglas de asignaci&oacute;n: simulaci&oacute;n laboral y falta de aportaci&oacute;n son del lead; aval, precio, monto, comparar, no querer invertir y posponer sin fecha se deciden en la sesi&oacute;n; demanda, negativa, sigue cotizando, plataforma, pensionado, ya ten&iacute;a el dinero y llegar mal informado son preguntas del gui&oacute;n de la llamada. <b>Menciones de aval y precio</b> se contaron en las 399 asistidas del mes, en Observaci&oacute;n y en Motivo, firmadas o no: aval 12 (10 con fecha de firma, 2 clasificadas como objeci&oacute;n), precio 9 (1 con firma, 6 clasificadas como caro, 2 con otra causa principal). Julio se clasific&oacute; con las mismas categor&iacute;as sobre 64 observaciones.</p></details>
 <details class="met"><summary>Lo que no cuadra y por qu&eacute;</summary><p>El tablero de closers reporta 123 firmas, 20 pr&eacute;stamos y 225 que no llegaron a firma con la misma regla; coinciden. Cuatro observaciones dicen que el lead firm&oacute; y no tienen fecha: no se cuentan como firma. Un asesor aparece con una asistida y es closer: error de captura. La firma con AFORE y sin AFORE no prueba causa: la firma exacta requiere el estado de cuenta, as&iacute; que sin AFORE previo hay que conseguirlo despu&eacute;s. Y 96 efectivas con AFORE no firmaron: el AFORE explica parte de la firma, no toda.</p></details>
 

@@ -227,7 +227,9 @@ details.anx[open]{padding-bottom:18px}
 .fun{grid-template-columns:repeat(3,1fr);margin-top:8px}
 .fun .fn .v{margin-top:14px}
 .fun .fn .mom{display:block;font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;margin-top:6px}
-.fun .fn .pct{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--red);margin-top:6px}
+.fun .fn .pct{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--red);margin-top:8px}
+.fun .fn .ref{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);margin-top:3px}
+.fun .fn .ref+.d{margin-top:3px;font-size:11px}
 .fun .fn .mom+.d{margin-top:6px;font-size:11px}
 .fun .fn .pct+.d{margin-top:3px;font-size:11px}
 @media (max-width:900px){.fun{grid-template-columns:1fr}}
@@ -245,6 +247,7 @@ details.anx[open]{padding-bottom:18px}
 .sh .trio span{display:block;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:40px;font-weight:600;letter-spacing:-.02em;line-height:1}
 .sh .trio small{display:block;margin-top:6px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);letter-spacing:.04em}
 .sh .trio .to{color:var(--accent)} .sh .trio .no{color:var(--red)}
+.sh .trio.dos{grid-template-columns:repeat(2,1fr)}
 .sh .d{padding:0 24px 16px;font-size:14px;color:var(--ink-2);line-height:1.55}
 .sh .d b{color:var(--ink)}
 .sh .who{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-top:1px solid var(--line);margin-top:auto}
@@ -275,7 +278,8 @@ details.anx[open]{padding-bottom:18px}
 .sh .win4 small{display:block;font-size:10px;color:var(--muted);margin-top:4px}
 .sh .win4n{padding:8px 24px 14px;font-size:10px;color:var(--muted)}
 .dcard .qa .a.s{font-size:14px}
-</style>
+
+h1 em{color:var(--ink)}</style>
 </head>
 <body>
 <div class="wrap">
@@ -286,8 +290,8 @@ details.anx[open]{padding-bottom:18px}
 
 <div class="fun">
  <div class="fn"><div class="k">Efectivas entregadas</div><div class="v">348</div><span class="mom up">+50% MoM</span><div class="d">Asisti&oacute;, calific&oacute; y necesita financiamiento.</div></div>
- <div class="fn"><div class="k">Firmas de solicitud</div><div class="v">123</div><span class="mom up">+31% MoM</span><div class="pct">35% de las entregadas</div><div class="d">Fecha exacta en el tracker.</div></div>
- <div class="fn"><div class="k">Pr&eacute;stamos ejecutados</div><div class="v">20</div><span class="mom up">+5% MoM</span><div class="pct">6% de las entregadas</div><div class="d">16% de las firmas. Fecha de ejecuci&oacute;n.</div></div>
+ <div class="fn"><div class="k">Firmas de solicitud</div><div class="v">123</div><div class="pct">35% de las entregadas</div><div class="ref">41% jul &middot; 45% jun</div><div class="d">Fecha exacta en el tracker.</div></div>
+ <div class="fn"><div class="k">Pr&eacute;stamos ejecutados</div><div class="v">20</div><div class="pct">6% de las entregadas</div><div class="d">16% de las firmas. Fecha de ejecuci&oacute;n.</div></div>
 </div>
 
 <!-- ============================================================ 1 -->
@@ -309,7 +313,7 @@ details.anx[open]{padding-bottom:18px}
   <div class="who"><div><b>Closer</b>Abre el grupo de WhatsApp y sostiene al lead hasta la sesi&oacute;n.</div><div><b>Asesor</b>Manda la bienvenida y la nota de voz el mismo d&iacute;a, y apoya al lead para conectarse.</div></div>
  </div>
  <div class="sh b"><div class="hd">AFORE</div>
-  <div class="trio"><div><span>51%</span><small>firma con AFORE</small></div><div><span class="no">16%</span><small>firma sin AFORE</small></div><div><span>49%</span><small>con AFORE y sin firma<br>96 de 195</small></div></div>
+  <div class="trio dos"><div><span>51%</span><small>firma con AFORE<br>99 de 195</small></div><div><span>49%</span><small>con AFORE y sin firma<br>96 de 195</small></div></div>
   <div class="d">195 de las 348 llegaron con estado de cuenta, el 56%. Con AFORE firma el 51%; sin AFORE, el 16%. Conseguirlo antes de la sesi&oacute;n mueve la firma 35 puntos y es lo que m&aacute;s puede hacer el closer por lo que entrega.</div>
   <div class="d">No es la &uacute;nica causa. El 49% de las que llegaron con AFORE no firm&oacute;: 96 de 195. La mitad de lo que llega completo tampoco cierra. De esas 96, 31 no tienen una palabra escrita. De las 65 que s&iacute;: 33 siguen en proceso, 13 se decidieron en la sesi&oacute;n, 8 son del lead y 7 se filtraban desde la llamada.</div>
   <div class="who"><div><b>Closer</b>Pide el estado de cuenta en la llamada y lo sube al expediente antes de la sesi&oacute;n.</div><div><b>Asesor</b>Con AFORE, la firma sale en la sesi&oacute;n: 66 de 113 firmas con fecha fueron el mismo d&iacute;a.</div></div>

@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Tablero diario del equipo de closers de financiamiento. Direccion de Closers, Pension Perfecta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Closers: diario</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&amp;family=Instrument+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --ground:#F1F4EF; --panel:#FFFFFF; --panel-2:#F6F8F3;
+  --ink:#1B2620; --ink-2:#42504A; --muted:#5C6B60; --faint:#8B978C;
+  --line:#DDE3D9; --line-2:#E9EDE5;
+  --brand:#0E5140; --accent:#1E8A5F; --accent-soft:#E4F0E9;
+  --blue:#35608F; --blue-soft:#E6ECF4;
+  --gold:#96690F; --gold-soft:#F3ECD9;
+  --red:#B04434; --red-soft:#F6E3DF;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0D1512; --panel:#141E19; --panel-2:#1A2620;
+  --ink:#E8EFE9; --ink-2:#B4C2B8; --muted:#8A9A8F; --faint:#6E7D73;
+  --line:#26332C; --line-2:#202C26;
+  --brand:#4FB68C; --accent:#57C395; --accent-soft:#13291F;
+  --blue:#7FA8D4; --blue-soft:#16222F; --gold:#D3A257; --gold-soft:#2A2315;
+  --red:#DE8A7C; --red-soft:#2E1B18;}}
+:root[data-theme="dark"]{
+  --ground:#0D1512; --panel:#141E19; --panel-2:#1A2620;
+  --ink:#E8EFE9; --ink-2:#B4C2B8; --muted:#8A9A8F; --faint:#6E7D73;
+  --line:#26332C; --line-2:#202C26;
+  --brand:#4FB68C; --accent:#57C395; --accent-soft:#13291F;
+  --blue:#7FA8D4; --blue-soft:#16222F; --gold:#D3A257; --gold-soft:#2A2315;
+  --red:#DE8A7C; --red-soft:#2E1B18;}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font-family:"Instrument Sans",-apple-system,system-ui,sans-serif;font-size:15px;line-height:1.55;
+  -webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.wrap{max-width:1440px;margin:0 auto;padding:46px 30px 84px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand);
+  font-weight:600;margin:0 0 12px;font-family:"IBM Plex Mono",monospace}
+h1{font-family:"Fraunces","Instrument Serif",Georgia,serif;font-weight:400;
+  font-size:clamp(36px,5vw,54px);line-height:1.06;letter-spacing:-.015em;margin:0 0 18px;text-wrap:balance}
+h1 em{font-style:italic;color:var(--accent)}
+.lede{font-size:18px;color:var(--ink-2);margin:0 0 34px}
+.lede b{color:var(--ink);font-weight:600}
+section{margin-top:64px}
+h2{font-family:"Fraunces","Instrument Serif",Georgia,serif;font-weight:400;font-size:30px;
+  letter-spacing:-.01em;margin:0 0 8px;line-height:1.15;text-wrap:balance}
+.sub{color:var(--muted);font-size:14.5px;margin:0 0 22px}
+.sub b{color:var(--ink-2)}
+.step{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;
+  color:#fff;background:var(--brand);padding:4px 11px;border-radius:3px;letter-spacing:.09em;margin-bottom:12px}
+.capn{color:var(--faint);font-size:12.5px;margin:12px 0 0;font-family:"IBM Plex Mono",monospace;line-height:1.6}
+.dn{color:var(--red)} .up{color:var(--accent)} .fl{color:var(--faint)}
+
+.chain{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:5px;overflow:hidden}
+.cn{background:var(--panel);padding:20px 18px;display:flex;flex-direction:column}
+.cn.on{background:var(--accent-soft)}
+.cn .k{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;min-height:30px;
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;line-height:1.4}
+.cn .k>span:first-child{flex:1;min-width:0}
+.cn .mom{font-size:10.5px;font-weight:600;letter-spacing:0;text-transform:none;white-space:nowrap;flex-shrink:0}
+.cn .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:27px;
+  font-weight:600;letter-spacing:-.02em;line-height:1.05;margin-top:auto;padding-top:10px;color:var(--ink)}
+.cn .v small{font-size:14px;color:var(--muted);font-weight:500;margin-left:4px}
+@media (max-width:940px){.chain{grid-template-columns:repeat(2,1fr)}}
+
+.wins{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:5px;overflow:hidden}
+.wn{background:var(--panel);padding:20px 22px}
+.wn.bad{background:var(--red-soft)} .wn.good{background:var(--accent-soft)}
+.wn .k{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.wn .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:38px;font-weight:600;letter-spacing:-.02em;line-height:1;margin-top:8px}
+.wn .v small{font-size:16px;color:var(--muted);font-weight:500;margin-left:6px}
+.wn .d{font-size:12.5px;color:var(--muted);margin-top:7px;line-height:1.45}
+@media (max-width:760px){.wins{grid-template-columns:1fr}}
+
+.note{border-left:3px solid var(--blue);background:var(--blue-soft);border-radius:0 6px 6px 0;
+  padding:24px 30px 26px;margin-top:24px}
+.note.g{border-left-color:var(--accent);background:var(--accent-soft)}
+.note.w{border-left-color:var(--gold);background:var(--gold-soft)}
+.note h3{margin:0 0 12px;font-family:"Fraunces","Instrument Serif",Georgia,serif;font-weight:400;
+  font-size:21px;line-height:1.22;letter-spacing:-.01em;color:var(--ink);text-wrap:balance}
+.note p{margin:0;font-size:14.5px;line-height:1.68;color:var(--ink-2)}
+.note p+p{margin-top:12px}
+.note b{color:var(--ink);font-weight:600}
+
+.tcard{background:var(--panel);border:1px solid var(--line);border-radius:5px;overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;
+  text-align:right;padding:12px 12px;border-bottom:1px solid var(--line);white-space:nowrap;
+  background:var(--panel-2);cursor:pointer;user-select:none}
+th:hover{color:var(--accent)}
+th:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+th::after{content:"\21C5";opacity:.3;margin-left:6px;font-size:9px}
+th.up::after{content:"\2191";opacity:1;color:var(--accent)}
+th.dn::after{content:"\2193";opacity:1;color:var(--accent)}
+th:first-child,td:first-child,th.l,td.l{text-align:left}
+th:first-child,td:first-child{padding-left:18px}
+td{padding:11px 12px;border-bottom:1px solid var(--line-2);text-align:right;white-space:nowrap;
+  color:var(--ink-2);font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+td:first-child{font-family:"Instrument Sans",sans-serif;font-weight:600;color:var(--ink)}
+td.l{font-family:"Instrument Sans",sans-serif;color:var(--ink-2)}
+td.l small{color:var(--faint);font-family:"IBM Plex Mono",monospace;font-size:11px;margin-left:6px}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--panel-2)}
+tr.tot td{background:var(--panel-2);border-top:1px solid var(--line);color:var(--ink);font-weight:600}
+tr.baja td:first-child{color:var(--muted)}
+td.bad{color:var(--red);font-weight:600} td.good{color:var(--accent);font-weight:600}
+.idx{display:inline-block;width:52px;height:7px;border-radius:2px;background:var(--line-2);
+  overflow:hidden;vertical-align:middle;margin-left:8px}
+.idx i{display:block;height:100%;border-radius:2px}
+.sal{font-family:"IBM Plex Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin-left:7px}
+.tsel{font-size:11.5px;color:var(--faint);margin:10px 0 0;line-height:1.5;font-family:"IBM Plex Mono",monospace}
+
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px;margin-top:22px;align-items:stretch}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px;align-items:stretch}
+@media (max-width:1080px){.three{grid-template-columns:1fr}}
+.dcard{border-radius:5px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;background:var(--panel)}
+.dcard .hd{padding:14px 24px;color:#fff;background:var(--brand)}
+.dcard.b .hd{background:var(--blue)} .dcard.r .hd{background:var(--red)} .dcard.g .hd{background:var(--gold)}
+.dcard.warn .hd{background:var(--gold)} .dcard.pos .hd{background:var(--accent)}
+.dcard .hd b{font-size:16px;font-weight:600;display:block}
+.dcard .hd span{font-family:"IBM Plex Mono",monospace;font-size:11.5px;opacity:.9;display:block;margin-top:2px}
+.dcard .bd{padding:6px 24px 18px;flex:1;display:flex;flex-direction:column}
+.qa{padding:13px 0;border-top:1px solid var(--line-2)}
+.qa:first-child{border-top:none}
+.qa .q{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);
+  font-weight:600;font-family:"IBM Plex Mono",monospace;margin-bottom:4px}
+.qa .a{font-size:14.5px;color:var(--ink-2)}
+.qa .a b{color:var(--ink)}
+.big{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
+  font-size:26px;font-weight:600;letter-spacing:-.02em;display:block;margin:2px 0 4px;color:var(--ink)}
+.uln{display:grid;grid-template-columns:52px 1fr 40px;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line-2)}
+.uln:first-child{border-top:none;margin-top:8px}
+.uln .t{height:11px;background:var(--panel-2);border-radius:3px;overflow:hidden}
+.uln .t i{display:block;height:100%;border-radius:3px}
+.uln .nm{font-size:13.5px;color:var(--ink-2)}
+.uln .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:15px;font-weight:600;text-align:right;color:var(--ink)}
+.dn2{margin:auto 0 0;padding-top:14px;font-size:12.5px;color:var(--muted);line-height:1.5}
+
+.caus{background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:20px}
+.cs{display:grid;grid-template-columns:250px 1fr 46px 300px;align-items:center;gap:16px;
+  padding:15px 22px;border-top:1px solid var(--line-2)}
+.cs:first-child{border-top:none}
+.cs .cn2{font-size:14px;font-weight:600;color:var(--ink)}
+.cs .cb{height:14px;background:var(--panel-2);border-radius:3px;overflow:hidden}
+.cs .cb i{display:block;height:100%;border-radius:3px}
+.cs .cq{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:19px;font-weight:600;text-align:right;color:var(--ink)}
+.cs .cf{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted);text-align:right;white-space:nowrap}
+@media (max-width:860px){.cs{grid-template-columns:1fr 46px;gap:8px}.cs .cb{display:none}.cs .cf{grid-column:1/-1;text-align:left}}
+
+.blocks{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:5px;overflow:hidden;margin-top:20px}
+@media (max-width:1080px){.blocks{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.blocks{grid-template-columns:1fr}}
+.bl{background:var(--panel);padding:20px 22px}
+.bl .num{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;color:var(--brand);letter-spacing:.11em}
+.bl .t{font-size:14.5px;font-weight:600;margin:8px 0 6px;color:var(--ink)}
+.bl .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:27px;font-weight:600;color:var(--red);letter-spacing:-.02em}
+.bl .d{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.45}
+
+.ask{background:var(--panel);border:1px solid var(--line);border-radius:5px;margin-top:16px;overflow:hidden}
+.ask .hd{background:var(--brand);color:#fff;padding:13px 22px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:baseline}
+.ask.alt .hd{background:var(--blue)}
+.ask .hd b{font-size:16px;font-weight:600}
+.ask .hd span{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;opacity:.88}
+.ask .bd{padding:6px 22px 18px}
+.arow{display:grid;grid-template-columns:118px 1fr;gap:6px 16px;font-size:14.5px;color:var(--ink-2);padding:12px 0;border-top:1px solid var(--line-2)}
+.arow:first-child{border-top:none}
+.arow b{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+
+.metahead{font-size:12.5px;color:var(--muted);margin:56px 0 14px;line-height:1.6}
+details.met{border-top:1px solid var(--line)}
+details.met:last-of-type{border-bottom:1px solid var(--line)}
+details.met>summary{cursor:pointer;list-style:none;padding:11px 0;font-family:"IBM Plex Mono",monospace;
+  font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+details.met>summary::-webkit-details-marker{display:none}
+details.met>summary::before{content:"\25B8";display:inline-block;width:16px;color:var(--faint)}
+details.met[open]>summary::before{content:"\25BE"}
+details.met>summary:hover{color:var(--ink)}
+details.met>p{margin:0 0 14px;padding-left:16px;font-size:12.5px;line-height:1.75;color:var(--muted)}
+details.met[open]>p{max-width:78ch}
+details.met>p b{color:var(--ink)}
+.foot{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);color:var(--faint);font-size:12px;line-height:1.7}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+details.anx{border:1px solid var(--line);border-radius:5px;background:var(--panel);padding:0 22px}
+details.anx>summary{cursor:pointer;list-style:none;padding:16px 0;font-family:"IBM Plex Mono",monospace;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--brand);font-weight:600}
+details.anx>summary::-webkit-details-marker{display:none}
+details.anx>summary::before{content:"\25B8";display:inline-block;width:16px;color:var(--faint)}
+details.anx[open]>summary::before{content:"\25BE"}
+details.anx[open]{padding-bottom:18px}
+
+.chain.c9{grid-template-columns:repeat(9,1fr)}
+@media (max-width:1200px){.chain.c9{grid-template-columns:repeat(3,1fr)}}
+.cn .v{font-size:30px}
+.tabs{display:flex;gap:8px;margin:18px 0 14px}
+.tabs button{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  padding:9px 16px;border-radius:100px;border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer}
+.tabs button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab[hidden]{display:none}
+.corte{display:flex;gap:22px;flex-wrap:wrap;font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted);margin:0 0 6px}
+.corte b{color:var(--ink);font-weight:600}
+.mrows{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:6px 26px 14px;margin-top:18px}
+.mrow{display:grid;grid-template-columns:320px 1fr 150px;align-items:center;gap:22px;padding:15px 0;border-top:1px solid var(--line-2)}
+.mrow:first-child{border-top:none}
+.mlab{font-size:14.5px;font-weight:600;color:var(--ink)}
+.mlab small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:2px;line-height:1.35}
+.mtrack{position:relative;height:22px;background:var(--panel-2);border-radius:3px;overflow:hidden}
+.mnow{position:absolute;left:0;top:0;height:100%;background:var(--accent);opacity:.75;border-radius:3px}
+.mgoal{position:absolute;top:0;height:100%;border-right:3px solid var(--ink)}
+.mval{display:flex;justify-content:flex-end;align-items:baseline;gap:8px;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mval .a{font-size:19px;font-weight:600;color:var(--ink)} .mval .arw,.mval .b{font-size:14px;color:var(--muted)}
+@media (max-width:860px){.mrow{grid-template-columns:1fr}}
+.leads{display:grid;grid-template-columns:repeat(14,1fr);gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:20px 18px 14px;align-items:end}
+.lb{text-align:center}
+.lbar{height:120px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px}
+.lbar i{display:block;border-radius:2px;min-height:1px}
+.lbar i.u{background:var(--accent)} .lbar i.d{background:var(--line)}
+.lb b{display:block;font-family:"IBM Plex Mono",monospace;font-size:13px;margin-top:6px;color:var(--ink)}
+.lb small{display:block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--muted)}
+.lb span{display:block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--faint);margin-top:3px;text-transform:uppercase}
+@media (max-width:860px){.leads{grid-template-columns:repeat(7,1fr)}}
+details.anx{border:1px solid var(--line);border-radius:5px;background:var(--panel);padding:0 22px;margin-top:18px}
+details.anx>summary{cursor:pointer;list-style:none;padding:16px 0;font-family:"IBM Plex Mono",monospace;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--brand);font-weight:600}
+details.anx>summary::-webkit-details-marker{display:none}
+details.anx>summary::before{content:"\25B8";display:inline-block;width:16px;color:var(--faint)}
+details.anx[open]>summary::before{content:"\25BE"}
+details.anx[open]{padding-bottom:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">Direcci&oacute;n de Closers &middot; diario</div>
+<h1>C&oacute;mo vamos al <em>lun 14 de septiembre</em>.</h1>
+<p class="corte"><span>Tracker: <b>14 de septiembre</b>, bajado 14/09 06:52</span><span>CFA: <b>14 de septiembre</b>, bajado 14/09 06:49</span><span>Piso: <b>8 efectivas por closer a la semana</b></span></p>
+
+
+<div class="tabs" role="tablist">
+ <button class="on" data-for="hoy">Último día</button><button data-for="semana">Semana pasada</button><button data-for="mes">Mes a la fecha</button>
+</div>
+<div class="tab" data-tab="hoy"><div class="chain c9"><div class="cn"><div class="k"><span>Leads recibidos</span><span class="mom dn">-23%</span></div><div class="v">151</div><div class="d">creados en el CRM</div></div><div class="cn"><div class="k"><span>Leads útiles</span><span class="mom dn">-17%</span></div><div class="v">122</div><div class="d">sin descarte automático</div></div><div class="cn"><div class="k"><span>Agendas creadas</span><span class="mom dn">-50%</span></div><div class="v">12</div><div class="d">por fecha de agenda</div></div><div class="cn"><div class="k"><span>Asesorías</span><span class="mom dn">-40%</span></div><div class="v">9</div><div class="d">4 sin marcar</div></div><div class="cn"><div class="k"><span>Asistidas</span><span class="mom dn">-20%</span></div><div class="v">4</div><div class="d">1 no asistieron</div></div><div class="cn"><div class="k"><span>Efectivas</span><span class="mom dn">-20%</span></div><div class="v">4</div><div class="d">asistió, calificó y necesita</div></div><div class="cn"><div class="k"><span>No efectivas</span><span class="mom fl">sin base</span></div><div class="v">0</div><div class="d">asistió y no calificó</div></div><div class="cn"><div class="k"><span>Show-up</span><span class="mom up">+18 pts</span></div><div class="v">80%</div><div class="d">asistidas entre resueltas</div></div><div class="cn"><div class="k"><span>Agendas por closer</span><span class="mom dn">-20%</span></div><div class="v">2.4</div><div class="d">5 closers con agenda</div></div></div><p class="capn">dom 13 contra sáb 12. El corte del lun 14 es de la mañana y todavía no trae agendas; se muestra el último día con actividad.</p></div><div class="tab" data-tab="semana"><div class="chain c9"><div class="cn"><div class="k"><span>Leads recibidos</span><span class="mom up">+9%</span></div><div class="v">1104</div><div class="d">creados en el CRM</div></div><div class="cn"><div class="k"><span>Leads útiles</span><span class="mom up">+9%</span></div><div class="v">794</div><div class="d">sin descarte automático</div></div><div class="cn"><div class="k"><span>Agendas creadas</span><span class="mom up">+23%</span></div><div class="v">217</div><div class="d">por fecha de agenda</div></div><div class="cn"><div class="k"><span>Asesorías</span><span class="mom up">+5%</span></div><div class="v">204</div><div class="d">20 sin marcar</div></div><div class="cn"><div class="k"><span>Asistidas</span><span class="mom fl">0%</span></div><div class="v">128</div><div class="d">56 no asistieron</div></div><div class="cn"><div class="k"><span>Efectivas</span><span class="mom up">+4%</span></div><div class="v">118</div><div class="d">asistió, calificó y necesita</div></div><div class="cn"><div class="k"><span>No efectivas</span><span class="mom dn">-29%</span></div><div class="v">10</div><div class="d">asistió y no calificó</div></div><div class="cn"><div class="k"><span>Show-up</span><span class="mom up">+4 pts</span></div><div class="v">70%</div><div class="d">asistidas entre resueltas</div></div><div class="cn"><div class="k"><span>Agendas por closer</span><span class="mom up">+23%</span></div><div class="v">12.8</div><div class="d">17 closers con agenda</div></div></div><p class="capn">Semana del 7 de septiembre al 13 de septiembre, contra los mismos días de la semana anterior (31 de agosto al 6 de septiembre). La semana en curso todavía no trae agendas; se muestra la semana pasada completa.</p></div><div class="tab" data-tab="mes"><div class="chain c9"><div class="cn"><div class="k"><span>Leads recibidos</span><span class="mom dn">-12%</span></div><div class="v">1968</div><div class="d">creados en el CRM</div></div><div class="cn"><div class="k"><span>Leads útiles</span><span class="mom up">+31%</span></div><div class="v">1416</div><div class="d">sin descarte automático</div></div><div class="cn"><div class="k"><span>Agendas creadas</span><span class="mom up">+66%</span></div><div class="v">356</div><div class="d">por fecha de agenda</div></div><div class="cn"><div class="k"><span>Asesorías</span><span class="mom up">+86%</span></div><div class="v">401</div><div class="d">64 sin marcar</div></div><div class="cn"><div class="k"><span>Asistidas</span><span class="mom up">+44%</span></div><div class="v">230</div><div class="d">107 no asistieron</div></div><div class="cn"><div class="k"><span>Efectivas</span><span class="mom up">+51%</span></div><div class="v">213</div><div class="d">asistió, calificó y necesita</div></div><div class="cn"><div class="k"><span>No efectivas</span><span class="mom dn">-11%</span></div><div class="v">17</div><div class="d">asistió y no calificó</div></div><div class="cn"><div class="k"><span>Show-up</span><span class="mom dn">-6 pts</span></div><div class="v">68%</div><div class="d">asistidas entre resueltas</div></div><div class="cn"><div class="k"><span>Agendas por closer</span><span class="mom up">+46%</span></div><div class="v">20.9</div><div class="d">17 closers con agenda</div></div></div><p class="capn">1 de septiembre al 14 de septiembre, contra los mismos días del mes pasado (1 de agosto al 14 de agosto).</p><div class="mrows"><div class="mrow"><div class="mlab">Agendas<small>meta 602 · al día 14 de 30 van 356, el ritmo pide 281</small></div><div class="mtrack"><div class="mnow" style="width:59%"></div><div class="mgoal" style="left:47%"></div></div><div class="mval"><span class="a">356</span><span class="arw">/</span><span class="b">602</span></div></div><div class="mrow"><div class="mlab">Efectivas<small>meta 554 · al día 14 de 30 van 213, el ritmo pide 259</small></div><div class="mtrack"><div class="mnow" style="width:38%"></div><div class="mgoal" style="left:47%"></div></div><div class="mval"><span class="a">213</span><span class="arw">/</span><span class="b">554</span></div></div></div></div>
+
+<!-- ============================================================ 1 -->
+<section>
+<div class="step">1 &middot; La semana, por closer</div>
+<h2>Semana del 7 de septiembre al 13 de septiembre: qui&eacute;n quedó en piso y a qui&eacute;n le faltó.</h2>
+<p class="sub">Ordenado por efectivas. <b>vs piso 8</b>: cu&aacute;ntas efectivas le sobran o le faltan. Los nombres est&aacute;n al final de la p&aacute;gina; aqu&iacute; cada closer conserva su n&uacute;mero en todas las tablas.</p>
+<div class="tcard"><table id="ta"><thead><tr><th>Closer</th><th>Agendas creadas</th><th>En fin de semana</th><th>Asesorías</th><th>Asistidas</th><th>No asistieron</th><th>Sin marcar</th><th>Show-up</th><th>Efectivas</th><th>No efectivas</th><th>vs piso 8</th><th>AFORE previo</th></tr></thead><tbody><tr><td>Closer 01</td><td data-v="20">20</td><td data-v="3">3</td><td data-v="18">18</td><td data-v="14">14</td><td data-v="3">3</td><td data-v="1">1</td><td data-v="82">82%</td><td data-v="13"><b>13</b></td><td data-v="1">1</td><td data-v="5" class="good">+5</td><td data-v="92">92%</td></tr><tr><td>Closer 02</td><td data-v="17">17</td><td data-v="5">5</td><td data-v="15">15</td><td data-v="13">13</td><td data-v="2">2</td><td data-v="0">0</td><td data-v="87">87%</td><td data-v="12"><b>12</b></td><td data-v="1">1</td><td data-v="4" class="good">+4</td><td data-v="50">50%</td></tr><tr><td>Closer 03</td><td data-v="28">28</td><td data-v="9">9</td><td data-v="20">20</td><td data-v="13">13</td><td data-v="7">7</td><td data-v="0">0</td><td data-v="65">65%</td><td data-v="11"><b>11</b></td><td data-v="2">2</td><td data-v="3" class="good">+3</td><td data-v="45">45%</td></tr><tr><td>Closer 04</td><td data-v="18">18</td><td data-v="0">0</td><td data-v="23">23</td><td data-v="11">11</td><td data-v="9">9</td><td data-v="3">3</td><td data-v="55">55%</td><td data-v="11"><b>11</b></td><td data-v="0">0</td><td data-v="3" class="good">+3</td><td data-v="55">55%</td></tr><tr><td>Closer 05</td><td data-v="16">16</td><td data-v="0">0</td><td data-v="14">14</td><td data-v="11">11</td><td data-v="3">3</td><td data-v="0">0</td><td data-v="79">79%</td><td data-v="11"><b>11</b></td><td data-v="0">0</td><td data-v="3" class="good">+3</td><td data-v="64">64%</td></tr><tr><td>Closer 06</td><td data-v="20">20</td><td data-v="4">4</td><td data-v="15">15</td><td data-v="9">9</td><td data-v="5">5</td><td data-v="1">1</td><td data-v="64">64%</td><td data-v="9"><b>9</b></td><td data-v="0">0</td><td data-v="1" class="good">+1</td><td data-v="78">78%</td></tr><tr><td>Closer 07</td><td data-v="19">19</td><td data-v="7">7</td><td data-v="11">11</td><td data-v="9">9</td><td data-v="2">2</td><td data-v="0">0</td><td data-v="82">82%</td><td data-v="9"><b>9</b></td><td data-v="0">0</td><td data-v="1" class="good">+1</td><td data-v="67">67%</td></tr><tr><td>Closer 08</td><td data-v="15">15</td><td data-v="4">4</td><td data-v="17">17</td><td data-v="10">10</td><td data-v="5">5</td><td data-v="2">2</td><td data-v="67">67%</td><td data-v="7"><b>7</b></td><td data-v="3">3</td><td data-v="-1" class="">−1</td><td data-v="43">43%</td></tr><tr><td>Closer 09</td><td data-v="9">9</td><td data-v="0">0</td><td data-v="8">8</td><td data-v="7">7</td><td data-v="0">0</td><td data-v="1">1</td><td data-v="100">100%</td><td data-v="7"><b>7</b></td><td data-v="0">0</td><td data-v="-1" class="">−1</td><td data-v="57">57%</td></tr><tr><td>Closer 10</td><td data-v="6">6</td><td data-v="1">1</td><td data-v="13">13</td><td data-v="8">8</td><td data-v="3">3</td><td data-v="2">2</td><td data-v="73">73%</td><td data-v="7"><b>7</b></td><td data-v="1">1</td><td data-v="-1" class="">−1</td><td data-v="71">71%</td></tr><tr><td>Closer 11</td><td data-v="7">7</td><td data-v="0">0</td><td data-v="9">9</td><td data-v="6">6</td><td data-v="2">2</td><td data-v="1">1</td><td data-v="75">75%</td><td data-v="6"><b>6</b></td><td data-v="0">0</td><td data-v="-2" class="">−2</td><td data-v="83">83%</td></tr><tr><td>Closer 12</td><td data-v="8">8</td><td data-v="0">0</td><td data-v="8">8</td><td data-v="5">5</td><td data-v="1">1</td><td data-v="2">2</td><td data-v="83">83%</td><td data-v="5"><b>5</b></td><td data-v="0">0</td><td data-v="-3" class="">−3</td><td data-v="0">0%</td></tr><tr><td>Closer 13</td><td data-v="7">7</td><td data-v="0">0</td><td data-v="8">8</td><td data-v="5">5</td><td data-v="2">2</td><td data-v="1">1</td><td data-v="71">71%</td><td data-v="3"><b>3</b></td><td data-v="2">2</td><td data-v="-5" class="">−5</td><td data-v="0">0%</td></tr><tr><td>Closer 14</td><td data-v="5">5</td><td data-v="0">0</td><td data-v="6">6</td><td data-v="3">3</td><td data-v="0">0</td><td data-v="3">3</td><td data-v="100">100%</td><td data-v="3"><b>3</b></td><td data-v="0">0</td><td data-v="-5" class="">−5</td><td data-v="100">100%</td></tr><tr><td>Closer 15</td><td data-v="12">12</td><td data-v="1">1</td><td data-v="10">10</td><td data-v="2">2</td><td data-v="6">6</td><td data-v="2">2</td><td data-v="25">25%</td><td data-v="2"><b>2</b></td><td data-v="0">0</td><td data-v="-6" class="">−6</td><td data-v="0">0%</td></tr><tr><td>Closer 16</td><td data-v="9">9</td><td data-v="2">2</td><td data-v="8">8</td><td data-v="2">2</td><td data-v="5">5</td><td data-v="1">1</td><td data-v="29">29%</td><td data-v="2"><b>2</b></td><td data-v="0">0</td><td data-v="-6" class="">−6</td><td data-v="50">50%</td></tr><tr><td>Closer 17</td><td data-v="1">1</td><td data-v="0">0</td><td data-v="1">1</td><td data-v="0">0</td><td data-v="1">1</td><td data-v="0">0</td><td data-v="0">0%</td><td data-v="0"><b>0</b></td><td data-v="0">0</td><td data-v="-8" class="">−8</td><td data-v="-1">·</td></tr></tbody></table></div>
+<p class="tsel">17 closers activos. Agendas creadas por fecha de agenda (columna A del tracker); asesor&iacute;as, asistidas y efectivas por fecha de asesor&iacute;a (columna B). Haz clic en un encabezado para ordenar.</p>
+</section>
+
+<!-- ============================================================ 2 -->
+<section>
+<div class="step">2 &middot; Por hacer hoy</div>
+<h2>Lo que cada closer tiene pendiente en el CRM.</h2>
+<p class="sub">Leads asignados en etapas de acci&oacute;n del CF-A, al corte del CFA. <b>Agendas de ma&ntilde;ana sin confirmar</b>: citas del mar 15 que siguen en &ldquo;Asesor&iacute;a agendada&rdquo; y no pasaron a &ldquo;Confirmada&rdquo;. <b>Asistencias sin marcar</b>: asesor&iacute;as de hace m&aacute;s de 48 horas sin Asistencia en el tracker; eso lo marca el asesor, pero es tu agenda.</p>
+<div class="tcard"><table id="pa"><thead><tr><th>Closer</th><th>Llamar hoy</th><th>Msj. hoy</th><th>Respondió WhatsApp</th><th>Confirmar asesoría</th><th>Lead calificado o con CURP</th><th>Seguimiento sin task</th><th>Pedir reporte IMSS</th><th>Total por hacer</th><th>Agendas de mañana sin confirmar</th><th>Asistencias sin marcar</th></tr></thead><tbody><tr><td>Closer 01</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="14" class="bad">14</td><td data-v="5" class="">5</td><td data-v="8" class="">8</td><td data-v="0" class="">·</td><td data-v="30" class="bad">30</td><td data-v="57"><b>57</b></td><td data-v="0" class="">·</td><td data-v="1">1</td></tr><tr><td>Closer 02</td><td data-v="0" class="">·</td><td data-v="12" class="bad">12</td><td data-v="1" class="">1</td><td data-v="0" class="">·</td><td data-v="14" class="bad">14</td><td data-v="0" class="">·</td><td data-v="34" class="bad">34</td><td data-v="61"><b>61</b></td><td data-v="1" class="bad">1</td><td data-v="0">·</td></tr><tr><td>Closer 03</td><td data-v="5" class="">5</td><td data-v="8" class="">8</td><td data-v="3" class="">3</td><td data-v="0" class="">·</td><td data-v="4" class="">4</td><td data-v="0" class="">·</td><td data-v="34" class="bad">34</td><td data-v="54"><b>54</b></td><td data-v="3" class="bad">3</td><td data-v="0">·</td></tr><tr><td>Closer 04</td><td data-v="1" class="">1</td><td data-v="1" class="">1</td><td data-v="43" class="bad">43</td><td data-v="0" class="">·</td><td data-v="22" class="bad">22</td><td data-v="0" class="">·</td><td data-v="19" class="bad">19</td><td data-v="86"><b>86</b></td><td data-v="0" class="">·</td><td data-v="2">2</td></tr><tr><td>Closer 05</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="17" class="bad">17</td><td data-v="0" class="">·</td><td data-v="10" class="bad">10</td><td data-v="0" class="">·</td><td data-v="5" class="">5</td><td data-v="32"><b>32</b></td><td data-v="1" class="bad">1</td><td data-v="0">·</td></tr><tr><td>Closer 06</td><td data-v="0" class="">·</td><td data-v="18" class="bad">18</td><td data-v="5" class="">5</td><td data-v="0" class="">·</td><td data-v="11" class="bad">11</td><td data-v="1" class="">1</td><td data-v="48" class="bad">48</td><td data-v="83"><b>83</b></td><td data-v="1" class="bad">1</td><td data-v="2">2</td></tr><tr><td>Closer 07</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="11" class="bad">11</td><td data-v="4" class="">4</td><td data-v="0" class="">·</td><td data-v="2" class="">2</td><td data-v="17"><b>17</b></td><td data-v="0" class="">·</td><td data-v="0">·</td></tr><tr><td>Closer 08</td><td data-v="1" class="">1</td><td data-v="0" class="">·</td><td data-v="19" class="bad">19</td><td data-v="10" class="bad">10</td><td data-v="20" class="bad">20</td><td data-v="1" class="">1</td><td data-v="71" class="bad">71</td><td data-v="122"><b>122</b></td><td data-v="0" class="">·</td><td data-v="3">3</td></tr><tr><td>Closer 09</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="4" class="">4</td><td data-v="0" class="">·</td><td data-v="6" class="">6</td><td data-v="18" class="bad">18</td><td data-v="4" class="">4</td><td data-v="32"><b>32</b></td><td data-v="0" class="">·</td><td data-v="1">1</td></tr><tr><td>Closer 10</td><td data-v="11" class="bad">11</td><td data-v="46" class="bad">46</td><td data-v="4" class="">4</td><td data-v="0" class="">·</td><td data-v="21" class="bad">21</td><td data-v="0" class="">·</td><td data-v="32" class="bad">32</td><td data-v="114"><b>114</b></td><td data-v="0" class="">·</td><td data-v="1">1</td></tr><tr><td>Closer 11</td><td data-v="2" class="">2</td><td data-v="5" class="">5</td><td data-v="3" class="">3</td><td data-v="5" class="">5</td><td data-v="8" class="">8</td><td data-v="0" class="">·</td><td data-v="37" class="bad">37</td><td data-v="60"><b>60</b></td><td data-v="0" class="">·</td><td data-v="1">1</td></tr><tr><td>Closer 12</td><td data-v="0" class="">·</td><td data-v="5" class="">5</td><td data-v="11" class="bad">11</td><td data-v="0" class="">·</td><td data-v="2" class="">2</td><td data-v="0" class="">·</td><td data-v="18" class="bad">18</td><td data-v="36"><b>36</b></td><td data-v="1" class="bad">1</td><td data-v="2">2</td></tr><tr><td>Closer 13</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="9" class="">9</td><td data-v="0" class="">·</td><td data-v="19" class="bad">19</td><td data-v="11" class="bad">11</td><td data-v="13" class="bad">13</td><td data-v="52"><b>52</b></td><td data-v="0" class="">·</td><td data-v="1">1</td></tr><tr><td>Closer 14</td><td data-v="2" class="">2</td><td data-v="1" class="">1</td><td data-v="7" class="">7</td><td data-v="0" class="">·</td><td data-v="17" class="bad">17</td><td data-v="0" class="">·</td><td data-v="9" class="">9</td><td data-v="36"><b>36</b></td><td data-v="1" class="bad">1</td><td data-v="3">3</td></tr><tr><td>Closer 15</td><td data-v="1" class="">1</td><td data-v="0" class="">·</td><td data-v="23" class="bad">23</td><td data-v="0" class="">·</td><td data-v="12" class="bad">12</td><td data-v="1" class="">1</td><td data-v="28" class="bad">28</td><td data-v="65"><b>65</b></td><td data-v="0" class="">·</td><td data-v="2">2</td></tr><tr><td>Closer 16</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="24" class="bad">24</td><td data-v="0" class="">·</td><td data-v="1" class="">1</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="25"><b>25</b></td><td data-v="0" class="">·</td><td data-v="0">·</td></tr><tr><td>Closer 17</td><td data-v="1" class="">1</td><td data-v="0" class="">·</td><td data-v="37" class="bad">37</td><td data-v="0" class="">·</td><td data-v="9" class="">9</td><td data-v="0" class="">·</td><td data-v="29" class="bad">29</td><td data-v="76"><b>76</b></td><td data-v="0" class="">·</td><td data-v="0">·</td></tr></tbody></table></div>
+<p class="tsel">&ldquo;Seguimiento&rdquo; con task no cuenta: la etapa retiene por dise&ntilde;o. Rojo en una etapa: 10 leads o m&aacute;s esperando.</p>
+</section>
+
+<!-- ============================================================ 3 -->
+<section>
+<div class="step">3 &middot; Lo que entra</div>
+<h2>Leads de los &uacute;ltimos 14 d&iacute;as.</h2>
+<p class="sub">Verde: leads &uacute;tiles, los que pasaron el filtro autom&aacute;tico. Gris: descartados por el filtro (no califica, no califica asesor&iacute;a PP, ya pensionado).</p>
+<div class="leads"><div class="lb"><div class="lbar"><i class="u" style="height:65%"></i><i class="d" style="height:23%"></i></div><b>189</b><small>139 útiles</small><span>mar 1</span></div><div class="lb"><div class="lbar"><i class="u" style="height:23%"></i><i class="d" style="height:12%"></i></div><b>76</b><small>50 útiles</small><span>mié 2</span></div><div class="lb"><div class="lbar"><i class="u" style="height:68%"></i><i class="d" style="height:32%"></i></div><b>214</b><small>146 útiles</small><span>jue 3</span></div><div class="lb"><div class="lbar"><i class="u" style="height:49%"></i><i class="d" style="height:15%"></i></div><b>136</b><small>104 útiles</small><span>vie 4</span></div><div class="lb"><div class="lbar"><i class="u" style="height:46%"></i><i class="d" style="height:21%"></i></div><b>144</b><small>98 útiles</small><span>sáb 5</span></div><div class="lb"><div class="lbar"><i class="u" style="height:35%"></i><i class="d" style="height:9%"></i></div><b>93</b><small>74 útiles</small><span>dom 6</span></div><div class="lb"><div class="lbar"><i class="u" style="height:45%"></i><i class="d" style="height:21%"></i></div><b>143</b><small>97 útiles</small><span>lun 7</span></div><div class="lb"><div class="lbar"><i class="u" style="height:47%"></i><i class="d" style="height:29%"></i></div><b>163</b><small>101 útiles</small><span>mar 8</span></div><div class="lb"><div class="lbar"><i class="u" style="height:45%"></i><i class="d" style="height:19%"></i></div><b>137</b><small>96 útiles</small><span>mié 9</span></div><div class="lb"><div class="lbar"><i class="u" style="height:54%"></i><i class="d" style="height:26%"></i></div><b>171</b><small>115 útiles</small><span>jue 10</span></div><div class="lb"><div class="lbar"><i class="u" style="height:54%"></i><i class="d" style="height:12%"></i></div><b>142</b><small>116 útiles</small><span>vie 11</span></div><div class="lb"><div class="lbar"><i class="u" style="height:69%"></i><i class="d" style="height:23%"></i></div><b>197</b><small>147 útiles</small><span>sáb 12</span></div><div class="lb"><div class="lbar"><i class="u" style="height:57%"></i><i class="d" style="height:14%"></i></div><b>151</b><small>122 útiles</small><span>dom 13</span></div><div class="lb"><div class="lbar"><i class="u" style="height:5%"></i><i class="d" style="height:0%"></i></div><b>12</b><small>11 útiles</small><span>lun 14</span></div></div>
+<p class="capn">Fuera de la cuenta: 2,116 oportunidades cargadas en bloque al CRM (m&aacute;s de 300 en la misma hora, sin closer). No son leads nuevos.</p>
+</section>
+
+<section>
+<div class="step">Anexo</div>
+<h2>Las mismas tablas, con nombre.</h2>
+<details class="anx"><summary>La semana, por closer</summary><div class="tcard"><table id="tn"><thead><tr><th>Closer</th><th>Agendas creadas</th><th>En fin de semana</th><th>Asesorías</th><th>Asistidas</th><th>No asistieron</th><th>Sin marcar</th><th>Show-up</th><th>Efectivas</th><th>No efectivas</th><th>vs piso 8</th><th>AFORE previo</th></tr></thead><tbody><tr><td>Lina López</td><td data-v="20">20</td><td data-v="3">3</td><td data-v="18">18</td><td data-v="14">14</td><td data-v="3">3</td><td data-v="1">1</td><td data-v="82">82%</td><td data-v="13"><b>13</b></td><td data-v="1">1</td><td data-v="5" class="good">+5</td><td data-v="92">92%</td></tr><tr><td>Franco Pererson</td><td data-v="17">17</td><td data-v="5">5</td><td data-v="15">15</td><td data-v="13">13</td><td data-v="2">2</td><td data-v="0">0</td><td data-v="87">87%</td><td data-v="12"><b>12</b></td><td data-v="1">1</td><td data-v="4" class="good">+4</td><td data-v="50">50%</td></tr><tr><td>Pablo Dilascio</td><td data-v="28">28</td><td data-v="9">9</td><td data-v="20">20</td><td data-v="13">13</td><td data-v="7">7</td><td data-v="0">0</td><td data-v="65">65%</td><td data-v="11"><b>11</b></td><td data-v="2">2</td><td data-v="3" class="good">+3</td><td data-v="45">45%</td></tr><tr><td>Gonza Semelman</td><td data-v="18">18</td><td data-v="0">0</td><td data-v="23">23</td><td data-v="11">11</td><td data-v="9">9</td><td data-v="3">3</td><td data-v="55">55%</td><td data-v="11"><b>11</b></td><td data-v="0">0</td><td data-v="3" class="good">+3</td><td data-v="55">55%</td></tr><tr><td>Paola Soto</td><td data-v="16">16</td><td data-v="0">0</td><td data-v="14">14</td><td data-v="11">11</td><td data-v="3">3</td><td data-v="0">0</td><td data-v="79">79%</td><td data-v="11"><b>11</b></td><td data-v="0">0</td><td data-v="3" class="good">+3</td><td data-v="64">64%</td></tr><tr><td>Stephanie Duque</td><td data-v="20">20</td><td data-v="4">4</td><td data-v="15">15</td><td data-v="9">9</td><td data-v="5">5</td><td data-v="1">1</td><td data-v="64">64%</td><td data-v="9"><b>9</b></td><td data-v="0">0</td><td data-v="1" class="good">+1</td><td data-v="78">78%</td></tr><tr><td>Carina Cabral</td><td data-v="19">19</td><td data-v="7">7</td><td data-v="11">11</td><td data-v="9">9</td><td data-v="2">2</td><td data-v="0">0</td><td data-v="82">82%</td><td data-v="9"><b>9</b></td><td data-v="0">0</td><td data-v="1" class="good">+1</td><td data-v="67">67%</td></tr><tr><td>Franco Luna</td><td data-v="15">15</td><td data-v="4">4</td><td data-v="17">17</td><td data-v="10">10</td><td data-v="5">5</td><td data-v="2">2</td><td data-v="67">67%</td><td data-v="7"><b>7</b></td><td data-v="3">3</td><td data-v="-1" class="">−1</td><td data-v="43">43%</td></tr><tr><td>María Gladis González</td><td data-v="9">9</td><td data-v="0">0</td><td data-v="8">8</td><td data-v="7">7</td><td data-v="0">0</td><td data-v="1">1</td><td data-v="100">100%</td><td data-v="7"><b>7</b></td><td data-v="0">0</td><td data-v="-1" class="">−1</td><td data-v="57">57%</td></tr><tr><td>Silvia Díaz</td><td data-v="6">6</td><td data-v="1">1</td><td data-v="13">13</td><td data-v="8">8</td><td data-v="3">3</td><td data-v="2">2</td><td data-v="73">73%</td><td data-v="7"><b>7</b></td><td data-v="1">1</td><td data-v="-1" class="">−1</td><td data-v="71">71%</td></tr><tr><td>Lenis Donado</td><td data-v="7">7</td><td data-v="0">0</td><td data-v="9">9</td><td data-v="6">6</td><td data-v="2">2</td><td data-v="1">1</td><td data-v="75">75%</td><td data-v="6"><b>6</b></td><td data-v="0">0</td><td data-v="-2" class="">−2</td><td data-v="83">83%</td></tr><tr><td>John Salamanca</td><td data-v="8">8</td><td data-v="0">0</td><td data-v="8">8</td><td data-v="5">5</td><td data-v="1">1</td><td data-v="2">2</td><td data-v="83">83%</td><td data-v="5"><b>5</b></td><td data-v="0">0</td><td data-v="-3" class="">−3</td><td data-v="0">0%</td></tr><tr><td>Emiliano Passi</td><td data-v="7">7</td><td data-v="0">0</td><td data-v="8">8</td><td data-v="5">5</td><td data-v="2">2</td><td data-v="1">1</td><td data-v="71">71%</td><td data-v="3"><b>3</b></td><td data-v="2">2</td><td data-v="-5" class="">−5</td><td data-v="0">0%</td></tr><tr><td>Natalia González</td><td data-v="5">5</td><td data-v="0">0</td><td data-v="6">6</td><td data-v="3">3</td><td data-v="0">0</td><td data-v="3">3</td><td data-v="100">100%</td><td data-v="3"><b>3</b></td><td data-v="0">0</td><td data-v="-5" class="">−5</td><td data-v="100">100%</td></tr><tr><td>Malena Cantarini</td><td data-v="12">12</td><td data-v="1">1</td><td data-v="10">10</td><td data-v="2">2</td><td data-v="6">6</td><td data-v="2">2</td><td data-v="25">25%</td><td data-v="2"><b>2</b></td><td data-v="0">0</td><td data-v="-6" class="">−6</td><td data-v="0">0%</td></tr><tr><td>Axel Cisterna</td><td data-v="9">9</td><td data-v="2">2</td><td data-v="8">8</td><td data-v="2">2</td><td data-v="5">5</td><td data-v="1">1</td><td data-v="29">29%</td><td data-v="2"><b>2</b></td><td data-v="0">0</td><td data-v="-6" class="">−6</td><td data-v="50">50%</td></tr><tr><td>Melisa Orozco</td><td data-v="1">1</td><td data-v="0">0</td><td data-v="1">1</td><td data-v="0">0</td><td data-v="1">1</td><td data-v="0">0</td><td data-v="0">0%</td><td data-v="0"><b>0</b></td><td data-v="0">0</td><td data-v="-8" class="">−8</td><td data-v="-1">·</td></tr></tbody></table></div></details>
+<details class="anx"><summary>Por hacer hoy</summary><div class="tcard"><table id="pn"><thead><tr><th>Closer</th><th>Llamar hoy</th><th>Msj. hoy</th><th>Respondió WhatsApp</th><th>Confirmar asesoría</th><th>Lead calificado o con CURP</th><th>Seguimiento sin task</th><th>Pedir reporte IMSS</th><th>Total por hacer</th><th>Agendas de mañana sin confirmar</th><th>Asistencias sin marcar</th></tr></thead><tbody><tr><td>Lina López</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="14" class="bad">14</td><td data-v="5" class="">5</td><td data-v="8" class="">8</td><td data-v="0" class="">·</td><td data-v="30" class="bad">30</td><td data-v="57"><b>57</b></td><td data-v="0" class="">·</td><td data-v="1">1</td></tr><tr><td>Franco Pererson</td><td data-v="0" class="">·</td><td data-v="12" class="bad">12</td><td data-v="1" class="">1</td><td data-v="0" class="">·</td><td data-v="14" class="bad">14</td><td data-v="0" class="">·</td><td data-v="34" class="bad">34</td><td data-v="61"><b>61</b></td><td data-v="1" class="bad">1</td><td data-v="0">·</td></tr><tr><td>Pablo Dilascio</td><td data-v="5" class="">5</td><td data-v="8" class="">8</td><td data-v="3" class="">3</td><td data-v="0" class="">·</td><td data-v="4" class="">4</td><td data-v="0" class="">·</td><td data-v="34" class="bad">34</td><td data-v="54"><b>54</b></td><td data-v="3" class="bad">3</td><td data-v="0">·</td></tr><tr><td>Gonza Semelman</td><td data-v="1" class="">1</td><td data-v="1" class="">1</td><td data-v="43" class="bad">43</td><td data-v="0" class="">·</td><td data-v="22" class="bad">22</td><td data-v="0" class="">·</td><td data-v="19" class="bad">19</td><td data-v="86"><b>86</b></td><td data-v="0" class="">·</td><td data-v="2">2</td></tr><tr><td>Paola Soto</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="17" class="bad">17</td><td data-v="0" class="">·</td><td data-v="10" class="bad">10</td><td data-v="0" class="">·</td><td data-v="5" class="">5</td><td data-v="32"><b>32</b></td><td data-v="1" class="bad">1</td><td data-v="0">·</td></tr><tr><td>Stephanie Duque</td><td data-v="0" class="">·</td><td data-v="18" class="bad">18</td><td data-v="5" class="">5</td><td data-v="0" class="">·</td><td data-v="11" class="bad">11</td><td data-v="1" class="">1</td><td data-v="48" class="bad">48</td><td data-v="83"><b>83</b></td><td data-v="1" class="bad">1</td><td data-v="2">2</td></tr><tr><td>Carina Cabral</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="11" class="bad">11</td><td data-v="4" class="">4</td><td data-v="0" class="">·</td><td data-v="2" class="">2</td><td data-v="17"><b>17</b></td><td data-v="0" class="">·</td><td data-v="0">·</td></tr><tr><td>Franco Luna</td><td data-v="1" class="">1</td><td data-v="0" class="">·</td><td data-v="19" class="bad">19</td><td data-v="10" class="bad">10</td><td data-v="20" class="bad">20</td><td data-v="1" class="">1</td><td data-v="71" class="bad">71</td><td data-v="122"><b>122</b></td><td data-v="0" class="">·</td><td data-v="3">3</td></tr><tr><td>María Gladis González</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="4" class="">4</td><td data-v="0" class="">·</td><td data-v="6" class="">6</td><td data-v="18" class="bad">18</td><td data-v="4" class="">4</td><td data-v="32"><b>32</b></td><td data-v="0" class="">·</td><td data-v="1">1</td></tr><tr><td>Silvia Díaz</td><td data-v="11" class="bad">11</td><td data-v="46" class="bad">46</td><td data-v="4" class="">4</td><td data-v="0" class="">·</td><td data-v="21" class="bad">21</td><td data-v="0" class="">·</td><td data-v="32" class="bad">32</td><td data-v="114"><b>114</b></td><td data-v="0" class="">·</td><td data-v="1">1</td></tr><tr><td>Lenis Donado</td><td data-v="2" class="">2</td><td data-v="5" class="">5</td><td data-v="3" class="">3</td><td data-v="5" class="">5</td><td data-v="8" class="">8</td><td data-v="0" class="">·</td><td data-v="37" class="bad">37</td><td data-v="60"><b>60</b></td><td data-v="0" class="">·</td><td data-v="1">1</td></tr><tr><td>John Salamanca</td><td data-v="0" class="">·</td><td data-v="5" class="">5</td><td data-v="11" class="bad">11</td><td data-v="0" class="">·</td><td data-v="2" class="">2</td><td data-v="0" class="">·</td><td data-v="18" class="bad">18</td><td data-v="36"><b>36</b></td><td data-v="1" class="bad">1</td><td data-v="2">2</td></tr><tr><td>Emiliano Passi</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="9" class="">9</td><td data-v="0" class="">·</td><td data-v="19" class="bad">19</td><td data-v="11" class="bad">11</td><td data-v="13" class="bad">13</td><td data-v="52"><b>52</b></td><td data-v="0" class="">·</td><td data-v="1">1</td></tr><tr><td>Natalia González</td><td data-v="2" class="">2</td><td data-v="1" class="">1</td><td data-v="7" class="">7</td><td data-v="0" class="">·</td><td data-v="17" class="bad">17</td><td data-v="0" class="">·</td><td data-v="9" class="">9</td><td data-v="36"><b>36</b></td><td data-v="1" class="bad">1</td><td data-v="3">3</td></tr><tr><td>Malena Cantarini</td><td data-v="1" class="">1</td><td data-v="0" class="">·</td><td data-v="23" class="bad">23</td><td data-v="0" class="">·</td><td data-v="12" class="bad">12</td><td data-v="1" class="">1</td><td data-v="28" class="bad">28</td><td data-v="65"><b>65</b></td><td data-v="0" class="">·</td><td data-v="2">2</td></tr><tr><td>Axel Cisterna</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="24" class="bad">24</td><td data-v="0" class="">·</td><td data-v="1" class="">1</td><td data-v="0" class="">·</td><td data-v="0" class="">·</td><td data-v="25"><b>25</b></td><td data-v="0" class="">·</td><td data-v="0">·</td></tr><tr><td>Melisa Orozco</td><td data-v="1" class="">1</td><td data-v="0" class="">·</td><td data-v="37" class="bad">37</td><td data-v="0" class="">·</td><td data-v="9" class="">9</td><td data-v="0" class="">·</td><td data-v="29" class="bad">29</td><td data-v="76"><b>76</b></td><td data-v="0" class="">·</td><td data-v="0">·</td></tr></tbody></table></div></details>
+</section>
+
+<p class="metahead">Todo n&uacute;mero sale de los dos archivos del corte. Los detalles est&aacute;n abajo.</p>
+<details class="met"><summary>C&oacute;mo se calcula</summary><p><b>Archivos.</b> CFA_140926.csv y Tracker_140926.csv, los m&aacute;s recientes por fecha en el nombre. El corte es la fecha del m&aacute;s nuevo. <b>Roster:</b> 17 closers activos; las bajas no aparecen. Los nombres del CRM y del tracker se unifican antes de contar. <b>Leads:</b> oportunidades del pipe CF-A por fecha de creaci&oacute;n, hora de M&eacute;xico; &uacute;tiles = no est&aacute;n en No califica, N.C. asesor&iacute;a PP ni Ya pensionado. <b>Agendas creadas:</b> filas del tracker por fecha de agenda (columna A). <b>Asesor&iacute;as, asistidas, efectivas:</b> filas por fecha de asesor&iacute;a (columna B); asistida = Asistencia Si; efectiva = Asistencia Si, Calificaci&oacute;n Si y Necesita financiamiento Si. <b>Show-up:</b> asistidas entre asistidas m&aacute;s no asistidas; las sin marcar no cuentan. <b>Agendas por closer:</b> agendas creadas entre closers activos con al menos una agenda en el periodo. <b>Comparaciones:</b> hoy contra ayer; semana en curso contra los mismos d&iacute;as de la semana anterior; mes a la fecha contra los mismos d&iacute;as del mes anterior. <b>Meta del mes:</b> 602 agendas y 554 efectivas, la de septiembre del tablero de closers; el ritmo es la meta prorrateada a los d&iacute;as transcurridos. <b>Por hacer hoy:</b> etapas del CF-A tal cual est&aacute;n en el CRM al momento del export. <b>Cargas en bloque:</b> se excluyen las horas con 300 o m&aacute;s oportunidades creadas y 90% sin closer.</p></details>
+
+<p class="foot">Direcci&oacute;n de Closers &middot; Pensi&oacute;n Perfecta. Tableros: <a href="../closers/">agosto</a> &middot; <a href="../asesores/">el handoff</a>.</p>
+</div>
+
+<script>
+(function(){
+ var bs=document.querySelectorAll('.tabs button'), tabs=document.querySelectorAll('.tab');
+ function show(id){bs.forEach(function(b){b.classList.toggle('on',b.dataset.for===id)});tabs.forEach(function(t){t.hidden=t.dataset.tab!==id});}
+ bs.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.for)})});
+ show('hoy');
+ function sortable(id){
+  var t=document.getElementById(id); if(!t) return;
+  var ths=t.querySelectorAll('thead th');
+  ths.forEach(function(th,i){
+   th.tabIndex=0;
+   function go(){
+    var asc=!th.classList.contains('dn');
+    ths.forEach(function(x){x.classList.remove('up','dn')});
+    th.classList.add(asc?'dn':'up');
+    var tb=t.tBodies[0]; var rows=[].slice.call(tb.rows);
+    rows.sort(function(a,b){
+     var x=a.cells[i],y=b.cells[i];
+     var vx=x.dataset.v!==undefined?parseFloat(x.dataset.v):x.textContent.trim().toLowerCase();
+     var vy=y.dataset.v!==undefined?parseFloat(y.dataset.v):y.textContent.trim().toLowerCase();
+     if(vx<vy) return asc?1:-1; if(vx>vy) return asc?-1:1; return 0;
+    });
+    rows.forEach(function(r){tb.appendChild(r)});
+   }
+   th.addEventListener('click',go);
+   th.addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();go()}});
+  });
+ }
+ ['ta','tn','pa','pn'].forEach(sortable);
+})();
+</script>
+</body></html>

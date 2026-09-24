@@ -1292,6 +1292,15 @@ tr.cur td{background:#f7f9ff}
 .tagc{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#2563eb;background:#eef2ff;padding:2px 6px;border-radius:9px;margin-left:6px}
 td.sm{font-size:12px;color:#4b5563}
 .kc.bad .kn{color:#b91c1c}
+.ufrw{border:1px solid var(--line);border-radius:6px;background:var(--panel);overflow:hidden}
+.ufr .w{display:flex;flex-direction:column;gap:5px;justify-content:center}
+.ufr .w i.rbar{display:block;height:6px;border-radius:3px;background:var(--accent);min-width:3px}
+.ufr.big .w i.rbar{background:var(--accent)}
+.ufr .w em{font-family:"IBM Plex Mono",monospace;font-style:normal;font-size:10.5px;color:var(--faint);letter-spacing:.01em}
+.leads.sem7{grid-template-columns:repeat(7,1fr)}
+.ksec{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#6b7280;margin:24px 0 9px;font-weight:600}
+.upal .o{color:var(--accent);font-weight:600}
+.upal .c.mk .o{color:var(--blue)}
 .kg .kc{min-width:0} .kg.r4 .km{white-space:normal}
 .kc.nstar{position:relative}
 .kg .kc{min-width:0}
@@ -1348,42 +1357,44 @@ details.anx[open]{padding-bottom:18px}
 
 <div class="uln"></div>
 <section class="usec">
-<h2>Semana a semana del mes</h2>
-<p class="sub">Cada semana del mes, de lunes a domingo. La &uacute;ltima es la que est&aacute; en curso.</p>
-<div class="utab"><table><thead><tr><th class="s">Semana</th><th class="s">Agendadas</th><th class="s">Citas</th><th class="s">Asistidas</th><th class="s">Show-up</th><th class="s">Efectivas</th><th class="s">Ef/d&iacute;a</th><th class="s">Firmas</th></tr></thead><tbody>
-<tr><td class="nm">mar 1 al dom 6</td><td class="mono">140</td><td class="mono">152</td><td class="mono">101</td><td class="mono">66%</td><td class="mono"><b>94</b></td><td class="mono">15.7</td><td class="mono">31</td></tr><tr><td class="nm">lun 7 al dom 13</td><td class="mono">219</td><td class="mono">205</td><td class="mono">138</td><td class="mono">67%</td><td class="mono"><b>126</b></td><td class="mono">18.0</td><td class="mono">46</td></tr><tr><td class="nm">lun 14 al dom 20</td><td class="mono">193</td><td class="mono">216</td><td class="mono">134</td><td class="mono">63%</td><td class="mono"><b>121</b></td><td class="mono">17.3</td><td class="mono">40</td></tr><tr class="cur"><td class="nm">lun 21 al jue 24  <span class="tagc">en curso</span></td><td class="mono">116</td><td class="mono">142</td><td class="mono">50</td><td class="mono">61%</td><td class="mono"><b>48</b></td><td class="mono">12.0</td><td class="mono">22</td></tr>
-</tbody></table></div>
-<p class="nottot">Agendadas por fecha de agenda; citas, asistidas y efectivas por fecha de asesor&iacute;a. La semana en curso lleva 4 d&iacute;a(s) y por eso sale m&aacute;s baja: compara la columna Ef/d&iacute;a.</p>
+<h2>Semana a semana</h2>
+<p class="sub">Cada semana del mes, de lunes a domingo. La barra es el ritmo: efectivas por d&iacute;a.</p>
+<div class="ufrw">
+<div class="ufr hd"><span>Semana</span><span class="a">Agendas</span><span class="b">Efectivas</span><span class="w">Ritmo y show-up</span></div>
+<div class="ufr"><span class="n">mar 1 al dom 6</span><span class="a">140</span><span class="b">94</span><span class="w"><i class="rbar" style="width:87%"></i><em>15.7 efectivas al d&iacute;a &middot; show 66% &middot; 31 firmas</em></span></div><div class="ufr"><span class="n">lun 7 al dom 13</span><span class="a">219</span><span class="b">126</span><span class="w"><i class="rbar" style="width:100%"></i><em>18.0 efectivas al d&iacute;a &middot; show 67% &middot; 46 firmas</em></span></div><div class="ufr"><span class="n">lun 14 al dom 20</span><span class="a">193</span><span class="b">121</span><span class="w"><i class="rbar" style="width:96%"></i><em>17.3 efectivas al d&iacute;a &middot; show 63% &middot; 40 firmas</em></span></div><div class="ufr big"><span class="n">lun 21 al jue 24 &middot; en curso</span><span class="a">116</span><span class="b">48</span><span class="w"><i class="rbar" style="width:67%"></i><em>12.0 efectivas al d&iacute;a &middot; show 61% &middot; 22 firmas</em></span></div>
+</div>
+<p class="nottot">La semana en curso lleva 4 d&iacute;a(s), por eso el total sale m&aacute;s bajo. Lo comparable es el ritmo.</p>
 </section>
 
 <div class="uln"></div>
 <section class="usec">
-<h2>C&oacute;mo vamos a cerrar el mes</h2>
+<h2>C&oacute;mo vamos a cerrar</h2>
 <p class="sub">Al ritmo de los primeros 24 d&iacute;as, proyectado a los 30 del mes.</p>
-<div class="kg r4">
-<div class="kc"><div class="kl">Efectivas al cierre</div><div class="kn">486</div><div class="kd eq">van 389 &middot; ritmo 16.2/d&iacute;a</div><div class="km"><em>meta</em><b>554</b></div></div>
-<div class="kc"><div class="kl">Firmas al cierre</div><div class="kn">179</div><div class="kd eq">van 143</div></div>
-<div class="kc"><div class="kl">Agendas al cierre</div><div class="kn">835</div><div class="kd eq">van 668</div><div class="km"><em>meta</em><b>753</b></div></div>
-<div class="kc bad"><div class="kl">Para llegar a la meta</div><div class="kn">27.5</div><div class="kd eq">efectivas por d&iacute;a, faltan 6 d&iacute;as</div><div class="km"><em>hoy vamos a</em><b>16.2</b></div></div>
+<div class="ust">
+<div class="c"><div class="k">Efectivas al cierre</div><div class="v">486</div><div class="b" style="background:linear-gradient(90deg,var(--accent) 80%,#e6e9e4 0)"></div><div class="p">van 389 &middot; meta 554</div></div>
+<div class="c"><div class="k">Firmas al cierre</div><div class="v">179</div><div class="b" style="background:linear-gradient(90deg,var(--accent) 80%,#e6e9e4 0)"></div><div class="p">van 143</div></div>
+<div class="c"><div class="k">Agendas al cierre</div><div class="v">835</div><div class="b" style="background:linear-gradient(90deg,var(--accent) 80%,#e6e9e4 0)"></div><div class="p">van 668 &middot; meta 753</div></div>
+<div class="c"><div class="k">Ritmo por d&iacute;a</div><div class="v">16.2</div><div class="b" style="background:linear-gradient(90deg,var(--red) 59%,#e6e9e4 0)"></div><div class="p bad">la meta pide 27.5/d&iacute;a</div></div>
 </div>
-<div class="gnota"><p><b>Lo que ya est&aacute; en el calendario.</b> jue 24: <b>27</b> &middot; vie 25: <b>13</b> &middot; sáb 26: <b>7</b> &middot; dom 27: <b>0</b> &middot; lun 28: <b>4</b> &middot; mar 29: <b>1</b> &middot; mié 30: <b>1</b> Con el show-up del mes (65%) y la conversi&oacute;n a efectiva (92%), esas citas dan unas <b>32 efectivas</b>. Todo lo dem&aacute;s hay que agendarlo.</p></div>
+<h3 class="ksec">Lo que ya est&aacute; en el calendario</h3>
+<div class="leads sem7"><div class="lb"><div class="lbar"><i class="u" style="height:100%"></i></div><b>27</b><small>citas</small><span>jue 24</span></div><div class="lb"><div class="lbar"><i class="u" style="height:48%"></i></div><b>13</b><small>citas</small><span>vie 25</span></div><div class="lb"><div class="lbar"><i class="u" style="height:26%"></i></div><b>7</b><small>citas</small><span>sáb 26</span></div><div class="lb"><div class="lbar"><i class="u" style="height:0%"></i></div><b>0</b><small>citas</small><span>dom 27</span></div><div class="lb"><div class="lbar"><i class="u" style="height:15%"></i></div><b>4</b><small>citas</small><span>lun 28</span></div><div class="lb"><div class="lbar"><i class="u" style="height:4%"></i></div><b>1</b><small>cita</small><span>mar 29</span></div><div class="lb"><div class="lbar"><i class="u" style="height:4%"></i></div><b>1</b><small>cita</small><span>mié 30</span></div></div>
+<div class="gnota"><p><b>53 citas cargadas</b> de hoy al cierre. Con el show-up del mes (65%) y la conversi&oacute;n a efectiva (92%), dan unas <b>32 efectivas</b>. Para el proyectado de 486 faltan por agendar unas <b>65</b>. Se agenda a 1 o 2 d&iacute;as: lo de hoy llena ma&ntilde;ana y pasado.</p></div>
 </section>
 
 <div class="uln"></div>
 <section class="usec">
 <h2>Qu&eacute; hacer hoy</h2>
-<p class="sub">Lo que est&aacute; en el pipe listo para trabajar, con nombre y apellido de qui&eacute;n lo tiene.</p>
-<div class="utab"><table><thead><tr><th class="s">Acci&oacute;n</th><th class="s">Cu&aacute;ntos</th><th class="s">Qui&eacute;n acumula m&aacute;s</th><th class="s">Por qu&eacute;</th></tr></thead><tbody>
-<tr><td class="nm">Califican y no tienen cita</td><td class="mono"><b>258</b></td><td class="mono sm">Pablo 44, Silvia 44, Franco 23, Stephanie 20</td><td class="sm">Ya tienen resultado del sistema. Es llamada de hoy.</td></tr><tr><td class="nm">De esos, sin una sola nota</td><td class="mono"><b>68</b></td><td class="mono sm">Franco 12, Emiliano 8, Gonza 7, Lina 5</td><td class="sm">Nadie los ha llamado nunca.</td></tr><tr><td class="nm">En Lead (con CURP) pero sin CURP</td><td class="mono"><b>90</b></td><td class="mono sm">Lina 55, Franco 8, Stephanie 7, John 6</td><td class="sm">No esperan calificacion: esperan que les pidan el CURP. Es mensaje, no llamada.</td></tr><tr><td class="nm">Rebotados de la automatizacion que si califican</td><td class="mono"><b>37</b></td><td class="mono sm">Pablo 25, Stephanie 4, Melisa 2, Malena 2</td><td class="sm">Ultimo intento en otro horario; si no, a No contesto.</td></tr><tr><td class="nm">Asesorias sin marcar (ultimos 14 dias)</td><td class="mono"><b>37</b></td><td class="mono sm">Gonza 7, Franco 6, Silvia 4, Pablo 3</td><td class="sm">Sin marcar no cuentan como efectiva ni se pagan.</td></tr><tr><td class="nm">Asistieron y no cuentan por el tracker</td><td class="mono"><b>34</b></td><td class="mono sm">Franco 7, Pablo 5, Silvia 3, Lina 3</td><td class="sm">Falta marcar calificacion o necesita financiamiento.</td></tr>
-</tbody></table></div>
+<p class="sub">Lo que ya est&aacute; en el pipe listo para trabajar, y qui&eacute;n lo tiene.</p>
+<div class="upal"><div class="c"><div class="o">258 leads</div><div class="h">Califican y no tienen cita</div><div class="d">Ya tienen resultado del sistema. Es llamada de hoy.</div><div class="g">Pablo 44 &middot; Silvia 44 &middot; Franco L. 23 &middot; Stephanie 20</div></div><div class="c mk"><div class="o">68 leads</div><div class="h">De esos, sin una sola nota</div><div class="d">Calificaron y nadie los ha llamado nunca.</div><div class="g">Franco L. 12 &middot; Emiliano 8 &middot; Gonza 7 &middot; Lina 5</div></div><div class="c"><div class="o">90 leads</div><div class="h">En Lead (con CURP) pero sin CURP</div><div class="d">No esperan calificación: esperan que les pidan el CURP. Es mensaje, no llamada.</div><div class="g">Lina 55 &middot; Franco P. 8 &middot; Stephanie 7 &middot; John 6</div></div><div class="c mk"><div class="o">37 leads</div><div class="h">Rebotados de la automatización que sí califican</div><div class="d">Último intento en otro horario; si no, a No contestó y que siga la automatización.</div><div class="g">Pablo 25 &middot; Stephanie 4 &middot; Melisa 2 &middot; Malena 2</div></div><div class="c"><div class="o">37 leads</div><div class="h">Asesorías sin marcar (últimos 14 días)</div><div class="d">Sin marcar no cuentan como efectiva ni se pagan. Se piden al asesor.</div><div class="g">Gonza 7 &middot; Franco L. 6 &middot; Silvia 4 &middot; Pablo 3</div></div><div class="c mk"><div class="o">34 leads</div><div class="h">Asistieron y no cuentan por el tracker</div><div class="d">Sí asistieron: falta marcar calificación o necesita financiamiento.</div><div class="g">Franco L. 7 &middot; Pablo 5 &middot; Silvia 3 &middot; Lina 3</div></div></div>
 </section>
 
 <div class="uln"></div>
 <section class="usec">
-<h2>Las dos palancas que m&aacute;s mueven, medidas con nuestros datos</h2>
+<h2>Las dos palancas que m&aacute;s mueven</h2>
+<p class="sub">Medidas con nuestros propios datos del mes.</p>
 <div class="uwin">
-<div class="c"><div class="k">AFORE antes de la asesor&iacute;a</div><div class="v">50% vs 18%</div><div class="d">De las efectivas con AFORE conseguido antes, el 50% firma. Sin AFORE, el 18%. Misma efectiva, 2.8 veces m&aacute;s firma.</div></div>
-<div class="c"><div class="k">Entre m&aacute;s lejos la cita, menos llegan</div><div class="v">Mismo dia 84% &middot; 1 dia 68% &middot; 2 dias 62% &middot; 3 a 7 dias 64% &middot; Mas de 7 25%</div><div class="d">Show-up seg&uacute;n d&iacute;as entre agendar y la cita. Por eso se agenda a 1 o m&aacute;ximo 2 d&iacute;as.</div></div>
+<div class="c"><div class="k">AFORE antes de la asesor&iacute;a</div><div class="v">50% <small style="font-size:14px;color:var(--faint)">vs 18%</small></div><div class="d">De las efectivas que llegaron con su AFORE, el 50% firma. Sin AFORE, el 18%. Misma efectiva, 2.8 veces m&aacute;s firma: pedirlo en la confirmaci&oacute;n.</div></div>
+<div class="c"><div class="k">Entre m&aacute;s lejos la cita, menos llegan</div><div class="v">84%</div><div class="d">Show-up seg&uacute;n d&iacute;as entre agendar y la cita: mismo dia 84%, 1 dia 68%, 2 dias 62%, 3 a 7 dias 64%, mas de 7 25%. Por eso se agenda a 1 o m&aacute;ximo 2 d&iacute;as.</div></div>
 </div>
 </section>
 

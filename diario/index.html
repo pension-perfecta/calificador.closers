@@ -1293,13 +1293,14 @@ tr.cur td{background:#f7f9ff}
 td.sm{font-size:12px;color:#4b5563}
 .kc.bad .kn{color:#b91c1c}
 .ufrw{border:1px solid var(--line);border-radius:6px;background:var(--panel);overflow:hidden}
-.ufr{grid-template-columns:minmax(150px,1fr) 74px 74px 112px 1fr}
-.ufr .o{display:flex;flex-direction:column;gap:3px;justify-content:center}
-.ufr .o b{font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:600;letter-spacing:-.02em}
-.ufr .o b.okv{color:#0E5140} .ufr .o b.badv{color:#8f2f22}
-.ufr .o u{font-family:"IBM Plex Mono",monospace;text-decoration:none;font-size:9.5px;color:var(--faint);line-height:1.3}
-.ufr.hd .o{font-size:inherit}
-@media(max-width:760px){.ufr{grid-template-columns:1fr 60px 60px 92px}.ufr .w{display:none}}
+.ufr{grid-template-columns:minmax(150px,1fr) 78px 86px 1.5fr}
+.ufr .b u.dem{display:block;text-decoration:none;font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--faint);font-weight:400;letter-spacing:.02em;margin-top:2px}
+.ufr .w i.rtrk{display:block;height:9px;border-radius:5px;background:#e7e4dd;overflow:hidden}
+.ufr .w i.rtrk b.rfil{display:block;height:100%;border-radius:5px;min-width:3px}
+.rfil.su-mal{background:#c0503f} .rfil.su-ok{background:#d0a13a} .rfil.su-bien{background:#1f7a5c}
+.ufr .w em s{text-decoration:none;font-weight:700}
+.ufr .w em b{font-weight:700;color:var(--ink)}
+@media(max-width:760px){.ufr{grid-template-columns:1fr 60px 70px}.ufr .w{grid-column:1/-1}}
 .ufr .w{display:flex;flex-direction:column;gap:5px;justify-content:center}
 .ufr .w i.rbar{display:block;height:6px;border-radius:3px;background:var(--accent);min-width:3px}
 .ufr.big .w i.rbar{background:var(--accent)}
@@ -1406,8 +1407,8 @@ details.anx[open]{padding-bottom:18px}
 <h2>Semana a semana</h2>
 <p class="sub">Cada semana del mes, de lunes a domingo. El objetivo semanal es 128 efectivas: el piso de 8 por cada uno de los 16 closers. La barra es el ritmo: efectivas por d&iacute;a.</p>
 <div class="ufrw">
-<div class="ufr hd"><span>Semana</span><span class="a">Agendas</span><span class="b">Efectivas</span><span class="o">vs objetivo 128</span><span class="w">Ritmo y show-up</span></div>
-<div class="ufr"><span class="n">mar 1 al dom 6</span><span class="a">140</span><span class="b">94</span><span class="o"><b class="badv">&minus;34</b><u>abajo del objetivo</u></span><span class="w"><i class="rbar" style="width:87%"></i><em>15.7 efectivas al d&iacute;a &middot; show 66% &middot; 31 firmas</em></span></div><div class="ufr"><span class="n">lun 7 al dom 13</span><span class="a">219</span><span class="b">126</span><span class="o"><b class="badv">&minus;2</b><u>abajo del objetivo</u></span><span class="w"><i class="rbar" style="width:100%"></i><em>18.0 efectivas al d&iacute;a &middot; show 67% &middot; 46 firmas</em></span></div><div class="ufr"><span class="n">lun 14 al dom 20</span><span class="a">193</span><span class="b">122</span><span class="o"><b class="badv">&minus;6</b><u>abajo del objetivo</u></span><span class="w"><i class="rbar" style="width:97%"></i><em>17.4 efectivas al d&iacute;a &middot; show 63% &middot; 40 firmas</em></span></div><div class="ufr big"><span class="n">lun 21 al jue 24 &middot; en curso</span><span class="a">132</span><span class="b">54</span><span class="o"><b class="badv">&minus;74</b><u>faltan 74 en 3 d&iacute;as &middot; 24.7/d&iacute;a</u></span><span class="w"><i class="rbar" style="width:75%"></i><em>13.5 efectivas al d&iacute;a &middot; show 61% &middot; 22 firmas</em></span></div>
+<div class="ufr hd"><span>Semana</span><span class="a">Agendas</span><span class="b">Efectivas</span><span class="w">C&oacute;mo vamos contra el objetivo de 128</span></div>
+<div class="ufr"><span class="n">mar 1 al dom 6</span><span class="a">140</span><span class="b">94<u class="dem">de 128</u></span><span class="w"><i class="rtrk"><b class="rfil su-ok" style="width:73%"></b></i><em><s class="su-ok">73% del objetivo</s> &middot; 34 abajo &middot; 15.7 al d&iacute;a &middot; show 66% &middot; 31 firmas</em></span></div><div class="ufr"><span class="n">lun 7 al dom 13</span><span class="a">219</span><span class="b">126<u class="dem">de 128</u></span><span class="w"><i class="rtrk"><b class="rfil su-bien" style="width:98%"></b></i><em><s class="su-bien">98% del objetivo</s> &middot; 2 abajo &middot; 18.0 al d&iacute;a &middot; show 67% &middot; 46 firmas</em></span></div><div class="ufr"><span class="n">lun 14 al dom 20</span><span class="a">193</span><span class="b">122<u class="dem">de 128</u></span><span class="w"><i class="rtrk"><b class="rfil su-bien" style="width:95%"></b></i><em><s class="su-bien">95% del objetivo</s> &middot; 6 abajo &middot; 17.4 al d&iacute;a &middot; show 63% &middot; 40 firmas</em></span></div><div class="ufr big"><span class="n">lun 21 al jue 24 &middot; en curso</span><span class="a">132</span><span class="b">54<u class="dem">de 128</u></span><span class="w"><i class="rtrk"><b class="rfil su-mal" style="width:42%"></b></i><em><s class="su-mal">42% del objetivo</s> &middot; <b>faltan 74 en 3 d&iacute;as, 24.7 al d&iacute;a</b> &middot; 13.5 al d&iacute;a &middot; show 61% &middot; 22 firmas</em></span></div>
 </div>
 <p class="nottot">La semana en curso lleva 4 d&iacute;a(s), por eso el total sale m&aacute;s bajo. Lo comparable es el ritmo.</p>
 </section>

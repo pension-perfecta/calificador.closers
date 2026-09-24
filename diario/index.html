@@ -1312,8 +1312,22 @@ td.sm{font-size:12px;color:#4b5563}
 .pod .pd{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);margin-top:9px}
 .pod .psm{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--blue);margin-top:5px;min-height:13px}
 td .sm{font-family:"IBM Plex Mono",monospace;font-style:normal;font-size:10px;color:var(--blue);margin-left:3px;vertical-align:super}
-.kn small.pct{font-family:"IBM Plex Mono",monospace;font-size:15px;font-weight:600;margin-left:7px;letter-spacing:-.01em}
-.kn small.pct.ok{color:var(--accent)} .kn small.pct.hi{color:var(--red)}
+.kn small.pct{font-family:"IBM Plex Mono",monospace;font-size:14px;font-weight:700;margin-left:9px;letter-spacing:.01em;
+padding:3px 9px;border-radius:11px;vertical-align:middle;position:relative;top:-3px}
+.kn small.pct.ok{color:#0E5140;background:#dff1e6;border:1px solid #9fd4b4}
+.kn small.pct.hi{color:#8f2f22;background:#fbe3df;border:1px solid #efb3a8}
+.esc{border:1px solid var(--line);border-radius:6px;background:var(--panel);overflow:hidden}
+.er{display:grid;grid-template-columns:minmax(150px,1fr) 88px 2fr;gap:14px;align-items:center;padding:13px 19px;border-top:1px solid var(--line)}
+.er:first-child{border-top:none}
+.er .en{font-size:13.6px;font-weight:500}
+.er .ev{font-family:"IBM Plex Mono",monospace;font-size:17px;text-align:right;font-weight:600;color:var(--accent)}
+.er .ed{font-size:12.2px;color:var(--faint);line-height:1.45}
+.er.base{background:var(--panel-2)} .er.base .ev{color:var(--muted)}
+.er.tot{background:var(--accent-soft)}
+.er.tot .en{font-family:"Fraunces","Instrument Serif",Georgia,serif;font-size:18px}
+.er.tot .ev{font-size:26px;letter-spacing:-.02em}
+.er.tot.miss .ev{color:var(--red)}
+@media(max-width:760px){.er{grid-template-columns:1fr 70px;gap:8px}.er .ed{grid-column:1/-1}}
 td.pos{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--faint);text-align:center;width:34px}
 @media(max-width:760px){.podio{grid-template-columns:1fr}}
 .kg .kc{min-width:0} .kg.r4 .km{white-space:normal}
@@ -1383,7 +1397,7 @@ details.anx[open]{padding-bottom:18px}
 
 <div class="uln"></div>
 <section class="usec">
-<h2>C&oacute;mo vamos a cerrar</h2>
+<h2>C&oacute;mo vamos a cerrar septiembre</h2>
 <p class="sub">Al ritmo de los primeros 24 d&iacute;as, proyectado a los 30 del mes.</p>
 <div class="ust">
 <div class="c"><div class="k">Agendas al cierre</div><div class="v">835</div><div class="b" style="background:linear-gradient(90deg,var(--accent) 80%,#e6e9e4 0)"></div><div class="p">van 668 &middot; meta 753</div></div>
@@ -1393,7 +1407,16 @@ details.anx[open]{padding-bottom:18px}
 </div>
 <h3 class="ksec">Lo que ya est&aacute; en el calendario</h3>
 <div class="leads sem7"><div class="lb"><div class="lbar"><i class="u" style="height:100%"></i></div><b>27</b><small>citas</small><span>jue 24</span></div><div class="lb"><div class="lbar"><i class="u" style="height:48%"></i></div><b>13</b><small>citas</small><span>vie 25</span></div><div class="lb"><div class="lbar"><i class="u" style="height:26%"></i></div><b>7</b><small>citas</small><span>sáb 26</span></div><div class="lb"><div class="lbar"><i class="u" style="height:0%"></i></div><b>0</b><small>citas</small><span>dom 27</span></div><div class="lb"><div class="lbar"><i class="u" style="height:15%"></i></div><b>4</b><small>citas</small><span>lun 28</span></div><div class="lb"><div class="lbar"><i class="u" style="height:4%"></i></div><b>1</b><small>cita</small><span>mar 29</span></div><div class="lb"><div class="lbar"><i class="u" style="height:4%"></i></div><b>1</b><small>cita</small><span>mié 30</span></div></div>
-<div class="gnota"><p><b>53 citas cargadas</b> de hoy al cierre. Con el show-up del mes (65%) y la conversi&oacute;n a efectiva (92%), dan unas <b>32 efectivas</b>. Para el proyectado de 486 faltan por agendar unas <b>65</b>. Se agenda a 1 o 2 d&iacute;as: lo de hoy llena ma&ntilde;ana y pasado.</p></div>
+<div class="gnota"><p><b>Si todo sigue igual, cerramos en 486 efectivas</b>, 68 abajo de la meta de 554. Quedan 6 d&iacute;as. <b>53 citas cargadas</b> de hoy al cierre. Con el show-up del mes (65%) y la conversi&oacute;n a efectiva (92%), dan unas <b>32 efectivas</b>. Para el proyectado de 486 faltan por agendar unas <b>65</b>. Se agenda a 1 o 2 d&iacute;as: lo de hoy llena ma&ntilde;ana y pasado.</p></div>
+
+<h3 class="ksec">Y si hacemos lo que dijimos, as&iacute; cerrar&iacute;amos</h3>
+<div class="esc">
+<div class="er base"><span class="en">Sin cambiar nada</span><span class="ev">486</span><span class="ed">al ritmo de hoy: 29.8 citas al d&iacute;a y show de 65%</span></div>
+<div class="er"><span class="en">+ Show-up al 70%</span><span class="ev">&plus;8</span><span class="ed">confirmando con audio y llamada las 179 citas que faltan del mes</span></div>
+<div class="er"><span class="en">+ 6 agendas por closer al d&iacute;a</span><span class="ev">&plus;78</span><span class="ed">hoy vamos en 27.8 agendas al d&iacute;a; el equipo dar&iacute;a 48 y son 121 citas m&aacute;s</span></div>
+<div class="er"><span class="en">+ Cerrar las sin marcar</span><span class="ev">&plus;38</span><span class="ed">64 asesor&iacute;as del mes sin marcar; el asesor las cierra y cuentan</span></div>
+<div class="er tot"><span class="en">As&iacute; cerrar&iacute;amos</span><span class="ev">610</span><span class="ed">meta 554 &middot; la pasamos por 56</span></div>
+</div>
 </section>
 
 <div class="uln"></div>

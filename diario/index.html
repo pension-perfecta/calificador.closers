@@ -1310,6 +1310,20 @@ td.sm{font-size:12px;color:#4b5563}
 .tqf .qv{font-family:"IBM Plex Mono",monospace;font-size:27px;font-weight:600;letter-spacing:-.03em}
 .tqf .qk{font-size:12px;color:var(--muted)}
 .tqf .qd{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--faint);width:100%;margin-top:3px}
+.cp{font-family:"IBM Plex Mono",monospace;font-style:normal;font-size:10.5px;font-weight:700;color:var(--accent);background:#e8f0ea;padding:2px 7px;border-radius:9px}
+.cres{font-size:13px;color:var(--ink-2);margin-top:13px;line-height:1.55}
+.cwg{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:18px}
+.cwb{border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:15px 17px 13px}
+.cwb .ksec{margin:0 0 2px}
+.cwsub{font-size:11.5px;color:var(--faint);margin:0 0 11px}
+.cwr{display:grid;grid-template-columns:86px 1fr 40px 30px;gap:8px;align-items:center;padding:4px 0}
+.cwr .l{font-size:12px;color:var(--ink-2)}
+.cwr.top .l{font-weight:700;color:var(--ink)}
+.cwr .bar{background:#eeece6;border-radius:3px;height:8px;overflow:hidden}
+.cwr .bar i{display:block;height:100%;border-radius:3px}
+.cwr .bar i.su-bien{background:#1f7a5c} .cwr .bar i.su-ok{background:#d0a13a} .cwr .bar i.su-mal{background:#c0503f}
+.cwr .v{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:700;text-align:right}
+.cwr .n{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--faint);text-align:right}
 .cbar{margin:6px 0 4px}
 .ctrack{display:flex;height:42px;border-radius:6px;overflow:hidden;background:#e7e4dd}
 .cs{display:flex;align-items:center;justify-content:center;min-width:2px;position:relative}
@@ -1442,16 +1456,7 @@ details.anx[open]{padding-bottom:18px}
 <div class="gnota"><p><b>Q3 va en 1024 asesor&iacute;as efectivas contra 251 del Q2</b>: 4.1 veces m&aacute;s. Solo septiembre (471) vale m&aacute;s que todo el Q2 junto. El show-up bajó de 77% a 68%: el volumen creció más rápido que la disciplina de confirmación.</p></div>
 </section>
 
-<div class="uln"></div>
-<section class="usec">
-<h2>El mes, semana a semana</h2>
-<p class="sub">Cada semana del mes, de lunes a domingo. El objetivo semanal es 168 efectivas: el piso de 8 por cada uno de los 21 closers. La barra es el ritmo: efectivas por d&iacute;a.</p>
-<div class="ufrw">
-<div class="ufr hd"><span>Semana</span><span class="a">Agendas</span><span class="b">Efectivas</span><span class="w">C&oacute;mo vamos contra el objetivo de 168</span></div>
-<div class="ufr"><span class="n">mar 1 al dom 6</span><span class="a">140</span><span class="b">94<u class="dem">de 168</u></span><span class="w"><i class="rtrk"><b class="rfil su-mal" style="width:56%"></b></i><em><s class="su-mal">56% del objetivo</s> &middot; 74 abajo &middot; 15.7 al d&iacute;a &middot; show 66% &middot; 31 firmas</em></span></div><div class="ufr"><span class="n">lun 7 al dom 13</span><span class="a">219</span><span class="b">126<u class="dem">de 168</u></span><span class="w"><i class="rtrk"><b class="rfil su-ok" style="width:75%"></b></i><em><s class="su-ok">75% del objetivo</s> &middot; 42 abajo &middot; 18.0 al d&iacute;a &middot; show 67% &middot; 48 firmas</em></span></div><div class="ufr"><span class="n">lun 14 al dom 20</span><span class="a">193</span><span class="b">124<u class="dem">de 168</u></span><span class="w"><i class="rtrk"><b class="rfil su-ok" style="width:74%"></b></i><em><s class="su-ok">74% del objetivo</s> &middot; 44 abajo &middot; 17.7 al d&iacute;a &middot; show 63% &middot; 41 firmas</em></span></div><div class="ufr"><span class="n">lun 21 al dom 27</span><span class="a">200</span><span class="b">107<u class="dem">de 168</u></span><span class="w"><i class="rtrk"><b class="rfil su-mal" style="width:64%"></b></i><em><s class="su-mal">64% del objetivo</s> &middot; 61 abajo &middot; 15.3 al d&iacute;a &middot; show 65% &middot; 46 firmas</em></span></div><div class="ufr big"><span class="n">lun 28 al mar 29 &middot; en curso</span><span class="a">43</span><span class="b">20<u class="dem">de 168</u></span><span class="w"><i class="rtrk"><b class="rfil su-mal" style="width:12%"></b></i><em><s class="su-mal">12% del objetivo</s> &middot; <b>faltan 148 en 5 d&iacute;as, 29.6 al d&iacute;a</b> &middot; 10.0 al d&iacute;a &middot; show 68% &middot; 6 firmas</em></span></div>
-</div>
-<p class="nottot">La semana en curso lleva 2 d&iacute;a(s), por eso el total sale m&aacute;s bajo. Lo comparable es el ritmo.</p>
-</section>
+
 
 <div class="uln"></div>
 <section class="usec">
@@ -1462,10 +1467,11 @@ details.anx[open]{padding-bottom:18px}
 <div class="cend"><span>0</span><span>meta 554</span></div>
 </div>
 <div class="cleg">
-<span><i class="d hecho"></i><b>471</b> ya hechas<u>nadie te las quita</u></span>
-<span><i class="d comp"></i><b>32</b> ya agendadas<u>53 citas cargadas &middot; solo falta que lleguen</u></span>
-<span><i class="d falta"></i><b>51</b> por agendar<u>85 citas &middot; 4.0 por closer</u></span>
+<span><i class="d hecho"></i><b>471</b> ya hechas <em class="cp">85% de la meta</em><u>nadie te las quita</u></span>
+<span><i class="d comp"></i><b>32</b> ya agendadas <em class="cp">6% m&aacute;s</em><u>53 citas cargadas &middot; solo falta que lleguen</u></span>
+<span><i class="d falta"></i><b>51</b> por agendar <em class="cp">9% que falta</em><u>85 citas &middot; 4.0 por closer</u></span>
 </div>
+<p class="cres">Con lo hecho m&aacute;s lo agendado vamos en <b>91%</b> de la meta de 554. Contra el mismo corte del mes pasado (300 efectivas) vamos <b>+57%</b>.</p>
 <h3 class="ksec">Lo que ya est&aacute; en el calendario</h3>
 <div class="leads sem7"><div class="lb"><div class="lbar"><i class="u" style="height:100%"></i></div><b>42</b><small>citas</small><span>mar 29</span></div><div class="lb"><div class="lbar"><i class="u" style="height:26%"></i></div><b>11</b><small>citas</small><span>mié 30</span></div></div>
 <div class="gnota"><p><b>Al ritmo de hoy cerramos en 487</b>, 67 abajo de la meta. Queda 1 d&iacute;a.
@@ -1479,6 +1485,14 @@ Dos cosas que este mes costaron efectivas: el show-up de <b>66%</b> en vez de 70
 <div class="upal"><div class="c"><div class="o">11 citas</div><div class="h">Confirmar las citas de ma&ntilde;ana</div><div class="d">Audio en la tarde y llamada en la ma&ntilde;ana de la cita. El show-up del mes va en 66%: cada punto que sube son efectivas sin agendar una cita de m&aacute;s.</div><div class="g">Axel 2 &middot; Franco L. 1 &middot; Franco P. 1 &middot; Carina 1</div></div><div class="c"><div class="o">233 leads</div><div class="h">Califican y no tienen cita</div><div class="d">Ya tienen resultado del sistema. Es llamada de hoy y cita para ma&ntilde;ana.</div><div class="g">Pablo 41 &middot; Franco L. 26 &middot; Stephanie 24 &middot; Emiliano 22</div></div><div class="c"><div class="o">81 leads</div><div class="h">En Lead (con CURP) pero sin CURP</div><div class="d">No esperan calificaci&oacute;n: esperan que les pidan el CURP. Es un mensaje; califican hoy y se agendan ma&ntilde;ana.</div><div class="g">Lina 21 &middot; John 14 &middot; Silvia 8 &middot; Gonza 8</div></div></div>
 <div class="upal dos"><div class="c mk"><div class="o">25 asesor&iacute;as &middot; lo marca el asesor</div><div class="h">Asesor&iacute;as sin marcar</div><div class="d">Efectivas que ya pasaron y no est&aacute;n contadas. Lo marca el asesor: el closer se lo tiene que pedir hoy, sin marcar no cuenta ni se paga.</div><div class="g">Gonza 5 &middot; Franco P. 4 &middot; Malena 3 &middot; Carina 3</div></div><div class="c mk"><div class="o">44 asesor&iacute;as &middot; lo marca el asesor</div><div class="h">Asistieron y no cuentan por el tracker</div><div class="d">S&iacute; asistieron: al asesor le falta marcar calificaci&oacute;n o necesita financiamiento. Ped&iacute;rselo hoy.</div><div class="g">Franco L. 7 &middot; Carina 6 &middot; Paola 5 &middot; Emiliano 4</div></div></div>
 </section>
+<div class="uln"></div>
+<section class="usec">
+<h2>Cu&aacute;ndo agendar</h2>
+<p class="sub">De 1477 citas marcadas de los &uacute;ltimos dos meses: qu&eacute; porcentaje lleg&oacute; en cada caso. La columna de la derecha es cu&aacute;ntas citas respaldan cada rengl&oacute;n.</p>
+<div class="cwg"><div class="cwb"><h3 class="ksec">Con cu&aacute;ntos d&iacute;as de anticipaci&oacute;n</h3><p class="cwsub">D&iacute;as entre que agendas y la cita</p><div class="cwr top"><span class="l">Mismo día</span><span class="bar"><i class="su-bien" style="width:81%"></i></span><span class="v su-bien">81%</span><span class="n">104</span></div><div class="cwr"><span class="l">1 día</span><span class="bar"><i class="su-ok" style="width:72%"></i></span><span class="v su-ok">72%</span><span class="n">531</span></div><div class="cwr"><span class="l">2 días</span><span class="bar"><i class="su-mal" style="width:62%"></i></span><span class="v su-mal">62%</span><span class="n">390</span></div><div class="cwr"><span class="l">3 a 7 días</span><span class="bar"><i class="su-ok" style="width:67%"></i></span><span class="v su-ok">67%</span><span class="n">422</span></div><div class="cwr"><span class="l">Más de 7</span><span class="bar"><i class="su-mal" style="width:37%"></i></span><span class="v su-mal">37%</span><span class="n">27</span></div></div><div class="cwb"><h3 class="ksec">A qu&eacute; hora</h3><p class="cwsub">Hora de la asesor&iacute;a</p><div class="cwr"><span class="l">Antes de 10</span><span class="bar"><i class="su-ok" style="width:71%"></i></span><span class="v su-ok">71%</span><span class="n">123</span></div><div class="cwr"><span class="l">10 a 12</span><span class="bar"><i class="su-ok" style="width:66%"></i></span><span class="v su-ok">66%</span><span class="n">343</span></div><div class="cwr top"><span class="l">12 a 14</span><span class="bar"><i class="su-ok" style="width:72%"></i></span><span class="v su-ok">72%</span><span class="n">282</span></div><div class="cwr"><span class="l">14 a 16</span><span class="bar"><i class="su-ok" style="width:69%"></i></span><span class="v su-ok">69%</span><span class="n">250</span></div><div class="cwr"><span class="l">16 a 18</span><span class="bar"><i class="su-ok" style="width:68%"></i></span><span class="v su-ok">68%</span><span class="n">322</span></div><div class="cwr"><span class="l">Después de 18</span><span class="bar"><i class="su-mal" style="width:58%"></i></span><span class="v su-mal">58%</span><span class="n">154</span></div></div><div class="cwb"><h3 class="ksec">Qu&eacute; d&iacute;a</h3><p class="cwsub">D&iacute;a de la semana de la cita</p><div class="cwr"><span class="l">Lunes</span><span class="bar"><i class="su-ok" style="width:66%"></i></span><span class="v su-ok">66%</span><span class="n">281</span></div><div class="cwr"><span class="l">Martes</span><span class="bar"><i class="su-ok" style="width:67%"></i></span><span class="v su-ok">67%</span><span class="n">291</span></div><div class="cwr"><span class="l">Miércoles</span><span class="bar"><i class="su-ok" style="width:68%"></i></span><span class="v su-ok">68%</span><span class="n">255</span></div><div class="cwr"><span class="l">Jueves</span><span class="bar"><i class="su-mal" style="width:64%"></i></span><span class="v su-mal">64%</span><span class="n">220</span></div><div class="cwr"><span class="l">Viernes</span><span class="bar"><i class="su-ok" style="width:70%"></i></span><span class="v su-ok">70%</span><span class="n">266</span></div><div class="cwr"><span class="l">Sábado</span><span class="bar"><i class="su-ok" style="width:73%"></i></span><span class="v su-ok">73%</span><span class="n">104</span></div><div class="cwr top"><span class="l">Domingo</span><span class="bar"><i class="su-bien" style="width:75%"></i></span><span class="v su-bien">75%</span><span class="n">60</span></div></div></div>
+<div class="gnota"><p>Esto no es opini&oacute;n, es lo que pas&oacute; con 1477 citas. Agendar para el mismo d&iacute;a o para ma&ntilde;ana vale m&aacute;s que cualquier otra cosa que hagas con un lead. Si el lead no puede pronto, no lo mandes a la semana que entra: consigue el hueco cercano.</p></div>
+</section>
+
 
 
 

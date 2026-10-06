@@ -485,11 +485,11 @@
       <div class="mcard"><span class="mnum">1</span><div><b>Todo termina en llamada</b><span>El mensaje no vende. Consigue la llamada.</span></div></div>
       <div class="mcard"><span class="mnum">2</span><div><b>Deja una nota</b><span>Escribe qué pasó y después mueve la etapa.</span></div></div>
       <div class="mcard"><span class="mnum">3</span><div><b>Siempre mueve de etapa</b><span>Lo que no está en ALLMK no existe y no se paga.</span></div></div>
-      <div class="mcard"><span class="mnum">4</span><div><b>Cierra el día en cero</b><span>Verdes, rojas, Llamar hoy y Msj. hoy.</span></div></div>
+      <div class="mcard"><span class="mnum">4</span><div><b>Cierra el día en cero</b><span>Verdes, Task por hacer hoy y Seguimiento sin task.</span></div></div>
     </div>
     <div class="cross">
       <span class="cross-l">La regla que cruza todo</span>
-      <p>En <b>🟢 verde no escribes, llamas</b>: ahí el sistema ya está escribiendo por ti. Tú escribes de <b>⭕ Se intentó contactar</b> en adelante.</p>
+      <p>En <b>🟢 verde no escribes, llamas</b>: ahí el sistema ya está escribiendo por ti. Tú escribes cuando ya le llamaste y no contestó.</p>
     </div>
   </div>
 
@@ -611,7 +611,7 @@ const STEPS=[
 {ph:"Antes de que llames",t:"auto",icon:"📣",title:"De dónde sale el lead",stage:"Tú no haces nada aquí",
  lead:"Esto pasa <b>antes</b> de que el lead llegue contigo. Es todo automático.",
  li:["El lead ve un anuncio y llena un formulario","El formulario lo manda a una página que tiene un botón de WhatsApp","Si le da clic al botón, te escribe y cae en tu pipe","Si no le da clic, el sistema le manda <b>3 mensajes</b>: uno ese día, otro al día siguiente y otro al cuarto día","Esos mensajes salen del número de WhatsApp que te instalaron en tu celular","Si contesta cualquiera de los 3, también cae en tu pipe"],
- note:"Caiga como caiga, siempre llega a la misma etapa: <b>🟢 Lead (sin CURP)</b>."},
+ note:"Caiga como caiga, siempre llega a una etapa verde: <b>🟢 Lead (con CURP)</b> si ya mandó su CURP, o <b>🟢 Otros leads</b> si entró por otra vía."},
 
 {ph:"Antes de que llames",t:"auto",icon:"📥",title:"Te lo asignan solo",stage:"Las etapas verdes",
  lead:"La oportunidad llega <b>con tu nombre puesto</b>. No tienes que tomarla ni pedirla.",
@@ -619,31 +619,31 @@ const STEPS=[
  branch:{t:"El orden en que los tomas, y no es opcional",c:[
    {k:"var(--accent)",i:"⬅️",n:"De izquierda a derecha",d:"Entre más a la izquierda, más probable es que agende. Acabas una columna antes de pasar a la siguiente",w:"Nunca al azar"},
    {k:"var(--gold)",i:"⬆️",n:"De arriba hacia abajo",d:"Arriba está el más reciente. Entre más rápido lo contactas, más probable es que agende",w:"El de arriba primero"},
-   {k:"var(--slate)",i:"1️⃣",n:"El orden de las columnas",d:"Agenda Propia · Re-agendar envió msj · Re-agendar · Lead Calificado · sin CURP · con CURP · Otros leads",w:"Así, sin brincarse"}]},
+   {k:"var(--slate)",i:"1️⃣",n:"El orden de las columnas",d:"Re-agendar · Lead Calificado · Lead (con CURP) · Otros leads",w:"Así, sin brincarse"}]},
  note:"Al final del día no te debe quedar <b>ninguno</b> en verde. Si te queda uno, es que no le llamaste.",
  tools:[{i:"📊",l:"Abrir ALLMK",h:"https://club.allmk.app/v2/location/TOhtz5PHJUmWnKH2q3hs/opportunities"}]},
 
-{ph:"Antes de que llames",t:"auto",icon:"🪪",title:"La IA busca el CURP",stage:"(sin CURP) → (con CURP)",
- lead:"<b>Todos los leads entran sin CURP.</b> La inteligencia artificial se lo pide por WhatsApp durante un día completo.",
- li:["Si el lead manda su CURP, la oportunidad <b>se mueve sola</b> a 🟢 Lead (con CURP)","Tú no la mueves. Se mueve sola.","Si no lo manda, se queda en 🟢 Lead (sin CURP)"],
- note:"<b>Primero le llamas a TODOS los de (con CURP).</b> Cuando ya no te quede ninguno, sigues con los de (sin CURP)."},
+{ph:"Antes de que llames",t:"auto",icon:"🪪",title:"La IA busca el CURP",stage:"Antes de que lo veas",
+ lead:"<b>El lead entra sin CURP.</b> La inteligencia artificial se lo pide por WhatsApp durante un día completo.",
+ li:["Si el lead manda su CURP, la oportunidad <b>se mueve sola</b> a 🟢 Lead (con CURP)","Tú no la mueves. Se mueve sola.","Si el CURP sale mal, cae en 🟡 Error con Curp y ahí te toca pedirle el correcto"],
+ note:"<b>Primero le llamas a los de 🟢 Lead Calificado</b>, que ya pasaron el filtro. Luego a los de 🟢 Lead (con CURP)."},
 
 {ph:"Tu llamada",t:"call",icon:"📞",title:"Doble marcación",stage:"Siempre desde ALLMK",
  lead:"Le marcas <b>dos veces seguidas</b>, apenas te lo asignan.",
- li:["Le marcas <b>dos veces seguidas</b> desde ALLMK","<b>Ya no metes nada en Creditia ni en Consulta Única antes de marcar.</b> Eso ya lo hace el sistema","Si el lead <b>no tiene CURP</b>: se lo pides en la llamada y lo calificas ahí mismo","Si ya trae CURP, lo <b>copias</b> de Resultado de calificación y lo <b>pegas</b> en Calificación closer. Ya no lo metes en Consulta Única","La segunda llamada puede ser por WhatsApp, pero solo si el lead te dio permiso","Si contesta → la oportunidad se va sola a 🟣 Respondió WhatsApp","Si no contesta → <b>tú</b> la mueves a ⭕ Se intentó contactar"],
- note:"<b>El orden de prioridad cambió.</b> Primero llamas a los de <b>🟢 Lead Calificado</b>, que ya pasaron el filtro. Luego a los de <b>(sin CURP)</b>. Los de <b>(con CURP)</b> van al final: si siguen ahí es porque su CURP dio error, y ese es trámite, no venta. Y desde tu teléfono personal <b>no cuenta</b>.",
+ li:["Le marcas <b>dos veces seguidas</b> desde ALLMK","<b>Ya no metes nada en Creditia ni en Consulta Única antes de marcar.</b> Eso ya lo hace el sistema","Si el lead <b>no tiene CURP</b>: se lo pides en la llamada y lo calificas ahí mismo","Si ya trae CURP, lo <b>copias</b> de Resultado de calificación y lo <b>pegas</b> en Calificación closer. Ya no lo metes en Consulta Única","La segunda llamada puede ser por WhatsApp, pero solo si el lead te dio permiso","Si contesta, sigues con el checklist de calificación ahí mismo","Si no contesta, le dejas mensaje desde ALLMK y <b>le pones task</b> para el siguiente intento"],
+ note:"<b>El orden de prioridad.</b> Primero los de <b>🟢 Lead Calificado</b>, que ya pasaron el filtro. Luego los de <b>🟢 Lead (con CURP)</b>. Al final <b>🟢 Otros leads</b>. Y desde tu teléfono personal <b>no cuenta</b>.",
  tools:[{i:"🎯",l:"Cómo calificar, paso a paso",h:B+"calificar/"}]},
 
-{ph:"Tu llamada",t:"auto",icon:"🔁",title:"Se intentó contactar",stage:"El loop de reintentos",
- lead:"Aquí <b>el sistema trabaja por ti</b>. Tú sigues llamando a otros.",
- li:["Al moverlo aquí, el sistema le manda un mensaje. Cada vez manda uno distinto","El sistema te lo devuelve a la etapa de donde salió","Te lo devuelve <b>5 veces</b>. Con la primera marcada, son 6 dobles marcaciones en total","Si el lead contesta, sale solo del loop y se va a 🟣 Respondió WhatsApp","Cuando se acaban los 5, se va solo a 🟤 No contestó"],
- clock:[["Lo moviste antes de las 12","te lo devuelve a las 2 PM"],["Entre 12 y 2 PM","te lo devuelve a las 3 PM"],["Después de las 2 PM","te lo devuelve mañana"]],
- note:"Si el lead venía de Re-agendar, al acabarse los 5 se va a <b>🟤 No Reagendo</b> en vez de No contestó."},
+{ph:"Antes de que llames",t:"call",icon:"🔎",title:"Otros leads",stage:"🟢 Otros leads",
+ lead:"Es la columna más grande del pipe y adentro hay leads buenos con la etiqueta equivocada.",
+ li:["Son oportunidades creadas a mano o que entraron por otra vía, y llegan asignadas a ti","Una parte <b>ya califica</b> para un producto: esos los mueves a 🟢 Lead Calificado y los llamas hoy","Otra parte tiene <b>menos de cinco días</b>: esos están tan frescos como cualquier verde","Antes de pedir leads nuevos, esas dos bolsas tienen que estar en cero"],
+ steps:{t:"Las dos vistas que te las encuentran",l:["En Oportunidades, cambia de tablero a <b>vista de lista</b>","Pipeline <b>CF-A</b>, etapa <b>Otros leads</b>, asignado a ti","En filtros avanzados agregas <b>Califica para… no está vacío</b> y guardas la vista","Haces una segunda igual, pero filtrando por <b>fecha de creación, últimos 5 días</b>"]},
+ note:"Otros leads convierte peor que un Lead Calificado, 5% contra 19%. Por eso no se trabaja todo: se trabaja lo que ya califica y lo fresco."},
 
-{ph:"Tu llamada",t:"call",icon:"💬",title:"Respondió WhatsApp",stage:"Respondió WhatsApp · Lead llamó por tel.",
+{ph:"Tu llamada",t:"call",icon:"💬",title:"Si te escribe por WhatsApp",stage:"Pásalo a llamada hoy",
  lead:"Ya te contestó. <b>Ahora lo pasas a llamada, hoy mismo.</b>",
- li:["Pregúntale si le puedes marcar en ese momento o a qué hora le acomoda","Por teléfono calificas mejor que escribiendo"],
- note:"<b>No importa en qué etapa esté el lead:</b> si te manda WhatsApp se mueve solo aquí, y si te llama se mueve solo a 🟣 Lead llamó por tel. Es para que lo atiendas antes que a los demás. Y si lo dejas un día sin moverlo, se va a <b>🔴 WhatsApp sin seguimiento</b>, que es roja."},
+ li:["Pregúntale si le puedes marcar en ese momento o a qué hora le acomoda","Por teléfono calificas mejor que escribiendo","Si te da hora, le pones task a esa hora y le marcas puntual"],
+ note:"El que acaba de contestar es el lead que hay que llamar en los siguientes minutos, porque es cuando está disponible. Si lo dejas para mañana, se enfría."},
 
 {ph:"Tu llamada",t:"call",icon:"✅",title:"Califica",stage:"Lo hace el sistema, no tú",
  lead:"<b>Pegas el CURP en ALLMK y el sistema califica solo.</b> Tarda 1 o 2 minutos y te dice si aplica y a qué oferta va.",
@@ -652,7 +652,7 @@ const STEPS=[
  branch:{t:"El sistema te va a decir una de tres cosas",c:[
    {k:"var(--accent)",i:"✅",n:"Califica",d:"Te da la oferta: retroactivo ahora, futuro, recuperación de derechos, actualización de pensión mínima o completar 500 semanas",w:"Se mueve solo a 🟢 Lead Calificado"},
    {k:"var(--slate)",i:"🟤",n:"No califica",d:"El lead se borra solo del pipe. Tú no lo mueves",w:"Sale del pipe"},
-   {k:"var(--red)",i:"⚠️",n:"Error con el CURP",d:"Ya no se queda contigo. Lo mandas a 🟢 Solicitar reporte IMSS y ahí lo consigue el área de reportes",w:"Sale de tu pipe"}]},
+   {k:"var(--gold)",i:"⚠️",n:"Error con el CURP",d:"Cae en 🟡 Error con Curp. Le vuelves a pedir el CURP correcto; si el problema es del IMSS, se va a reportes",w:"🟡 Error con Curp"}]},
  note:"<b>El checklist son 10 preguntas y van en todas las llamadas.</b> Las primeras ocho descalifican si contesta que sí: pensión, resolución o negativa, demanda a patrón, demanda al IMSS o Infonavit o AFORE, simulación laboral, accionista, plataformas tipo Uber y crédito Infonavit. Las otras dos son el monto del AFORE y qué está buscando.",
  tools:[{i:"🎯",l:"Cómo calificar, paso a paso",h:B+"calificar/"}]},
 
@@ -665,8 +665,8 @@ const STEPS=[
 
 {ph:"Al colgar",t:"reg",icon:"👥",title:"El grupo con el asesor",stage:"Lo creas tú",
  lead:"<b>Lo creas tú, al colgar.</b> Van tres: el cliente, el asesor y tú. Ahí presentas al asesor y le mandas su contacto.",
- li:["El grupo se llama <b>Pensión Perfecta · nombre del cliente</b>, con su nombre completo","Escribes la presentación <b>a mano</b>, con el nombre del asesor, el día y la hora. Nunca copiado y pegado igual en todos: eso es lo que tumba tu línea","Enseguida mandas la <b>tarjeta de contacto</b> del asesor y su <b>imagen personalizada</b>","Después el asesor saluda ahí mismo y le pide que guarde su número","Y le mandas el <b>video testimonio</b> de gancho, que es el que más mueve que se conecte"],
- note:"<b>Un grupo por cliente y nadie más adentro.</b> Si el cliente pide salir, lo sacas el mismo día. Y el grupo se cierra cuando cierra el caso, se haya firmado o no.",
+ li:["El grupo se llama <b>Pensión Perfecta · nombre del cliente</b>, con su nombre completo","Escribes la presentación <b>a mano</b>, con el nombre del asesor, el día y la hora. Nunca copiado y pegado igual en todos: eso es lo que tumba tu línea","Enseguida mandas la <b>tarjeta de contacto</b> del asesor y su <b>imagen personalizada</b>","Después el asesor saluda ahí mismo y le pide que guarde su número","Y le mandas el material <b>de su producto</b>. El video de testimonios es solo para Modalidad 40: 7 de cada 10 leads van por otro producto y ese video les crea la expectativa equivocada"],
+ note:"<b>El que no entra al grupo se re-agenda.</b> Procura que entre mientras siguen al teléfono; si no entró, le marcas para saber si asiste o si hay que mover la fecha. No se deja el espacio bloqueado sin que nadie haya confirmado nada.<br><br><b>Un grupo por cliente y nadie más adentro.</b> Si el cliente pide salir, lo sacas el mismo día. Y el grupo se cierra cuando cierra el caso, se haya firmado o no.",
  tools:[{i:"🗺️",l:"Journey del lead después de agendar",h:B+"confirmacion/"},{i:"🖼️",l:"Imágenes de los asesores",h:"https://drive.google.com/drive/folders/1fs72r8kT6igbnE_6e_0IlLu3YfrDoF6u?usp=drive_link"}]},
 
 {ph:"Al colgar",t:"reg",icon:"📁",title:"El AFORE",stage:"Es lo único que subes tú",
@@ -683,65 +683,56 @@ const STEPS=[
 
 {ph:"El día de la cita",t:"call",icon:"🗓️",title:"Confirmar la asesoría",stage:"🟡 Confirmar asesoría → 🔵 Asesoría confirmada",
  lead:"<b>El día de la cita la oportunidad se mueve sola</b> de Asesoría agendada a 🔵 Confirmar asesoría. Ahí te toca <b>llamar</b>, no mandar mensaje.",
- li:["Le hablas para confirmar que hoy es su asesoría","Si confirma → lo mueves a <b>🔵 Asesoría confirmada</b>","Si no contesta → lo mueves a ⭕ Se intentó contactar y <b>te lo regresa en 30 minutos</b> para el segundo intento","Si te dice que no se va a conectar → 🟠 Perdido","El recordatorio de 2 horas antes lo manda el sistema al chat individual. No lo repitas en el grupo"],
+ li:["Le hablas para confirmar que hoy es su asesoría","Si confirma → lo mueves a <b>🔵 Asesoría confirmada</b>","Si no contesta, le insistes más tarde. Si no confirma, lo <b>re-agendas</b> antes de que se vuelva no-show","Si te dice que no se va a conectar → 🟠 Perdido","El recordatorio de 2 horas antes lo manda el sistema al chat individual. No lo repitas en el grupo"],
  note:"Es la etapa que más mueve el show-up: una asesoría confirmada por llamada asiste mucho más que una que solo recibió mensajes. Y si la etapa está mal, los mensajes automáticos no salen."},
 
-{zone:"extra",ph:"Si no cerró",t:"move",icon:"🔂",title:"Seguimiento",stage:"Seguimiento · Llamar hoy · Msj. hoy",
+{zone:"extra",ph:"Si no cerró",t:"move",icon:"🔂",title:"Seguimiento",stage:"⭕ Seguimiento · 🔴 Task por hacer hoy",
  lead:"El lead tiene interés pero no cerró hoy. <b>Ojo: casi nunca debería llegar aquí.</b> El 99% de las llamadas tiene que terminar en una etapa final, y un \"déjame pensarlo\" no es seguimiento: se agenda y si hace falta se recorre.",
- li:["Lo mandas a Seguimiento y <b>siempre</b> le pones un task","Si el task es para menos de 30 días va a <b>Seguimiento</b>. Si es para más, a <b>Seguimiento futuro</b>","<b>Llamar hoy</b> y <b>Msj. hoy</b> los dejas en cero al terminar el día","Si no le pones task, <b>en 2 horas</b> aparece en 🔴 Seguimiento sin task","El día que toca el task, el lead se mueve solo a 🔴 Task por hacer hoy. Esa es tu bandeja y cierra en cero"],
+ li:["Lo mandas a Seguimiento y <b>siempre</b> le pones un task","Si el task es para menos de 30 días va a <b>Seguimiento</b>. Si es para más, a <b>Seguimiento futuro</b>","El lead de más de 30 días no va a Seguimiento: se mueve a No contestó. De los de más de 30 días, cero llegaron a cita en nueve días","Si no le pones task, <b>en 2 horas</b> aparece en 🔴 Seguimiento sin task","El día que toca el task, el lead se mueve solo a 🔴 Task por hacer hoy. Esa es tu bandeja y cierra en cero"],
  note:"Si una etapa roja se queda <b>3 días</b> sin atender, te quitan el lead y se lo dan a otro closer. Cuentan días naturales: si te cae un viernes, tienes sábado, domingo y lunes; el martes a las 00:01 lo pierdes."},
 
-{zone:"extra",ph:"Si no cerró",t:"alert",icon:"🚑",title:"No show",stage:"Re-agendar → No Reagendo",
+{zone:"extra",ph:"Si no cerró",t:"alert",icon:"🚑",title:"No show",stage:"🟢 Re-agendar",
  lead:"El cliente no llegó a su asesoría. <b>El asesor te la regresa y tú la rescatas.</b>",
- li:["El sistema le manda 3 mensajes para reagendar, en automático","Si contesta cualquiera de los 3 → cae en <b>🟢 Re-agendar envió msj.</b> y tú le llamas","Si no contesta ninguno → <b>igual te llega</b> a 🟢 Re-agendar para que le llames","Ya agendó una vez, así que es de los que más vuelven a agendar","Si vuelve a agendar → 🔵 Asesoría agendada. Si no → 🟤 No Reagendo"],
+ li:["La oportunidad te llega a <b>🟢 Re-agendar</b> para que le llames","El rescate se hace <b>el mismo día</b>, dentro de la hora, no al día siguiente","Ya agendó una vez, así que es de los que más vuelven a agendar","Si vuelve a agendar → 🔵 Asesoría agendada. Si ya no contesta → 🟤 No contestó"],
  script:{t:"Mensaje para rescatar",m:"Intenté ayudarte con tu llamada para financiar tu Modalidad 40 pero no pudimos conectar. ¿Cómo sientes que deberíamos proceder para retomarlo?"}},
 
 {zone:"extra",ph:"Cada día",t:"reg",icon:"🌙",title:"Cierre del día",stage:"EOD",
  lead:"Antes de soltar, <b>todos los días</b>.",
- li:["Registras qué pasó en cada llamada que hiciste","Actualizas las notas de los leads que trabajaste","Subes tu <b>peor llamada del día</b> para que te den coaching","Contestas todos los mensajes pendientes","Dejas en cero las verdes, las rojas, Llamar hoy y Msj. hoy"],
+ li:["Registras qué pasó en cada llamada que hiciste","Actualizas las notas de los leads que trabajaste","Subes tu <b>peor llamada del día</b> para que te den coaching","Contestas todos los mensajes pendientes","Dejas en cero las verdes, <b>Task por hacer hoy</b> y <b>Seguimiento sin task</b>"],
  script:{t:"Así se manda el EOD",m:"EOD [fecha] — [Tu nombre]<br>Leads contactados:<br>Leads sin respuesta:<br>Leads agendados:<br>Expedientes completos:<br>Agendas asistidas:<br>Roadblock principal:<br>Mejoraría si tuviera:"},
  note:"Los últimos dos campos <b>no son opcionales</b>. Son para que yo te quite lo que te está frenando.",
  tools:[{i:"💬",l:"Grupo del equipo",h:"https://chat.whatsapp.com/GJuaSEdRaKGDYAcG7UoS4a?s=cl&p=i&ilr=2"}]}
 ];
 
 const BLOCKS=[
-{n:"Entrada",k:"var(--accent)",sub:"Leads que ya te escribieron",s:[
+{n:"Entrada",k:"var(--accent)",sub:"Lo que te toca llamar hoy",s:[
  ["🟢 Lead Calificado","El sistema ya dijo que califica. Es tu mejor lead: la llamada es solo para agendar. Llámalo primero."],
- ["🟢 Lead (sin CURP)","Contestó pero sin CURP. Le llamas, le pides el CURP y lo calificas en la misma llamada."],
- ["🟢 Lead (con CURP)","Mandó su CURP y aun así sigue aquí, o sea que el CURP dio error. Lo mandas a 🟢 Solicitar reporte IMSS para que el área de reportes lo consiga."],
- ["🟢 Otros leads","Oportunidad creada a mano desde otro pipeline y asignada a ti. Se trabaja igual que un lead nuevo."],
- ["🟢 Re-agendar","No asistió a la asesoría. El asesor la regresa aquí y el rescate te toca a ti."],
- ["🟢 Re-agendar envió msj.","Contestó al mensaje de reagenda. Llámalo y amarra la nueva fecha."],
- ["🟢 Agenda Propia","El lead agendó solo desde el calendario. Aparece el día de la cita, no antes, y le llamas a la hora que marca tu calendario."]]},
+ ["🟢 Lead (con CURP)","Mandó su CURP y ya está cargado. Es un lead normal de trabajo: le llamas y lo calificas."],
+ ["🟢 Otros leads","La columna más grande. Oportunidades creadas a mano o que entraron por otra vía. Adentro hay leads que <b>ya califican</b> y leads de menos de cinco días: esos se trabajan primero."],
+ ["🟢 Re-agendar","No asistió a la asesoría. El asesor la regresa aquí y el rescate te toca a ti, el mismo día."]]},
 
 {n:"Flujo activo",k:"var(--blue)",sub:"Tu día a día",s:[
- ["⭕ Se intentó contactar","Le marcaste y no contestó. El sistema manda el mensaje y te lo regresa hasta 5 veces."],
- ["🟣 Lead llamó por tel.","El lead te marcó a ti, por WhatsApp o por llamada normal. Devuélvele de inmediato."],
- ["🟣 Respondió WhatsApp","Contestó por WhatsApp. Pásalo a llamada hoy: si lo dejas un día, se pone rojo."],
- ["🟡 Msj. hoy","Te toca mandarle mensaje hoy. Cierra en cero."],
- ["🟡 Llamar hoy","Te toca llamarle hoy. Cierra en cero."],
- ["⭕ Seguimiento","Hay interés y no cerró. Siempre con task."],
- ["🟢 Solicitar reporte IMSS","El CURP dio error y no se pudo calificar. Lo mandas aquí y el área de reportes consigue el reporte de semanas con proveedores. Sale de tu pipe hasta que lo resuelvan."],
- ["🔵 Asesoría agendada","Cita puesta. La oferta va en el campo, no en la etapa."],
- ["🟡 Confirmar asesoría","Llegó el día de la cita. Es amarilla porque es tarea de hoy, no etapa final. Te toca llamarle para confirmar. Si no contesta, a Se intentó contactar y te lo regresa en 30 minutos."],
- ["🔵 Asesoría confirmada","Ya confirmó por teléfono que se va a conectar. Esa noche sale de tu pipe y pasa al del asesor."],
- ["🔴 Task por hacer hoy","Tu bandeja del día: los task que vencen hoy. No es un error, es lo que toca hacer. Cierra en cero."]]},
+ ["⭕ Seguimiento","Hay interés y no cerró. <b>Siempre con task.</b> Si no le pones task, en dos horas cae en Seguimiento sin task."],
+ ["🟡 Error con Curp","El CURP que mandó no se pudo validar. Le vuelves a pedir el correcto. Si el problema es del IMSS y no del dato, se va al área de reportes."],
+ ["🔴 Task por hacer hoy","Tu bandeja del día: los task que vencen hoy. No es un error, es lo que toca hacer. Cierra en cero."],
+ ["🔵 Asesoría agendada","Cita puesta. El producto va en el campo Tipo de asesoría, no en la etapa."],
+ ["🟡 Confirmar Asesoría","Llegó el día de la cita. Es amarilla porque es tarea de hoy. Te toca <b>llamar</b> para confirmar, no mandar mensaje."],
+ ["🔵 Asesoría Confirmada","Ya confirmó que se va a conectar. Ese clic es el único que nos deja comparar el show-up de los confirmados contra los que no. Esa noche sale de tu pipe y pasa al del asesor."]]},
 
-{n:"Alarmas",k:"var(--red)",sub:"No son etapas de trabajo",s:[
- ["🔴 WhatsApp sin seguimiento","Respondió y lo dejaste un día sin mover."],
- ["🔴 Agenda sin seguimiento","Tenías una Agenda Propia y llegó el día de la cita sin que la movieras."],
- ["🔴 Seguimiento sin task","Lo mandaste a seguimiento sin ponerle task. Salta en 2 horas."],
- ["🔴 Pedir info / Reporte IMSS","El área de reportes no pudo conseguir su reporte de semanas. <b>Lee la nota</b>: ahí dice qué le tienes que pedir al cliente. Puede ser el CURP correcto, o que vaya al IMSS a aclarar un homónimo. Le llamas, le explicas y lo mandas a Seguimiento con task."],
- ["🔴 ¿Porqué no califica?","Falta capturar la razón por la que el sistema lo rechazó. Se llena y se cierra."]]},
+{n:"Alarma",k:"var(--red)",sub:"No es etapa de trabajo",s:[
+ ["🔴 Seguimiento sin task","Lo mandaste a seguimiento sin ponerle task. Salta en dos horas. Cada lead aquí es un lead que alguien soltó: debería estar en cero."]]},
+
+{n:"Reporte del IMSS",k:"var(--gold)",sub:"Sale de tus manos mientras se resuelve",s:[
+ ["🔴 Pedir Reporte IMSS Presencial","El IMSS no entregó el reporte y el cliente tiene que ir en persona a su subdelegación. <b>Lee la nota</b>: ahí dice qué le tienes que explicar. Le llamas, le explicas y le pones task."],
+ ["⭕ Solicitar Reporte IMSS","El reporte se está consiguiendo con proveedores. Sale de tu pipe hasta que lo resuelvan."],
+ ["⭕ Se envió a subdelegación IMSS","El cliente ya quedó de ir. Cuando te confirme que fue, lo regresas a Solicitar Reporte IMSS."]]},
 
 {n:"Cierres",k:"var(--slate)",sub:"Aquí termina el lead",s:[
- ["🟤 No contestó","Agotó los reintentos sin contestar nunca. No hubo conversación."],
- ["🟤 No califica","Sí hablaste con él y no cumple los requisitos del financiamiento."],
- ["🟤 N.C. - As. PP","No califica para financiamiento pero sí para una asesoría de Pensión Perfecta, de las que se venden. Muévelo aquí para que se le ofrezca."],
- ["🟠 Abandonó","Ya le hiciste el guión, quedó en mandarte algo o decidir, y dejó de contestar."],
+ ["🔆 Asesoría Realizada","El cliente sí se conectó y tuvo su asesoría. La mueve el asesor, no tú."],
+ ["🟤 No contestó","Agotó los intentos sin contestar nunca, o ya pasó de los 30 días. No hubo conversación."],
+ ["🟤 No califica","Sí hablaste con él y no cumple los requisitos. <b>Escribe el motivo</b>: sin motivo, nadie puede corregir nada aguas arriba."],
  ["🟠 Perdido","Contestó, calificaba, le explicaste todo y dijo que no."],
- ["🟤 No Reagendo","Venía de Re-agendar y se agotaron los 5 regresos sin lograr la nueva cita."],
- ["🟤 Ya está pensionado","Temporal. Va a desaparecer: se va a manejar como No califica poniendo la razón \"ya está pensionado\"."]]}
+ ["🟤 Ya está pensionado","Ya recibe su pensión definitiva, así que no se puede elevar."]]}
 ];
 
 /* ---- tracks ---- */

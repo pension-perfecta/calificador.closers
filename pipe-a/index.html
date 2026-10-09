@@ -619,7 +619,7 @@ const STEPS=[
  branch:{t:"El orden en que los tomas, y no es opcional",c:[
    {k:"var(--accent)",i:"⬅️",n:"De izquierda a derecha",d:"Entre más a la izquierda, más probable es que agende. Acabas una columna antes de pasar a la siguiente",w:"Nunca al azar"},
    {k:"var(--gold)",i:"⬆️",n:"De arriba hacia abajo",d:"Arriba está el más reciente. Entre más rápido lo contactas, más probable es que agende",w:"El de arriba primero"},
-   {k:"var(--slate)",i:"1️⃣",n:"El orden de las columnas",d:"Re-agendar · Lead Calificado · Lead (con CURP) · Otros leads",w:"Así, sin brincarse"}]},
+   {k:"var(--slate)",i:"1️⃣",n:"El orden de las columnas",d:"Respondió WhatsApp · Re-agendar · Lead Calificado · Lead (con CURP) · Otros leads",w:"Así, sin brincarse"}]},
  note:"Al final del día no te debe quedar <b>ninguno</b> en verde. Si te queda uno, es que no le llamaste.",
  tools:[{i:"📊",l:"Abrir ALLMK",h:"https://club.allmk.app/v2/location/TOhtz5PHJUmWnKH2q3hs/opportunities"}]},
 
@@ -640,10 +640,10 @@ const STEPS=[
  steps:{t:"Las dos vistas que te las encuentran",l:["En Oportunidades, cambia de tablero a <b>vista de lista</b>","Pipeline <b>CF-A</b>, etapa <b>Otros leads</b>, asignado a ti","En filtros avanzados agregas <b>Califica para… no está vacío</b> y guardas la vista","Haces una segunda igual, pero filtrando por <b>fecha de creación, últimos 5 días</b>"]},
  note:"Otros leads convierte peor que un Lead Calificado, 5% contra 19%. Por eso no se trabaja todo: se trabaja lo que ya califica y lo fresco."},
 
-{ph:"Tu llamada",t:"call",icon:"💬",title:"Si te escribe por WhatsApp",stage:"Pásalo a llamada hoy",
+{ph:"Tu llamada",t:"call",icon:"💬",title:"Si te escribe por WhatsApp",stage:"🟣 Respondió WhatsApp",
  lead:"Ya te contestó. <b>Ahora lo pasas a llamada, hoy mismo.</b>",
  li:["Pregúntale si le puedes marcar en ese momento o a qué hora le acomoda","Por teléfono calificas mejor que escribiendo","Si te da hora, le pones task a esa hora y le marcas puntual"],
- note:"El que acaba de contestar es el lead que hay que llamar en los siguientes minutos, porque es cuando está disponible. Si lo dejas para mañana, se enfría."},
+ note:"<b>No importa en qué etapa estuviera el lead:</b> si te escribe por WhatsApp, la oportunidad se mueve sola a 🟣 Respondió WhatsApp para que lo atiendas antes que a los demás. El que acaba de contestar es el que hay que llamar en los siguientes minutos, porque es cuando está disponible. Si lo dejas para mañana, se enfría."},
 
 {ph:"Tu llamada",t:"call",icon:"✅",title:"Califica",stage:"Lo hace el sistema, no tú",
  lead:"<b>Pegas el CURP en ALLMK y el sistema califica solo.</b> Tarda 1 o 2 minutos y te dice si aplica y a qué oferta va.",
@@ -712,6 +712,7 @@ const BLOCKS=[
  ["🟢 Re-agendar","No asistió a la asesoría. El asesor la regresa aquí y el rescate te toca a ti, el mismo día."]]},
 
 {n:"Flujo activo",k:"var(--blue)",sub:"Tu día a día",s:[
+ ["🟣 Respondió WhatsApp","El lead te contestó y la oportunidad se mueve sola aquí, sin importar en qué etapa estaba. <b>Es el primero al que le llamas</b>: acaba de escribir, o sea que está disponible ahorita."],
  ["⭕ Seguimiento","Hay interés y no cerró. <b>Siempre con task.</b> Si no le pones task, en dos horas cae en Seguimiento sin task."],
  ["🟡 Error con Curp","El CURP que mandó no se pudo validar. Le vuelves a pedir el correcto. Si el problema es del IMSS y no del dato, se va al área de reportes."],
  ["🔴 Task por hacer hoy","Tu bandeja del día: los task que vencen hoy. No es un error, es lo que toca hacer. Cierra en cero."],
@@ -723,7 +724,7 @@ const BLOCKS=[
  ["🔴 Seguimiento sin task","Lo mandaste a seguimiento sin ponerle task. Salta en dos horas. Cada lead aquí es un lead que alguien soltó: debería estar en cero."]]},
 
 {n:"Reporte del IMSS",k:"var(--gold)",sub:"Sale de tus manos mientras se resuelve",s:[
- ["🔴 Pedir Reporte IMSS Presencial","El IMSS no entregó el reporte y el cliente tiene que ir en persona a su subdelegación. <b>Lee la nota</b>: ahí dice qué le tienes que explicar. Le llamas, le explicas y le pones task."],
+ ["🟡 Pedir Reporte IMSS Presencial","El IMSS no entregó el reporte y el cliente tiene que ir en persona a su subdelegación. <b>Lee la nota</b>: ahí dice qué le tienes que explicar. Le llamas, le explicas y le pones task."],
  ["⭕ Solicitar Reporte IMSS","El reporte se está consiguiendo con proveedores. Sale de tu pipe hasta que lo resuelvan."],
  ["⭕ Se envió a subdelegación IMSS","El cliente ya quedó de ir. Cuando te confirme que fue, lo regresas a Solicitar Reporte IMSS."]]},
 

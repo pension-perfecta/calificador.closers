@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>La llamada paso a paso</title>
+<meta name="author" content="Franco Herrera">
+<meta name="description" content="Herramienta de closers: la llamada avanza según lo que contesta el lead.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230E5140'/><text x='50' y='71' font-size='54' font-family='Georgia,serif' font-weight='700' fill='%23fff' text-anchor='middle'>PP</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --ground:#F6FAF8; --panel:#FFFFFF; --panel-2:#EEF6F2;
+  --ink:#0C3B39; --ink-2:#3F5A54; --muted:#5B6E6D; --faint:#7FA89B;
+  --line:#D9ECE6; --line-2:#E8F3EE;
+  --brand:#00443E; --brand-ink:#FFFFFF; --accent:#00C688; --accent-soft:#E3F8EF;
+  --blue:#188BF6; --blue-soft:#E6F1FE;
+  --gold:#B07D05; --gold-soft:#FBF0D2;
+  --red:#C4453A; --red-soft:#FBE6E3;
+  --shadow:0 1px 2px rgba(0,68,62,.05),0 14px 30px -22px rgba(0,68,62,.35);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#081614; --panel:#0E211E; --panel-2:#142E29;
+  --ink:#E4F5EE; --ink-2:#AECCC2; --muted:#8AA79C; --faint:#6E8E84;
+  --line:#1C3A34; --line-2:#162E29;
+  --brand:#4FE3B0; --brand-ink:#06201B; --accent:#00C688; --accent-soft:#0C2C25;
+  --blue:#7FB6F6; --blue-soft:#11212F; --gold:#E2A93A; --gold-soft:#2A2411;
+  --red:#E08B7C; --red-soft:#301916;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 14px 30px -22px rgba(0,0,0,.85);
+}}
+:root[data-theme="dark"]{
+  --ground:#081614; --panel:#0E211E; --panel-2:#142E29;
+  --ink:#E4F5EE; --ink-2:#AECCC2; --muted:#8AA79C; --faint:#6E8E84;
+  --line:#1C3A34; --line-2:#162E29;
+  --brand:#4FE3B0; --brand-ink:#06201B; --accent:#00C688; --accent-soft:#0C2C25;
+  --blue:#7FB6F6; --blue-soft:#11212F; --gold:#E2A93A; --gold-soft:#2A2411;
+  --red:#E08B7C; --red-soft:#301916;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 14px 30px -22px rgba(0,0,0,.85);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font-family:"DM Sans",-apple-system,system-ui,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p,ul,ol{margin:0}
+ul{padding:0;list-style:none}
+button{font:inherit;color:inherit;cursor:pointer;font-family:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ── barra de marca ── */
+.top{background:var(--brand);color:var(--brand-ink)}
+.top-in{max-width:960px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:10px}
+.mark{width:23px;height:23px;border-radius:5px;background:rgba(255,255,255,.14);
+  display:grid;place-items:center;font-size:10.5px;font-weight:700;letter-spacing:.03em;flex:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mark{background:rgba(255,255,255,.12)}}
+:root[data-theme="dark"] .mark{background:rgba(255,255,255,.12)}
+.top b{font-size:13.5px;font-weight:800;letter-spacing:-.005em}
+.top span{font-size:12.5px;opacity:.72}
+.top .tt{font-size:13.5px;opacity:1;font-weight:500;padding-left:10px;margin-left:2px;
+  border-left:1px solid rgba(255,255,255,.28)}
+.top .rt{margin-left:auto;font-size:11px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;opacity:.72}
+@media (max-width:560px){.top .rt{display:none}}
+
+.wrap{max-width:960px;margin:0 auto;padding:18px 18px 108px}
+@media (max-width:640px){.wrap{padding:14px 13px 108px}}
+
+
+/* ── tres buckets ── */
+.antes{display:grid;grid-template-columns:repeat(3,1fr);margin:6px 0 16px;
+  background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);border-radius:9px}
+@media (max-width:620px){.antes{grid-template-columns:1fr}}
+.bk{padding:13px 18px 14px}
+.bk+.bk{border-left:1px solid color-mix(in srgb,var(--accent) 20%,transparent)}
+@media (max-width:620px){.bk+.bk{border-left:0;border-top:1px solid color-mix(in srgb,var(--accent) 20%,transparent)}}
+.bk h3{font-size:14px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:9px;color:var(--ink)}
+.bk h3::before{content:attr(data-n);display:inline-grid;place-items:center;flex:none;width:21px;height:21px;
+  border-radius:50%;background:var(--accent);color:#00332E;font-size:10.5px;font-weight:700}
+.bk p{font-size:12.8px;color:var(--ink-2);line-height:1.42;padding-left:30px}
+
+/* ── menú de bloques: barra de pasos ── */
+.navw{position:sticky;top:0;z-index:8;margin:0 -18px 16px;padding:8px 18px;
+  background:color-mix(in srgb,var(--ground) 88%,transparent);backdrop-filter:blur(8px)}
+@media (max-width:640px){.navw{margin:0 -13px 14px;padding:8px 13px}}
+.nav{display:flex;gap:2px;padding:4px;background:var(--panel);border:1px solid var(--line);
+  border-radius:11px;overflow-x:auto;scrollbar-width:none;
+  box-shadow:0 1px 2px rgba(15,30,24,.05)}
+.nav::-webkit-scrollbar{display:none}
+.chip{flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap;
+  background:transparent;border:0;border-radius:8px;padding:8px 7px;font-size:13.2px;
+  font-weight:500;color:var(--ink-2);transition:background .13s,color .13s}
+.chip:hover{background:var(--panel-2);color:var(--ink)}
+.chip .st{flex:none;width:14px;height:14px;border-radius:50%;border:1.5px solid var(--line);
+  display:grid;place-items:center;transition:.13s}
+.chip:hover .st{border-color:var(--accent)}
+.chip.done{color:var(--brand)}
+.chip.done .st{background:var(--accent);border-color:var(--accent)}
+.chip.done .st::after{content:"";width:6px;height:3.5px;border:solid var(--panel);border-width:0 0 1.8px 1.8px;
+  transform:rotate(-45deg) translate(.5px,-.5px)}
+.chip.on{background:var(--brand);color:var(--brand-ink);font-weight:600;
+  box-shadow:0 1px 3px rgba(14,81,64,.35)}
+.chip.on .st{border-color:var(--brand-ink);background:var(--brand-ink);
+  box-shadow:inset 0 0 0 3px var(--brand)}
+.chip.opc{color:var(--faint);font-style:italic}
+.chip.opc .st{border-style:dashed}
+.chip.opc.on{color:var(--brand-ink);font-style:normal}
+
+/* ── recorrido, en bloques ── */
+.hechos{margin-bottom:13px}
+.reco{display:grid;grid-template-columns:repeat(auto-fill,minmax(146px,1fr));gap:6px}
+.hc{background:var(--panel-2);border:1px solid var(--line-2);border-radius:4px;
+  padding:5px 10px;min-width:0}
+.hc span{display:block;font-size:11.5px;color:var(--faint);font-weight:500}
+.hc.prod{grid-column:span 2;background:var(--gs);border-color:color-mix(in srgb,var(--gc) 35%,transparent);border-left:3px solid var(--gc)}
+.hc.prod span{color:var(--gc)}
+.hc b{display:block;font-size:13px;font-weight:600;color:var(--ink-2);line-height:1.3;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.aviso{margin-top:7px;background:var(--gold-soft);border-left:2px solid var(--gold);
+  border-radius:0 4px 4px 0;padding:7px 11px;font-size:12.8px;color:var(--ink-2);line-height:1.4}
+.aviso b{color:var(--gold);font-weight:600}
+
+/* ── tarjeta ── */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:5px;
+  padding:22px 24px;animation:pop .17s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.card{animation:none}}
+@media (max-width:640px){.card{padding:16px 15px}}
+.eyebrow{font-size:13px;color:var(--brand);font-weight:600;margin-bottom:4px}
+.card h2{font-size:23px;font-weight:800;margin-bottom:16px;letter-spacing:-.02em;line-height:1.25;text-wrap:balance}
+@media (max-width:640px){.card h2{font-size:20px}}
+
+.say{background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;
+  padding:14px 18px 15px;font-size:19px;line-height:1.55;margin-bottom:10px;color:var(--ink)}
+@media (max-width:640px){.say{font-size:17px;padding:12px 14px}}
+.say .lbl{display:block;font-size:12.5px;color:var(--brand);font-weight:600;margin-bottom:4px;line-height:1.3}
+.say em{font-style:normal;color:var(--brand);font-weight:700}
+
+.tip{display:flex;gap:9px;font-size:13.4px;color:var(--muted);margin:0 0 12px;line-height:1.45}
+.tip::before{content:"▸";color:var(--gold);font-weight:700;flex:none}
+.tip b{color:var(--ink-2)}
+
+/* ── cuadrícula de productos ── */
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:4px}
+.grid>*{grid-column:span 2}
+.grid>.w3{grid-column:span 3}
+.grid>.w6{grid-column:span 6}
+@media (max-width:700px){.grid>*,.grid>.w3{grid-column:span 3}.grid>.w6{grid-column:span 6}}
+@media (max-width:480px){.grid>*,.grid>.w3,.grid>.w6{grid-column:span 6}}
+.pr{display:block;width:100%;text-align:left;background:transparent;border:1px solid var(--line);
+  border-radius:4px;padding:11px 13px;transition:border-color .13s,background .13s}
+.g-fin{--gc:var(--accent);--gs:var(--accent-soft)}
+.g-pen{--gc:var(--gold);--gs:var(--gold-soft)}
+.g-ko{--gc:var(--red);--gs:var(--red-soft)}
+.grid .pr{border-left:3px solid var(--gc)}
+.pr:hover{border-color:var(--gc);background:var(--gs)}
+.pr.sel{border-color:var(--gc);background:var(--gs);box-shadow:inset 0 0 0 1px var(--gc)}
+.sec.g-fin,.sec.g-pen,.sec.g-ko{color:var(--gc);display:flex;align-items:center;gap:7px}
+.sec.g-fin::before,.sec.g-pen::before,.sec.g-ko::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--gc)}
+.pr b{display:block;font-size:14.5px;font-weight:700;line-height:1.3;letter-spacing:-.008em}
+.pr small{display:block;font-size:12.2px;color:var(--muted);margin-top:4px;line-height:1.38}
+.pr.nuevo b::after{content:"Nuevo";font-size:11px;color:var(--gold);background:var(--gold-soft);
+  border-radius:3px;padding:1px 6px;margin-left:7px;vertical-align:1px;font-weight:600}
+.pr.ko{border-style:dashed;border-left-style:solid}
+.pr.ko:hover{border-style:solid}
+.pr.ko b{font-size:13.6px;color:var(--ink-2)}
+.swap{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 15px}
+.sw{background:transparent;border:1px solid var(--line);border-radius:3px;padding:5px 10px;
+  font-size:12.6px;font-weight:500;color:var(--muted);transition:.13s}
+.sw:hover{border-color:var(--brand);color:var(--ink)}
+.sw.on{background:var(--brand);border-color:var(--brand);color:var(--brand-ink);font-weight:600}
+.sec{font-size:13px;color:var(--muted);font-weight:600;margin:18px 0 8px;
+  padding-top:15px;border-top:1px solid var(--line-2)}
+.sec.first{margin-top:6px;padding-top:0;border-top:0}
+
+/* ── botones de respuesta ── */
+.opts{display:flex;flex-direction:column;gap:7px;margin-top:14px}
+.opt{display:flex;align-items:flex-start;gap:11px;width:100%;text-align:left;
+  background:transparent;border:1px solid var(--line);border-radius:5px;
+  padding:13px 16px;font-size:16px;font-weight:500;transition:.13s}
+.opt:hover{border-color:var(--accent);background:var(--accent-soft)}
+.opt .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;margin-top:8px}
+.opt.warn .dot{background:var(--gold)} .opt.stop .dot{background:var(--red)}
+.opt.warn:hover{border-color:var(--gold);background:var(--gold-soft)}
+.opt.stop:hover{border-color:var(--red);background:var(--red-soft)}
+.opt small{display:block;font-size:12.5px;font-weight:400;color:var(--muted);margin-top:2px;line-height:1.35}
+
+.fin{border-left:2px solid var(--red);background:var(--red-soft);border-radius:0 4px 4px 0;
+  padding:12px 15px;margin-bottom:11px}
+.fin.ok{border-color:var(--blue);background:var(--blue-soft)}
+.fin h3{font-size:14.5px;font-weight:800;margin-bottom:4px}
+.fin li{font-size:14.2px;padding:3px 0 3px 15px;position:relative;color:var(--ink-2)}
+.fin li::before{content:"";position:absolute;left:2px;top:11px;width:5px;height:5px;
+  border-radius:50%;background:var(--muted)}
+
+/* ── ficha de producto ── */
+.ficha{margin-top:16px;padding-top:15px;border-top:1px solid var(--line)}
+.fg{margin-bottom:14px}
+.fh{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:5px}
+.fp{font-size:14.5px;color:var(--ink-2)}
+.fl{columns:2;column-gap:26px}
+@media (max-width:640px){.fl{columns:1}}
+.fl li{font-size:14px;color:var(--ink-2);padding:2px 0 2px 15px;position:relative;
+  break-inside:avoid;line-height:1.4}
+.fl li::before{content:"";position:absolute;left:2px;top:10px;width:5px;height:5px;
+  border-radius:50%;background:var(--accent)}
+.fl.bad li::before{background:var(--red)}
+.ob{display:grid;grid-template-columns:minmax(150px,28%) 1fr;gap:12px;padding:7px 0;
+  border-top:1px solid var(--line-2);font-size:14px;line-height:1.45}
+.ob b{font-weight:600;color:var(--ink)}
+.ob span{color:var(--ink-2)}
+@media (max-width:620px){.ob{grid-template-columns:1fr;gap:1px}}
+
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--panel);border-top:1px solid var(--line);z-index:9}
+.bar-in{max-width:960px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:12px}
+@media (max-width:640px){.bar-in{padding:9px 13px}}
+.bar button{background:var(--panel-2);border:1px solid var(--line);border-radius:5px;
+  padding:9px 16px;font-size:14px;font-weight:600;color:var(--ink-2)}
+.bar button:hover{border-color:var(--accent);color:var(--accent)}
+.bar #atras{background:var(--brand);border-color:var(--brand);color:var(--brand-ink);padding:10px 22px}
+.bar #atras:hover{opacity:.9;color:var(--brand-ink)}
+.bar #atras:disabled{opacity:.35;cursor:default}
+.bar #reinicia{margin-left:auto;background:transparent;border-color:transparent;color:var(--muted);font-weight:500}
+.bar #reinicia:hover{color:var(--red);border-color:var(--red)}
+.bar .paso{font-size:12px;font-weight:500;color:var(--faint);letter-spacing:.01em}
+
+footer{margin-top:20px;font-size:12.3px;color:var(--faint);border-top:1px solid var(--line);padding-top:12px}
+</style>
+</head>
+<body>
+
+<div class="top"><div class="top-in">
+  <span class="mark">PP</span>
+  <b>Pensión Perfecta</b><span class="tt">La llamada, paso a paso</span>
+  <span class="rt">Ruta corta</span>
+</div></div>
+
+<div class="wrap">
+<div class="antes" id="antes">
+  <div class="bk"><h3 data-n="1">CURP</h3><p>Lo consigues por mensaje. Son 18 caracteres: si no son 18, pídelo otra vez.</p></div>
+  <div class="bk"><h3 data-n="2">Reporte de semanas</h3><p>Lo sacas en Consulta Única y lo subes a Creditia.</p></div>
+  <div class="bk"><h3 data-n="3">Creditia</h3><p>Te dice el producto. Con eso en la mano, marcas.</p></div>
+</div>
+
+<div class="navw"><nav class="nav" id="nav" aria-label="Bloques de la llamada"></nav></div>
+<div class="hechos" id="hechos"></div>
+<div id="card"></div>
+
+<footer>Los textos salen del Guión Closer Financiamiento 6.0 y del material de producto de asesores.</footer>
+</div>
+
+<div class="bar"><div class="bar-in">
+  <button id="atras">Atrás</button>
+  <span class="paso" id="paso"></span>
+  <button id="reinicia">Nueva llamada</button>
+</div></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   TODO EL CONTENIDO VIVE AQUÍ ARRIBA. Cambiar una frase = una línea.
+   say  = lo que se lee en voz alta   |   tip = instrucción interna
+   opts = botones. ir: id del paso siguiente. tono: ok | warn | stop
+   ═══════════════════════════════════════════════════════════════ */
+
+/* los 7 productos, con el nombre tal cual lo escribe Creditia */
+const PRODS=[
+ {id:"retro_ahora", n:"Fin. Retroactivo (ahora)",    s:"Modalidad 40 retroactivo.", pitch:"mod40",w:3,
+   img:["Modalidad 40: cuánto puede subir su pensión"],falta:1},
+ {id:"retro_futuro",n:"Fin. Retroactivo (futuro)",   s:"Mismo producto, el retroactivo arranca después.",           pitch:"mod40",w:3,
+   tip:"Confirma edad y tiempo sin cotizar antes de prometer fecha.",
+   img:["Modalidad 40: cuánto puede subir su pensión"],falta:1},
+ {id:"recupera",    n:"Recuperación de Derechos",    s:"Perdió derechos por el tiempo que estuvo sin cotizar.",     pitch:"recupera",
+   img:["Recuperar derechos: volver a abrir el camino a su pensión"]},
+ {id:"minima",      n:"Actualización Pensión Mínima",s:"Por sus semanas y su promedio alcanzaría la mínima.",       pitch:"minima",
+   img:["Su pensión mínima puede ponerse al día"]},
+ {id:"quinientas",  n:"Completar 500 Semanas",       s:"Le faltan semanas para el mínimo de ley.",                  pitch:"quinientas",
+   img:["500 semanas: el paso que le falta para pensionarse"]},
+ {id:"gestion",     n:"Gestión de Pensión Express",  s:"Ya puede pensionarse: 60 o más, Ley 73, 500+ semanas.",     pitch:"gestion",nuevo:1,w:6,g:2,
+   img:["Gestión de Pensión Express"],falta:1},
+ {id:"credito",     n:"Crédito de nómina",           s:"Ya está pensionado, con pensión definitiva.",               pitch:"credito",nuevo:1,w:6,g:3,
+   tip:"Una pensión definitiva no se puede elevar, pero sí sirve de garantía.",
+   img:["Crédito de nómina"],falta:1}
+];
+
+/* las imágenes que se mandan en todas las llamadas */
+const IMG_GEN=["Asesoría confirmada",
+               "Cómo entrar a tu asesoría (Google Meet)",
+               "Cómo descargar tu estado de cuenta del AFORE (AforeMóvil)",
+               "Cómo descargar tu reporte de semanas cotizadas (IMSS)",
+               "¿Cuánto puede crecer tu pensión? Los dos documentos"];
+
+/* objeciones que salen en cualquier producto */
+const OBJ_COMUNES=[
+ ["«¿Ustedes son del IMSS?»","No, somos una empresa privada. El trámite ante el IMSS es tuyo y es gratuito; lo que nosotros hacemos es financiarlo y acompañarte para que salga bien a la primera."],
+ ["«Déjeme consultarlo con mi hijo»","Me parece perfecto, inclúyelo en la asesoría. Al final es tu pensión y siempre es mejor verlo acompañado. ¿Qué día pueden los dos?"],
+ ["«Mándeme la información por WhatsApp»","Te la mando con mucho gusto, y de hecho ahorita te paso el material. Lo que no te puedo mandar por ahí son tus números, porque dependen de tu caso y los calcula el asesor en la asesoría."],
+ ["«Ya me habían llamado de otro lado»","Me imagino, es un tema donde hay mucha gente llamando. Por eso aquí primero revisamos tu caso con documentos y después te damos números; si no cuadra, te lo decimos."],
+ ["«Ahorita no tengo tiempo»","Sin problema, por eso la asesoría se agenda. ¿Te late mejor [día] o [día]?"]];
+
+/* cuando Creditia no dio producto */
+const SINPROD=[
+ {t:"No califica",                s:"No gastes la llamada.", ir:"nocalifica"},
+ {t:"CURP incorrecto o Revisar",  s:"Pide el CURP otra vez antes de marcar.", ir:"curp"},
+ {t:"Error al solicitar reporte", s:"Pide el reporte en el grupo.", ir:"reporte"}
+];
+
+const PITCH={
+ mod40:{n:"Modalidad 40 retroactivo",
+   ficha:{obj:[
+     ["«¿Cuánto me van a prestar?»","Depende de tus semanas, de tu salario y de tu AFORE. Ese número te lo da el asesor en la asesoría con tus documentos. Lo que yo te confirmo hoy es que sí eres candidato."],
+     ["«¿Cuánto me va a subir la pensión?»","Esa es justo la pregunta de la asesoría. Ahí te ponen el número de tu caso, no un aproximado, y decides con eso enfrente."],
+     ["«¿Me van a cobrar intereses?»","El costo completo te lo explica el asesor con números. Lo que te adelanto es que el préstamo lo usas unos meses, no años, porque se salda cuando recibes tu AFORE y tu primer pago de pensión."],
+     ["«No quiero deudas a mi edad»","Lo entiendo, y por eso esto no se parece a un crédito normal: tú no pones dinero de tu bolsa hoy, y se salda con lo que el IMSS te entrega al pensionarte. En la asesoría lo ves con números y ahí decides."],
+     ["«¿Y si no me aprueban?»","Para eso es la revisión. Si tu caso no da, te lo decimos de frente y no avanzamos; no te hacemos perder tiempo ni dinero."]]},
+   say:[
+   ["Pitch","Lo que hacemos es prestarte lo que se necesita para pagar el retroactivo de tu modalidad 40, del tiempo que llevas sin cotizar. Con ese dinero pagamos tu modalidad 40 y pedimos tu pensión, que llega en unos cuatro o cinco meses. Al recibir tu AFORE y tu primer pago, con eso saldas el préstamo. Así solo usas el préstamo unos meses, en lugar de estar pagando intereses durante años, y te vamos llevando de la mano en todo."],
+   ["Cierra el pitch","En la asesoría el experto revisa todas las opciones que tienes, te dice cuál es la mejor pensión que puedes alcanzar y te explica el paso a paso para avanzar. ¿Te parecería viable que revisara si puedo agendarte?"]]},
+ recupera:{n:"Recuperación de derechos",
+   ficha:{obj:[
+     ["«¿Entonces ya perdí todo?»","No. Tus semanas siguen ahí, lo que se perdió es el derecho a pedir la pensión hoy. Ese derecho se puede recuperar cotizando otra vez, y de eso se trata la asesoría."],
+     ["«¿Cuánto tiempo tengo que cotizar?»","Depende de cuántas semanas traes y de cuánto tiempo estuviste sin cotizar. El asesor te dice el tiempo exacto de tu caso."],
+     ["«¿Y eso cuánto me va a costar?»","El asesor te da los números. Lo importante es que nosotros te lo financiamos, para que no tengas que poner el dinero hoy."],
+     ["«¿Por qué nadie me lo había dicho?»","Es de las cosas que el IMSS no avisa: uno se entera hasta que va a pedir su pensión y le dicen que no. Por eso vale la pena revisarlo ahora y no cuando ya no haya margen."]]},
+   say:[
+   ["Pitch","En tu caso, en este momento no tienes derechos de pensión, porque duraste sin trabajar más tiempo del que te permite tu cantidad de semanas cotizadas. Por eso, si vas al IMSS y pides tu pensión ahorita, te dirían que no se puede hasta que recuperes tus derechos."],
+   ["Sigue sin pausa","Lo que hacemos es agendarte una asesoría con nuestro experto, para entender si se pueden recuperar con modalidad 40 o con modalidad 10, cuánto tiempo hay que cotizar y todo lo que hay que hacer para que alcances la mejor pensión en tu caso. ¿Te parecería viable que revisara si puedo agendarte?"]]},
+ minima:{n:"Actualización de pensión mínima",
+   ficha:{obj:[
+     ["«¿Para qué, si de todos modos me van a dar la mínima?»","Sí te van a dar la mínima, pero no la misma. Hay diferencia entre la mínima del año en que dejaste de cotizar y la de este año, y esa diferencia la cobras cada mes el resto de tu vida."],
+     ["«¿Cuánto más me daría?»","Ese número depende de tu año de baja y de tus semanas, y te lo da el asesor en la asesoría."],
+     ["«¿No me conviene mejor modalidad 40?»","Puede ser, y eso es justo lo que se revisa. Con pocas semanas a veces la modalidad 40 sube muy poco y no compensa. El asesor compara las dos opciones y te dice cuál te deja más."]]},
+   say:[
+   ["Pitch","En tu caso, por tu cantidad de semanas y tu promedio salarial actual, si te pensionas ahora alcanzarías la pensión mínima. Cuando se tienen pocas semanas, muchas veces no conviene invertir en modalidad 40 porque sube muy poco la pensión, pero sí conviene cotizar: en lugar de pensionarte con la pensión mínima del año en que dejaste de cotizar, recibes la de este año, y hay gente a la que eso le representa bastante más cada mes."],
+   ["Cierra el pitch","Lo que hacemos es agendarte una asesoría con nuestro experto para ver cuál de las dos te conviene. ¿Te parecería viable?"]]},
+ quinientas:{n:"Completar 500 semanas",
+   ficha:{obj:[
+     ["«¿Cuántas semanas me faltan?»","El número exacto lo tiene el asesor con tu reporte enfrente. Lo que ya sabemos es que te faltan para llegar a las 500, que es el mínimo de ley."],
+     ["«¿Y si ya no puedo cotizar?»","Por eso existen la modalidad 40 y la modalidad 10: se cotiza sin tener un patrón. El asesor te dice cuál te aplica."],
+     ["«Entonces no tengo derecho a nada»","Hoy todavía no, pero te faltan semanas, no años de trabajo. Se pueden completar y nosotros te lo financiamos para que no salga de tu bolsa ahora."]]},
+   say:[
+   ["Pitch","En casos como el tuyo, lo que hacemos es financiar la modalidad 40 o la modalidad 10, según el caso, para que alcances las 500 semanas y te puedas pensionar con lo más que se pueda, sin que te cueste de tu dinero en este momento. ¿Te gustaría que te agende una asesoría con nuestro experto, para que revise tu caso y te explique cómo se haría todo el proceso?"]]},
+
+ gestion:{n:"Gestión de Pensión Express",say:[
+   ["Pitch","Por lo que me platicas, ya puedes pensionarte. En ese caso lo que hacemos es llevarte todo el trámite sin que tengas que pisar el IMSS: calculamos el día exacto para darte de baja, armamos tu expediente completo y revisamos que la resolución salga con el monto correcto."],
+   ["Cierra el pitch","Y no pagas nada hasta que recibas tu primer pago de pensión. ¿Te agendo la asesoría para que te lo expliquen con los números de tu caso?"]],
+   ficha:{
+     quien:"60 años o más, Ley 73, más de 500 semanas y quiere pensionarse ya.",
+     incluye:["Estrategia de fecha: el día exacto para darse de baja",
+              "Expediente completo, listo a la primera",
+              "El trámite con un gestor, solo 1 o 2 visitas al IMSS",
+              "Gestión de AFORE completa: SAR 92, Retiro 97, Vivienda 92 y 97, Fondo 72",
+              "Resolución revisada; si trae error, se corrige",
+              "Registro de pensión del Bienestar a los 65"],
+     riesgo:["Semanas que el IMSS no le reconoce: pensión más baja de por vida",
+             "Expediente rechazado: 2 a 4 meses más de espera que nadie le devuelve",
+             "Fecha de baja mal elegida: a los 60 cobra el 75% y a los 65 el 100%, para siempre",
+             "AFORE incompleta y asignaciones familiares sin pedir: dinero suyo que se queda guardado"],
+     obj:[["«Yo lo hago solo, es gratis»","El trámite no cuesta, el error sí. Un error pequeño se paga cada mes el resto de tu vida, y en 2024 había 302 mil juicios abiertos contra el IMSS. Por eso se hace bien a la primera."],
+          ["«¿Cuánto cuesta?»","Eso te lo da el asesor con los números de tu caso. Lo que te puedo adelantar es que no pagas nada hasta que recibas tu primer pago de pensión."],
+          ["«Déjeme pensarlo»","Claro. Nada más toma en cuenta que la fecha de baja cambia el monto, y cada mes que pasa sin calcularla te puede costar dinero de por vida. La asesoría es para que lo veas con números y ahí decides."]],
+     dato:"Valor del paquete 114,050 y queda en 49,800 si firma en la llamada, sin pagar nada hasta su primer pago de pensión. Eso lo dice el asesor, no tú."}},
+
+ credito:{n:"Crédito de nómina",say:[
+   ["Pitch","Qué bueno que ya estás pensionado. Entonces te cuento algo que también hacemos: con tu pensión puedes pedir dinero sin aval y sin hipotecar nada."],
+   ["Cierra el pitch","Nosotros lo cotizamos con las 36 financieras que tienen convenio con el IMSS y te decimos cuál te conviene de verdad. A ti no te cuesta nada: a nosotros nos paga la financiera. ¿Te agendo con el asesor para que te den los números de tu caso?"]],
+   ficha:{
+     quien:"Ya está pensionado, con pensión definitiva. También si ya trae un crédito caro y quiere cambiarlo por uno más barato.",
+     incluye:["Asesoría comparativa entre las 36 financieras con convenio IMSS",
+              "Le dicen cuál le conviene de verdad, no la que le llamó primero",
+              "Gestión y acompañamiento del crédito hasta el depósito",
+              "Si ya paga uno caro, lo cambian y le queda más pensión libre"],
+     riesgo:["Coyotes que le piden un depósito por adelantado",
+             "Tomar la primera oferta que le llamó por teléfono",
+             "Financieras sin convenio IMSS: más de 150% de CAT, hasta seis veces más caro"],
+     obj:[["«¿Cuánto me pueden dar?»","Depende de tu pensión y de lo que tengas libre, y te lo dice el asesor en la asesoría con tus números."],
+          ["«¿Cuánto me van a descontar?»","Como máximo el 30% de tu pensión, a un plazo de hasta 60 meses, y tu pensión nunca puede quedar por debajo de la mínima. Los números exactos te los da el asesor."],
+          ["«¿Y a ustedes qué les toca?»","A ti no te cobramos nada. A nosotros nos paga la financiera, y por eso podemos comparar sin casarnos con ninguna."]],
+     dato:"Reglas IMSS: 30% máximo de descuento, 60 meses de plazo, edad máxima 80 en la mayoría. 36 financieras con convenio IMSS 2025-2027; comparan Credenz, GFI Apoyo y Multiva. Al cliente le cuesta 0. El 150%+ de CAT de las financieras sin convenio es dato de CONDUSEF."}}
+};
+
+let PROD=null;
+
+const P={
+
+/* ───────────── 0 · producto ───────────── */
+producto:{bloque:"producto",eyebrow:"Producto",corto:"Producto",h:"¿En qué situación está?",
+  opts:[{t:"Creditia no me dio producto, o creo que es de los nuevos",
+         s:"cuatro preguntas y sabes cuál es",tono:"ok",ir:"detecta"}],
+  prods:1},
+
+nocalifica:{eyebrow:"Fin",h:"No se gasta la llamada",
+  fin:{t:"Qué haces",l:["Mandas la plantilla <b>no_califica_financiamiento</b>",
+    "Mueves la oportunidad a <b>No califica</b>",
+    "<b>Escribes el motivo.</b> Sin motivo nadie puede corregir nada aguas arriba"]},
+  opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
+
+curp:{eyebrow:"Fin",h:"Primero el CURP bueno",
+  say:[["Mensaje","Hola [Nombre], el CURP que me pasaste no me lo acepta el sistema. ¿Me lo mandas otra vez? Son 18 caracteres, viene en tu acta o en tu credencial."]],
+  fin:{t:"Qué haces",l:["Mueves a <b>Error con Curp</b>","<b>Task para hoy mismo.</b> Sin task este lead se cae solo"]},
+  opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
+
+reporte:{eyebrow:"Fin",h:"Falta el reporte del IMSS",
+  fin:{t:"Qué haces",l:["Pides el reporte en el grupo","Mueves a <b>Solicitar Reporte IMSS</b>",
+    "<b>Task a dos días</b>, después de las 6 de la tarde"]},
+  opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
+
+/* ── detector de producto: solo mientras Creditia no arroje los dos nuevos ── */
+detecta:{bloque:"producto",eyebrow:"Detectar producto · 1 de 4",corto:"Detectar",
+  h:"¿Ya está cobrando una pensión?",
+  tip:"Van en este orden. En cuanto una te dé respuesta, ahí paras.",
+  say:[["Pregunta","¿Ya estás cobrando una pensión del IMSS?"]],
+  opts:[
+    {t:"Sí, definitiva. O ya aceptó su resolución",s:"este es CRÉDITO DE NÓMINA",tono:"warn",ir:"a_credito"},
+    {t:"Sí, pero es temporal",s:"la temporal no descalifica, sigue",ir:"d_edad"},
+    {t:"Le salió negativa de pensión",tono:"stop",ir:"f_negativa"},
+    {t:"No cobra ninguna",ir:"d_edad"}]},
+
+d_edad:{bloque:"producto",eyebrow:"Detectar producto · 2 de 4",corto:"Edad y ley",
+  h:"Edad y ley",
+  say:[["Pregunta","¿Qué edad tiene? ¿Y empezó a cotizar en el IMSS antes de julio de 1997?"]],
+  opts:[
+    {t:"60 o más, y es Ley 73",ir:"d_semanas"},
+    {t:"Menos de 60, o es Ley 97",tono:"stop",ir:"f_edad"}]},
+
+f_edad:{eyebrow:"Fuera de los dos nuevos",h:"Menos de 60 o Ley 97",
+  tip:"No entra ni a Gestión ni a Crédito de nómina. Si Creditia le dio algún producto de financiamiento, sigue con ese. Si no dio ninguno, es No califica.",
+  opts:[{t:"Volver al paso 0",ir:"producto"}]},
+
+d_semanas:{bloque:"producto",eyebrow:"Detectar producto · 3 de 4",corto:"Semanas",
+  h:"¿Cuántas semanas tiene?",
+  say:[["Pregunta","¿Más o menos cuántas semanas tienes cotizadas? ¿Tienes tu reporte a la mano?"]],
+  opts:[
+    {t:"500 o más",ir:"d_cotiza"},
+    {t:"Menos de 500",s:"va a Completar 500 o Recuperación de Derechos",tono:"warn",ir:"f_menos500"}]},
+
+f_menos500:{eyebrow:"No es Gestión",h:"Le faltan semanas",
+  tip:"Con menos de 500 no entra a Gestión. Ese va a <b>Completar 500 Semanas</b> o a <b>Recuperación de Derechos</b>. Regresa al paso 0 y marca ese producto.",
+  opts:[{t:"Volver al paso 0",ir:"producto"}]},
+
+d_cotiza:{bloque:"producto",eyebrow:"Detectar producto · 4 de 4",corto:"Sigue cotizando",
+  h:"¿Sigue cotizando?",
+  say:[["Pregunta","¿Hoy sigue trabajando dado de alta en el IMSS, o ya dejó de cotizar? ¿Cuándo fue su última cotización?"]],
+  opts:[
+    {t:"Ya no cotiza",s:"este es GESTIÓN",ir:"a_gestion"},
+    {t:"Dejó de cotizar hace más de un año",s:"puede convenirle más modalidad 40",tono:"warn",ir:"a_duda40"},
+    {t:"Sigue dado de alta",tono:"stop",ir:"f_cotiza"}]},
+
+a_gestion:{bloque:"producto",eyebrow:"Producto detectado",h:"Este es Gestión y blindaje",
+  tip:"60 o más, Ley 73, 500 semanas o más y ya no cotiza. Ya se puede pensionar, y lo que le vendemos es que no pise el IMSS y que su pensión salga bien a la primera.",
+  opts:[{t:"Entendido, sigo",set:"gestion",ir:"apertura"}]},
+
+a_duda40:{eyebrow:"Pregúntale a Franco",h:"Dejó de cotizar hace más de un año",
+  tip:"Puede convenirle más modalidad 40 retroactiva que Gestión, porque le subiría el promedio salarial. <b>Anota la fecha de su última cotización y pregunta antes de agendar.</b> No lo descartes.",
+  opts:[{t:"Me dijeron que sí es Gestión",set:"gestion",ir:"apertura"},
+        {t:"Volver al paso 0",ir:"producto"}]},
+
+f_cotiza:{eyebrow:"Task, no descarte",h:"Sigue cotizando",
+  say:[["Qué le dices","Mientras sigas dado de alta en el IMSS no te puedes pensionar. En cuanto causes baja me avisas y ahí sí te agendo con el experto. Te lo dejo anotado."]],
+  fin:{t:"Qué registras",l:["<b>Task con la fecha</b> en que calcula darse de baja","No lo descartes: este vuelve"]},
+  opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
+
+/* ───────────── 1 · apertura ───────────── */
+apertura:{bloque:"apertura",eyebrow:"Apertura",corto:"Apertura",h:"Saluda y agradece",
+  say:[["Apertura","Hola [Nombre], te habla [tu nombre] de Pensión Perfecta. Muchísimas gracias por tu tiempo y por compartirnos tu información, ¿cómo estás?"]],
+  opts:[{t:"Contestó, sigo",ir:"confirma"},{t:"No contestó",tono:"warn",ir:"nocontesta"}]},
+
+nocontesta:{eyebrow:"No contestó",h:"Qué haces ahora",
+  fin:{t:"La cadencia",l:["Le dejas la plantilla desde ALLMK, no desde tu teléfono",
+    "<b>Task para el siguiente intento.</b> Sin task, el lead se cae solo",
+    "Día 0 segundo intento · día 1 · día 3 · día 5 y ahí se acaban las llamadas"]},
+  opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
+
+/* ───────────── 2 · calificación ───────────── */
+confirma:{bloque:"calif",eyebrow:"Calificación",h:"Encuadra la llamada",
+  say:[["Encuadre","Como te comenté por mensaje, revisé tu caso y con base en tu información sí eres candidato. Esta llamada es rápida, solo para confirmar que todo esté en orden. Nada más unas preguntas rápidas."]],
+  tip:"Son cinco y las cinco van. Van de corrido, casi en una sola respiración; aquí salen una por una para que marques lo que contesta.",
+  opts:[{t:"Va, empiezo",ir:"q_pension"}]},
+
+q_pension:{bloque:"calif",eyebrow:"Pregunta 1 de 5",corto:"Pensión",
+  h:"¿Ya tiene o tramitó pensión?",
+  say:[["Pregunta","¿Actualmente recibes alguna pensión o ya la tramitaste?"]],
+  opts:[
+    {t:"No recibe ninguna",ir:"q_demanda"},
+    {t:"Sí, temporal",s:"la temporal no descalifica, sigue",tono:"warn",ir:"q_demanda"},
+    {t:"Sí, definitiva",s:"cambia de producto a crédito de nómina",tono:"warn",ir:"a_credito"}]},
+
+a_credito:{bloque:"calif",eyebrow:"Cambio de producto",h:"Este va a crédito de nómina",
+  tip:"Ya no es financiamiento. Una pensión definitiva no se puede elevar, pero sí sirve de garantía. El resto de la llamada sigue igual.",
+  opts:[{t:"Entendido, sigo",set:"credito",ir:"q_demanda"}]},
+
+q_demanda:{bloque:"calif",eyebrow:"Pregunta 2 de 5",corto:"Demanda laboral",
+  h:"¿Tiene una demanda laboral en curso?",
+  say:[["Pregunta","¿Tienes alguna demanda laboral en curso?"]],
+  opts:[{t:"No tiene",ir:"q_busca"},{t:"Sí, en curso",tono:"stop",ir:"f_demanda"}]},
+
+f_demanda:{eyebrow:"Task, no descarte",h:"Demanda en curso",
+  say:[["Qué le dices","Para pensionarte tiene que definirse la demanda, porque pueden cambiar tus semanas y tu promedio salarial. En cuanto finalice me avisas y ahí sí te agendo con el experto. Te lo dejo anotado."]],
+  fin:{t:"Qué registras",l:["<b>Task con la fecha</b> en que calcula que concluye","No lo descartes: este vuelve"]},
+  opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
+
+q_busca:{bloque:"calif",eyebrow:"Pregunta 3 de 5",corto:"Busca financiamiento",
+  h:"¿Busca financiamiento o ya tiene el dinero?",
+  say:[["Pregunta","¿Y en este momento lo que buscas es el financiamiento, o ya cuentas tú con el dinero?"]],
+  opts:[{t:"Busca el financiamiento",ir:"q_negativa"},{t:"Ya tiene el dinero",tono:"stop",ir:"f_dinero"}]},
+
+f_dinero:{eyebrow:"Descarte",h:"Ya tiene el dinero",
+  say:[["Qué le dices","Entiendo, lo que hacemos nosotros es armar un proyecto de financiamiento. Si más adelante lo llegas a necesitar, aquí estoy y me escribes. Te agradezco mucho tu tiempo."]],
+  fin:{t:"Qué registras",l:["<b>No califica</b>","Motivo: ya contaba con el dinero"]},
+  opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
+
+q_negativa:{bloque:"calif",eyebrow:"Pregunta 4 de 5",corto:"Negativa",
+  h:"¿Aceptó resolución o tiene negativa?",
+  say:[["Pregunta","¿El IMSS ya te dio alguna resolución de pensión, ya sea que la aceptaste o que te la negaron?"]],
+  tip:"No son lo mismo. <b>Aceptó la resolución</b> quiere decir que SÍ le salió la pensión: ese ya no es financiamiento, pero sí es crédito de nómina. <b>Negativa</b> quiere decir que se la negaron y no tiene pensión: ese sí se descarta.",
+  opts:[{t:"Ninguna de las dos",ir:"q_infonavit"},
+        {t:"Aceptó la resolución",s:"su pensión ya es definitiva: cambia a crédito de nómina",tono:"warn",ir:"a_credito2"},
+        {t:"Le negaron la pensión",tono:"stop",ir:"f_negativa"}]},
+
+a_credito2:{bloque:"calif",eyebrow:"Cambio de producto",h:"Este va a crédito de nómina",
+  tip:"Aceptar la resolución es justo lo que vuelve definitiva su pensión, y una pensión definitiva sirve de garantía aunque ya no se pueda elevar. Las preguntas de financiamiento ya no aplican.",
+  opts:[{t:"Entendido, sigo",set:"credito",ir:"q_infonavit"}]},
+
+f_negativa:{eyebrow:"Descarte",h:"Le negaron la pensión",
+  say:[["Qué le dices","Entiendo. Con una negativa ya no se puede hacer modalidad 40 para subir el promedio salarial, y como tampoco hay una pensión en curso, no entras en lo otro que manejamos. Te agradezco mucho tu tiempo."]],
+  tip:"ABIERTO, pregunta antes de cerrarlo: si la negativa fue por falta de semanas, falta confirmar si se puede volver a solicitar después de completarlas. Si resulta que sí, este lead entra a Completar 500 o a Recuperación de Derechos. Por eso anota siempre POR QUÉ se la negaron.",
+  fin:{t:"Qué registras",l:["<b>No califica</b>","Motivo: negativa de pensión","<b>Anota en la nota por qué</b> se la negaron"]},
+  opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
+
+q_infonavit:{bloque:"calif",eyebrow:"Pregunta 5 de 5",corto:"Infonavit",
+  h:"¿Tiene crédito Infonavit?",
+  say:[["Pregunta","¿Tienes algún crédito Infonavit?"],
+       ["Si dice que sí","¿De cuánto y cuánto te faltaría para pagarlo?"]],
+  tip:"Lo registras en el campo de la oportunidad.",
+  opts:[{t:"No tiene",ir:"afore"},{t:"Sí, ya lo registré",ir:"afore"}]},
+
+/* ───────────── 3 · AFORE ───────────── */
+afore:{bloque:"afore",eyebrow:"AFORE",h:"__AFORE__",opts:[]},
+
+/* ───────────── 4 · oferta ───────────── */
+oferta:{bloque:"oferta",eyebrow:"Oferta",h:"El siguiente paso",
+  say:[["Oferta","Perfecto. El siguiente paso es agendar una asesoría con uno de nuestros asesores expertos. Ahí vas a ver, con números reales, cuánto tienes para pensionarte y qué estrategias puedes seguir."]],
+  opts:[{t:"Me voy derecho al pitch",ir:"pitch"},
+        {t:"Primero quiero indagar",s:"el bloque de descubrimiento y dolor",tono:"warn",ir:"dolor"}]},
+
+/* ───────────── 5 · dolor ───────────── */
+dolor:{bloque:"dolor",eyebrow:"Dolor, opcional",h:"Dolor, cuando hay con qué",
+  tip:"No va en la llamada de dos minutos. Úsalo cuando el lead dude, cuando sientas que no hay urgencia, o cuando traigas la asistencia baja.",
+  say:[["Interés","¿Qué fue lo que te llamó la atención de nosotros que te hizo querer ver si pudiéramos ayudarte a mejorar tu pensión?"],
+       ["Necesidad","Entonces, en cuestión de [interés], ¿qué es principalmente lo que estás buscando o te gustaría encontrar?"],
+       ["Trámite","¿Ya conoces cómo hacer los trámites, las aportaciones al IMSS y el paso a paso para pensionarte, o es algo con lo que también te gustaría tener ayuda?"],
+       ["Dolor","Me imagino que llega a ser frustrante que ya hayas trabajado tantos años, te hayas esforzado por tanto tiempo, y al final el gobierno ni siquiera te dé una buena pensión. ¿Llega a ser frustrante o estresante esta parte para ti?"],
+       ["Etiquetar","Entonces, según entiendo: uno, se necesita el financiamiento. Dos, se necesita que un experto te muestre cuánto hay que financiar y qué estrategia conviene. Y tres, acompañamiento para hacer el trámite sin retrasos ni problemas. ¿Va por ahí?"],
+       ["Emoción","Y te comento esto más que nada para tenerlo en cuenta: si lográramos mejorar tu pensión de forma importante, ¿qué impacto tendría en tu vida, en tu retiro? ¿Qué cambiaría?"],
+       ["Urgencia, solo si traes baja asistencia","Suena como si esto ya fuera una prioridad para ti. Del 1 al 10, ¿qué tan importante es empezar a verlo ya? ¿Y por qué es importante verlo ahora y no dejarlo para después?"]],
+  tip2:"En cada una, indaga: ¿de qué manera?, ¿a qué te refieres? La respuesta corta no sirve.",
+  opts:[{t:"Listo, voy al pitch",ir:"pitch"}]},
+
+/* ───────────── 6 · pitch ───────────── */
+pitch:{bloque:"pitch",eyebrow:"Pitch",h:"__PITCH__",
+  opts:[{t:"Le interesa, sigo",ir:"beca"}]},
+
+/* ───────────── 7 · beca ───────────── */
+beca:{bloque:"beca",eyebrow:"Beca y compromiso",h:"Aquí se construye el show-up",
+  tip:"No lo recites de corrido. Haz la pausa entre bloque y bloque.",
+  say:[["El valor primero","Mira, estas asesorías tienen un costo de $1,990 pesos y la mayoría de la gente las paga, porque es sentarte una hora con un experto que te arma tu proyecto de pensión con números reales."],
+       ["La beca se la gana él","Yo tengo unas cuantas becas al mes y las guardo para los casos que de verdad califican. El tuyo califica, así que déjame gestionarla ahorita y te la agendo sin costo."],
+       ["La condición","Nada más quiero ser muy honesto contigo, porque es lo único que te voy a pedir: la beca cubre una asesoría, no dos. Si ese día no te conectas, la beca se usa y la segunda ya tendrías que pagarla. No te lo digo para presionarte, te lo digo para que no te pase y la pierdas."]],
+  opts:[{t:"Voy a agendar",ir:"agendar"}]},
+
+/* ───────────── 8 · agendar ───────────── */
+agendar:{bloque:"agendar",eyebrow:"Agendar",corto:"Cita",h:"Mañana o tarde, no pregunta abierta",
+  say:[["Mañana o tarde","¿Te queda mejor por la mañana o por la tarde?... Perfecto, ¿está bien a las [hora]?... Entonces te agendo [día] a las [hora]."],
+       ["Confirma que esa hora sí te sirve","¿Y a esa hora te agarro tranquilo? Te lo pregunto porque es una videollamada y vale la pena que la veas con calma. Perfecto, te aparto el espacio [día] a las [hora]. Ya queda a tu nombre."],
+       ["Invita a quien quiera","Ah, y si hay alguien con quien platiques estas cosas, tu esposa o algún hijo, invítalos a la llamada. Al final es tu pensión y siempre es mejor verlo acompañado."]],
+  tip:"Hoy o mañana, entre 12 y 2. Mientras más cerca la cita, más llega. El sábado es el mejor día; después de las 6, el peor horario.",
+  opts:[{t:"Quedó agendado",ir:"material"},
+        {t:"Pide la próxima semana",tono:"warn",ir:"semana"}]},
+
+semana:{bloque:"agendar",eyebrow:"Agendar",h:"Si pide la próxima semana",
+  say:[["Qué le dices","Claro que sí, te la puedo agendar. Nada más te comento una cosa: cuando se deja para dentro de varios días, a mucha gente se le cruza algo y termina perdiendo el espacio. Si te late, te la aparto [mañana] y si ese día de plano no puedes, me avisas y la movemos. ¿Te parece?"]],
+  opts:[{t:"Aceptó, quedó para mañana",ir:"material"},
+        {t:"Insistió en la próxima semana",tono:"warn",ir:"material"}]},
+
+/* ───────────── 9 · material y grupo ───────────── */
+material:{bloque:"cierre",eyebrow:"Gancho",h:"Las imágenes que le mandas",
+  say:[["Gancho","Te voy a mandar por WhatsApp algunas imágenes donde ves cómo hemos asesorado a miles de personas. Velas antes de tu asesoría para que llegues conociendo el proceso."]],
+  tip:"El video del guión ya no se manda: van las imágenes.",
+  imgs:1,
+  opts:[{t:"Sigo con el grupo",ir:"grupo"}]},
+
+grupo:{bloque:"cierre",eyebrow:"Grupo de WhatsApp",h:"Créalo ahora, no después",
+  say:[["Qué le dices","Voy a crear un grupo de WhatsApp donde voy a agregar a tu asesor experto, para resolverte dudas rápido, recordarte tu asesoría y sobre todo poder acompañarte en cada momento en el proceso de financiamiento de [producto]."]],
+  tip:"Y dentro del grupo, este mensaje. Va en el grupo, no en privado.",
+  say2:[["Mensaje en el grupo","Hola [Nombre], te presento a [Asesor], tu asesor experto. Tu asesoría es el [día] a las [hora] y es para revisar tu opción de financiamiento de [producto]."]],
+  opts:[{t:"Grupo creado",ir:"cierre"}]},
+
+cierre:{bloque:"cierre",eyebrow:"Cierre",h:"Despídete",
+  say:[["Cierre","¿Tienes alguna duda? Perfecto, muchas gracias, nos vemos [día] a las [hora]. Qué gusto tenerte por acá."]],
+  opts:[{t:"Colgué",ir:"registro"}]},
+
+/* ───────────── 10 · al colgar ───────────── */
+registro:{bloque:"registro",eyebrow:"Al colgar",h:"Cinco cosas, sin excepción",
+  fin:{ok:1,t:"Antes de pasar al siguiente lead",l:[
+    "Mueves la oportunidad a <b>Asesoría agendada</b>",
+    "Llenas <b>Tipo de asesoría</b> con el producto",
+    "<b>Dejas tu nota</b> con lo que pasó en la llamada",
+    "Metes la oportunidad al <b>tracker</b>",
+    "<b>Task para la tarde anterior</b> a la cita, que es cuando confirmas"]},
+  opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]}
+};
+
+/* crédito de nómina: ya está pensionado, no aplican las preguntas 3 y 4 */
+const PREG=["q_pension","q_demanda","q_busca","q_negativa","q_infonavit"];
+const SIN_CREDITO=["q_busca","q_negativa"];
+const preg=()=>PROD==="credito"?PREG.filter(x=>!SIN_CREDITO.includes(x)):PREG;
+const salta=id=>(PROD==="credito"&&SIN_CREDITO.includes(id))?"q_infonavit":id;
+const OFERTA_CREDITO=[["Oferta","Perfecto. El siguiente paso es agendar una asesoría con uno de nuestros asesores expertos. Ahí revisan con los números de tu pensión cuánto te pueden prestar y con qué financiera te conviene."]];
+const BECA_CREDITO=[["Sin costo para él","La asesoría para ti no tiene costo, a nosotros nos paga la financiera. Lo único que te pido es que ese día sí te conectes, porque el asesor te aparta ese espacio solo a ti."],
+  ["Pide la palabra y espera","<em>¿Me das tu palabra de que ahí vas a estar?</em>"]];
+
+/* el AFORE depende del producto */
+const AFORE_OBLIG={corto:"AFORE",h:"Obligatorio en Modalidad 40",
+  say:[["Qué le dices","Para avanzar necesito tu estado de cuenta del AFORE. Es el documento que nos dice cuánto podemos financiarte. ¿Lo tienes a la mano o lo consigues antes de la asesoría?"],
+       ["Si no lo tiene","Necesito que me lo consigas antes de la asesoría, es lo que nos dice cuánto podemos financiarte. Ahorita te mando por WhatsApp cómo sacarlo en dos minutos."]],
+  tip:"Sin AFORE no avanza el expediente de Modalidad 40.",
+  opts:[{t:"Lo tiene o lo va a conseguir",ir:"oferta"},
+        {t:"No lo tiene, ya le mandé el instructivo",tono:"warn",ir:"oferta"}]};
+const AFORE_OPC={corto:"AFORE",h:"Se pide igual, aunque no sea obligatorio",
+  say:[["Qué le dices","Si tienes tu estado de cuenta del AFORE, mándamelo, nos ayuda a que el asesor llegue con todo listo."]],
+  tip:"Aquí se puede agendar sin él, pero el que llega con su AFORE firma mucho más.",
+  opts:[{t:"Listo, sigo",ir:"oferta"}]};
+const AFORE_NO={corto:"AFORE",h:"Aquí no va el AFORE",
+  tip:"Ya está pensionado: el AFORE no define nada para el crédito de nómina. No se lo pidas. Lo que importa es cuánto tiene libre de su pensión, y eso lo revisa el asesor.",
+  opts:[{t:"Entendido, sigo",ir:"oferta"}]};
+
+/* ═════════════════════════ motor ═════════════════════════ */
+const ORDEN=["producto","apertura","confirma","q_pension","q_demanda","q_busca",
+             "q_negativa","q_infonavit","afore","oferta","pitch","beca","agendar","material","grupo","cierre","registro"];
+const BLOQUES=[["producto","Producto"],["apertura","Apertura"],["confirma","Calificación"],
+  ["afore","AFORE"],["oferta","Oferta"],["dolor","Dolor"],["pitch","Pitch"],
+  ["beca","Beca"],["agendar","Agendar"],["material","Cierre"],["registro","Al colgar"]];
+const BL={producto:"producto",apertura:"apertura",confirma:"calif",afore:"afore",oferta:"oferta",
+  dolor:"dolor",pitch:"pitch",beca:"beca",agendar:"agendar",material:"cierre",registro:"registro"};
+
+let actual="producto", pila=[], hechos=[], vistos=new Set();
+const $=id=>document.getElementById(id);
+
+function datos(){
+  if(actual==="pitch"){
+    const p=PROD?PITCH[PRODS.find(x=>x.id===PROD).pitch]:null;
+    if(!p) return {bloque:"pitch",eyebrow:"Pitch",h:"¿Cuál pitch necesitas?",
+      tip:"Elige el producto y te doy su pitch. No hace falta pasar por la llamada completa.",
+      swap:1,opts:null};
+    return Object.assign({},P.pitch,{h:p.n,say:p.say,ficha:p.ficha,tip:null,swap:1});
+  }
+  if(actual==="afore"){
+    if(!PROD) return Object.assign({},P.afore,{h:"Falta elegir el producto",
+      tip:"El AFORE es obligatorio en Modalidad 40 y opcional en los demás. Marca el producto primero.",
+      opts:[{t:"Ir al paso 0",ir:"producto"}]});
+    const base=(PROD==="retro_ahora"||PROD==="retro_futuro")?AFORE_OBLIG
+             :(PROD==="credito")?AFORE_NO:AFORE_OPC;
+    return Object.assign({},P.afore,base);
+  }
+  if(PREG.includes(actual)){
+    const l=preg(), k=l.indexOf(actual);
+    return Object.assign({},P[actual],{eyebrow:"Pregunta "+(k+1)+" de "+l.length});
+  }
+  if(actual==="confirma"&&PROD==="credito")
+    return Object.assign({},P.confirma,{tip:"Son tres y las tres van. Las de financiamiento y negativa no aplican: ya está pensionado."});
+  if(actual==="oferta"&&PROD==="credito") return Object.assign({},P.oferta,{say:OFERTA_CREDITO});
+  if(actual==="beca"&&PROD==="credito") return Object.assign({},P.beca,{say:BECA_CREDITO});
+  return P[actual];
+}
+
+let SWAPOPS=[];
+function SWAP(){
+  SWAPOPS=PRODS.map(x=>({t:x.n,set:x.id,ir:"pitch"}));
+  return '<div class="swap">'+PRODS.map((x,k)=>
+    '<button class="sw'+(x.id===PROD?" on":"")+'" data-s="'+k+'">'+x.n+'</button>').join("")+'</div>';
+}
+function bot(o,i){
+  return '<button class="opt '+(o.tono||'')+'" data-i="'+i+'"><span class="dot"></span><span>'+
+    o.t+(o.s?'<small>'+o.s+'</small>':'')+'</span></button>';
+}
+
+function render(){
+  const d=datos(); let ops=[], h='<div class="card">';
+  if(d.eyebrow) h+='<p class="eyebrow">'+d.eyebrow+'</p>';
+  if(d.h) h+='<h2>'+d.h+'</h2>';
+  if(d.tip) h+='<div class="tip"><span>'+d.tip+'</span></div>';
+  if(d.prods&&d.tip2) h+='<div class="tip"><span>'+d.tip2+'</span></div>';
+  if(d.swap) h+='<p class="sec first">El pitch de</p>'+SWAP();
+  (d.say||[]).forEach(s=>h+='<p class="say"><span class="lbl">'+s[0]+'</span>'+s[1]+'</p>');
+  if(d.tip2&&!d.prods) h+='<div class="tip"><span>'+d.tip2+'</span></div>';
+  (d.say2||[]).forEach(s=>h+='<p class="say"><span class="lbl">'+s[0]+'</span>'+s[1]+'</p>');
+  if(d.fin){
+    h+='<div class="fin'+(d.fin.ok?' ok':'')+'"><h3>'+d.fin.t+'</h3><ul>';
+    d.fin.l.forEach(x=>h+='<li>'+x+'</li>'); h+='</ul></div>';
+  }
+  if(d.ficha){
+    const f=d.ficha, obs=o=>o.map(x=>'<div class="ob"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>').join('');
+    h+='<div class="ficha">';
+    if(f.quien) h+='<div class="fg"><p class="fh">A quién le toca</p><p class="fp">'+f.quien+'</p></div>';
+    if(f.incluye) h+='<div class="fg"><p class="fh">Qué incluye</p><ul class="fl">'+f.incluye.map(x=>'<li>'+x+'</li>').join('')+'</ul></div>';
+    if(f.riesgo) h+='<div class="fg"><p class="fh">Lo que le pasa si lo hace solo</p><ul class="fl bad">'+f.riesgo.map(x=>'<li>'+x+'</li>').join('')+'</ul></div>';
+    if(f.obj) h+='<div class="fg"><p class="fh">Objeciones de este producto</p>'+obs(f.obj)+'</div>';
+    h+='<div class="fg"><p class="fh">Objeciones que salen en cualquier llamada</p>'+obs(OBJ_COMUNES)+'</div>';
+    if(f.dato) h+='<div class="tip" style="margin:0"><span><b>Para ti, no para la llamada.</b> '+f.dato+'</span></div>';
+    h+='</div>';
+  }
+  if(d.imgs){
+    const pr=PROD?PRODS.find(x=>x.id===PROD):null;
+    h+='<p class="sec first g-fin">Siempre, en todas las llamadas</p><ul class="fl">'
+      +IMG_GEN.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+    if(pr&&pr.img) h+='<p class="sec '+(pr.falta?'g-ko':'g-pen')+'">De su producto</p><ul class="fl">'
+      +pr.img.map(x=>'<li>'+x+(pr.falta?' <b>todavía no existe</b>':'')+'</li>').join('')+'</ul>'
+      +(pr.falta?'<div class="tip"><span>Esa imagen está por hacerse. Mientras tanto manda solo las de arriba.</span></div>':'');
+    if(!pr) h+='<div class="tip"><span>No hay producto marcado, así que no sé cuál imagen va. Manda las de arriba.</span></div>';
+  }
+  if(d.prods){
+    const caja=p=>{ops.push({t:p.n,set:p.id,ir:"apertura"});
+      return '<button class="pr'+(p.nuevo?' nuevo':'')+(p.w?' w3':'')+(p.id===PROD?' sel':'')+'" data-i="'+(ops.length-1)+'"><b>'+p.n+'</b><small>'+p.s+'</small></button>';};
+    h+='<p class="sec first g-fin">Todavía no se puede pensionar</p><div class="grid g-fin">'+PRODS.filter(p=>!p.g).map(caja).join("")+'</div>';
+    h+='<p class="sec g-pen">Ya se puede pensionar</p><div class="grid g-pen">'+PRODS.filter(p=>p.g===2).map(caja).join("")+'</div>';
+    h+='<p class="sec g-pen">Ya está pensionado</p><div class="grid g-pen">'+PRODS.filter(p=>p.g===3).map(caja).join("")+'</div>';
+    h+='<p class="sec g-ko">Creditia no dio producto</p><div class="grid g-ko">';
+    SINPROD.forEach(p=>{ops.push(p);
+      h+='<button class="pr ko" data-i="'+(ops.length-1)+'"><b>'+p.t+'</b><small>'+p.s+'</small></button>';});
+    h+='</div>';
+  }
+  if(d.opts&&d.opts.length){
+    h+='<div class="opts">';
+    d.opts.forEach(o=>{ops.push(o);h+=bot(o,ops.length-1)});
+    h+='</div>';
+  }
+  h+='</div>';
+  $("card").innerHTML=h;
+  $("card").querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>elige(ops[+b.dataset.i],d));
+  $("card").querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{PROD=SWAPOPS[+b.dataset.s].set;render();});
+
+  const pt=PROD?PRODS.find(p=>p.id===PROD):null;
+  let hs=hechos.length?('<div class="reco">'+hechos.map(x=>(x.k==="producto"&&pt)
+      ?'<div class="hc prod '+(pt.g?'g-pen':'g-fin')+'" title="'+pt.n+'"><span>Producto</span><b>'+pt.n+'</b></div>'
+      :'<div class="hc"><span>'+x.q+'</span><b>'+x.r+'</b></div>').join("")+'</div>'):"";
+  if(pt&&pt.tip&&actual!=="producto")
+    hs+='<p class="aviso"><b>Ojo con este producto.</b> '+pt.tip+'</p>';
+  $("hechos").innerHTML=hs;
+
+  const bl=d.bloque||BL[actual]||"";
+
+  $("nav").innerHTML=BLOQUES.map(b=>{const k=BL[b[0]], on=k===bl;
+    return '<button class="chip'+(on?' on':'')+(!on&&vistos.has(k)?' done':'')+(b[0]==="dolor"?' opc':'')+
+      '" data-ir="'+b[0]+'"'+(on?' aria-current="step"':'')+'><span class="st"></span>'+b[1]+'</button>';}).join("");
+  $("nav").querySelectorAll(".chip").forEach(b=>b.onclick=()=>brinca(b.dataset.ir));
+  const on=$("nav").querySelector(".chip.on"); if(on) on.scrollIntoView({block:"nearest",inline:"nearest"});
+
+  const ord=ORDEN.filter(x=>!(PROD==="credito"&&SIN_CREDITO.includes(x)));
+  const ix=ord.indexOf(actual);
+  $("paso").textContent=(ix>=0)?("Paso "+(ix+1)+" de "+ord.length):"Fuera del camino";
+  $("atras").disabled=!pila.length;
+  $("antes").style.display=(actual==="producto")?"":"none";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function elige(o,d){
+  if(!o) return;
+  if(o.set) PROD=o.set;
+  if(o.ir==="__reinicia") return reinicia();
+  if(d.corto&&o.ir!==actual){
+    const y=hechos.findIndex(x=>x.k===actual);
+    const nuevo={k:actual,q:d.corto,r:o.t};
+    if(y>=0) hechos[y]=nuevo; else hechos.push(nuevo);
+  }
+  if(d.bloque) vistos.add(d.bloque);
+  pila.push(actual); actual=salta(o.ir); render();
+}
+function brinca(id){ pila.push(actual); actual=id; render(); }
+function reinicia(){PROD=null;actual="producto";pila=[];hechos=[];vistos=new Set();render();}
+$("atras").onclick=()=>{
+  if(!pila.length) return;
+  const prev=pila.pop();
+  const y=hechos.findIndex(x=>x.k===prev);
+  if(y>=0) hechos.splice(y,1);
+  actual=prev; render();};
+$("reinicia").onclick=()=>{
+  if((hechos.length||actual!=="producto")&&!confirm("¿Empezar una llamada nueva? Se borra el recorrido de esta.")) return;
+  reinicia();};
+render();
+</script>
+</body>
+</html>

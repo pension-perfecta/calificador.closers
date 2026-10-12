@@ -59,52 +59,83 @@ a{color:var(--brand);font-weight:600}
 .wrap{max-width:820px;margin:0 auto;padding:20px 18px 48px}
 @media (max-width:640px){.wrap{padding:16px 13px 40px}}
 
-.intro{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px;
-  background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);
-  border-radius:9px;padding:12px 16px}
-.intro p{flex:1 1 300px;font-size:15px;color:var(--ink)}
-.intro b{font-weight:600}
+/* encabezado con avance */
+.hero{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;margin:6px 0 22px}
+.hero .tx{flex:1 1 480px}
+.hero h1{font-size:28px;font-weight:700;letter-spacing:-.025em;line-height:1.15}
+.hero p{font-size:15.5px;color:var(--ink-2);margin-top:5px}
+.hero p b{color:var(--ink);font-weight:600}
+@media (max-width:560px){.hero h1{font-size:24px}}
+.av{display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+@media (max-width:560px){.av{align-items:stretch;flex:1 1 100%}}
+.barra{display:flex;gap:4px;width:200px}
+@media (max-width:560px){.barra{width:100%}}
+.barra i{flex:1;height:6px;border-radius:3px;background:var(--line);transition:background .25s}
+.barra i.ok{background:var(--accent)}
+.av-in{display:flex;align-items:center;gap:10px}
 .prog{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--brand);font-weight:600;white-space:nowrap}
-.reset{background:transparent;border:1px solid transparent;border-radius:6px;padding:5px 10px;font-size:13px;color:var(--muted)}
-.reset:hover{border-color:var(--line);color:var(--ink);background:var(--panel)}
+.reset{background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:5px 11px;font-size:13px;
+  color:var(--ink-2);font-weight:500}
+.reset:hover{border-color:var(--accent);color:var(--ink)}
 
-/* pasos */
-.paso{display:grid;grid-template-columns:34px 1fr;gap:14px;background:var(--panel);
-  border:1px solid var(--line);border-radius:10px;padding:16px 18px 18px;margin-bottom:10px;transition:.15s}
-@media (max-width:560px){.paso{grid-template-columns:30px 1fr;gap:11px;padding:14px}}
-.chk{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);
-  display:grid;place-items:center;font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;
-  color:var(--brand);transition:.15s;padding:0}
-.chk:hover{border-color:var(--accent);background:var(--accent-soft)}
-/* acordeón: solo el paso abierto muestra su contenido */
-.paso:not(.abierto){padding:10px 18px;align-items:center;cursor:pointer;margin-bottom:6px}
-.paso:not(.abierto):hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+/* línea de tiempo */
+.pasos{position:relative}
+.paso{position:relative;display:grid;grid-template-columns:36px 1fr;gap:16px}
+.paso::before{content:"";position:absolute;left:17px;top:40px;bottom:2px;width:2px;border-radius:1px;
+  background:var(--line);transition:background .25s}
+.paso:last-child::before{display:none}
+.paso.ok::before{background:var(--accent)}
+.chk{position:relative;z-index:1;width:36px;height:36px;border-radius:50%;border:2px solid var(--line);
+  background:var(--ground);display:grid;place-items:center;font-family:"IBM Plex Mono",monospace;
+  font-size:14px;font-weight:600;color:var(--muted);transition:.18s;padding:0}
+.chk:hover{border-color:var(--accent);color:var(--brand)}
+.paso.abierto .chk{border-color:var(--brand);background:var(--brand);color:var(--brand-ink);
+  box-shadow:0 0 0 4px var(--accent-soft)}
+.paso.ok .chk{background:var(--accent);border-color:var(--accent);color:transparent}
+.paso.ok .chk::after{content:"";position:absolute;width:12px;height:6.5px;border:solid #fff;
+  border-width:0 0 2.2px 2.2px;transform:rotate(-45deg) translate(1px,-1px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .paso.ok .chk::after{border-color:var(--ground)}}
+:root[data-theme="dark"] .paso.ok .chk::after{border-color:var(--ground)}
+
+.body{min-width:0;padding:6px 0 22px}
+.paso h2{font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.35;margin:0;color:var(--ink-2);
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.paso:not(.abierto){cursor:pointer}
+.paso:not(.abierto):hover h2{color:var(--ink)}
 .paso:not(.abierto) .body>*:not(:first-child),
 .paso:not(.abierto) .body>:first-child>:not(h2){display:none}
-.paso:not(.abierto) h2{font-size:16px;margin:0}
-.paso:not(.abierto):not(.ok) h2{color:var(--ink-2);font-weight:600}
-.paso.abierto{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));
-  box-shadow:0 1px 2px rgba(15,30,24,.05),0 14px 30px -24px rgba(15,30,24,.4)}
-h2 .res{display:none;font-size:14px;font-weight:500;color:var(--accent);margin-left:8px;letter-spacing:0}
-.paso.ok:not(.abierto) h2 .res{display:inline}
-@media (max-width:560px){.paso:not(.abierto){padding:10px 14px} h2 .res{display:none!important}}
-.sig{align-self:flex-start;background:var(--brand);color:var(--brand-ink);border:0;border-radius:7px;
-  padding:9px 18px;font-size:14.5px;font-weight:600}
-.sig:hover{opacity:.9}
-.paso.ok{background:var(--panel-2);border-color:var(--line-2)}
-.paso.ok .chk{background:var(--accent);border-color:var(--accent);color:transparent;position:relative}
-.paso.ok .chk::after{content:"";position:absolute;width:11px;height:6px;border:solid var(--panel);
-  border-width:0 0 2px 2px;transform:rotate(-45deg) translate(1px,-1px)}
-.paso.ok h2{color:var(--muted)}
-.paso.ok.abierto{background:var(--panel)}
-.paso h2{font-size:18.5px;font-weight:700;letter-spacing:-.015em;line-height:1.3;margin:2px 0 4px}
-.paso .d{font-size:15px;color:var(--ink-2)}
-.paso .d+.d{margin-top:4px}
-.paso .body>*+*{margin-top:12px}
+.paso.ok h2{color:var(--ink)}
+h2 .res{display:none;font-size:12.5px;font-weight:600;color:var(--accent);background:var(--accent-soft);
+  border-radius:99px;padding:2px 10px;letter-spacing:0}
+.paso.ok:not(.abierto) h2 .res{display:inline-block}
+
+.paso.abierto .body{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:16px 20px 20px;margin:-4px 0 18px;
+  box-shadow:0 1px 2px rgba(15,30,24,.05),0 18px 34px -26px rgba(15,30,24,.45)}
+@media (max-width:560px){.paso{grid-template-columns:30px 1fr;gap:11px}.chk{width:30px;height:30px;font-size:12.5px}
+  .paso::before{left:14px;top:34px}.paso.abierto .body{padding:14px 15px 16px}}
+.paso.abierto h2{font-size:20px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:4px}
+.paso .body>*+*{margin-top:14px}
+.paso .d{font-size:15.5px;color:var(--ink-2)}
 .paso .d b{color:var(--ink);font-weight:600}
-.ruta{font-size:14px;color:var(--ink-2)}
-.ruta span{display:inline-block;background:var(--panel-2);border:1px solid var(--line);border-radius:5px;
-  padding:1px 7px;font-weight:500;color:var(--ink)}
+.sig{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:var(--brand-ink);
+  border:0;border-radius:8px;padding:10px 18px;font-size:14.5px;font-weight:600}
+.sig::after{content:"→"}
+.sig:hover{opacity:.92}
+.ruta{font-size:14.5px;color:var(--ink-2);line-height:1.9}
+.ruta span{display:inline-block;background:var(--panel-2);border:1px solid var(--line);border-radius:6px;
+  padding:0 8px;font-weight:500;color:var(--ink)}
+
+/* cierre */
+.fin{display:none;align-items:center;gap:16px;flex-wrap:wrap;background:var(--accent-soft);
+  border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);border-radius:12px;padding:18px 20px;margin-top:4px}
+.todo .fin{display:flex}
+.fin .ic{flex:none;width:44px;height:44px;border-radius:50%;background:var(--accent);display:grid;place-items:center}
+.fin .ic::after{content:"";width:16px;height:8px;border:solid #fff;border-width:0 0 3px 3px;transform:rotate(-45deg) translate(1px,-2px)}
+.fin .tx{flex:1 1 240px}
+.fin h3{font-size:18px;font-weight:700;margin:0}
+.fin p{font-size:14.5px;color:var(--ink-2)}
+.fin button{background:var(--brand);color:var(--brand-ink);border:0;border-radius:8px;padding:10px 18px;font-size:14.5px;font-weight:600}
 
 /* campos y copia */
 .campo{display:flex;flex-direction:column;gap:5px}
@@ -114,18 +145,25 @@ h2 .res{display:none;font-size:14px;font-weight:500;color:var(--accent);margin-l
 .inp:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 .fila{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 @media (max-width:640px){.fila{grid-template-columns:1fr 1fr}}
-.guia{border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);background:var(--accent-soft);
-  border-radius:8px;padding:13px 16px;font-size:17px;line-height:1.5;color:var(--ink)}
-.guia i{font-style:normal;color:var(--accent);font-weight:600}
+.chat{background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:14px}
+.guia{position:relative;max-width:none;margin-left:auto;width:fit-content;background:#D9FDD3;color:#111B21;
+  border-radius:10px 2px 10px 10px;padding:10px 14px;font-size:16.5px;line-height:1.5;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.guia i{font-style:normal;color:#0B7A55;font-weight:600}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .guia{background:#005C4B;color:#E9EDEF}
+  :root:not([data-theme="light"]) .guia i{color:#7FF0C6}}
+:root[data-theme="dark"] .guia{background:#005C4B;color:#E9EDEF}
+:root[data-theme="dark"] .guia i{color:#7FF0C6}
 .btn{background:var(--brand);color:var(--brand-ink);border:0;padding:0 18px;font-size:14px;font-weight:600;
   white-space:nowrap;transition:opacity .13s}
 .btn:hover{opacity:.9}
 .btn.si{background:var(--accent)}
-.formato{background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);
-  border-radius:8px;padding:12px 16px}
-.fv{font-size:18px;font-weight:600}
-.fv i{font-style:normal;color:var(--accent)}
-.fe{font-size:13.5px;color:var(--muted);margin-top:2px}
+.wa{display:flex;align-items:center;gap:12px;background:var(--panel-2);border:1px solid var(--line);
+  border-radius:10px;padding:11px 14px}
+.wa .av2{flex:none;width:42px;height:42px;border-radius:50%;background:var(--brand);color:var(--brand-ink);
+  display:grid;place-items:center;font-size:13px;font-weight:700}
+.wa .n{font-size:17.5px;font-weight:600;line-height:1.3}
+.wa .n i{font-style:normal;color:var(--accent)}
+.wa .e{font-size:13px;color:var(--muted);margin-top:1px}
 .nota{font-size:13.5px;color:var(--muted)}
 .alto{background:var(--red-soft);border:1px solid color-mix(in srgb,var(--red) 30%,transparent);
   border-radius:8px;padding:11px 14px;font-size:15px;color:var(--ink)}
@@ -160,12 +198,14 @@ h2 .res{display:none;font-size:14px;font-weight:500;color:var(--accent);margin-l
 
 .fotos{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
 @media (max-width:560px){.fotos{grid-template-columns:1fr}}
-.f{display:flex;align-items:center;gap:10px;background:var(--panel-2);border:1px solid var(--line);
-  border-radius:7px;padding:8px 11px}
-.f span{font-size:19px;line-height:1;flex:none}
+.f{display:flex;align-items:center;gap:11px;background:var(--panel);border:1px solid var(--line);
+  border-radius:9px;padding:7px 11px 7px 7px}
+.f span{flex:none;width:32px;height:32px;border-radius:7px;background:var(--panel-2);display:grid;place-items:center;
+  font-size:17px;line-height:1}
 .f b{font-size:14.5px;font-weight:600;color:var(--ink)}
 
 .adj{display:flex;flex-direction:column;gap:6px}
+.adj-t{font-size:13px;font-weight:600;color:var(--muted)}
 .adj li{font-size:15px;color:var(--ink-2);display:flex;gap:9px;align-items:baseline}
 .adj li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--accent);transform:translateY(-2px)}
 .adj b{color:var(--ink);font-weight:600}
@@ -176,25 +216,31 @@ footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line);font-si
 <body>
 
 <div class="top"><div class="top-in">
-  <span class="mark">PP</span><b>Pensión Perfecta</b><span class="tt">El grupo de WhatsApp</span>
+  <span class="mark">PP</span><b>Pensión Perfecta</b><span class="tt">Closers</span>
   <a href="../">Volver al inicio</a>
 </div></div>
 
 <div class="wrap">
 
-<div class="intro">
-  <p><b>Se crea en la misma llamada, antes de colgar.</b> Si lo dejas para después, no se crea.</p>
-  <span class="prog" id="prog">0 de 6</span>
-  <button class="reset" id="reset">Otro grupo</button>
+<div class="hero">
+  <div class="tx"><h1>El grupo de WhatsApp</h1>
+    <p><b>Se crea en la misma llamada, antes de colgar.</b> Si lo dejas para después, no se crea.</p></div>
+  <div class="av">
+    <div class="barra" id="barra"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="av-in"><span class="prog" id="prog">0 de 6</span><button class="reset" id="reset">Otro grupo</button></div>
+  </div>
 </div>
+
+<div class="pasos" id="pasos">
 
 <section class="paso" data-p>
   <button class="chk" aria-label="Marcar paso 1">1</button>
   <div class="body">
     <div><h2>Crea el grupo con su nombre completo</h2>
     <p class="d">Como viene en su reporte de semanas. Ni apodo, ni solo el nombre de pila, ni abreviado: si el nombre está mal, nadie encuentra el grupo después.</p></div>
-    <div class="formato"><p class="fv">Equipo PP - <i>Nombre completo del cliente</i></p>
-      <p class="fe">Ejemplo: Equipo PP - Francisco Franco Herrera Sánchez</p></div>
+    <div class="wa"><span class="av2">PP</span><div>
+      <p class="n">Equipo PP - <i>Nombre completo del cliente</i></p>
+      <p class="e">Ejemplo: Equipo PP - Francisco Franco Herrera Sánchez</p></div></div>
   </div>
 </section>
 
@@ -239,7 +285,7 @@ footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line);font-si
       </div>
       <div class="lista" id="lista"></div>
     </div>
-    <p class="nota">Toca el nombre para marcarlo como tu asesor; se llena solo en la bienvenida. <b>WhatsApp</b> abre su chat para mandarle el link.</p>
+    <p class="nota">Toca el nombre para marcarlo como tu asesor. <b>WhatsApp</b> abre su chat para mandarle el link.</p>
   </div>
 </section>
 
@@ -256,13 +302,21 @@ footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line);font-si
   <div class="body">
     <div><h2>Manda la bienvenida</h2>
     <p class="d">En grupo no se pueden mandar plantillas: las plantillas son de uno a uno. Este mensaje lo escribes tú.</p></div>
-    <div class="guia">Hola <i>[Nombre]</i>, te presento a <i>[Asesor]</i>, tu asesor experto. Tu asesoría es el <i>[día]</i> a las <i>[hora]</i> y es para revisar tu opción de financiamiento de <i>[producto]</i>.</div>
+    <div class="chat"><div class="guia">Hola <i>[Nombre]</i>, te presento a <i>[Asesor]</i>, tu asesor experto. Tu asesoría es el <i>[día]</i> a las <i>[hora]</i> y es para revisar tu opción de financiamiento de <i>[producto]</i>.</div></div>
+    <p class="adj-t">Y en el mismo grupo mandas:</p>
     <ul class="adj">
-      <li><span>Con la imagen de <b>requisitos para tu asesoría</b>, para que llegue con su constancia de semanas y su AFORE.</span></li>
-      <li><span>Y las imágenes de <b>su producto</b>.</span></li>
+      <li><span>La imagen de <b>requisitos para tu asesoría</b>, para que llegue con su constancia de semanas y su AFORE.</span></li>
+      <li><span>Las imágenes de <b>su producto</b>.</span></li>
     </ul>
   </div>
 </section>
+</div>
+
+<div class="fin">
+  <span class="ic"></span>
+  <div class="tx"><h3>Grupo listo</h3><p id="fin-tx">Nombre, foto, cliente, asesor como administrador y bienvenida.</p></div>
+  <button id="otro">Empezar otro grupo</button>
+</div>
 
 <footer>Pensión Perfecta · Closers de financiamiento. Uso interno.</footer>
 </div>
@@ -320,7 +374,11 @@ function abre(k){
   if(k>=0) setTimeout(()=>pasos[k].scrollIntoView({behavior:"smooth",block:"nearest"}),60);
 }
 function prog(){
-  $("prog").textContent=pasos.filter(p=>p.classList.contains("ok")).length+" de "+pasos.length;
+  const n=pasos.filter(p=>p.classList.contains("ok")).length;
+  $("prog").textContent=n+" de "+pasos.length;
+  [...$("barra").children].forEach((x,i)=>x.classList.toggle("ok",pasos[i].classList.contains("ok")));
+  document.body.classList.toggle("todo",n===pasos.length);
+  $("fin-tx").textContent=ASESOR?"Con "+ASESOR+" como asesor. Ya no tienes que hacer nada más en este grupo.":"Ya no tienes que hacer nada más en este grupo.";
   pasos.forEach((p,k)=>p.querySelector(".res").textContent=RES[k]());
 }
 function hecho(k){
@@ -335,6 +393,7 @@ pasos.forEach((p,k)=>{
   const s=p.querySelector(".sig"); if(s) s.onclick=e=>{e.stopPropagation();hecho(k);};
   p.addEventListener("click",()=>{if(!p.classList.contains("abierto")) abre(k);});
 });
+$("otro").onclick=()=>$("reset").click();
 $("reset").onclick=()=>{
   pasos.forEach(p=>p.classList.remove("ok")); abre(0);
   $("q").value="";ASESOR="";lista();prog();window.scrollTo({top:0,behavior:"smooth"});

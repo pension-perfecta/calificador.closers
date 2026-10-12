@@ -13,9 +13,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap">
 <style>
 :root{
-  --ground:#E4EFEA; --panel:#FFFFFF; --panel-2:#F0F7F3;
+  --ground:#EEF6F2; --panel:#FFFFFF; --panel-2:#F0F7F3;
   --ink:#0C3B39; --ink-2:#3F5A54; --muted:#5B6E6D; --faint:#789E92;
-  --line:#BCD8CC; --line-2:#DBEBE3;
+  --line:#BCD9D1; --line-2:#DBEBE3;
   --brand:#00443E; --brand-ink:#FFFFFF; --accent:#00C688; --accent-soft:#E3F8EF;
   --accent-ink:#00695A;
   --gold:#B07D05; --gold-soft:#FBF0D2;
@@ -85,8 +85,7 @@ h1{font-size:28px;font-weight:800;letter-spacing:-.025em;line-height:1.12}
 .act:hover .arr{color:var(--accent-ink);transform:translateX(2px)}
 
 /* ── secciones ── */
-.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;align-items:start}
-@media (max-width:900px){.cols{grid-template-columns:1fr 1fr}}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;align-items:start}
 @media (max-width:620px){.cols{grid-template-columns:1fr}}
 .sec{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px 16px 8px}
 .sec h2{font-size:15px;font-weight:800;letter-spacing:-.005em}
@@ -95,7 +94,7 @@ h1{font-size:28px;font-weight:800;letter-spacing:-.025em;line-height:1.12}
 /* filas clicables: toda la fila es el link */
 .row{display:flex;align-items:center;gap:10px;min-height:46px;padding:10px;margin:0 -10px;
   border-radius:9px;transition:background .13s}
-.row + .row{border-top:1px solid var(--line-2)}
+.row + .row{border-top:1px solid var(--line)}
 .row:hover,.row:focus-visible{background:var(--panel-2)}
 .row .tx{flex:1;min-width:0}
 .row .tx b{display:block;font-size:14.5px;font-weight:700;letter-spacing:-.005em;line-height:1.3}
@@ -110,8 +109,11 @@ h1{font-size:28px;font-weight:800;letter-spacing:-.025em;line-height:1.12}
   vertical-align:1.5px}
 
 /* herramientas: apps de fuera, no páginas nuestras */
-.tools{display:grid;gap:6px;padding-bottom:8px}
-.tool{display:flex;align-items:center;gap:8px;min-height:46px;padding:8px 11px;
+.franja{margin-top:12px}
+.tools{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding-bottom:8px}
+@media (max-width:860px){.tools{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.tools{grid-template-columns:1fr 1fr}}
+.tool{display:flex;align-items:center;gap:8px;min-height:52px;padding:9px 12px;
   border:1px solid var(--line);border-radius:9px;background:var(--panel);
   transition:border-color .13s,background .13s}
 .tool:hover,.tool:focus-visible{border-color:var(--accent);background:var(--panel-2)}
@@ -206,7 +208,11 @@ footer{margin-top:20px;padding-top:14px;border-top:1px solid var(--line);
       <span class="ch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
   </div>
 
-  <div class="sec">
+
+
+</div>
+
+<div class="sec franja">
     <h2>Herramientas</h2>
     <p class="q">Donde trabajas, fuera de aquí</p>
 
@@ -232,8 +238,6 @@ footer{margin-top:20px;padding-top:14px;border-top:1px solid var(--line);
         <span class="out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
     </div>
   </div>
-
-</div>
 
 <p class="nota"><b>Si algo no abre,</b> avísale a tu líder. No te quedes trabajando con una versión vieja que tengas guardada en el celular.</p>
 

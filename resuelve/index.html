@@ -97,6 +97,41 @@
   .cat-more:hover{text-decoration:underline}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
   .foot{text-align:center;color:var(--faint);font-size:12.5px;margin-top:26px;line-height:1.6}
+
+  .caso{background:var(--panel);border:1.5px solid var(--line);border-radius:16px;
+    padding:18px 20px 20px;margin:0 0 20px;box-shadow:var(--shadow)}
+  .caso-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:13px}
+  .caso-h b{font-size:17px;letter-spacing:-.01em}
+  .caso-h small{display:block;color:var(--muted);font-size:13.5px;margin-top:2px;font-weight:400}
+  .rst{font:inherit;font-size:13px;font-weight:600;color:var(--muted);background:none;
+    border:0;cursor:pointer;padding:4px 2px;flex:none}
+  .rst:hover{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{font:inherit;font-size:14px;line-height:1.3;padding:7px 13px;border-radius:999px;cursor:pointer;
+    border:1.5px solid var(--line);background:var(--panel);color:var(--ink);text-align:left;
+    transition:border-color .12s,background .12s}
+  .chip:hover{border-color:var(--faint)}
+  .chip.on{font-weight:600}
+  .chip.on.no{background:var(--red-soft);border-color:var(--red);color:var(--red)}
+  .chip.on.cambia{background:var(--blue-soft);border-color:var(--blue);color:var(--blue)}
+  .chip.on.preg{background:var(--gold-soft);border-color:var(--gold);color:var(--gold)}
+  .chip.on.ok{background:var(--green-soft);border-color:var(--green);color:var(--green)}
+  .vered{margin-top:17px;border-top:1px solid var(--line-2);padding-top:15px}
+  .vtit{display:flex;align-items:center;gap:9px;font-size:19px;font-weight:700;letter-spacing:-.015em}
+  .vtit .pill{width:11px;height:11px;border-radius:50%;flex:none}
+  .vsub{color:var(--muted);font-size:14px;margin:3px 0 0}
+  .vlist{margin:14px 0 0;display:flex;flex-direction:column;gap:9px}
+  .vrow{display:flex;gap:11px;align-items:flex-start;padding:10px 13px;border-radius:10px;
+    background:var(--panel-2);border-left:3px solid var(--line)}
+  .vrow.no{border-left-color:var(--red)} .vrow.cambia{border-left-color:var(--blue)}
+  .vrow.preg{border-left-color:var(--gold)} .vrow.ok{border-left-color:var(--green)}
+  .vrow .vt{font-weight:700;font-size:14px;white-space:nowrap;flex:none;width:92px}
+  .vrow.no .vt{color:var(--red)} .vrow.cambia .vt{color:var(--blue)}
+  .vrow.preg .vt{color:var(--gold)} .vrow.ok .vt{color:var(--green)}
+  .vrow .vb{font-size:14.5px}
+  .vrow .vb b{font-weight:600}
+  .vrow .vq{display:block;font-size:13px;color:var(--muted);margin-bottom:2px}
+  @media (max-width:560px){.vrow{flex-direction:column;gap:3px}.vrow .vt{width:auto}}
 </style>
 </head>
 <body>
@@ -107,6 +142,15 @@
     <h1>Resuelve tu duda</h1>
     <p class="sub">Escribe tu duda con tus palabras y te la resolvemos. Abajo, las reglas por sección.</p>
   </header>
+
+  <div class="caso">
+    <div class="caso-h">
+      <div><b>Tengo un caso</b><small>Marca todo lo que traiga tu lead. Puedes marcar varias.</small></div>
+      <button class="rst" id="rst" hidden>Limpiar</button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="vered" id="vered" hidden></div>
+  </div>
 
   <div class="searchbox">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
@@ -130,7 +174,8 @@ const CATS={
   tracker:{name:"Tracker",c:"var(--slate)"},
   obj:{name:"Objeciones",c:"var(--red)"},
   proceso:{name:"SOP: tu proceso",c:"#9a7b4e"},
-  tools:{name:"Herramientas y accesos",c:"#2b8fb0"}
+  tools:{name:"Herramientas y accesos",c:"#2b8fb0"},
+  casos:{name:"Casos: pasa o no pasa",c:"#c2410c"}
 };
 const E=[
  // IMSS Y PRODUCTO
@@ -148,8 +193,8 @@ const E=[
   a:"En vez de cotizar mes a mes esos últimos años, se pagan <b>de golpe hacia atrás</b>. Como es mucho dinero junto, ahí entra <b>nuestro financiamiento</b>. La inversión se recupera en pocos meses de pensión y luego se cobra de más el resto de la vida."},
  {c:"imss",q:"¿Qué es la Modalidad 10?",kw:"modalidad 10 mod10 que es mas cara recuperacion",
   a:"Otra continuación voluntaria, <b>más cara</b> que la Mod 40. Para solo subir pensión casi siempre conviene Mod 40; la Mod 10 se usa sobre todo para <b>recuperación de derechos</b>. Cuál modalidad va cada caso lo confirma el sistema al calificar."},
- {c:"imss",q:"¿Cuáles son los 5 productos?",kw:"5 productos cuales financiamiento ahora futuro",
-  a:"<b>1)</b> Financiamiento Mod 40 Ahora · <b>2)</b> Financiamiento Mod 40 Futuro · <b>3)</b> Recuperación de derechos (Mod 10) · <b>4)</b> Actualización de pensión mínima · <b>5)</b> Completar 500 semanas. Tú calificas y agendas; <b>la ruta la confirma el sistema al calificar</b>."},
+ {c:"imss",q:"¿Cuáles son los 7 productos?",kw:"7 5 productos cuales financiamiento ahora futuro gestion credito nomina",
+  a:"Según la situación del lead. <b>Todavía no se puede pensionar:</b> 1) Fin. Retroactivo ahora · 2) Fin. Retroactivo futuro · 3) Recuperación de derechos · 4) Actualización de pensión mínima · 5) Completar 500 semanas. <b>Ya se puede pensionar:</b> 6) Gestión y blindaje de pensión. <b>Ya está pensionado:</b> 7) Crédito de nómina. Tú calificas y agendas; <b>la ruta la confirma el sistema al calificar</b>.<span class='note'>El detalle de cada uno está en la Guía de Producto.</span>"},
  {c:"imss",q:"¿Qué es recuperación de derechos?",kw:"recuperacion derechos perdio pensionarse volver cotizar",
   a:"Quien dejó de cotizar más allá de su periodo de conservación <b>pierde el derecho a pensionarse</b>. Para recuperarlo tiene que <b>volver a cotizar</b> (Mod 10 o Mod 40, lo define el sistema). Es la base más grande que tenemos hoy."},
  {c:"imss",q:"¿Qué es conservación de derechos?",kw:"conservacion derechos cuanto tiempo cuarto",
@@ -158,6 +203,12 @@ const E=[
   a:"La persona <b>ya tiene derecho</b>, pero dejó de cotizar +2 años, así que le calcularían la mínima de años atrás. Cotizando <b>alrededor de 1 mes</b> se actualiza a la mínima del año actual."},
  {c:"imss",q:"Completar 500 semanas",kw:"completar 500 semanas cerca 440 470",
   a:"Quien anda cerca (<b>440 a 470 semanas</b>) puede financiar lo que le falta para <b>llegar a 500</b> y alcanzar el derecho a pensionarse."},
+ {c:"imss",q:"¿Qué es Gestión y blindaje de pensión?",kw:"gestion blindaje pension express tramite 60 anos ya se puede pensionar baja resolucion",
+  a:"Para quien <b>ya puede pensionarse</b>: 60 años o más, Ley 73, 500 semanas o más y ya causó baja. Le llevamos el trámite completo: calculamos el <b>día exacto para darse de baja</b>, armamos el expediente y revisamos que la resolución salga con el monto correcto. <b>No paga nada hasta recibir su primer pago de pensión.</b><span class='note'>No digas que no va a pisar el IMSS: para recoger su resolución y su AFORE sí tiene que ir, mínimo una vez. Lo que vendemos son una o dos visitas, no cero.</span>"},
+ {c:"imss",q:"¿Qué es el crédito de nómina?",kw:"credito nomina pensionado prestamo garantia descuento 30 financiera convenio",
+  a:"Para quien <b>ya está pensionado</b>, con pensión definitiva. Un préstamo que se paga con descuento directo a su pensión, <b>sin aval y sin hipotecar nada</b>. Reglas del IMSS: máximo <b>30%</b> de descuento, hasta <b>60 meses</b>, edad máxima <b>80</b>, y su pensión nunca queda por debajo de la mínima. Cotizamos entre las <b>36 financieras con convenio</b> y le decimos cuál le conviene. <b>Al cliente no le cuesta nada</b>: nos paga la financiera.<span class='note'>Para comprarle una deuda existente tiene que llevar más de 2 años con ese crédito.</span>"},
+ {c:"imss",q:"Aceptó su resolución, ¿lo descarto?",kw:"acepto resolucion definitiva descarto credito nomina negativa",
+  a:"<b>No.</b> Aceptar la resolución es justo lo que vuelve <b>definitiva</b> su pensión, y una pensión definitiva sirve de garantía: ese lead va a <b>crédito de nómina</b>. Lo que sí descarta de los tres caminos es la <b>negativa de pensión</b>, porque ahí no hay pensión."},
  {c:"imss",q:"¿Cómo funciona el financiamiento de PP?",kw:"financiamiento como funciona presta paga pension tope",
   a:"Le <b>prestamos</b> para pagar el Mod 40 retroactivo; lo paga con su <b>misma pensión aumentada</b>, sin sacar dinero de su bolsa. <b>Tope: 5 años.</b> La asesoría de financiamiento es <b>gratis</b> para el lead."},
  {c:"imss",q:"Regla de oro: mínimo vs. topado",kw:"minimo topado 25 uma ventana 250 semanas regla oro",
@@ -168,7 +219,7 @@ const E=[
  {c:"calif",q:"¿Quién califica? (los must)",kw:"quien califica requisitos must ley 73 pensionado edad",
   a:"Debe cumplir <b>todos</b>: Ley 73 · no pensionado · no en trámite ante el IMSS · no cotizando hoy · <b>59 años o más</b> · y que quiera que lo ayudemos. El tiempo sin cotizar, el AFORE y las semanas <b>no descartan</b>: definen a qué producto va (lo confirma el sistema)."},
  {c:"calif",q:"¿Qué descalifica de inmediato?",kw:"descalifica no pierdas tiempo ley 97 pensionado tramite demanda menor 59",
-  a:"Ley 97 · ya pensionado (definitiva) · en trámite de su pensión · cotizando hoy · <b>menor de 59</b> · <b>demanda contra el IMSS</b> · <b>simulación laboral sin recibos timbrados</b>. Esos van a consultoría, no pierdas tiempo."},
+  a:"Ley 97 · en trámite de su pensión · cotizando hoy · <b>menor de 59</b> · <b>demanda contra el IMSS</b> · <b>simulación laboral sin recibos timbrados</b> · <b>negativa de pensión</b>. Esos no son financiamiento.<span class='note'>Ya pensionado con definitiva <b>ya no descalifica</b>: ese va a Crédito de nómina.</span>"},
  {c:"calif",q:"¿Qué red flags debo preguntar?",kw:"red flags demanda simulacion accionista plataformas infonavit didi uber",
   a:"<b>Demanda al IMSS, Infonavit o AFORE</b> (en proceso descalifica) · <b>simulación sin recibos timbrados</b> (descalifica) · demanda a un patrón · accionista · <b>plataformas digitales</b> (Didi/Uber, pedir baja) · crédito Infonavit (puede bajar lo que cubre)."},
  {c:"calif",q:"¿Cuántas semanas mínimas pide?",kw:"semanas minimas cuantas 500 900 califica",
@@ -189,7 +240,7 @@ const E=[
  {c:"crm",q:"¿Cuándo uso Seguimiento y cómo?",kw:"seguimiento futuro task tarea 30 dias cuando",
   a:"Cuando hay interés pero no cerró hoy: → <b>Seguimiento</b> con <b>task</b> (si el task es a menos de 30 días) o <b>Seguimiento futuro</b> (más de 30). <b>Siempre con task</b>: si lo mueves sin task, cae en rojo."},
  {c:"crm",q:"¿Qué son las etapas rojas?",kw:"rojas etapas alerta whatsapp sin seguimiento agenda task vencido desasigna",
-  a:"Son <b>alertas</b>: algo que debiste hacer y no hiciste. <b>WhatsApp sin seguimiento · Agenda sin seguimiento · Seguimiento sin task · ¿Porqué no califica?</b> Deben quedar <b>vacías al cierre del día</b>; si una dura 2 días, se te desasigna el lead.<span class='note'>Task por hacer hoy también es roja, pero no es un error: es tu bandeja del día.</span>"},
+  a:"Son <b>alertas</b>: algo que debiste hacer y no hiciste. <b>WhatsApp sin seguimiento · Agenda sin seguimiento · Seguimiento sin task · ¿Porqué no califica?</b> Deben quedar <b>vacías al cierre del día</b>.<span class='note'>Desde el 24 de septiembre <b>ya no hay desasignaciones automáticas</b>: el lead se queda contigo. Lo que sí pasa es que dirección lo <b>reasigna</b> si ve que no le estás dando seguimiento. Task por hacer hoy también es roja, pero no es un error: es tu bandeja del día.</span>"},
  {c:"crm",q:"¿Cómo funciona owner y follower?",kw:"owner follower propietario asesor closer cambia",
   a:"Mientras el lead es tuyo, <b>tú eres owner</b>. Cuando la agenda pasa al pipeline del asesor, <b>el asesor se pone owner y tú follower</b>. Revisa que quede bien cada vez; el sistema no siempre lo hace solo."},
  {c:"crm",q:"¿Qué es Llamar hoy?",kw:"llamar hoy bandeja dia task vence pidio llamada",
@@ -278,10 +329,60 @@ const E=[
  {c:"proceso",q:"Proceso CF-A: calificar por mensaje y agendar (nuevo)",kw:"cf-a nuevo proceso calificar mensaje curp creditia buenas noticias llamada agendar pipe a flujo",
   a:"El flujo de hoy en CF-A:<br>1) El lead <b>escribe primero</b> y el sistema te lo asigna.<br>2) Por mensaje consigues su <b>CURP</b>.<br>3) Pegas el CURP en <b>Calificación closer</b>, pones <b>Análisis</b> y el sistema califica solo.<br>4) Si califica, mandas el <b>mensaje de buenas noticias</b> y te dice a qué hora llamarle.<br>5) <b>Llamas</b> (llamada corta que solo confirma y agenda, no re-califica).<br>6) Post-agenda: creas el <b>grupo</b>, actualizas el <b>CRM</b>, subes el <b>AFORE</b> y metes la opp al <b>tracker</b>.<span class='note'>Aquí calificas ANTES de llamar; solo llamas a los que ya sabes que califican.</span>"},
  {c:"agenda",q:"Guion de la llamada de 2 min",kw:"guion llamada corta 2 min agendar confirmar show compromiso demanda pension cf-a nuevo pasos",
-  a:"Cuando te da la hora, llamas. Solo confirma y agenda:<br><b>1. Gracias:</b> saluda, se presenta y agradece su tiempo.<br><b>2. Confirmación:</b> con base en su información sí es candidato; confirma solo dos cosas: que no está recibiendo ni tramitando pensión, y que no tiene demanda laboral en curso.<br><b>3. Oferta:</b> el siguiente paso es una asesoría sin costo con un experto, donde ve con números cuánto puede subir su pensión.<br><b>4. Compromiso (sube el show):</b> es sin costo; lo único que le pide es que sí asista, porque si no, la segunda asesoría ya trae costo.<br><b>5. Agendar:</b> pregunta si le queda mejor mañana por la mañana o por la tarde, y amarra día y hora.<br><b>6. Video:</b> le manda un video corto de cómo han ayudado a miles; que lo vea antes.<br><b>7. Grupo:</b> le avisa que va a crear un grupo con varias personas (director, asesor y soporte), para que no se asuste.<br><b>8. Cierre:</b> repite día y hora y se despide."}
+  a:"Cuando te da la hora, llamas. Solo confirma y agenda:<br><b>1. Gracias:</b> saluda, se presenta y agradece su tiempo.<br><b>2. Confirmación:</b> con base en su información sí es candidato; confirma solo dos cosas: que no está recibiendo ni tramitando pensión, y que no tiene demanda laboral en curso.<br><b>3. Oferta:</b> el siguiente paso es una asesoría sin costo con un experto, donde ve con números cuánto puede subir su pensión.<br><b>4. Compromiso (sube el show):</b> es sin costo; lo único que le pide es que sí asista, porque si no, la segunda asesoría ya trae costo.<br><b>5. Agendar:</b> pregunta si le queda mejor mañana por la mañana o por la tarde, y amarra día y hora.<br><b>6. Video:</b> le manda un video corto de cómo han ayudado a miles; que lo vea antes.<br><b>7. Grupo:</b> le avisa que va a crear un grupo con varias personas (director, asesor y soporte), para que no se asuste.<br><b>8. Cierre:</b> repite día y hora y se despide."},
+ // CASOS: PASA O NO PASA
+ {c:"casos",q:"Tiene semanas empalmadas, ¿cuentan?",kw:"empalmadas empalme dos patrones al mismo tiempo semanas duplicadas cuentan 52",
+  a:"<b>Sí pasa.</b> El total que trae el reporte del IMSS ya viene con los empalmes descontados, así que ese número es el bueno y no hay que restarle nada.<span class='note'>La semana no es tiempo, es como una moneda: si en la misma semana tuvo tres patrones, ganó tres semanas.</span>"},
+ {c:"casos",q:"Estaba recuperando derechos y dejó de cotizar, ¿sigue contando?",kw:"52 semanas continuas ininterrumpidas hueco dejo de cotizar recuperar derechos reinicia",
+  a:"<b>No.</b> Las 52 semanas para recuperar derechos tienen que ser <b>continuas</b>, y se recomienda llegar a 53. Un hueco de un solo día tira el conteo y hay que volver a empezar.<span class='note'>Ya hubo un caso que por un día no recuperó derechos.</span>"},
+ {c:"casos",q:"Perdió derechos, ¿se los devuelve la modalidad 40?",kw:"perdio derechos modalidad 40 recupera no puede mod 10 recuperacion",
+  a:"<b>No.</b> Sin derechos, la modalidad 40 no los recupera: para entrar a la 40 ya tiene que tener derechos. Ese caso va a <b>Recuperación de Derechos</b>, que se hace con modalidad 10.<span class='note'>Si además trae pocas semanas, puede terminar en pensión mínima. Lo define el asesor.</span>"},
+ {c:"casos",q:"Dejó de pagar su modalidad 40, ¿ya se acabó?",kw:"dejo de pagar modalidad 40 mora baja reincorporar retroactivo 12 meses articulo 220",
+  a:"<b>Depende de cuánto lleva.</b> Al dejar de pagar lo dan de baja por mora y pierde derechos de modalidad 40 hasta volver a cotizar. Pero tiene <b>12 meses desde la baja</b> para pedir que lo reincorporen de forma retroactiva, con recargos y actualizaciones. Si está dentro de esos 12 meses, sí entra.<span class='note'>Art. 220 de la Ley del Seguro Social, último párrafo. Confírmalo con el asesor antes de prometerlo.</span>"},
+ {c:"casos",q:"Está cotizando hoy, ¿lo paso?",kw:"cotizando vigente dado de alta trabajando hoy pasa no pasa baja",
+  a:"<b>Solo en dos casos.</b> Uno, que no tenga derechos de pensión. Dos, que esté vigente porque lo dio de alta una plataforma digital. Fuera de esos dos, <b>no</b>: mientras cotice no se puede hacer retroactivo, primero tiene que causar baja.<span class='note'>No lo descartes: task con la fecha en que calcula darse de baja.</span>"},
+ {c:"casos",q:"Trabaja o trabajó en Didi o Uber",kw:"didi uber plataformas digitales alta sin avisar baja retirar semanas",
+  a:"<b>Sigue, pero primero la baja.</b> Esas plataformas lo dan de alta y de baja en el IMSS según sus metas, sin avisarle, así que no es seguro que vaya camino a recuperar derechos. Se pide la baja y el retiro de esas semanas antes de avanzar.<span class='note'>En modalidad 10 puede cotizar 13 meses ininterrumpidos.</span>"},
+ {c:"casos",q:"Recibe pensión por invalidez, ¿califica?",kw:"invalidez permanente riesgo de trabajo pension incapacidad compatibilidad dos pensiones",
+  a:"<b>Pregunta antes de agendar.</b> Hay que saber si es invalidez general o <b>riesgo de trabajo</b>: no se pueden tener dos pensiones del mismo régimen al mismo tiempo, pero riesgo de trabajo en ocasiones sí es compatible con el retiro.<span class='note'>Regla de Pensión Perfecta: no se pasa a quien tenga una discapacidad mayor y dependa de una tercera persona.</span>"},
+ {c:"casos",q:"Tiene una discapacidad, ¿entra a modalidad 10?",kw:"discapacidad severa dependencia modalidad 10 paraplejia visual auditiva psicosocial no acepta",
+  a:"<b>No</b> cuando es severa o hay dependencia total o múltiple: motriz o física permanente, pérdida total de la vista, pérdida de la audición, limitación intelectual significativa, o un trastorno mental persistente que limite su capacidad de decidir por sí mismo."},
+ {c:"casos",q:"Tiene semanas del ISSSTE, ¿le entregan ese saldo?",kw:"issste portabilidad semanas saldo subcuenta 2008 unificada entregan efectivo",
+  a:"<b>No en efectivo.</b> Al portar las semanas del ISSSTE al IMSS, el saldo de esa subcuenta <b>no se le entrega</b>: se transfiere internamente para financiar su pensión unificada."},
+ {c:"casos",q:"Le faltan poquitas semanas para las 500",kw:"faltan semanas 498 490 excepcion 500 poquitas completar",
+  a:"<b>El piso es 440 semanas.</b> Abajo de eso no califica, aunque le falten cinco: un caso de 435 se rechazó. De 440 para arriba sí entra a <b>Completar 500 Semanas</b> y se le financia lo que falte; uno de 498 pasó financiándole un mes más.<span class='note'>Las semanas descontadas por retiro cuentan aparte: pregunta si tiene.</span>"},
+ {c:"casos",q:"Tiene semanas por recuperar y pocas cotizadas",kw:"semanas por recuperar retiro desempleo reintegrar combinar financiar resto",
+  a:"<b>Sí pasa.</b> Se puede combinar: se reintegran las semanas que le descontaron por un retiro por desempleo y se cotiza el resto. La mezcla la arma el asesor; tú preguntas cuántas fueron y lo registras en el campo.<span class='note'>Reintegrar semanas en modalidad 10 sí implica un financiamiento con intereses.</span>"},
+ {c:"casos",q:"El AFORE no le alcanza, ¿puede poner él la diferencia?",kw:"afore no alcanza diferencia efectivo poner dinero aportacion necesaria piso 100 mil 900 semanas",
+  a:"<b>Depende de sus semanas, y solo aplica a Modalidad 40.</b> El piso es <b>900 semanas y 100 mil de AFORE por cada año que lleva sin cotizar</b>. Con semanas más altas, alrededor de 1,200, se ha pasado con unos 80 mil por año. Abajo de eso no debe llegar al asesor.<span class='note'>En Modalidad 10 el saldo del AFORE <b>no importa</b>: ahí se agenda igual. Y nunca le digas la cifra al lead.</span>"},
+ {c:"casos",q:"Me pide el registro de CONDUSEF",kw:"condusef registro sofom profeco grupo pensi retiro sapi desconfia empresa",
+  a:"La empresa es <b>Grupo Pensi Retiro</b>, una SAPI de CV. No somos SOFOM y no recibimos dinero del cliente para generarle rendimientos, por eso no requiere registro obligatorio ante CONDUSEF; cualquier queja va directo a <b>PROFECO</b>.<span class='note'>Buen cierre: ninguna entidad financiera autorizada le pediría dinero por adelantado para darle un crédito.</span>"},
+ {c:"casos",q:"¿Dónde subo el estado de cuenta del AFORE?",kw:"afore donde subir allmk drive documentos asesor no encuentra expediente",
+  a:"<b>En ALLMK</b>, en Calificación closer, campo AFORE estado de cuenta. Los asesores ya no abren el Drive para buscarlo: lo que no está en ALLMK, para ellos no existe.<span class='note'>La carpeta de Drive sigue siendo para el expediente completo, y su link va en el Tracker.</span>"},
+ {c:"casos",q:"¿Con cuánta anticipación mínima puedo agendar?",kw:"anticipacion minima horas agendar asesor preparar ultima hora",
+  a:"<b>Cinco horas.</b> Menos que eso y el asesor no alcanza a prepararse ni a revisar el expediente.<span class='note'>Esto no pelea con agendar hoy o mañana: hoy sí, pero no para dentro de una hora.</span>"},
+ // DEL CANAL DE CLOSERS
+ {c:"casos",q:"¿Cuánto tiempo sin cotizar necesita?",kw:"tiempo sin cotizar meses año retroactivo ahora futuro 6 meses 12 minimo baja",
+  a:"<b>Un año</b> sin cotizar para <b>Retroactivo ahora</b>. <b>Seis meses</b> para <b>Retroactivo futuro</b>. Si lleva menos, no es descarte: es la fecha en que sí va a entrar.<span class='note'>Dile el mes exacto y déjale <b>task para esa fecha</b>. Ese lead vuelve.</span>"},
+ {c:"casos",q:"La calculadora le da más semanas de las que tiene",kw:"semanas descontadas totales calculadora 939 366 no coincide error reintegrar retiro",
+  a:"<b>No es error.</b> El cálculo automático muestra el total <b>sin descontar</b> las que le quitaron por un retiro. Las descontadas <b>se pueden recuperar</b> pagando lo que le dieron por ellas, y nosotros gestionamos eso. Al lead se le dice las dos: las que tiene hoy y las que tendría si las recupera.<span class='note'>Pídele el AFORE: es lo que define cuál de los caminos le funciona.</span>"},
+ {c:"casos",q:"Retiró su AFORE, ¿todavía se puede?",kw:"retiro afore reclamo saldo tratamiento medico renuncio pension perdio todo",
+  a:"<b>No.</b> Quien reclama su AFORE <b>renuncia a su pensión</b>. Ya no hay nada que hacer ni proceso legal al que recurrir. Cierra con el motivo escrito."},
+ {c:"casos",q:"Se dio de baja este año y dice Actualización de Pensión Mínima",kw:"baja este año actualizacion pension minima no aplica creditia error ya esta actualizada",
+  a:"<b>No aplica.</b> Si se dio de baja <b>este mismo año</b>, su pensión mínima ya está actualizada: no hay nada que actualizar. El producto es para quien dejó de cotizar en años anteriores.<span class='note'>Creditia ha mandado estos casos mal. Si te sale, revísalo antes de agendar.</span>"},
+ {c:"casos",q:"Pagó Modalidad 40 y la dejó de pagar",kw:"pago modalidad 40 dejo de pagar continuacion regimen obligatorio recuperar derechos vigentes",
+  a:"<b>Caso difícil, revísalo antes de agendar.</b> Conserva derechos de pensión, así que <b>no</b> entra a Recuperación de Derechos; si además trae semanas suficientes, tampoco a Completar 500 ni a Pensión Mínima. Lo que perdió son los derechos de Modalidad 40.<br>Tiene dos caminos: reinscribirse antes del año pagando los meses que no cubrió, aunque entonces aparece cotizando y <b>no hay retroactivo</b>; o cotizar 52 semanas seguidas de Modalidad 10.<span class='note'>Después de eso todavía tendría que esperar 6 meses sin cotizar para retroactivo futuro y 1 año para retroactivo ahora.</span>"},
+ {c:"casos",q:"El asesor me dice que sí aunque no califique",kw:"asesor dice que si excepcion negociar califica agendar regla dura",
+  a:"<b>No se agenda.</b> La regla es una: si califica se agenda, si no califica no se agenda. No hay excepciones que negociar, ni con el asesor ni con nadie.<span class='note'>Duda real de calificación, va a dirección, no al asesor.</span>"},
+ {c:"calif",q:"¿Qué es una agenda efectiva?",kw:"agenda efectiva que es asiste califica necesita financiamiento 95 por ciento metrica",
+  a:"<b>Asiste + califica + necesita financiamiento.</b> Es la métrica con la que te miden. El <b>95% de los que asisten</b> se vuelven efectiva, así que la calificación ya casi no es el filtro: el filtro que queda es <b>que lleguen</b>."},
+ {c:"calif",q:"¿Por qué no contó mi asesoría?",kw:"no conto asesoria no efectiva invalida porque se cayo 45 septiembre motivos",
+  a:"De 45 asesorías que no contaron en un mes, los motivos fueron: <b>10</b> no necesitaban financiamiento, querían subir su pensión · <b>5</b> simulación laboral · <b>4</b> ya habían firmado negativa de pensión · <b>3</b> demanda en proceso · <b>3</b> no podían hacer la aportación · <b>2</b> ya estaban cotizando.<span class='note'>Casi todas se detectan antes de agendar. La que más se salta es preguntar qué busca: financiamiento, o solo la asesoría.</span>"},
+ {c:"calif",q:"Mi lead ya califica pero no le he agendado",kw:"calificado sin cita dias parado 7 dias convierte 5 por ciento viejo reasignar",
+  a:"<b>Márcalo hoy.</b> Un lead calificado que pasa de <b>7 días</b> sin agendarse convierte al <b>5%</b>, medido con 702 leads. No se mueren por malos, se mueren por viejos.<span class='note'>Ahí es donde está tu semana: ya pasaron el filtro y solo les falta fecha.</span>"},
 ];
 
-const TOP=new Set(["¿Qué es la Modalidad 40?","¿Cuáles son los 5 productos?","¿Cómo funciona el financiamiento de PP?","¿Quién califica? (los must)","¿Qué descalifica de inmediato?","¿Qué red flags debo preguntar?","No me contestó nunca, ¿a dónde lo muevo?","Agendé la asesoría, ¿a dónde muevo la oportunidad?","No asistió a la asesoría, ¿qué hago?","Lo NO negociable (reglas duras)","\"No me interesa\"","El framework: las 3 R","Desconfianza y fraude (\"ya me estafaron\")","¿Cómo completo el expediente?","¿Cómo consigo el reporte de semanas del IMSS?","¿Cuál es el ritmo del día?","Mensaje 1 · primer contacto","Bienvenida al grupo de WhatsApp","¿Cómo manejo el grupo de WhatsApp?","¿En qué calendario agendo?","¿Cómo confirmo la asistencia?","¿Qué es Consulta Única?"]);
+const TOP=new Set(["¿Qué es la Modalidad 40?","¿Cuáles son los 7 productos?","¿Cómo funciona el financiamiento de PP?","¿Quién califica? (los must)","¿Qué descalifica de inmediato?","¿Qué red flags debo preguntar?","No me contestó nunca, ¿a dónde lo muevo?","Agendé la asesoría, ¿a dónde muevo la oportunidad?","No asistió a la asesoría, ¿qué hago?","Lo NO negociable (reglas duras)","\"No me interesa\"","El framework: las 3 R","Desconfianza y fraude (\"ya me estafaron\")","¿Cómo completo el expediente?","¿Cómo consigo el reporte de semanas del IMSS?","¿Cuál es el ritmo del día?","Mensaje 1 · primer contacto","Bienvenida al grupo de WhatsApp","¿Cómo manejo el grupo de WhatsApp?","¿En qué calendario agendo?","¿Cómo confirmo la asistencia?","¿Qué es Consulta Única?"]);
 const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
 const resEl=document.getElementById('results'),
   countEl=document.getElementById('count'),qEl=document.getElementById('q'),clearEl=document.getElementById('clear');
@@ -365,6 +466,99 @@ function card(e,showCat,open){
 qEl.addEventListener('input',render);
 clearEl.onclick=()=>{qEl.value='';openSet.clear();render();qEl.focus();};
 render();
+
+/* ───────── Tengo un caso ───────── */
+const SIT=[
+ {id:"def",t:"Ya está pensionado, definitiva",v:"cambia",
+  a:"Va a <b>Crédito de nómina</b>. Una pensión definitiva ya no se puede elevar, pero sí sirve de garantía. No le pidas AFORE y sáltate las preguntas de financiamiento."},
+ {id:"acep",t:"Ya aceptó su resolución",v:"cambia",
+  a:"Aceptar la resolución es justo lo que vuelve definitiva su pensión. También va a <b>Crédito de nómina</b>."},
+ {id:"temp",t:"Su pensión es temporal",v:"ok",
+  a:"La temporal no descalifica. Sigue con la llamada normal."},
+ {id:"neg",t:"Le negaron la pensión",v:"no",
+  a:"No hay pensión que elevar ni que usar de garantía. <b>Anota por qué se la negaron</b>: si fue por falta de semanas, puede volver como Completar 500 o Recuperación de Derechos."},
+ {id:"ley97",t:"Es Ley 97",v:"no",
+  a:"No hay producto para él. Cierra con el motivo escrito."},
+ {id:"edad",t:"Tiene menos de 59 años 8 meses",v:"no",
+  a:"Todavía no llega a la edad. <b>Task con la fecha</b> en que la cumple: este vuelve."},
+ {id:"cotiza",t:"Está cotizando hoy",v:"preg",
+  a:"Solo pasa en dos casos: que no tenga derechos de pensión, o que esté vigente porque lo dio de alta una plataforma digital. Fuera de eso, primero tiene que causar baja. <b>Task con la fecha de baja</b>, no lo descartes."},
+ {id:"plat",t:"Trabaja o trabajó en Didi o Uber",v:"preg",
+  a:"Sigue, pero avísale. Esas plataformas lo dan de alta y de baja sin avisarle, así que no es seguro que vaya camino a recuperar derechos. Se pide la baja y el retiro de esas semanas antes de avanzar."},
+ {id:"perdio",t:"Perdió derechos de Modalidad 40",v:"ok",
+  a:"No es descarte: es <b>Recuperación de Derechos</b>, y se hace con modalidad 10. La Modalidad 40 no se los devuelve."},
+ {id:"dejo40",t:"Dejó de pagar su Modalidad 40",v:"preg",
+  a:"Pregunta la fecha del último pago. Si lleva <b>menos de 12 meses</b> desde la baja, puede reincorporarse retroactivo con recargos y sí entra. Si lleva más, ya perdió derechos y va por recuperación."},
+ {id:"men500",t:"Tiene menos de 500 semanas",v:"ok",
+  a:"Es <b>Completar 500 Semanas</b>. Si le faltan poquitas, pregunta antes de agendar: se ha pasado como excepción financiando un mes más."},
+ {id:"empalme",t:"Tiene semanas empalmadas",v:"ok",
+  a:"No le restes nada. El total que trae el reporte del IMSS ya viene con los empalmes descontados: ese número es el bueno."},
+ {id:"recup",t:"Tiene semanas por recuperar",v:"ok",
+  a:"Las que le descontaron por un retiro por desempleo se pueden reintegrar y cotizar el resto. Pregunta cuántas fueron y <b>regístralo en el campo</b>."},
+ {id:"afore",t:"El AFORE no le alcanza",v:"preg",
+  a:"Un AFORE corto con semanas bajas no debe llegar al asesor. El criterio pide semanas altas además del saldo y se mueve seguido: <b>pregunta antes de agendar</b> y no le cites cifras."},
+ {id:"dinero",t:"Ya tiene el dinero",v:"no",
+  a:"No hay financiamiento que armar. Cierra con el motivo: ya contaba con el dinero."},
+ {id:"demanda",t:"Tiene una demanda en curso",v:"preg",
+  a:"Si es contra un patrón: <b>task con la fecha</b> en que concluye, porque pueden cambiarle las semanas y el promedio salarial. Si es contra el IMSS, el Infonavit o el AFORE: descarte."},
+ {id:"simula",t:"Lo dieron de alta sin trabajar ahí",v:"preg",
+  a:"Pregunta si los recibos están timbrados. <b>Sin timbrar, descarte.</b> Si sí lo están, sigue."},
+ {id:"accion",t:"Fue accionista de una empresa donde cotizó",v:"preg",
+  a:"Si fue <b>accionista mayoritario</b>, descarte. Si fue minoritario, sigue."},
+ {id:"invalid",t:"Recibe pensión por invalidez",v:"preg",
+  a:"Pregunta si es invalidez general o <b>riesgo de trabajo</b>. No puede tener dos pensiones del mismo régimen al mismo tiempo, pero riesgo de trabajo en ocasiones sí es compatible con el retiro."},
+ {id:"discap",t:"Depende de otra persona para su día a día",v:"no",
+  a:"Regla de Pensión Perfecta. No entra cuando hay dependencia total o múltiple: motriz, visual, auditiva, intelectual o un trastorno mental persistente que limite su capacidad de decidir."},
+ {id:"issste",t:"Tiene semanas del ISSSTE",v:"ok",
+  a:"Se portan al IMSS. Ojo con lo que le prometes: el saldo de la subcuenta del ISSSTE <b>no se le entrega en efectivo</b>, se transfiere para financiar su pensión unificada."},
+ {id:"retiro",t:"Retiró o reclamó su AFORE",v:"no",
+  a:"Quien reclama su AFORE <b>renuncia a su pensión</b>. No hay nada que hacer ni proceso al que recurrir. Cierra con el motivo."},
+ {id:"baja26",t:"Se dio de baja este año",v:"preg",
+  a:"Si Creditia dice <b>Actualización de Pensión Mínima</b>, revísalo: con baja de este año su pensión ya está actualizada y no aplica. Para retroactivo necesita <b>un año</b> sin cotizar, o <b>seis meses</b> si es a futuro."},
+ {id:"pago40",t:"Pagó Modalidad 40 y la dejó",v:"preg",
+  a:"Conserva derechos de pensión, así que no entra a Recuperación. Lo que perdió son los derechos de Modalidad 40. Puede reinscribirse antes del año pagando lo pendiente, pero entonces aparece cotizando y ya no hay retroactivo. <b>Revísalo antes de agendar.</b>"},
+ {id:"mod10",t:"Su producto es Modalidad 10",v:"ok",
+  a:"Aquí el <b>saldo del AFORE no importa</b> y tampoco es requisito para agendar. Pídeselo igual: el que llega con AFORE firma 51% contra 16% sin él."},
+ {id:"infona",t:"Tiene crédito Infonavit",v:"ok",
+  a:"No descarta. Pregunta de cuánto es y cuánto le falta por pagar, y <b>regístralo en el campo</b>: puede bajar lo que se le cubre."}
+];
+const NIV={no:0,cambia:1,preg:2,ok:3};
+const TIT={no:["No pasa","Este no va al asesor. Ciérralo con el motivo escrito."],
+  cambia:["Cambia de producto","No es financiamiento, pero sí hay producto para él."],
+  preg:["Pregunta antes de agendar","Todavía puede pasar, pero no lo decides tú solo."],
+  ok:["Pasa","Nada de lo que marcaste lo descarta. Sigue con la llamada."]};
+const ET={no:"No pasa",cambia:"Otro producto",preg:"Pregunta",ok:"Pasa"};
+const sel=new Set();
+
+function pintaCaso(){
+  const box=document.getElementById("vered"), rst=document.getElementById("rst");
+  document.querySelectorAll(".chip").forEach(b=>{
+    const on=sel.has(b.dataset.id);
+    b.className="chip"+(on?" on "+SIT.find(x=>x.id===b.dataset.id).v:"");
+    b.setAttribute("aria-pressed",on?"true":"false");
+  });
+  rst.hidden=sel.size===0;
+  if(!sel.size){box.hidden=true;box.innerHTML="";return;}
+  const marcados=SIT.filter(x=>sel.has(x.id)).sort((a,b)=>NIV[a.v]-NIV[b.v]);
+  const peor=marcados[0].v;
+  box.hidden=false;
+  box.innerHTML='<div class="vtit"><span class="pill" style="background:var(--'+
+    (peor==="no"?"red":peor==="cambia"?"blue":peor==="preg"?"gold":"green")+')"></span>'+TIT[peor][0]+'</div>'+
+    '<p class="vsub">'+TIT[peor][1]+'</p>'+
+    '<div class="vlist">'+marcados.map(x=>
+      '<div class="vrow '+x.v+'"><span class="vt">'+ET[x.v]+'</span>'+
+      '<span class="vb"><span class="vq">'+x.t+'</span>'+x.a+'</span></div>').join("")+'</div>';
+}
+(function(){
+  const c=document.getElementById("chips");
+  c.innerHTML=SIT.map(x=>'<button class="chip" type="button" aria-pressed="false" data-id="'+x.id+'">'+x.t+'</button>').join("");
+  c.addEventListener("click",e=>{
+    const b=e.target.closest(".chip"); if(!b) return;
+    sel.has(b.dataset.id)?sel.delete(b.dataset.id):sel.add(b.dataset.id);
+    pintaCaso();
+  });
+  document.getElementById("rst").onclick=()=>{sel.clear();pintaCaso();};
+})();
 </script>
 </body>
 </html>

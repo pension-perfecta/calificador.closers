@@ -175,6 +175,14 @@ button{font:inherit;color:inherit;cursor:pointer;font-family:inherit}
   padding-top:15px;border-top:1px solid var(--line-2)}
 .sec.first{margin-top:6px;padding-top:0;border-top:0}
 
+.salto{display:flex;align-items:flex-start;gap:12px;margin-top:14px;padding:13px 16px;
+  background:var(--brand);color:var(--brand-ink);border-radius:5px;text-decoration:none;
+  transition:opacity .13s}
+.salto:hover{opacity:.9}
+.salto .ic{font-size:17px;line-height:1.1;color:var(--accent);flex:none}
+.salto b{display:block;font-size:16px;font-weight:700}
+.salto small{display:block;font-size:12.5px;font-weight:400;opacity:.82;margin-top:2px;line-height:1.35}
+
 /* ── botones de respuesta ── */
 .opts{display:flex;flex-direction:column;gap:7px;margin-top:14px}
 .opt{display:flex;align-items:flex-start;gap:11px;width:100%;text-align:left;
@@ -343,13 +351,13 @@ const PITCH={
    ["Pitch","En casos como el tuyo, lo que hacemos es financiar la modalidad 40 o la modalidad 10, según el caso, para que alcances las 500 semanas y te puedas pensionar con lo más que se pueda, sin que te cueste de tu dinero en este momento. ¿Te gustaría que te agende una asesoría con nuestro experto, para que revise tu caso y te explique cómo se haría todo el proceso?"]]},
 
  gestion:{n:"Gestión de Pensión Express",say:[
-   ["Pitch","Por lo que me platicas, ya puedes pensionarte. En ese caso lo que hacemos es llevarte todo el trámite sin que tengas que pisar el IMSS: calculamos el día exacto para darte de baja, armamos tu expediente completo y revisamos que la resolución salga con el monto correcto."],
+   ["Pitch","Por lo que me platicas, ya puedes pensionarte. En ese caso lo que hacemos es llevarte todo el trámite: calculamos el día exacto para darte de baja, armamos tu expediente completo y revisamos que la resolución salga con el monto correcto. Al IMSS vas una o dos veces, con un experto al lado, en lugar de andar dando vueltas meses."],
    ["Cierra el pitch","Y no pagas nada hasta que recibas tu primer pago de pensión. ¿Te agendo la asesoría para que te lo expliquen con los números de tu caso?"]],
    ficha:{
      quien:"60 años o más, Ley 73, más de 500 semanas y quiere pensionarse ya.",
      incluye:["Estrategia de fecha: el día exacto para darse de baja",
               "Expediente completo, listo a la primera",
-              "El trámite con un gestor, solo 1 o 2 visitas al IMSS",
+              "El trámite con un gestor: al IMSS vas una o dos veces, no meses de vueltas",
               "Gestión de AFORE completa: SAR 92, Retiro 97, Vivienda 92 y 97, Fondo 72",
               "Resolución revisada; si trae error, se corrige",
               "Registro de pensión del Bienestar a los 65"],
@@ -370,14 +378,14 @@ const PITCH={
      incluye:["Asesoría comparativa entre las 36 financieras con convenio IMSS",
               "Le dicen cuál le conviene de verdad, no la que le llamó primero",
               "Gestión y acompañamiento del crédito hasta el depósito",
-              "Si ya paga uno caro, lo cambian y le queda más pensión libre"],
+              "Si ya paga uno caro, lo cambian y le queda más pensión libre. Para comprarle la deuda tiene que llevar más de 2 años con ese crédito"],
      riesgo:["Coyotes que le piden un depósito por adelantado",
              "Tomar la primera oferta que le llamó por teléfono",
              "Financieras sin convenio IMSS: más de 150% de CAT, hasta seis veces más caro"],
      obj:[["«¿Cuánto me pueden dar?»","Depende de tu pensión y de lo que tengas libre, y te lo dice el asesor en la asesoría con tus números."],
           ["«¿Cuánto me van a descontar?»","Como máximo el 30% de tu pensión, a un plazo de hasta 60 meses, y tu pensión nunca puede quedar por debajo de la mínima. Los números exactos te los da el asesor."],
           ["«¿Y a ustedes qué les toca?»","A ti no te cobramos nada. A nosotros nos paga la financiera, y por eso podemos comparar sin casarnos con ninguna."]],
-     dato:"Reglas IMSS: 30% máximo de descuento, 60 meses de plazo, edad máxima 80 en la mayoría. 36 financieras con convenio IMSS 2025-2027; comparan Credenz, GFI Apoyo y Multiva. Al cliente le cuesta 0. El 150%+ de CAT de las financieras sin convenio es dato de CONDUSEF."}}
+     dato:"Reglas IMSS: 30% máximo de descuento, 60 meses de plazo, edad máxima 80 y el plazo se acorta con la edad: a los 70 caben 5 años, a los 71 caben 4. 36 financieras con convenio IMSS 2025-2027; comparan Credenz, GFI Apoyo y Multiva. Al cliente le cuesta 0. El 150%+ de CAT de las financieras sin convenio es dato de CONDUSEF."}}
 };
 
 let PROD=null;
@@ -594,6 +602,7 @@ grupo:{bloque:"cierre",eyebrow:"Grupo de WhatsApp",h:"Créalo ahora, no después
   say:[["Qué le dices","Voy a crear un grupo de WhatsApp donde voy a agregar a tu asesor experto, para resolverte dudas rápido, recordarte tu asesoría y sobre todo poder acompañarte en cada momento en el proceso de financiamiento de [producto]."]],
   tip:"Y dentro del grupo, este mensaje. Va en el grupo, no en privado.",
   say2:[["Mensaje en el grupo","Hola [Nombre], te presento a [Asesor], tu asesor experto. Tu asesoría es el [día] a las [hora] y es para revisar tu opción de financiamiento de [producto]."]],
+  link:{t:"Abrir la guía del grupo",s:"Los seis pasos, el buscador de asesores y la bienvenida que se arma sola",href:"../grupo/"},
   opts:[{t:"Grupo creado",ir:"cierre"}]},
 
 cierre:{bloque:"cierre",eyebrow:"Cierre",h:"Despídete",
@@ -730,6 +739,8 @@ function render(){
       h+='<button class="pr ko" data-i="'+(ops.length-1)+'"><b>'+p.t+'</b><small>'+p.s+'</small></button>';});
     h+='</div>';
   }
+  if(d.link) h+='<a class="salto" href="'+d.link.href+'" target="_blank" rel="noopener"><span class="ic">&#8599;</span>'
+    +'<span><b>'+d.link.t+'</b>'+(d.link.s?'<small>'+d.link.s+'</small>':'')+'</span></a>';
   if(d.opts&&d.opts.length){
     h+='<div class="opts">';
     d.opts.forEach(o=>{ops.push(o);h+=bot(o,ops.length-1)});

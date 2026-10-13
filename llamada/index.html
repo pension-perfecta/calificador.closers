@@ -570,11 +570,12 @@ pitch:{bloque:"pitch",eyebrow:"Pitch",h:"__PITCH__",
   opts:[{t:"Le interesa, sigo",ir:"beca"}]},
 
 /* ───────────── 7 · beca ───────────── */
-beca:{bloque:"beca",eyebrow:"Beca y compromiso",h:"Aquí se construye el show-up",
-  tip:"No lo recites de corrido. Haz la pausa entre bloque y bloque.",
-  say:[["El valor primero","Mira, estas asesorías tienen un costo de $1,990 pesos y la mayoría de la gente las paga, porque es sentarte una hora con un experto que te arma tu proyecto de pensión con números reales."],
-       ["La beca se la gana él","Yo tengo unas cuantas becas al mes y las guardo para los casos que de verdad califican. El tuyo califica, así que déjame gestionarla ahorita y te la agendo sin costo."],
-       ["La condición","Nada más quiero ser muy honesto contigo, porque es lo único que te voy a pedir: la beca cubre una asesoría, no dos. Si ese día no te conectas, la beca se usa y la segunda ya tendrías que pagarla. No te lo digo para presionarte, te lo digo para que no te pase y la pierdas."]],
+beca:{bloque:"beca",eyebrow:"El compromiso",h:"Aquí se construye el show-up",
+  tip:"No lo recites de corrido. Haz la pausa entre bloque y bloque, y espera a que conteste.",
+  say:[["El espacio se lo gana él","Mira, estas asesorías son con un asesor experto y yo tengo unos cuantos espacios al mes para apartar. Por tu caso sí vale la pena que use uno contigo, y lo voy a hacer."],
+       ["La condición","Lo único que te pido es que ese día sí te conectes. Si no llegas, el espacio se usó y la siguiente ya tendría que ir con costo. No te lo digo para presionarte, te lo digo para que no te pase."],
+       ["Pide la palabra y espera","<em>¿Me das tu palabra de que ahí vas a estar?</em>"]],
+  tip2:"Nunca le des un precio. Si pregunta cuánto, el costo lo explica el asesor en la asesoría.",
   opts:[{t:"Voy a agendar",ir:"agendar"}]},
 
 /* ───────────── 8 · agendar ───────────── */
@@ -626,7 +627,8 @@ const SIN_CREDITO=["q_busca","q_negativa"];
 const preg=()=>PROD==="credito"?PREG.filter(x=>!SIN_CREDITO.includes(x)):PREG;
 const salta=id=>(PROD==="credito"&&SIN_CREDITO.includes(id))?"q_infonavit":id;
 const OFERTA_CREDITO=[["Oferta","Perfecto. El siguiente paso es agendar una asesoría con uno de nuestros asesores expertos. Ahí revisan con los números de tu pensión cuánto te pueden prestar y con qué financiera te conviene."]];
-const BECA_CREDITO=[["Sin costo para él","La asesoría para ti no tiene costo, a nosotros nos paga la financiera. Lo único que te pido es que ese día sí te conectes, porque el asesor te aparta ese espacio solo a ti."],
+const BECA_CREDITO=[["El espacio se lo gana él","La asesoría para ti no tiene costo, a nosotros nos paga la financiera. Pero el asesor te aparta ese espacio solo a ti, y yo tengo unos cuantos al mes."],
+  ["La condición","Lo único que te pido es que ese día sí te conectes. Si no llegas, ese espacio se usó."],
   ["Pide la palabra y espera","<em>¿Me das tu palabra de que ahí vas a estar?</em>"]];
 
 /* el AFORE depende del producto */
@@ -649,7 +651,7 @@ const ORDEN=["producto","apertura","confirma","q_pension","q_demanda","q_busca",
              "q_negativa","q_infonavit","afore","oferta","pitch","beca","agendar","material","grupo","cierre","registro"];
 const BLOQUES=[["producto","Producto"],["apertura","Apertura"],["confirma","Calificación"],
   ["afore","AFORE"],["oferta","Oferta"],["dolor","Dolor"],["pitch","Pitch"],
-  ["beca","Beca"],["agendar","Agendar"],["material","Cierre"],["registro","Al colgar"]];
+  ["beca","Compromiso"],["agendar","Agendar"],["material","Cierre"],["registro","Al colgar"]];
 const BL={producto:"producto",apertura:"apertura",confirma:"calif",afore:"afore",oferta:"oferta",
   dolor:"dolor",pitch:"pitch",beca:"beca",agendar:"agendar",material:"cierre",registro:"registro"};
 

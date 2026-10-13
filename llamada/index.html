@@ -142,30 +142,38 @@ button{font:inherit;color:inherit;cursor:pointer;font-family:inherit}
 .tip::before{content:"▸";color:var(--gold);font-weight:700;flex:none}
 .tip b{color:var(--ink-2)}
 
-/* ── cuadrícula de productos ── */
-.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:4px}
-.grid>*{grid-column:span 2}
-.grid>.w3{grid-column:span 3}
-.grid>.w6{grid-column:span 6}
-@media (max-width:700px){.grid>*,.grid>.w3{grid-column:span 3}.grid>.w6{grid-column:span 6}}
-@media (max-width:480px){.grid>*,.grid>.w3,.grid>.w6{grid-column:span 6}}
-.pr{display:block;width:100%;text-align:left;background:transparent;border:1px solid var(--line);
-  border-radius:4px;padding:11px 13px;transition:border-color .13s,background .13s}
+/* ── selector de producto, en dos columnas ── */
+.pick{display:grid;grid-template-columns:1.25fr 1fr;gap:22px;margin-top:2px}
+@media (max-width:700px){.pick{grid-template-columns:1fr;gap:6px}}
+.col{display:flex;flex-direction:column}
+.col>.g-pen+.g-pen{margin-top:14px}
+.rows{display:flex;flex-direction:column;gap:6px}
 .g-fin{--gc:var(--accent);--gs:var(--accent-soft)}
 .g-pen{--gc:var(--gold);--gs:var(--gold-soft)}
 .g-ko{--gc:var(--red);--gs:var(--red-soft)}
-.grid .pr{border-left:3px solid var(--gc)}
+.pr{display:block;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);
+  border-radius:8px;padding:10px 13px;transition:border-color .13s,background .13s,box-shadow .13s}
 .pr:hover{border-color:var(--gc);background:var(--gs)}
 .pr.sel{border-color:var(--gc);background:var(--gs);box-shadow:inset 0 0 0 1px var(--gc)}
-.sec.g-fin,.sec.g-pen,.sec.g-ko{color:var(--gc);display:flex;align-items:center;gap:7px}
-.sec.g-fin::before,.sec.g-pen::before,.sec.g-ko::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--gc)}
-.pr b{display:block;font-size:14.5px;font-weight:700;line-height:1.3;letter-spacing:-.008em}
-.pr small{display:block;font-size:12.2px;color:var(--muted);margin-top:4px;line-height:1.38}
+.pr b{display:block;font-size:15px;font-weight:700;line-height:1.3;letter-spacing:-.008em}
+.pr small{display:block;font-size:12.6px;color:var(--muted);margin-top:2px;line-height:1.38}
 .pr.nuevo b::after{content:"Nuevo";font-size:11px;color:var(--gold);background:var(--gold-soft);
   border-radius:3px;padding:1px 6px;margin-left:7px;vertical-align:1px;font-weight:600}
-.pr.ko{border-style:dashed;border-left-style:solid}
-.pr.ko:hover{border-style:solid}
-.pr.ko b{font-size:13.6px;color:var(--ink-2)}
+.pr.det{--gc:var(--brand);--gs:var(--panel-2);margin-top:auto;border-style:dashed;background:transparent}
+.pr.det b{font-size:14px;color:var(--brand)}
+.col .pr.det{margin-top:14px}
+.sec.g-fin,.sec.g-pen,.sec.g-ko{color:var(--gc);display:flex;align-items:center;gap:7px}
+.sec.g-fin::before,.sec.g-pen::before,.sec.g-ko::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gc)}
+.sinp{margin-top:18px;padding-top:14px;border-top:1px solid var(--line-2)}
+.sinp .sec{margin:0 0 8px;padding:0;border:0}
+.sinp .kos{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+@media (max-width:620px){.sinp .kos{grid-template-columns:1fr}}
+.sinp .ko{text-align:left;background:transparent;border:1px solid var(--line);border-radius:8px;padding:8px 12px;
+  color:var(--ink-2);transition:.13s}
+.sinp .ko b{display:block;font-size:13.5px;font-weight:600}
+.sinp .ko small{display:block;font-size:12px;color:var(--muted);margin-top:1px}
+.sinp .ko:hover{border-color:var(--red);background:var(--red-soft)}
+.sinp .ko:hover b{color:var(--red)}
 .swap{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 15px}
 .sw{background:transparent;border:1px solid var(--line);border-radius:3px;padding:5px 10px;
   font-size:12.6px;font-weight:500;color:var(--muted);transition:.13s}
@@ -730,20 +738,27 @@ function render(){
       +(pr.falta?'<div class="tip"><span>Esa imagen está por hacerse. Mientras tanto manda solo las de arriba.</span></div>':'');
     if(!pr) h+='<div class="tip"><span>No hay producto marcado, así que no sé cuál imagen va. Manda las de arriba.</span></div>';
   }
+  let optsHechas=false;
   if(d.prods){
     const caja=p=>{ops.push({t:p.n,set:p.id,ir:"apertura"});
-      return '<button class="pr'+(p.nuevo?' nuevo':'')+(p.w?' w3':'')+(p.id===PROD?' sel':'')+'" data-i="'+(ops.length-1)+'"><b>'+p.n+'</b><small>'+p.s+'</small></button>';};
-    h+='<p class="sec first g-fin">Todavía no se puede pensionar</p><div class="grid g-fin">'+PRODS.filter(p=>!p.g).map(caja).join("")+'</div>';
-    h+='<p class="sec g-pen">Ya se puede pensionar</p><div class="grid g-pen">'+PRODS.filter(p=>p.g===2).map(caja).join("")+'</div>';
-    h+='<p class="sec g-pen">Ya está pensionado</p><div class="grid g-pen">'+PRODS.filter(p=>p.g===3).map(caja).join("")+'</div>';
-    h+='<p class="sec g-ko">Creditia no dio producto</p><div class="grid g-ko">';
+      return '<button class="pr'+(p.nuevo?' nuevo':'')+(p.id===PROD?' sel':'')+'" data-i="'+(ops.length-1)+'"><b>'+p.n+'</b><small>'+p.s+'</small></button>';};
+    const grupo=(t,cls,l,first)=>'<div class="'+cls+'"><p class="sec'+(first?' first':'')+' '+cls+'">'+t+'</p><div class="rows">'+l.map(caja).join("")+'</div></div>';
+    h+='<div class="pick">';
+    h+='<div class="col">'+grupo("Todavía no se puede pensionar","g-fin",PRODS.filter(p=>!p.g),1)+'</div>';
+    h+='<div class="col">'+grupo("Ya se puede pensionar","g-pen",PRODS.filter(p=>p.g===2),1)
+      +grupo("Ya está pensionado","g-pen",PRODS.filter(p=>p.g===3),1);
+    (d.opts||[]).forEach(o=>{ops.push(o);
+      h+='<button class="pr det" data-i="'+(ops.length-1)+'"><b>'+o.t+'</b>'+(o.s?'<small>'+o.s+'</small>':'')+'</button>';});
+    optsHechas=true;
+    h+='</div></div>';
+    h+='<div class="sinp g-ko"><p class="sec g-ko">Creditia no dio producto</p><div class="kos">';
     SINPROD.forEach(p=>{ops.push(p);
-      h+='<button class="pr ko" data-i="'+(ops.length-1)+'"><b>'+p.t+'</b><small>'+p.s+'</small></button>';});
-    h+='</div>';
+      h+='<button class="ko" data-i="'+(ops.length-1)+'"><b>'+p.t+'</b><small>'+p.s+'</small></button>';});
+    h+='</div></div>';
   }
   if(d.link) h+='<a class="salto" href="'+d.link.href+'" target="_blank" rel="noopener"><span class="ic">&#8599;</span>'
     +'<span><b>'+d.link.t+'</b>'+(d.link.s?'<small>'+d.link.s+'</small>':'')+'</span></a>';
-  if(d.opts&&d.opts.length){
+  if(d.opts&&d.opts.length&&!optsHechas){
     h+='<div class="opts">';
     d.opts.forEach(o=>{ops.push(o);h+=bot(o,ops.length-1)});
     h+='</div>';

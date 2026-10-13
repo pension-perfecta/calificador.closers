@@ -13,9 +13,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap">
 <style>
 :root{
-  --ground:#F6FAF8; --panel:#FFFFFF; --panel-2:#EEF6F2;
-  --ink:#0C3B39; --ink-2:#3F5A54; --muted:#5B6E6D; --faint:#7FA89B;
-  --line:#D9ECE6; --line-2:#E8F3EE;
+  --ground:#EEF6F2; --panel:#FFFFFF; --panel-2:#F0F7F3;
+  --ink:#0C3B39; --ink-2:#3F5A54; --muted:#5B6E6D; --faint:#789E92;
+  --line:#BCD9D1; --line-2:#DBEBE3;
   --brand:#00443E; --brand-ink:#FFFFFF; --accent:#00C688; --accent-soft:#E3F8EF;
   --blue:#188BF6; --blue-soft:#E6F1FE;
   --gold:#B07D05; --gold-soft:#FBF0D2;
@@ -23,18 +23,18 @@
   --shadow:0 1px 2px rgba(0,68,62,.05),0 14px 30px -22px rgba(0,68,62,.35);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --ground:#081614; --panel:#0E211E; --panel-2:#142E29;
-  --ink:#E4F5EE; --ink-2:#AECCC2; --muted:#8AA79C; --faint:#6E8E84;
-  --line:#1C3A34; --line-2:#162E29;
+  --ground:#050F0D; --panel:#102320; --panel-2:#17322C;
+  --ink:#E4F5EE; --ink-2:#AECCC2; --muted:#8AA79C; --faint:#7A9A8F;
+  --line:#2A4A42; --line-2:#1E3B34;
   --brand:#4FE3B0; --brand-ink:#06201B; --accent:#00C688; --accent-soft:#0C2C25;
   --blue:#7FB6F6; --blue-soft:#11212F; --gold:#E2A93A; --gold-soft:#2A2411;
   --red:#E08B7C; --red-soft:#301916;
   --shadow:0 1px 2px rgba(0,0,0,.4),0 14px 30px -22px rgba(0,0,0,.85);
 }}
 :root[data-theme="dark"]{
-  --ground:#081614; --panel:#0E211E; --panel-2:#142E29;
-  --ink:#E4F5EE; --ink-2:#AECCC2; --muted:#8AA79C; --faint:#6E8E84;
-  --line:#1C3A34; --line-2:#162E29;
+  --ground:#050F0D; --panel:#102320; --panel-2:#17322C;
+  --ink:#E4F5EE; --ink-2:#AECCC2; --muted:#8AA79C; --faint:#7A9A8F;
+  --line:#2A4A42; --line-2:#1E3B34;
   --brand:#4FE3B0; --brand-ink:#06201B; --accent:#00C688; --accent-soft:#0C2C25;
   --blue:#7FB6F6; --blue-soft:#11212F; --gold:#E2A93A; --gold-soft:#2A2411;
   --red:#E08B7C; --red-soft:#301916;
@@ -90,7 +90,7 @@ button{font:inherit;color:inherit;cursor:pointer;font-family:inherit}
   box-shadow:0 1px 2px rgba(15,30,24,.05)}
 .nav::-webkit-scrollbar{display:none}
 .chip{flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap;
-  background:transparent;border:0;border-radius:8px;padding:8px 7px;font-size:13.2px;
+  background:transparent;border:0;border-radius:8px;padding:8px 6px;font-size:12.6px;
   font-weight:500;color:var(--ink-2);transition:background .13s,color .13s}
 .chip:hover{background:var(--panel-2);color:var(--ink)}
 .chip .st{flex:none;width:14px;height:14px;border-radius:50%;border:1.5px solid var(--line);
@@ -256,7 +256,7 @@ footer{margin-top:20px;font-size:12.3px;color:var(--faint);border-top:1px solid 
 <div class="hechos" id="hechos"></div>
 <div id="card"></div>
 
-<footer>Los textos salen del Guión Closer Financiamiento 6.0 y del material de producto de asesores.</footer>
+<footer>Los textos salen del Guión Closer 7.0 y del material de producto de asesores.</footer>
 </div>
 
 <div class="bar"><div class="bar-in">
@@ -357,7 +357,7 @@ const PITCH={
      quien:"60 años o más, Ley 73, más de 500 semanas y quiere pensionarse ya.",
      incluye:["Estrategia de fecha: el día exacto para darse de baja",
               "Expediente completo, listo a la primera",
-              "El trámite con un gestor: al IMSS vas una o dos veces, no meses de vueltas",
+              "El trámite con un gestor: al IMSS va una o dos veces, no meses de vueltas",
               "Gestión de AFORE completa: SAR 92, Retiro 97, Vivienda 92 y 97, Fondo 72",
               "Resolución revisada; si trae error, se corrige",
               "Registro de pensión del Bienestar a los 65"],
@@ -366,7 +366,7 @@ const PITCH={
              "Fecha de baja mal elegida: a los 60 cobra el 75% y a los 65 el 100%, para siempre",
              "AFORE incompleta y asignaciones familiares sin pedir: dinero suyo que se queda guardado"],
      obj:[["«Yo lo hago solo, es gratis»","El trámite no cuesta, el error sí. Un error pequeño se paga cada mes el resto de tu vida, y en 2024 había 302 mil juicios abiertos contra el IMSS. Por eso se hace bien a la primera."],
-          ["«¿Cuánto cuesta?»","Eso te lo da el asesor con los números de tu caso. Lo que te puedo adelantar es que no pagas nada hasta que recibas tu primer pago de pensión."],
+          ["«¿Cuánto cuesta?»","Eso te lo da el asesor con los números de tu caso, y ahí mismo te explica las formas de pago. Lo que yo te puedo apartar hoy es el espacio."],
           ["«Déjeme pensarlo»","Claro. Nada más toma en cuenta que la fecha de baja cambia el monto, y cada mes que pasa sin calcularla te puede costar dinero de por vida. La asesoría es para que lo veas con números y ahí decides."]],
      dato:"Valor del paquete 114,050 y queda en 49,800 si firma en la llamada, sin pagar nada hasta su primer pago de pensión. Eso lo dice el asesor, no tú."}},
 
@@ -456,7 +456,7 @@ d_cotiza:{bloque:"producto",eyebrow:"Detectar producto · 4 de 4",corto:"Sigue c
     {t:"Sigue dado de alta",tono:"stop",ir:"f_cotiza"}]},
 
 a_gestion:{bloque:"producto",eyebrow:"Producto detectado",h:"Este es Gestión y blindaje",
-  tip:"60 o más, Ley 73, 500 semanas o más y ya no cotiza. Ya se puede pensionar, y lo que le vendemos es que no pise el IMSS y que su pensión salga bien a la primera.",
+  tip:"60 o más, Ley 73, 500 semanas o más y ya no cotiza. Ya se puede pensionar, y lo que le vendemos es que su pensión salga bien a la primera. <b>Nunca le digas que no va a pisar el IMSS:</b> va una o dos veces, con un experto al lado.",
   opts:[{t:"Entendido, sigo",set:"gestion",ir:"apertura"}]},
 
 a_duda40:{eyebrow:"Pregúntale a Franco",h:"Dejó de cotizar hace más de un año",

@@ -85,14 +85,15 @@ h1{font-size:28px;font-weight:800;letter-spacing:-.025em;line-height:1.12}
 .act:hover .arr{color:var(--accent-ink);transform:translateX(2px)}
 
 /* ── secciones ── */
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;align-items:start}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
 @media (max-width:620px){.cols{grid-template-columns:1fr}}
-.sec{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px 16px 8px}
-.sec h2{font-size:15px;font-weight:800;letter-spacing:-.005em}
-.sec .q{font-size:12.5px;color:var(--faint);margin:1px 0 6px}
+.sec{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px 16px 8px;
+  display:flex;flex-direction:column}
+.sec h2{font-size:15px;font-weight:800;letter-spacing:-.005em;flex:none}
+.sec .q{font-size:12.5px;color:var(--faint);margin:1px 0 6px;flex:none}
 
 /* filas clicables: toda la fila es el link */
-.row{display:flex;align-items:center;gap:10px;min-height:46px;padding:10px;margin:0 -10px;
+.row{flex:1;display:flex;align-items:center;gap:10px;min-height:46px;padding:10px;margin:0 -10px;
   border-radius:9px;transition:background .13s}
 .row + .row{border-top:1px solid var(--line)}
 .row:hover,.row:focus-visible{background:var(--panel-2)}
@@ -110,7 +111,7 @@ h1{font-size:28px;font-weight:800;letter-spacing:-.025em;line-height:1.12}
 
 /* herramientas: apps de fuera, no páginas nuestras */
 .franja{margin-top:12px}
-.tools{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding-bottom:8px}
+.tools{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding-bottom:8px;flex:none}
 @media (max-width:860px){.tools{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:560px){.tools{grid-template-columns:1fr 1fr}}
 .tool{display:flex;align-items:center;gap:8px;min-height:52px;padding:9px 12px;

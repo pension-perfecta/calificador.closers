@@ -81,7 +81,7 @@ svg{display:block}
 .micro{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
 
 /* ══ masthead ══ */
-.mast{position:relative;background:var(--deep);color:var(--on-deep);padding-bottom:96px;overflow:hidden;z-index:2}
+.mast{position:relative;background:var(--deep);color:var(--on-deep);padding-bottom:98px;overflow:hidden;z-index:2}
 .mast::before{content:"";position:absolute;inset:-30% -20% auto 40%;height:150%;pointer-events:none;
   background:radial-gradient(48% 46% at 50% 50%, rgba(0,198,136,.22), transparent 72%)}
 .mast::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
@@ -97,17 +97,13 @@ svg{display:block}
 .bar .fecha{margin-left:auto;color:var(--on-deep-2);font-size:12.5px;font-weight:500}
 @media (max-width:560px){.bar .sep,.bar .rol{display:none}}
 
-.hi{position:relative;z-index:2;margin-top:42px;color:var(--accent);font-size:13px;font-weight:700;
-  letter-spacing:.1em;text-transform:uppercase}
-.mast h1{position:relative;z-index:2;margin-top:12px;max-width:14ch;
-  font-size:clamp(38px,7vw,74px);font-weight:800;line-height:.95;letter-spacing:-.045em;
+.mast h1{position:relative;z-index:2;margin-top:46px;white-space:nowrap;
+  font-size:clamp(25px,7.6vw,92px);font-weight:800;line-height:1.02;letter-spacing:-.045em;
   font-variation-settings:"opsz" 40}
 .mast h1 em{font-style:normal;color:var(--accent)}
-.mast .lead{position:relative;z-index:2;margin-top:18px;max-width:44ch;font-size:16.5px;
-  line-height:1.5;color:var(--on-deep-2)}
 
 /* buscador: la acción principal, no una tarjeta */
-.find{position:relative;z-index:2;margin-top:28px;width:100%;max-width:560px;display:flex;
+.find{position:relative;z-index:2;margin-top:30px;width:100%;max-width:560px;display:flex;
   align-items:center;gap:12px;padding:15px 17px;border-radius:14px;text-align:left;
   background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:var(--on-deep-2);
   transition:background .22s,border-color .22s,transform .09s}
@@ -272,9 +268,7 @@ footer{margin-top:24px;padding-top:17px;border-top:1px solid var(--line);
       <span class="fecha" id="fecha"></span>
     </div>
 
-    <p class="hi" id="saludo">Buen día</p>
     <h1>Todo lo que necesitas, <em>aquí</em></h1>
-    <p class="lead">Guarda esta página en tu pantalla de inicio. De aquí sale todo lo demás.</p>
 
     <button class="find" id="abrir" aria-haspopup="dialog">
       <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
@@ -378,9 +372,8 @@ document.getElementById('rail').innerHTML=T.map(d=>
  '<a class="tool" href="'+d.u+'" target="_blank" rel="noopener"><span class="tx"><b>'+esc(d.t)+
  (d.tag?' <span class="tag">'+d.tag+'</span>':'')+'</b><small>'+esc(d.d)+'</small></span><span class="out">'+EX+'</span></a>').join('');
 
-/* saludo y fecha */
-const n=new Date(), h=n.getHours();
-document.getElementById('saludo').textContent = h<12?'Buenos días':h<19?'Buenas tardes':'Buenas noches';
+/* fecha */
+const n=new Date();
 document.getElementById('fecha').textContent =
   new Intl.DateTimeFormat('es-MX',{weekday:'long',day:'numeric',month:'long'}).format(n)
     .replace(/^./,c=>c.toUpperCase());

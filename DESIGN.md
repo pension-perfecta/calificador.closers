@@ -233,6 +233,24 @@ Convención de dirección, fija:
 
 Todo SVG decorativo lleva `aria-hidden="true"`.
 
+### Lo que se lee en voz alta, y lo que no
+
+En las páginas que se usan durante una llamada, los dos tipos de texto **nunca se parecen**:
+
+- **`.say`** es lo que el closer lee al cliente. Es lo más grande de la pantalla, 20.5px, sobre
+  `--accent-soft` con una regla de acento a la izquierda y una micro etiqueta arriba.
+- **`.tip`** es instrucción interna y no se lee nunca. Va chico, en `--muted`, sobre `--panel-2`
+  con **borde punteado** y un icono de aviso.
+
+El borde punteado y el tamaño son la señal. Si los dos se vieran igual, alguien va a leer en voz
+alta una instrucción que era para él.
+
+### Atajos de teclado
+
+En una llamada las manos no sueltan el teclado. Las respuestas numeradas se eligen con **1 a 9**,
+y **Backspace** o **flecha izquierda** regresan. El número va visible en cada botón, con un
+contador de CSS, no escrito a mano.
+
 ### Una sola fuente de verdad
 
 Las listas, el riel de herramientas y la paleta se generan desde **un mismo arreglo en JS**.

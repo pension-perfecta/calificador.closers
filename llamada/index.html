@@ -111,40 +111,67 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
 .rail::before{content:"";position:absolute;inset:auto -30% -40% 20%;height:60%;pointer-events:none;
   background:radial-gradient(50% 60% at 50% 50%, rgba(0,198,136,.14), transparent 72%)}
 @media (max-width:900px){.rail{align-self:auto;padding:14px 12px 12px}.rail-in{position:static}}
+.rail-h.sub{padding:0 8px 8px;color:var(--on-deep-2)}
 .rail-h{position:relative;z-index:2;font-size:10.5px;font-weight:700;letter-spacing:.14em;
   text-transform:uppercase;color:var(--on-deep-2);padding:0 8px 11px}
 @media (max-width:900px){.rail-h{display:none}}
 
-.nav{position:relative;z-index:2;display:flex;flex-direction:column;gap:1px}
-@media (max-width:900px){.nav{flex-direction:row;gap:3px;overflow-x:auto;scrollbar-width:none;
-  scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
-  .nav::-webkit-scrollbar{display:none}}
-.chip{display:flex;align-items:center;gap:11px;width:100%;text-align:left;white-space:nowrap;
-  border-radius:10px;padding:9px 10px;font-size:13.5px;font-weight:600;color:var(--on-deep-2);
-  transition:background .18s,color .18s}
-@media (max-width:900px){.chip{width:auto;flex:0 0 auto;font-size:12.6px;padding:8px 11px;gap:7px}}
-.chip:hover{background:rgba(255,255,255,.07);color:var(--on-deep)}
-.chip .st{flex:none;width:17px;height:17px;border-radius:50%;border:1.5px solid rgba(255,255,255,.26);
+/* productos en el riel: el caso se arma aquí */
+#rprod{position:relative;z-index:2;counter-reset:rp}
+.rg{margin-bottom:13px}
+.rg-h{display:flex;align-items:center;gap:7px;font-size:9.5px;font-weight:700;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--on-deep-2);padding:0 8px 7px}
+.rg-h::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gc,var(--accent))}
+.rg.pen{--gc:#E8C87A}
+.rp{display:block;width:100%;text-align:left;border-radius:10px;padding:9px 11px;margin-bottom:3px;
+  color:var(--on-deep);transition:background .18s}
+.rp:hover{background:rgba(255,255,255,.08)}
+.rp{counter-increment:rp}
+.rp b{display:block;font-size:13.5px;font-weight:600;line-height:1.3;letter-spacing:-.012em}
+.rp b::before{content:counter(rp);display:inline-grid;place-items:center;width:17px;height:17px;
+  margin-right:8px;border-radius:5px;background:rgba(255,255,255,.12);color:var(--on-deep-2);
+  font-size:10px;font-weight:700;vertical-align:1px}
+.rp.on b::before{background:rgba(0,32,28,.22);color:var(--deep-2)}
+@media (max-width:900px){.rail.listo:not(.abierto) .rp b::before{display:none}}
+.rp small{display:block;font-size:11.5px;color:var(--on-deep-2);line-height:1.35;margin-top:2px}
+.rp.on{background:var(--accent);color:var(--deep-2)}
+.rp.on b{font-weight:700}
+.rp.on small{color:rgba(0,32,28,.72)}
+.rp .nv{display:inline-block;font-size:8.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  background:var(--accent);color:var(--deep-2);border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:1.5px}
+.rp.on .nv{background:var(--deep-2);color:var(--accent)}
+
+/* pasos de la llamada, arriba del escenario */
+.pasos{position:sticky;top:0;z-index:8;margin:0 0 14px;padding:9px 0 0;
+  background:color-mix(in srgb,var(--ground) 86%,transparent);backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px)}
+.pasos .nw{position:relative;border-radius:13px}
+.pasos .nw::after{content:"";position:absolute;top:1px;bottom:1px;right:1px;width:36px;border-radius:0 12px 12px 0;
+  pointer-events:none;background:linear-gradient(90deg,transparent,var(--panel) 74%)}
+.nav{display:flex;gap:3px;padding:5px;background:var(--panel);border:1px solid var(--line);
+  border-radius:13px;overflow-x:auto;scrollbar-width:none;scroll-behavior:smooth;box-shadow:var(--l1)}
+.nav::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;display:flex;align-items:center;gap:7px;white-space:nowrap;border-radius:9px;
+  padding:9px 12px;font-size:12.8px;font-weight:600;color:var(--muted);transition:background .18s,color .18s}
+.chip:hover{background:var(--panel-2);color:var(--ink)}
+.chip .st{flex:none;width:15px;height:15px;border-radius:50%;border:1.5px solid var(--line);
   display:grid;place-items:center;transition:.18s}
-.chip.done{color:var(--on-deep)}
+.chip.done{color:var(--accent-ink)}
 .chip.done .st{background:var(--accent);border-color:var(--accent)}
-.chip.done .st::after{content:"";width:7px;height:4px;border:solid var(--deep-2);border-width:0 0 2px 2px;
+.chip.done .st::after{content:"";width:6px;height:3.5px;border:solid var(--deep-2);border-width:0 0 2px 2px;
   transform:rotate(-45deg) translate(.5px,-.5px)}
-.chip.on{background:var(--accent);color:var(--deep-2);font-weight:700}
-.chip.on .st{border-color:var(--deep-2);background:transparent}
-.chip.on .st::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--deep-2)}
-.chip.opc{font-style:italic;opacity:.72}
+.chip.on{background:var(--deep-2);color:var(--on-deep);font-weight:700}
+.chip.on .st{border-color:var(--accent);background:var(--accent)}
+.chip.opc{font-style:italic;opacity:.7}
 .chip.opc .st{border-style:dashed}
 .chip.opc.on{font-style:normal;opacity:1}
-
-.prog{position:relative;z-index:2;height:4px;margin:13px 8px 0;border-radius:99px;
-  background:rgba(255,255,255,.14);overflow:hidden}
+.prog{height:3px;margin:7px 2px 0;border-radius:99px;background:var(--line-2);overflow:hidden}
 .prog i{display:block;height:100%;border-radius:99px;background:var(--accent);
   transition:width .35s cubic-bezier(.2,.75,.3,1)}
 
 /* ── lo que ya se contestó, dentro del riel ── */
 .hechos{position:relative;z-index:2}
-.hechos:not(:empty){margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12)}
+.hechos:not(:empty){margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12)}
 .reco{display:flex;flex-direction:column;gap:6px}
 @media (max-width:900px){.reco{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
 .hc{background:rgba(255,255,255,.06);border-radius:9px;padding:7px 11px;min-width:0}
@@ -159,7 +186,24 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
   font-size:12.5px;color:var(--on-deep-2);line-height:1.45}
 .aviso b{color:#E8C87A;font-weight:700;display:block;margin-bottom:2px}
 
+.rmas{display:none;width:100%;margin-top:4px;border:1px dashed rgba(255,255,255,.26);
+  border-radius:10px;padding:9px;font-size:12.5px;font-weight:700;color:var(--on-deep-2)}
+.rmas:hover{border-color:var(--accent);color:var(--accent)}
+@media (max-width:900px){
+  .rail.listo .rmas{display:block}
+  .rail.listo:not(.abierto) .rp:not(.on){display:none}
+  .rail.listo:not(.abierto) .rg-h{display:none}
+  .rail.listo:not(.abierto) .rg{margin-bottom:0}
+  .rail.listo:not(.abierto) #rprod{margin-bottom:2px}
+}
 .stage{min-width:0}
+.elige{display:flex;align-items:center;gap:10px;background:var(--accent-soft);border-radius:12px;
+  padding:13px 16px;font-size:14.5px;color:var(--ink-2);line-height:1.45;margin-bottom:4px}
+.elige b{color:var(--accent-ink);font-weight:700}
+.fl-ec{flex:none;width:17px;height:17px;background:var(--accent-ink);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5M11 18l-6-6 6-6'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5M11 18l-6-6 6-6'/%3E%3C/svg%3E") center/contain no-repeat}
+@media (max-width:900px){.elige .fl-ec{transform:rotate(90deg)}}
 
 /* ── tarjeta ── */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
@@ -328,14 +372,17 @@ footer{margin-top:24px;font-size:12.3px;color:var(--muted);border-top:1px solid 
 
   <aside class="rail">
     <div class="rail-in">
-      <p class="rail-h">La llamada</p>
-      <nav class="nav" id="nav" aria-label="Bloques de la llamada"></nav>
-      <div class="prog" role="progressbar" aria-label="Avance de la llamada" id="progw"><i id="prog"></i></div>
+      <p class="rail-h">El caso</p>
+      <div id="rprod"></div>
       <div class="hechos" id="hechos"></div>
     </div>
   </aside>
 
   <div class="stage">
+    <div class="pasos">
+      <div class="nw"><nav class="nav" id="nav" aria-label="Bloques de la llamada"></nav></div>
+      <div class="prog" role="progressbar" aria-label="Avance de la llamada" id="progw"><i id="prog"></i></div>
+    </div>
     <div id="card"></div>
     <footer>Los textos salen del Guión Closer 7.0 y del material de producto de asesores.</footer>
   </div>
@@ -817,20 +864,13 @@ function render(){
   }
   let optsHechas=false;
   if(d.prods){
-    const caja=p=>{ops.push({t:p.n,set:p.id,ir:"apertura"});
-      return '<button class="pr'+(p.nuevo?' nuevo':'')+(p.id===PROD?' sel':'')+'" data-i="'+(ops.length-1)+'"><b>'+p.n+'</b><small>'+p.s+'</small></button>';};
-    const grupo=(t,cls,l,first)=>'<div class="'+cls+'"><p class="sec'+(first?' first':'')+' '+cls+'">'+t+'</p><div class="rows">'+l.map(caja).join("")+'</div></div>';
-    h+='<div class="pick">';
-    h+='<div class="col">'+grupo("Todavía no se puede pensionar","g-fin",PRODS.filter(p=>!p.g),1)+'</div>';
-    h+='<div class="col">'+grupo("Ya se puede pensionar","g-pen",PRODS.filter(p=>p.g===2),1)
-      +grupo("Ya está pensionado","g-pen",PRODS.filter(p=>p.g===3),1);
+    h+='<p class="elige"><span class="fl-ec" aria-hidden="true"></span>Marca el producto en <b>El caso</b>, a la izquierda. Creditia ya te lo dijo.</p>';
     (d.opts||[]).forEach(o=>{ops.push(o);
       h+='<button class="pr det" data-i="'+(ops.length-1)+'"><b>'+o.t+'</b>'+(o.s?'<small>'+o.s+'</small>':'')+'</button>';});
     optsHechas=true;
-    h+='</div></div>';
     h+='<div class="sinp g-ko"><p class="sec g-ko">Creditia no dio producto</p><div class="kos">';
-    SINPROD.forEach(p=>{ops.push(p);
-      h+='<button class="ko" data-i="'+(ops.length-1)+'"><b>'+p.t+'</b><small>'+p.s+'</small></button>';});
+    SINPROD.forEach(pp=>{ops.push(pp);
+      h+='<button class="ko" data-i="'+(ops.length-1)+'"><b>'+pp.t+'</b><small>'+pp.s+'</small></button>';});
     h+='</div></div>';
   }
   if(d.link) h+='<a class="salto" href="'+d.link.href+'" target="_blank" rel="noopener"><span class="ic">&#8599;</span>'
@@ -845,10 +885,32 @@ function render(){
   $("card").querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>elige(ops[+b.dataset.i],d));
   $("card").querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{PROD=SWAPOPS[+b.dataset.s].set;render();});
 
+  const G=[["Todavía no se puede pensionar","",p=>!p.g],
+           ["Ya se puede pensionar","pen",p=>p.g===2],
+           ["Ya está pensionado","pen",p=>p.g===3]];
+  $("rprod").innerHTML=G.map(g=>'<div class="rg '+g[1]+'"><p class="rg-h">'+g[0]+'</p>'
+    +PRODS.filter(g[2]).map(x=>'<button class="rp'+(x.id===PROD?' on':'')+'" data-p="'+x.id+'">'
+      +'<b>'+x.n+(x.nuevo?'<span class="nv">Nuevo</span>':'')+'</b><small>'+x.s+'</small></button>').join('')
+    +'</div>').join('');
+  $("rprod").insertAdjacentHTML("beforeend",
+    '<button class="rmas" id="rmas" aria-expanded="false">Cambiar de producto</button>');
+  document.querySelector(".rail").classList.toggle("listo",!!PROD);
+  document.querySelector(".rail").classList.remove("abierto");
+  $("rmas").onclick=()=>{
+    const r=document.querySelector(".rail"), ab=r.classList.toggle("abierto");
+    $("rmas").setAttribute("aria-expanded",ab);
+    $("rmas").textContent=ab?"Listo":"Cambiar de producto";
+  };
+  $("rprod").querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>{
+    const id=b.dataset.p, px=PRODS.find(x=>x.id===id);
+    if(actual==="producto") elige({t:px.n,set:id,ir:"apertura"},datos());
+    else { PROD=id; render(); }
+  });
+
   const pt=PROD?PRODS.find(p=>p.id===PROD):null;
-  let hs=hechos.length?('<div class="reco">'+hechos.map(x=>(x.k==="producto"&&pt)
-      ?'<div class="hc prod '+(pt.g?'g-pen':'g-fin')+'" title="'+pt.n+'"><span>Producto</span><b>'+pt.n+'</b></div>'
-      :'<div class="hc"><span>'+x.q+'</span><b>'+x.r+'</b></div>').join("")+'</div>'):"";
+  const hv=hechos.filter(x=>x.k!=="producto");
+  let hs=hv.length?('<p class="rail-h sub">Lo que ya contestó</p><div class="reco">'
+      +hv.map(x=>'<div class="hc"><span>'+x.q+'</span><b>'+x.r+'</b></div>').join("")+'</div>'):"";
   if(pt&&pt.tip&&actual!=="producto")
     hs+='<p class="aviso"><b>Ojo con este producto.</b> '+pt.tip+'</p>';
   $("hechos").innerHTML=hs;
@@ -905,7 +967,8 @@ document.addEventListener("keydown",e=>{
   if(t&&["INPUT","TEXTAREA","SELECT"].includes(t.tagName)) return;
   if(e.metaKey||e.ctrlKey||e.altKey) return;
   if(e.key>="1"&&e.key<="9"){
-    const b=[...document.querySelectorAll("#card [data-i]")][+e.key-1];
+    const sel=(actual==="producto")?"#rprod [data-p]":"#card [data-i]";
+    const b=[...document.querySelectorAll(sel)][+e.key-1];
     if(b){e.preventDefault();b.click();}
   } else if(e.key==="Backspace"||e.key==="ArrowLeft"){
     if(!$("atras").disabled){e.preventDefault();$("atras").click();}

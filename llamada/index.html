@@ -100,49 +100,66 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
   border-radius:50%;background:var(--accent);color:var(--deep-2);font-size:11px;font-weight:800}
 .bk p{font-size:12.8px;color:var(--muted);line-height:1.45;padding-left:32px}
 
-/* ── nav de bloques con barra de avance ── */
-.navw{position:sticky;top:0;z-index:8;margin:0 -20px 16px;padding:9px 20px 0;
-  background:color-mix(in srgb,var(--ground) 86%,transparent);backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px)}
-@media (max-width:640px){.navw{margin:0 -15px 14px;padding:9px 15px 0}}
-.navw .nw{position:relative;border-radius:13px}
-.navw .nw::after{content:"";position:absolute;top:1px;bottom:1px;right:1px;width:34px;border-radius:0 12px 12px 0;
-  pointer-events:none;background:linear-gradient(90deg,transparent,var(--panel) 72%)}
-.nav{display:flex;gap:3px;padding:5px;background:var(--panel);border:1px solid var(--line);
-  border-radius:13px;overflow-x:auto;scrollbar-width:none;box-shadow:var(--l1);scroll-behavior:smooth}
-.nav::-webkit-scrollbar{display:none}
-.chip{flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;
-  border-radius:9px;padding:9px 9px;font-size:12.6px;font-weight:600;color:var(--muted);
+/* ── el lienzo: riel oscuro + escenario ── */
+.app{display:grid;grid-template-columns:266px minmax(0,1fr);gap:22px;align-items:stretch;
+  min-height:calc(100dvh - 206px)}
+@media (max-width:900px){.app{grid-template-columns:1fr;gap:14px;min-height:0}}
+
+.rail{position:relative;background:var(--deep-2);color:var(--on-deep);border-radius:16px;
+  padding:18px 14px 16px;box-shadow:var(--l2);overflow:hidden;align-self:stretch}
+.rail-in{position:sticky;top:16px;z-index:2}
+.rail::before{content:"";position:absolute;inset:auto -30% -40% 20%;height:60%;pointer-events:none;
+  background:radial-gradient(50% 60% at 50% 50%, rgba(0,198,136,.14), transparent 72%)}
+@media (max-width:900px){.rail{align-self:auto;padding:14px 12px 12px}.rail-in{position:static}}
+.rail-h{position:relative;z-index:2;font-size:10.5px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--on-deep-2);padding:0 8px 11px}
+@media (max-width:900px){.rail-h{display:none}}
+
+.nav{position:relative;z-index:2;display:flex;flex-direction:column;gap:1px}
+@media (max-width:900px){.nav{flex-direction:row;gap:3px;overflow-x:auto;scrollbar-width:none;
+  scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+  .nav::-webkit-scrollbar{display:none}}
+.chip{display:flex;align-items:center;gap:11px;width:100%;text-align:left;white-space:nowrap;
+  border-radius:10px;padding:9px 10px;font-size:13.5px;font-weight:600;color:var(--on-deep-2);
   transition:background .18s,color .18s}
-.chip:hover{background:var(--panel-2);color:var(--ink)}
-.chip .st{flex:none;width:14px;height:14px;border-radius:50%;border:1.5px solid var(--line);
+@media (max-width:900px){.chip{width:auto;flex:0 0 auto;font-size:12.6px;padding:8px 11px;gap:7px}}
+.chip:hover{background:rgba(255,255,255,.07);color:var(--on-deep)}
+.chip .st{flex:none;width:17px;height:17px;border-radius:50%;border:1.5px solid rgba(255,255,255,.26);
   display:grid;place-items:center;transition:.18s}
-.chip:hover .st{border-color:var(--accent)}
-.chip.done{color:var(--accent-ink)}
+.chip.done{color:var(--on-deep)}
 .chip.done .st{background:var(--accent);border-color:var(--accent)}
-.chip.done .st::after{content:"";width:6px;height:3.5px;border:solid var(--deep-2);border-width:0 0 1.9px 1.9px;
+.chip.done .st::after{content:"";width:7px;height:4px;border:solid var(--deep-2);border-width:0 0 2px 2px;
   transform:rotate(-45deg) translate(.5px,-.5px)}
-.chip.on{background:var(--deep-2);color:var(--on-deep);font-weight:700}
-.chip.on .st{border-color:var(--accent);background:var(--accent)}
-.chip.opc{color:var(--muted);font-style:italic}
+.chip.on{background:var(--accent);color:var(--deep-2);font-weight:700}
+.chip.on .st{border-color:var(--deep-2);background:transparent}
+.chip.on .st::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--deep-2)}
+.chip.opc{font-style:italic;opacity:.72}
 .chip.opc .st{border-style:dashed}
-.chip.opc.on{color:var(--on-deep);font-style:normal}
-.prog{height:3px;margin:0 2px;border-radius:99px;background:var(--line-2);overflow:hidden}
+.chip.opc.on{font-style:normal;opacity:1}
+
+.prog{position:relative;z-index:2;height:4px;margin:13px 8px 0;border-radius:99px;
+  background:rgba(255,255,255,.14);overflow:hidden}
 .prog i{display:block;height:100%;border-radius:99px;background:var(--accent);
   transition:width .35s cubic-bezier(.2,.75,.3,1)}
 
-/* ── lo que ya se contestó ── */
-.hechos{margin-bottom:14px}
-.reco{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px}
-.hc{background:var(--panel);border:1px solid var(--line-2);border-radius:9px;padding:7px 11px;min-width:0}
-.hc span{display:block;font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
-.hc.prod{grid-column:span 2;background:var(--gs);border-color:var(--gc);border-left:3px solid var(--gc)}
-.hc.prod span{color:var(--gc)}
-.hc b{display:block;font-size:13px;font-weight:700;color:var(--ink);line-height:1.35;margin-top:1px;
+/* ── lo que ya se contestó, dentro del riel ── */
+.hechos{position:relative;z-index:2}
+.hechos:not(:empty){margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12)}
+.reco{display:flex;flex-direction:column;gap:6px}
+@media (max-width:900px){.reco{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+.hc{background:rgba(255,255,255,.06);border-radius:9px;padding:7px 11px;min-width:0}
+.hc span{display:block;font-size:9.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--on-deep-2)}
+.hc.prod{background:rgba(0,198,136,.16);box-shadow:inset 3px 0 0 var(--accent)}
+.hc.prod span{color:var(--accent)}
+.hc b{display:block;font-size:13px;font-weight:700;color:var(--on-deep);line-height:1.35;margin-top:1px;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.aviso{margin-top:9px;background:var(--gold-soft);border-left:3px solid var(--gold);
-  border-radius:0 9px 9px 0;padding:9px 13px;font-size:13px;color:var(--ink-2);line-height:1.45}
-.aviso b{color:var(--gold);font-weight:700}
+.aviso{position:relative;z-index:2;margin-top:12px;background:rgba(224,168,60,.14);
+  border-left:3px solid var(--gold);border-radius:0 9px 9px 0;padding:9px 12px;
+  font-size:12.5px;color:var(--on-deep-2);line-height:1.45}
+.aviso b{color:#E8C87A;font-weight:700;display:block;margin-bottom:2px}
+
+.stage{min-width:0}
 
 /* ── tarjeta ── */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
@@ -307,12 +324,23 @@ footer{margin-top:24px;font-size:12.3px;color:var(--muted);border-top:1px solid 
   <div class="bk"><h3 data-n="3">Creditia</h3><p>Te dice el producto. Con eso en la mano, marcas.</p></div>
 </div>
 
-<div class="navw"><div class="nw"><nav class="nav" id="nav" aria-label="Bloques de la llamada"></nav></div>
-  <div class="prog" role="progressbar" aria-label="Avance de la llamada" id="progw"><i id="prog"></i></div></div>
-<div class="hechos" id="hechos"></div>
-<div id="card"></div>
+<div class="app">
 
-<footer>Los textos salen del Guión Closer 7.0 y del material de producto de asesores.</footer>
+  <aside class="rail">
+    <div class="rail-in">
+      <p class="rail-h">La llamada</p>
+      <nav class="nav" id="nav" aria-label="Bloques de la llamada"></nav>
+      <div class="prog" role="progressbar" aria-label="Avance de la llamada" id="progw"><i id="prog"></i></div>
+      <div class="hechos" id="hechos"></div>
+    </div>
+  </aside>
+
+  <div class="stage">
+    <div id="card"></div>
+    <footer>Los textos salen del Guión Closer 7.0 y del material de producto de asesores.</footer>
+  </div>
+
+</div>
 </div>
 
 <div class="bar"><div class="bar-in">

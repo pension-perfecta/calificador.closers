@@ -24,6 +24,7 @@
   --gold:#7E5900; --gold-soft:#FBF1D6;
   --red:#A6372C; --red-soft:#FBE7E3;
   --blue:#0F5FA8; --blue-soft:#E4EFF9;
+  --btn:#00201C; --btn-ink:#FFFFFF;
   --l1:0 1px 1.5px rgba(0,48,43,.05), 0 8px 20px -14px rgba(0,48,43,.4);
   --l2:0 1px 2px rgba(0,48,43,.06), 0 26px 50px -28px rgba(0,48,43,.52);
   --r:18px;
@@ -38,6 +39,7 @@
   --gold:#E0A83C; --gold-soft:#231E0E;
   --red:#F09A8C; --red-soft:#2C1713;
   --blue:#8CBDEE; --blue-soft:#101F2E;
+  --btn:#00C688; --btn-ink:#04100E;
   --l1:0 1px 1.5px rgba(0,0,0,.4), 0 8px 20px -14px rgba(0,0,0,.8);
   --l2:0 1px 2px rgba(0,0,0,.45), 0 26px 50px -28px rgba(0,0,0,.9);
 }}
@@ -51,6 +53,7 @@
   --gold:#E0A83C; --gold-soft:#231E0E;
   --red:#F09A8C; --red-soft:#2C1713;
   --blue:#8CBDEE; --blue-soft:#101F2E;
+  --btn:#00C688; --btn-ink:#04100E;
   --l1:0 1px 1.5px rgba(0,0,0,.4), 0 8px 20px -14px rgba(0,0,0,.8);
   --l2:0 1px 2px rgba(0,0,0,.45), 0 26px 50px -28px rgba(0,0,0,.9);
 }
@@ -160,7 +163,7 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
 .chip.done .st{background:var(--accent);border-color:var(--accent)}
 .chip.done .st::after{content:"";width:6px;height:3.5px;border:solid var(--deep-2);border-width:0 0 2px 2px;
   transform:rotate(-45deg) translate(.5px,-.5px)}
-.chip.on{background:var(--deep-2);color:var(--on-deep);font-weight:700}
+.chip.on{background:var(--btn);color:var(--btn-ink);font-weight:700}
 .chip.on .st{border-color:var(--accent);background:var(--accent)}
 .chip.opc{font-style:italic;opacity:.7}
 .chip.opc .st{border-style:dashed}
@@ -333,8 +336,8 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
 .bar button{border:1px solid var(--line);border-radius:11px;padding:10px 17px;
   font-size:14px;font-weight:700;color:var(--ink-2);transition:.18s}
 .bar button:hover{border-color:var(--accent);color:var(--accent-ink)}
-.bar #atras{background:var(--deep-2);border-color:var(--deep-2);color:var(--on-deep);padding:11px 24px}
-.bar #atras:hover{color:var(--accent);border-color:var(--deep-2)}
+.bar #atras{background:var(--btn);border-color:var(--btn);color:var(--btn-ink);padding:11px 24px}
+.bar #atras:hover{filter:brightness(1.12)}
 .bar #atras:disabled{opacity:.3;cursor:default}
 .bar #reinicia{margin-left:auto;border-color:transparent;color:var(--muted);font-weight:600}
 .bar #reinicia:hover{color:var(--red);border-color:var(--red)}

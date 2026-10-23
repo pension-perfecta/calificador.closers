@@ -544,6 +544,13 @@ curp:{eyebrow:"Fin",h:"Primero el CURP bueno",
   fin:{t:"Qué haces",l:["Mueves a <b>Error con Curp</b>","<b>Task para hoy mismo.</b> Sin task este lead se cae solo"]},
   opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
 
+sinafore:{eyebrow:"Fin",h:"Sin AFORE no se agenda Pensión Express",
+  say:[["Mensaje","Hola [Nombre], te mando cómo sacar tu estado de cuenta del AFORE, son dos minutos. En cuanto me lo pases te aparto tu espacio con el asesor."]],
+  fin:{t:"Qué haces",l:["Le mandas el instructivo de AforeMóvil por WhatsApp",
+    "<b>No agendas todavía.</b> La cita se crea cuando llegue el documento",
+    "<b>Task para mañana.</b> Sin task este lead se cae solo"]},
+  opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
+
 reporte:{eyebrow:"Fin",h:"Falta el reporte del IMSS",
   fin:{t:"Qué haces",l:["Pides el reporte en el grupo","Mueves a <b>Solicitar Reporte IMSS</b>",
     "<b>Task a dos días</b>, después de las 6 de la tarde"]},
@@ -671,6 +678,26 @@ f_negativa:{eyebrow:"Descarte",h:"Le negaron la pensión",
   fin:{t:"Qué registras",l:["<b>No califica</b>","Motivo: negativa de pensión","<b>Anota en la nota por qué</b> se la negaron"]},
   opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
 
+/* Solo en crédito de nómina. Es el filtro central del lineamiento de Francisco del 22-oct y no
+   existía en ninguna parte del flujo: sin él se agenda a quien contrató su crédito hace ocho meses
+   y la asesoría se gasta. Los menores a 24 meses salen con task, no con descarte, igual que el
+   resto de los filtros de tiempo. El documento dice "No califica"; está anotado en decisiones. */
+q_credvig:{bloque:"calif",corto:"Crédito vigente",
+  h:"¿Trae un crédito de nómina vigente?",
+  say:[["Pregunta","¿Ahorita tienes algún crédito que te estén descontando de tu pensión?"],
+       ["Si dice que sí","¿Y desde cuándo lo tienes? ¿En qué mes lo contrataste?"]],
+  tip:"La antigüedad se cuenta desde que lo contrató hasta hoy. <b>No es el plazo que le dieron.</b>",
+  opts:[{t:"No trae ninguno",s:"califica",ir:"afore"},
+        {t:"Sí, y lleva más de 24 meses",s:"califica, se le puede comprar la deuda",ir:"afore"},
+        {t:"Sí, y lleva 24 meses o menos",tono:"stop",ir:"f_credvig"}]},
+
+f_credvig:{eyebrow:"Task, no descarte",h:"Todavía no cumple los 24 meses",
+  say:[["Qué le dices","Para poder mejorarte el crédito que ya traes, la financiera pide que lleves más de dos años con él. En cuanto los cumplas te busco y ahí sí te agendo. Te lo dejo anotado."]],
+  fin:{t:"Qué registras",l:["<b>Anota en la nota el mes en que lo contrató</b>",
+    "<b>Task con la fecha</b> en que cumple más de 24 meses",
+    "No lo descartes: este vuelve"]},
+  opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
+
 q_infonavit:{bloque:"calif",eyebrow:"Pregunta 5 de 5",corto:"Infonavit",
   h:"¿Tiene crédito Infonavit?",
   say:[["Pregunta","¿Tienes algún crédito Infonavit?"],
@@ -746,9 +773,10 @@ cierre:{bloque:"cierre",eyebrow:"Cierre",h:"Despídete",
   opts:[{t:"Colgué",ir:"registro"}]},
 
 /* ───────────── 10 · al colgar ───────────── */
-registro:{bloque:"registro",eyebrow:"Al colgar",h:"Cinco cosas, sin excepción",
+registro:{bloque:"registro",eyebrow:"Al colgar",h:"Seis cosas, sin excepción",
   fin:{ok:1,t:"Antes de pasar al siguiente lead",l:[
     "Mueves la oportunidad a <b>Asesoría agendada</b>",
+    "<b>El reporte de semanas</b>: si no lo tienes, lo pides en el grupo. Va en los siete productos, y de ahí sale el NSS",
     "Llenas <b>Tipo de asesoría</b> con el producto",
     "<b>Dejas tu nota</b> con lo que pasó en la llamada",
     "Metes la oportunidad al <b>tracker</b>",
@@ -759,7 +787,9 @@ registro:{bloque:"registro",eyebrow:"Al colgar",h:"Cinco cosas, sin excepción",
 /* crédito de nómina: ya está pensionado, no aplican las preguntas 3 y 4 */
 const PREG=["q_pension","q_demanda","q_busca","q_negativa","q_infonavit"];
 const SIN_CREDITO=["q_busca","q_negativa"];
-const preg=()=>PROD==="credito"?PREG.filter(x=>!SIN_CREDITO.includes(x)):PREG;
+const SOLO_CREDITO=["q_credvig"];
+const preg=()=>PROD==="credito"
+  ?PREG.filter(x=>!SIN_CREDITO.includes(x)).concat(SOLO_CREDITO):PREG;
 const salta=id=>(PROD==="credito"&&SIN_CREDITO.includes(id))?"q_infonavit":id;
 const OFERTA_CREDITO=[["Oferta","Perfecto. El siguiente paso es agendar una asesoría con uno de nuestros asesores expertos. Ahí revisan con los números de tu pensión cuánto te pueden prestar y con qué financiera te conviene."]];
 const BECA_CREDITO=[["El espacio se lo gana él","La asesoría para ti no tiene costo, a nosotros nos paga la financiera. Pero el asesor te aparta ese espacio solo a ti, y yo tengo unos cuantos al mes."],
@@ -777,13 +807,22 @@ const AFORE_OPC={corto:"AFORE",h:"Se pide igual, aunque no sea obligatorio",
   say:[["Qué le dices","Si tienes tu estado de cuenta del AFORE, mándamelo, nos ayuda a que el asesor llegue con todo listo."]],
   tip:"Aquí se puede agendar sin él, pero el que llega con su AFORE firma mucho más.",
   opts:[{t:"Listo, sigo",ir:"oferta"}]};
+/* Pensión Express: decisión de Franco del 22-oct. Aquí el AFORE no califica nada, es documento
+   del trámite, y sin él el proceso se atrasa meses. Por eso sí frena la agenda, a diferencia de
+   Modalidad 40, donde quien decide si el AFORE alcanza es el sistema y no el closer en la llamada. */
+const AFORE_GEST={corto:"AFORE",h:"Obligatorio en Pensión Express",
+  say:[["Qué le dices","Para apartarte el espacio necesito tu estado de cuenta del AFORE. Es lo que evita que tu trámite se atore meses. ¿Lo tienes a la mano o lo consigues hoy?"],
+       ["Si no lo tiene","Ahorita te mando por WhatsApp cómo sacarlo, son dos minutos. En cuanto me lo pases te aparto el espacio."]],
+  tip:"Sin AFORE no se agenda. Es el único producto además de Modalidad 40 donde el documento es condición, y aquí sí frena la cita.",
+  opts:[{t:"Lo tiene o lo consigue hoy",ir:"oferta"},
+        {t:"No lo tiene",tono:"stop",ir:"sinafore"}]};
 const AFORE_NO={corto:"AFORE",h:"Aquí no va el AFORE",
   tip:"Ya está pensionado: el AFORE no define nada para el crédito de nómina. No se lo pidas. Lo que importa es cuánto tiene libre de su pensión, y eso lo revisa el asesor.",
   opts:[{t:"Entendido, sigo",ir:"oferta"}]};
 
 /* ═════════════════════════ motor ═════════════════════════ */
 const ORDEN=["producto","apertura","confirma","q_pension","q_demanda","q_busca",
-             "q_negativa","q_infonavit","afore","oferta","pitch","beca","agendar","material","grupo","cierre","registro"];
+             "q_negativa","q_infonavit","q_credvig","afore","oferta","pitch","beca","agendar","material","grupo","cierre","registro"];
 const BLOQUES=[["producto","Producto"],["apertura","Apertura"],["confirma","Calificación"],
   ["afore","AFORE"],["oferta","Oferta"],["dolor","Dolor"],["pitch","Pitch"],
   ["beca","Compromiso"],["agendar","Agendar"],["material","Cierre"],["registro","Al colgar"]];
@@ -803,18 +842,23 @@ function datos(){
   }
   if(actual==="afore"){
     if(!PROD) return Object.assign({},P.afore,{h:"Falta elegir el producto",
-      tip:"El AFORE es obligatorio en Modalidad 40 y opcional en los demás. Marca el producto primero.",
+      tip:"El AFORE es obligatorio en Modalidad 40 y en Pensión Express, y opcional en los demás. Marca el producto primero.",
       opts:[{t:"Ir al paso 0",ir:"producto"}]});
     const base=(PROD==="retro_ahora"||PROD==="retro_futuro")?AFORE_OBLIG
+             :(PROD==="gestion")?AFORE_GEST
              :(PROD==="credito")?AFORE_NO:AFORE_OPC;
     return Object.assign({},P.afore,base);
   }
-  if(PREG.includes(actual)){
+  if(preg().includes(actual)){
     const l=preg(), k=l.indexOf(actual);
-    return Object.assign({},P[actual],{eyebrow:"Pregunta "+(k+1)+" de "+l.length});
+    const base=Object.assign({},P[actual],{eyebrow:"Pregunta "+(k+1)+" de "+l.length});
+    // en crédito de nómina la última es la del crédito vigente, así que Infonavit ya no manda al AFORE
+    if(actual==="q_infonavit"&&PROD==="credito")
+      base.opts=base.opts.map(o=>Object.assign({},o,{ir:"q_credvig"}));
+    return base;
   }
   if(actual==="confirma"&&PROD==="credito")
-    return Object.assign({},P.confirma,{tip:"Son tres y las tres van. Las de financiamiento y negativa no aplican: ya está pensionado."});
+    return Object.assign({},P.confirma,{tip:"Son cuatro. Las de financiamiento y negativa no aplican porque ya está pensionado, y se agrega la del crédito de nómina vigente."});
   if(actual==="oferta"&&PROD==="credito") return Object.assign({},P.oferta,{say:OFERTA_CREDITO});
   if(actual==="beca"&&PROD==="credito") return Object.assign({},P.beca,{say:BECA_CREDITO});
   return P[actual];
@@ -926,7 +970,8 @@ function render(){
   $("nav").querySelectorAll(".chip").forEach(b=>b.onclick=()=>brinca(b.dataset.ir));
   const on=$("nav").querySelector(".chip.on"); if(on) on.scrollIntoView({block:"nearest",inline:"nearest"});
 
-  const ord=ORDEN.filter(x=>!(PROD==="credito"&&SIN_CREDITO.includes(x)));
+  const ord=ORDEN.filter(x=>PROD==="credito"
+    ?!SIN_CREDITO.includes(x):!SOLO_CREDITO.includes(x));
   const ix=ord.indexOf(actual);
   $("paso").textContent=(ix>=0)?("Paso "+(ix+1)+" de "+ord.length):"Fuera del camino";
   const pct=(ix>=0)?Math.round((ix+1)/ord.length*100):0;

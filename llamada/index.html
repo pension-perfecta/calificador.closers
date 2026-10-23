@@ -563,7 +563,7 @@ detecta:{bloque:"producto",eyebrow:"Detectar producto · 1 de 4",corto:"Detectar
   say:[["Pregunta","¿Ya estás cobrando una pensión del IMSS?"]],
   opts:[
     {t:"Sí, definitiva. O ya aceptó su resolución",s:"este es CRÉDITO DE NÓMINA",tono:"warn",ir:"a_credito"},
-    {t:"Sí, pero es temporal",s:"la temporal no descalifica, sigue",ir:"d_edad"},
+    {t:"Sí, pero es temporal",s:"todavía no se agenda",tono:"stop",ir:"f_temporal"},
     {t:"Le salió negativa de pensión",tono:"stop",ir:"f_negativa"},
     {t:"No cobra ninguna",ir:"d_edad"}]},
 
@@ -633,7 +633,7 @@ q_pension:{bloque:"calif",eyebrow:"Pregunta 1 de 5",corto:"Pensión",
   say:[["Pregunta","¿Actualmente recibes alguna pensión o ya la tramitaste?"]],
   opts:[
     {t:"No recibe ninguna",ir:"q_demanda"},
-    {t:"Sí, temporal",s:"la temporal no descalifica, sigue",tono:"warn",ir:"q_demanda"},
+    {t:"Sí, temporal",s:"todavía no se agenda",tono:"stop",ir:"f_temporal"},
     {t:"Sí, definitiva",s:"cambia de producto a crédito de nómina",tono:"warn",ir:"a_credito"}]},
 
 a_credito:{bloque:"calif",eyebrow:"Cambio de producto",h:"Este va a crédito de nómina",
@@ -644,6 +644,12 @@ q_demanda:{bloque:"calif",eyebrow:"Pregunta 2 de 5",corto:"Demanda laboral",
   h:"¿Tiene una demanda laboral en curso?",
   say:[["Pregunta","¿Tienes alguna demanda laboral en curso?"]],
   opts:[{t:"No tiene",ir:"q_busca"},{t:"Sí, en curso",tono:"stop",ir:"f_demanda"}]},
+
+f_temporal:{eyebrow:"Task, no descarte",h:"Pensión temporal por invalidez",
+  say:[["Qué le dices","Mientras estés cobrando la pensión temporal no se puede tramitar la definitiva. Hay que esperar a que termine. ¿Sabes hasta qué mes te la dieron? Te lo dejo anotado y en cuanto se acabe te busco."]],
+  tip:"Cuando termina la temporal hay cuatro salidas y <b>solo una califica</b>: que se acabe la invalidez y no le den nada más. Si le dan alta médica y puede seguir trabajando, si le extienden la temporal o si se la vuelven invalidez definitiva, no califica. (Francisco, 22-oct-2026)",
+  fin:{t:"Qué registras",l:["<b>Task con el mes</b> en que termina la temporal","La nota dice que es pensión temporal por invalidez","No lo descartes: hay que volver a preguntar qué le dieron al terminar"]},
+  opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
 
 f_demanda:{eyebrow:"Task, no descarte",h:"Demanda en curso",
   say:[["Qué le dices","Para pensionarte tiene que definirse la demanda, porque pueden cambiar tus semanas y tu promedio salarial. En cuanto finalice me avisas y ahí sí te agendo con el experto. Te lo dejo anotado."]],

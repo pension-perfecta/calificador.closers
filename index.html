@@ -98,13 +98,31 @@ svg{display:block}
 .bar .fecha{margin-left:auto;color:var(--on-deep-2);font-size:12.5px;font-weight:500}
 @media (max-width:700px){.bar .sep,.bar .rol{display:none}}
 
-.mast h1{position:relative;z-index:2;margin-top:46px;white-space:nowrap;
-  font-size:clamp(40px,15.4vw,100px);font-weight:800;line-height:1;letter-spacing:-.035em;text-transform:uppercase;
+.lock{position:relative;z-index:2;margin-top:44px;display:grid;
+  grid-template-columns:minmax(0,1fr) auto;gap:30px 48px;align-items:end}
+@media (max-width:760px){.lock{grid-template-columns:1fr;gap:22px;align-items:start}}
+.mast h1{white-space:nowrap;
+  font-size:clamp(38px,7.6vw,76px);font-weight:800;line-height:.98;letter-spacing:-.04em;text-transform:uppercase;
   font-variation-settings:"opsz" 40}
 .mast h1 em{font-style:normal;color:var(--accent)}
+.deck{margin-top:14px;font-size:clamp(16px,1.7vw,20px);line-height:1.45;color:var(--on-deep-2);
+  font-weight:500;letter-spacing:-.01em}
+.deck b{color:var(--on-deep);font-weight:600}
+
+/* el bloque de la derecha: deja de haber hueco y dice de qué tamaño es esto */
+.meta{display:flex;gap:34px;padding-bottom:5px}
+@media (max-width:760px){.meta{gap:28px;padding-bottom:0}}
+.meta div{display:flex;flex-direction:column;gap:3px}
+.meta b{font-family:"DM Sans";font-size:clamp(26px,3vw,34px);font-weight:800;line-height:1;
+  letter-spacing:-.035em;color:var(--on-deep);font-variation-settings:"opsz" 32}
+.meta span{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--on-deep-2)}
+
+/* la regla que cierra el encabezado */
+.hr{position:relative;z-index:2;margin-top:30px;height:1px;
+  background:linear-gradient(90deg,rgba(0,198,136,.55),rgba(255,255,255,.14) 42%,transparent)}
 
 /* buscador: la acción principal, no una tarjeta */
-.find{position:relative;z-index:2;margin-top:30px;width:100%;max-width:560px;display:flex;
+.find{position:relative;z-index:2;margin-top:26px;width:100%;max-width:560px;display:flex;
   align-items:center;gap:12px;padding:15px 17px;border-radius:14px;text-align:left;
   background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:var(--on-deep-2);
   transition:background .22s,border-color .22s,transform .09s}
@@ -147,7 +165,7 @@ svg{display:block}
 .card.main .eye{color:var(--accent)}
 .card.main .eye b{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
 .card.main h2{font-size:clamp(30px,3.5vw,42px);color:var(--on-deep)}
-.card.main p{color:var(--on-deep-2);max-width:40ch}
+.card.main p{color:var(--on-deep-2)}
 .card.main .go{color:var(--accent)}
 
 .card.alt{background:var(--panel);border:1px solid var(--line);box-shadow:var(--l1)}
@@ -249,19 +267,14 @@ footer{margin-top:24px;padding-top:17px;border-top:1px solid var(--line);
 
 /* ══ movimiento: la entrada y el encabezado vivo ══ */
 .mast .bar{animation:rise .52s cubic-bezier(.2,.75,.3,1) both}
-.mast h1{animation:rise .62s cubic-bezier(.2,.75,.3,1) .07s both}
+.lock{animation:rise .62s cubic-bezier(.2,.75,.3,1) .07s both}
+.hr{animation:rise .5s cubic-bezier(.2,.75,.3,1) .2s both}
 .find{animation:rise .52s cubic-bezier(.2,.75,.3,1) .15s both}
 .card.main.rise{animation-delay:.22s}
 .card.alt.rise{animation-delay:.28s}
 .panel.rise{animation-delay:.34s}
 .tools.rise{animation-delay:.4s}
 
-/* el subrayado del acento se dibuja solo */
-.mast h1 em{position:relative}
-.mast h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.07em;height:.065em;
-  background:var(--accent);border-radius:99px;transform:scaleX(0);transform-origin:left;
-  animation:subraya .62s cubic-bezier(.2,.75,.3,1) .55s both}
-@keyframes subraya{to{transform:scaleX(1)}}
 
 /* el resplandor del masthead respira */
 .mast::before{animation:deriva 24s ease-in-out infinite alternate}
@@ -312,13 +325,20 @@ footer{margin-top:24px;padding-top:17px;border-top:1px solid var(--line);
       <span class="fecha" id="fecha"></span>
     </div>
 
-    <h1>Hub <em>Closers</em></h1>
+    <div class="lock">
+      <div>
+        <h1>Hub <em>Closers</em></h1>
+        <p class="deck">Todo lo que necesitas para <b>llamar, calificar y agendar</b>, en un solo lugar y siempre en su versión vigente.</p>
+      </div>
+      <div class="meta" id="meta"></div>
+    </div>
 
     <button class="find" id="abrir" aria-haspopup="dialog" aria-expanded="false" aria-controls="ovl">
       <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       <span class="f-l">Busca el guión, una etapa, tus comisiones…</span><span class="f-s">Busca lo que necesitas…</span>
       <kbd>/</kbd>
     </button>
+    <div class="hr" aria-hidden="true"></div>
   </div>
 </header>
 
@@ -417,6 +437,13 @@ document.getElementById('listas').innerHTML=D.map((s,i)=>
 document.getElementById('rail').innerHTML=T.map(d=>
  '<a class="tool" href="'+d.u+'" target="_blank" rel="noopener"><span class="tx"><b>'+esc(d.t)+
  (d.tag?' <span class="tag">'+d.tag+'</span>':'')+nt({x:1})+'</b><small>'+esc(d.d)+'</small></span><span class="out">'+EX+'</span></a>').join('');
+
+/* el bloque de la derecha se cuenta solo */
+document.getElementById('meta').innerHTML=[
+  [2+D.reduce((a,s)=>a+s.items.length,0),'Recursos'],
+  [T.length,'Herramientas'],
+  [7,'Productos']
+].map(x=>'<div><b>'+x[0]+'</b><span>'+x[1]+'</span></div>').join('');
 
 /* fecha */
 const n=new Date();

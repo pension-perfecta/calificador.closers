@@ -245,6 +245,49 @@ footer{margin-top:24px;padding-top:17px;border-top:1px solid var(--line);
 .panel.rise{animation-delay:.11s}
 .tools.rise{animation-delay:.16s}
 @keyframes rise{from{opacity:.45;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ══ movimiento: la entrada y el encabezado vivo ══ */
+.mast .bar{animation:rise .52s cubic-bezier(.2,.75,.3,1) both}
+.mast h1{animation:rise .62s cubic-bezier(.2,.75,.3,1) .07s both}
+.find{animation:rise .52s cubic-bezier(.2,.75,.3,1) .15s both}
+.card.main.rise{animation-delay:.22s}
+.card.alt.rise{animation-delay:.28s}
+.panel.rise{animation-delay:.34s}
+.tools.rise{animation-delay:.4s}
+
+/* el subrayado del acento se dibuja solo */
+.mast h1 em{position:relative}
+.mast h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.07em;height:.065em;
+  background:var(--accent);border-radius:99px;transform:scaleX(0);transform-origin:left;
+  animation:subraya .62s cubic-bezier(.2,.75,.3,1) .55s both}
+@keyframes subraya{to{transform:scaleX(1)}}
+
+/* el resplandor del masthead respira */
+.mast::before{animation:deriva 24s ease-in-out infinite alternate}
+@keyframes deriva{
+  0%{transform:translate3d(0,0,0) scale(1);opacity:.85}
+  50%{transform:translate3d(-7%,3%,0) scale(1.12);opacity:1}
+  100%{transform:translate3d(5%,-2%,0) scale(1.04);opacity:.9}}
+
+/* la línea de abajo recorre */
+.mast::after{background-size:38% 100%;background-repeat:no-repeat;
+  animation:barrido 7s cubic-bezier(.45,0,.55,1) infinite}
+@keyframes barrido{0%{background-position:-45% 0}100%{background-position:145% 0}}
+
+/* la tarjeta grande sigue al cursor */
+.card.main::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;
+  transition:opacity .35s;border-radius:inherit;
+  background:radial-gradient(260px 260px at var(--mx,50%) var(--my,0%), rgba(0,198,136,.2), transparent 72%)}
+.card.main:hover::after{opacity:1}
+
+/* el riel de herramientas entra escalonado */
+.rail .tool{animation:rise .46s cubic-bezier(.2,.75,.3,1) both}
+.rail .tool:nth-child(1){animation-delay:.42s}
+.rail .tool:nth-child(2){animation-delay:.47s}
+.rail .tool:nth-child(3){animation-delay:.52s}
+.rail .tool:nth-child(4){animation-delay:.57s}
+.rail .tool:nth-child(5){animation-delay:.62s}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;
     transition-duration:.01ms !important;scroll-behavior:auto !important}
@@ -424,6 +467,17 @@ document.addEventListener('keydown',e=>{
   else if(e.key==='Enter'&&hits.length){ e.preventDefault(); res.querySelector('#o'+sel).click(); }
   else if(e.key==='Tab'){ e.preventDefault(); }
 });
+
+/* la tarjeta grande sigue al cursor */
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var c=document.querySelector('.card.main'); if(!c) return;
+  c.addEventListener('pointermove',function(e){
+    var r=c.getBoundingClientRect();
+    c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+    c.style.setProperty('--my',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+  });
+})();
 </script>
 </body>
 </html>

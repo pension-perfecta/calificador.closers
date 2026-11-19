@@ -212,8 +212,8 @@ svg{display:block}
 /* ══════ cuerpo ══════ */
 .body{position:relative;z-index:3;padding:clamp(13px,1.7vw,18px) 0 48px}
 
-.duo{display:grid;grid-template-columns:1.62fr 1fr;gap:16px;align-items:stretch}
-@media (max-width:880px){.duo{grid-template-columns:1fr}}
+.duo{display:grid;grid-template-columns:1.34fr 1fr 1fr;gap:16px;align-items:stretch}
+@media (max-width:1020px){.duo{grid-template-columns:1fr}}
 .card{position:relative;border-radius:var(--r);padding:21px 24px 23px;display:flex;flex-direction:column;
   overflow:hidden;transition:transform .26s cubic-bezier(.2,.75,.3,1),box-shadow .26s,border-color .26s}
 .card:hover{transform:translateY(-4px)}
@@ -441,6 +441,16 @@ footer{margin-top:24px;padding-top:17px;border-top:1px solid var(--line);
     <span class="go">Abrir<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
   </a>
 
+  <a class="card alt rise" href="https://docs.google.com/document/d/1QaSWSKQpFFkyxQqvWxC5Wz8uQkkbwg-N-lx-c4O5fsk/edit" target="_blank" rel="noopener">
+    <span class="eye">
+      <i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.3-.6L3 21l1.7-5a8.2 8.2 0 0 1-.7-3.4 8.4 8.4 0 0 1 8.5-8.1 8.4 8.4 0 0 1 8.5 7.5Z"/></svg></i>
+      <b>Lo que te van a decir</b>
+    </span>
+    <h2>Objeciones reales</h2>
+    <p>Lo que el lead dice de verdad en la llamada y qué se le contesta, palabra por palabra. Sale de llamadas grabadas, no de teoría.</p>
+    <span class="go">Abrir<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+  </a>
+
 </nav>
 
 <div class="panel rise" id="listas"></div>
@@ -524,9 +534,9 @@ const QUIETO = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 /* ══ las cifras se cuentan solas ══ */
 (function(){
   const cifras=[
-    [2+D.reduce((a,s)=>a+s.items.length,0),'Recursos'],
+    [3+D.reduce((a,s)=>a+s.items.length,0),'Recursos'],
     [T.length,'Herramientas'],
-    [7,'Productos']];
+    [5,'Productos']];
   const meta=document.getElementById('meta');
   meta.innerHTML=cifras.map(x=>'<div><b>'+(QUIETO?x[0]:0)+'</b><span>'+x[1]+'</span></div>').join('');
   if(QUIETO) return;
@@ -600,7 +610,8 @@ const QUIETO = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 /* ══ paleta ══ */
 const ALL=[].concat(
   [{t:'La llamada, paso a paso',d:'El guión interactivo de la llamada',u:'./llamada/',w:'Diario'},
-   {t:'El día a día del closer',d:'Tu rutina de la mañana al cierre',u:'https://docs.google.com/document/d/154x0zrxHi2KMwCv43hRCRLM7hbSOFBnDghLue0PoEn0/edit',x:1,w:'Diario'}],
+   {t:'El día a día del closer',d:'Tu rutina de la mañana al cierre',u:'https://docs.google.com/document/d/154x0zrxHi2KMwCv43hRCRLM7hbSOFBnDghLue0PoEn0/edit',x:1,w:'Diario'},
+   {t:'Objeciones reales',d:'Lo que dice el lead y qué le contestas',u:'https://docs.google.com/document/d/1QaSWSKQpFFkyxQqvWxC5Wz8uQkkbwg-N-lx-c4O5fsk/edit',x:1,w:'Diario'}],
   ...D.map(s=>s.items.map(d=>({...d,w:s.g}))),
   T.map(d=>({...d,x:1,w:'Herramienta'})));
 

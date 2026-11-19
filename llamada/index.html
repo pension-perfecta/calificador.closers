@@ -407,13 +407,8 @@ footer{margin-top:24px;font-size:12.3px;color:var(--muted);border-top:1px solid 
    opts = botones. ir: id del paso siguiente. tono: ok | warn | stop
    ═══════════════════════════════════════════════════════════════ */
 
-/* los 7 productos, con el nombre tal cual lo escribe Creditia */
+/* los cinco productos, con el nombre tal cual lo escribe Creditia */
 const PRODS=[
- {id:"retro_ahora", n:"Fin. Retroactivo (ahora)",    s:"Modalidad 40 retroactivo.", pitch:"mod40",w:3,
-   img:["Modalidad 40: cuánto puede subir su pensión"]},
- {id:"retro_futuro",n:"Fin. Retroactivo (futuro)",   s:"Mismo producto, el retroactivo arranca después.",           pitch:"mod40",w:3,
-   tip:"Confirma edad y tiempo sin cotizar antes de prometer fecha.",
-   img:["Modalidad 40: cuánto puede subir su pensión"]},
  {id:"recupera",    n:"Recuperación de Derechos",    s:"Perdió derechos por el tiempo que estuvo sin cotizar.",     pitch:"recupera",
    img:["Recuperar derechos: volver a abrir el camino a su pensión"]},
  {id:"minima",      n:"Actualización Pensión Mínima",s:"Por sus semanas y su promedio alcanzaría la mínima.",       pitch:"minima",
@@ -450,16 +445,6 @@ const SINPROD=[
 ];
 
 const PITCH={
- mod40:{n:"Modalidad 40 retroactivo",
-   ficha:{obj:[
-     ["«¿Cuánto me van a prestar?»","Depende de tus semanas, de tu salario y de tu AFORE. Ese número te lo da el asesor en la asesoría con tus documentos. Lo que yo te confirmo hoy es que sí eres candidato."],
-     ["«¿Cuánto me va a subir la pensión?»","Esa es justo la pregunta de la asesoría. Ahí te ponen el número de tu caso, no un aproximado, y decides con eso enfrente."],
-     ["«¿Me van a cobrar intereses?»","El costo completo te lo explica el asesor con números. Lo que te adelanto es que el préstamo lo usas unos meses, no años, porque se salda cuando recibes tu AFORE y tu primer pago de pensión."],
-     ["«No quiero deudas a mi edad»","Lo entiendo, y por eso esto no se parece a un crédito normal: tú no pones dinero de tu bolsa hoy, y se salda con lo que el IMSS te entrega al pensionarte. En la asesoría lo ves con números y ahí decides."],
-     ["«¿Y si no me aprueban?»","Para eso es la revisión. Si tu caso no da, te lo decimos de frente y no avanzamos; no te hacemos perder tiempo ni dinero."]]},
-   say:[
-   ["Pitch","Lo que hacemos es prestarte lo que se necesita para pagar el retroactivo de tu modalidad 40, del tiempo que llevas sin cotizar. Con ese dinero pagamos tu modalidad 40 y pedimos tu pensión, que llega en unos cuatro o cinco meses. Al recibir tu AFORE y tu primer pago, con eso saldas el préstamo. Así solo usas el préstamo unos meses, en lugar de estar pagando intereses durante años, y te vamos llevando de la mano en todo."],
-   ["Cierra el pitch","En la asesoría el experto revisa todas las opciones que tienes, te dice cuál es la mejor pensión que puedes alcanzar y te explica el paso a paso para avanzar. ¿Te parecería viable que revisara si puedo agendarte?"]]},
  recupera:{n:"Recuperación de derechos",
    ficha:{obj:[
      ["«¿Entonces ya perdí todo?»","No. Tus semanas siguen ahí, lo que se perdió es el derecho a pedir la pensión hoy. Ese derecho se puede recuperar cotizando otra vez, y de eso se trata la asesoría."],
@@ -782,7 +767,7 @@ cierre:{bloque:"cierre",eyebrow:"Cierre",h:"Despídete",
 registro:{bloque:"registro",eyebrow:"Al colgar",h:"Seis cosas, sin excepción",
   fin:{ok:1,t:"Antes de pasar al siguiente lead",l:[
     "Mueves la oportunidad a <b>Asesoría agendada</b>",
-    "<b>El reporte de semanas</b>: si no lo tienes, lo pides en el grupo. Va en los siete productos, y de ahí sale el NSS",
+    "<b>El reporte de semanas</b>: si no lo tienes, lo pides en el grupo. Va en todos los productos, y de ahí sale el NSS",
     "Llenas <b>Tipo de asesoría</b> con el producto",
     "<b>Dejas tu nota</b> con lo que pasó en la llamada",
     "Metes la oportunidad al <b>tracker</b>",
@@ -803,23 +788,17 @@ const BECA_CREDITO=[["El espacio se lo gana él","La asesoría para ti no tiene 
   ["Pide la palabra y espera","<em>¿Me das tu palabra de que ahí vas a estar?</em>"]];
 
 /* el AFORE depende del producto */
-const AFORE_OBLIG={corto:"AFORE",h:"Obligatorio en Modalidad 40",
-  say:[["Qué le dices","Para avanzar necesito tu estado de cuenta del AFORE. Es el documento que nos dice cuánto podemos financiarte. ¿Lo tienes a la mano o lo consigues antes de la asesoría?"],
-       ["Si no lo tiene","Necesito que me lo consigas antes de la asesoría, es lo que nos dice cuánto podemos financiarte. Ahorita te mando por WhatsApp cómo sacarlo en dos minutos."]],
-  tip:"Sin AFORE no avanza el expediente de Modalidad 40.",
-  opts:[{t:"Lo tiene o lo va a conseguir",ir:"oferta"},
-        {t:"No lo tiene, ya le mandé el instructivo",tono:"warn",ir:"oferta"}]};
 const AFORE_OPC={corto:"AFORE",h:"Se pide igual, aunque no sea obligatorio",
   say:[["Qué le dices","Si tienes tu estado de cuenta del AFORE, mándamelo, nos ayuda a que el asesor llegue con todo listo."]],
   tip:"Aquí se puede agendar sin él, pero el que llega con su AFORE firma mucho más.",
   opts:[{t:"Listo, sigo",ir:"oferta"}]};
 /* Pensión Express: decisión de Franco del 22-oct. Aquí el AFORE no califica nada, es documento
-   del trámite, y sin él el proceso se atrasa meses. Por eso sí frena la agenda, a diferencia de
-   Modalidad 40, donde quien decide si el AFORE alcanza es el sistema y no el closer en la llamada. */
+   del trámite, y sin él el proceso se atrasa meses. Por eso es el único producto donde el AFORE
+   frena la agenda; en los demás se pide igual, pero no detiene la cita. */
 const AFORE_GEST={corto:"AFORE",h:"Obligatorio en Pensión Express",
   say:[["Qué le dices","Para apartarte el espacio necesito tu estado de cuenta del AFORE. Es lo que evita que tu trámite se atore meses. ¿Lo tienes a la mano o lo consigues hoy?"],
        ["Si no lo tiene","Ahorita te mando por WhatsApp cómo sacarlo, son dos minutos. En cuanto me lo pases te aparto el espacio."]],
-  tip:"Sin AFORE no se agenda. Es el único producto además de Modalidad 40 donde el documento es condición, y aquí sí frena la cita.",
+  tip:"Sin AFORE no se agenda. Es el único producto donde el documento es condición y frena la cita.",
   opts:[{t:"Lo tiene o lo consigue hoy",ir:"oferta"},
         {t:"No lo tiene",tono:"stop",ir:"sinafore"}]};
 const AFORE_NO={corto:"AFORE",h:"Aquí no va el AFORE",
@@ -848,10 +827,9 @@ function datos(){
   }
   if(actual==="afore"){
     if(!PROD) return Object.assign({},P.afore,{h:"Falta elegir el producto",
-      tip:"El AFORE es obligatorio en Modalidad 40 y en Pensión Express, y opcional en los demás. Marca el producto primero.",
+      tip:"El AFORE es obligatorio en Pensión Express y opcional en los demás. Marca el producto primero.",
       opts:[{t:"Ir al paso 0",ir:"producto"}]});
-    const base=(PROD==="retro_ahora"||PROD==="retro_futuro")?AFORE_OBLIG
-             :(PROD==="gestion")?AFORE_GEST
+    const base=(PROD==="gestion")?AFORE_GEST
              :(PROD==="credito")?AFORE_NO:AFORE_OPC;
     return Object.assign({},P.afore,base);
   }

@@ -3,15 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Closers de financiamiento, noviembre 2026 en curso. Direccion de Closers, Pension Perfecta.">
+<title>Consola de direcci&oacute;n</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<title>Closers de financiamiento: noviembre 2026</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&amp;family=Instrument+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
-<style>*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;font:14px system-ui,sans-serif}img,svg{max-width:100%}button,input{font:inherit;color:inherit}[hidden]{display:none!important}
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>/* Consola de direccion. Misma piel que el tablero del equipo a proposito: es el mismo producto,
+   no otro. Lo que cambia es la densidad y que de aqui salen los mensajes. */
+*{box-sizing:border-box}
 :root{
   --ground:#F1F4EF; --panel:#FFFFFF; --panel-2:#F6F8F3;
   --ink:#1B2620; --ink-2:#42504A; --muted:#5C6B60; --faint:#8B978C;
@@ -35,1612 +34,225 @@
   --brand:#4FB68C; --accent:#57C395; --accent-soft:#13291F;
   --blue:#7FA8D4; --blue-soft:#16222F; --gold:#D3A257; --gold-soft:#2A2315;
   --red:#DE8A7C; --red-soft:#2E1B18;}
-*{box-sizing:border-box}
-body{margin:0;background:var(--ground);color:var(--ink);
-  font-family:"Instrument Sans",-apple-system,system-ui,sans-serif;font-size:15px;line-height:1.55;
+html,body{margin:0;padding:0}
+body{background:var(--ground);color:var(--ink);
+  font-family:"Instrument Sans",-apple-system,system-ui,sans-serif;font-size:14px;line-height:1.5;
   -webkit-font-smoothing:antialiased}
-.wrap{max-width:1440px;margin:0 auto;padding:46px 30px 84px;position:relative}
-
-@media (max-width:640px){}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
-.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand);
-  font-weight:600;margin:0 0 12px;font-family:"IBM Plex Mono",monospace}
-h1{font-family:"Fraunces","Instrument Serif",Georgia,serif;font-weight:400;
-  font-size:clamp(36px,5vw,54px);line-height:1.06;letter-spacing:-.015em;margin:0 0 18px;text-wrap:balance}
-h1 em{font-style:italic;color:var(--accent)}
-h1 s{text-decoration:none;color:var(--red);font-style:italic}
-.lede{font-size:18px;color:var(--ink-2);margin:0 0 34px}
-.lede b{color:var(--ink);font-weight:600}
-section{margin-top:64px}
-h2{font-family:"Fraunces","Instrument Serif",Georgia,serif;font-weight:400;font-size:30px;
-  letter-spacing:-.01em;margin:0 0 8px;line-height:1.15}
-.sub{color:var(--muted);font-size:14.5px;margin:0 0 22px}
-.sub b{color:var(--ink-2)}
-.step{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;
-  color:#fff;background:var(--brand);padding:4px 11px;border-radius:3px;letter-spacing:.09em;margin-bottom:12px}
-
-.per{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:5px;overflow:hidden}
-.per .p{background:var(--panel);padding:22px 26px}
-.per .p.now{background:var(--panel-2)}
-.per .p.proj{background:var(--accent-soft)}
-.per h3{margin:0 0 3px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
-  font-family:"IBM Plex Mono",monospace;color:var(--muted);font-weight:600}
-.per .cap{font-size:11.5px;color:var(--faint);margin:0 0 15px;font-family:"IBM Plex Mono",monospace}
-.prow{display:grid;grid-template-columns:1fr auto 54px;align-items:baseline;gap:12px;
-  padding:9px 0;border-top:1px solid var(--line-2)}
-.prow:first-of-type{border-top:none}
-.prow span{font-size:13.5px;color:var(--ink-2)}
-.prow b{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
-  font-size:19px;font-weight:600;white-space:nowrap}
-.prow i{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;
-  font-style:normal;text-align:right;white-space:nowrap}
-.dn{color:var(--red)} .up{color:var(--accent)} .fl{color:var(--faint)}
-
-.ctx{margin-top:34px}
-.ctxh{font-family:"Fraunces","Instrument Serif",Georgia,serif;font-weight:400;font-size:24px;
-  letter-spacing:-.01em;margin:0 0 6px;line-height:1.2}
-.cmp{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
-@media (max-width:940px){.cmp{grid-template-columns:1fr}}
-.cgrp{background:var(--panel);border:1px solid var(--line);border-radius:5px;overflow:hidden}
-.cown{background:var(--brand);color:#fff;padding:10px 22px;font-size:11.5px;font-weight:600;
-  letter-spacing:.11em;text-transform:uppercase;font-family:"IBM Plex Mono",monospace}
-.cown.alt{background:var(--blue)}
-.crow{padding:16px 22px;border-top:1px solid var(--line-2)}
-.crow:first-of-type{border-top:none}
-.ctit{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:9px}
-.ctit span{font-size:14px;font-weight:600;color:var(--ink)}
-.ctit em{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;white-space:nowrap}
-.cline{display:grid;grid-template-columns:52px 1fr 50px 54px;align-items:center;gap:9px;margin-top:5px}
-.chead{display:grid;grid-template-columns:52px 1fr 50px 54px;gap:9px;padding:12px 22px 0;
-  font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
-.chead span:nth-child(3),.chead span:nth-child(4){text-align:right;white-space:nowrap}
-.cline .tot{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
-  font-size:13.5px;font-weight:500;text-align:right;white-space:nowrap;color:var(--ink)}
-.cline .m{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--faint);letter-spacing:.05em}
-.cline .t{height:13px;background:var(--panel-2);border-radius:3px;overflow:hidden}
-.cline .t i{display:block;height:100%;border-radius:3px}
-.cline .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
-  font-size:13.5px;font-weight:600;text-align:right;color:var(--ink)}
-.esc{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:5px;overflow:hidden}
-.esc .e{background:var(--panel);padding:20px 24px;border-top:3px solid var(--accent)}
-.esc .e.last{border-top-color:var(--red);background:var(--red-soft)}
-.esc .k{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);
-  font-weight:600;font-family:"IBM Plex Mono",monospace}
-.esc .n{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
-  font-size:22px;font-weight:600;margin:9px 0 4px;letter-spacing:-.02em;color:var(--ink)}
-.esc .p{font-family:"IBM Plex Mono",monospace;font-size:15px;font-weight:600}
-@media (max-width:900px){.esc{grid-template-columns:repeat(2,1fr)}}
-.funs{display:grid;gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:5px;overflow:hidden}
-.fh{display:grid;grid-template-columns:180px repeat(3,1fr) 196px;background:var(--panel);align-items:center}
-.fh.now{background:var(--panel-2)}
-.fhm{padding:22px 24px}
-.fh h3{margin:0 0 3px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
-  font-family:"IBM Plex Mono",monospace;color:var(--ink);font-weight:600}
-.fh .cap{font-size:11.5px;color:var(--faint);margin:0;font-family:"IBM Plex Mono",monospace}
-.fstep{padding:20px 22px;border-left:1px solid var(--line);align-self:stretch;
-  display:flex;flex-direction:column;justify-content:center}
-.fstep .lab{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:7px}
-.fstep .lab span{font-size:12.5px;color:var(--muted);line-height:1.3}
-.fstep .lab b{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
-  font-size:19px;font-weight:600;color:var(--ink);white-space:nowrap}
-.fbar{height:14px;border-radius:3px;background:var(--line);overflow:hidden}
-.fbar i{display:block;height:100%;border-radius:3px}
-.fkey{padding:18px 24px;border-left:1px solid var(--line);align-self:stretch;
-  display:flex;flex-direction:column;justify-content:center}
-.fkey .k{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
-  font-weight:600;font-family:"IBM Plex Mono",monospace}
-.fkey .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
-  font-size:33px;font-weight:600;letter-spacing:-.02em;margin-top:4px;line-height:1}
-.fkey .d{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.35}
-@media (max-width:940px){.fh{grid-template-columns:1fr}
-  .fstep,.fkey{border-left:none;border-top:1px solid var(--line)}}
-.chartbox{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:24px 22px 14px;overflow-x:auto}
-.legend{display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);font-weight:500;padding:0 4px 16px}
-.legend i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:7px;vertical-align:-1px}
-
-.tcard{background:var(--panel);border:1px solid var(--line);border-radius:5px;overflow-x:auto}
-.tnote{padding:11px 18px;background:var(--panel-2);border-bottom:1px solid var(--line);
-  font-size:12px;color:var(--muted);font-family:"IBM Plex Mono",monospace;
-  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
-.tnote b{color:var(--brand);font-weight:600}
-table{border-collapse:collapse;width:100%;font-size:13.5px}
-th{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;
-  text-align:right;padding:12px 12px;border-bottom:1px solid var(--line);white-space:nowrap;
-  background:var(--panel-2);cursor:pointer;user-select:none}
-th:hover{color:var(--accent)}
-th:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
-th::after{content:"⇅";opacity:.3;margin-left:6px;font-size:9px}
-th.up::after{content:"↑";opacity:1;color:var(--accent)}
-th.dn::after{content:"↓";opacity:1;color:var(--accent)}
-th:first-child,td:first-child{text-align:left;padding-left:18px}
-td{padding:10px 12px;border-bottom:1px solid var(--line-2);text-align:right;white-space:nowrap;
-  color:var(--ink-2);font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
-td:first-child{font-family:"Instrument Sans",sans-serif;font-weight:600;color:var(--ink)}
-tbody tr:last-child td{border-bottom:none}
-tbody tr:hover td{background:var(--panel-2)}
-tr.best td{background:var(--accent-soft)} tr.best:hover td{background:var(--accent-soft)}
-tr.worst td{background:var(--red-soft)} tr.worst:hover td{background:var(--red-soft)}
-td.bad{color:var(--red);font-weight:600} td.good{color:var(--accent);font-weight:600}
-.idx{display:inline-block;width:52px;height:7px;border-radius:2px;background:var(--line);
-  overflow:hidden;vertical-align:middle;margin-left:8px}
-.idx i{display:block;height:100%;border-radius:2px}
-.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;padding:2px 7px;
-  border-radius:3px;font-family:"Instrument Sans",sans-serif;margin-left:8px;text-transform:uppercase}
-.tag.a{background:var(--accent);color:#fff} .tag.b{background:var(--red);color:#fff}
-
-.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px;margin-top:22px}
-.dcard{border-radius:5px;overflow:hidden;border:1px solid var(--line);display:block}
-.dcard .hd{display:block;padding:14px 24px;color:#fff}
-.dcard.neg .hd{background:var(--red)} .dcard.pos .hd{background:var(--accent)}
-.dcard .hd b{font-size:16.5px;font-weight:600;display:block}
-.dcard .hd span{font-family:"IBM Plex Mono",monospace;font-size:11.5px;opacity:.9;display:block;margin-top:2px}
-.dcard .bd{background:var(--panel);padding:6px 24px 18px;display:block}
-.qa{padding:13px 0;border-top:1px solid var(--line-2)}
-.qa:first-child{border-top:none}
-.qa .q{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);
-  font-weight:600;font-family:"IBM Plex Mono",monospace;margin-bottom:4px}
-.qa .a{font-size:14.5px;color:var(--ink-2)}
-.qa .a b{color:var(--ink)}
-.big{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
-  font-size:26px;font-weight:600;letter-spacing:-.02em;display:block;margin:2px 0 4px}
-
-.ask{background:var(--panel);border:1px solid var(--line);border-radius:5px;margin-top:16px;overflow:hidden}
-.ask .hd{background:var(--brand);color:#fff;padding:13px 22px;display:flex;justify-content:space-between;
-  gap:14px;flex-wrap:wrap;align-items:baseline}
-.ask .hd b{font-size:16px;font-weight:600}
-.ask .hd span{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;opacity:.88}
-.ask .bd{padding:6px 22px 18px}
-.arow{display:grid;grid-template-columns:118px 1fr;gap:6px 16px;font-size:14.5px;color:var(--ink-2);
-  padding:12px 0;border-top:1px solid var(--line-2)}
-.arow:first-child{border-top:none}
-.arow b{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--muted);padding-top:3px}
-.gain{font-family:"IBM Plex Mono",monospace;font-weight:600;color:var(--accent)}
-
-.bwrap{border:1px solid var(--line);border-radius:5px;overflow:hidden;margin-top:20px}
-.bhd{padding:10px 22px;font-size:11.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;
-  font-family:"IBM Plex Mono",monospace;color:#fff;background:var(--brand)}
-.bhd.b{background:var(--blue)}
-.blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:1px;
-  background:var(--line);border-top:1px solid var(--line);overflow:hidden}
-.vv{display:flex;flex-direction:column;gap:2px;font-family:"IBM Plex Mono",monospace;
-  font-variant-numeric:tabular-nums}
-.vv span{display:flex;align-items:baseline;gap:6px;font-size:12px;color:var(--muted)}
-.vv span em{font-style:normal}
-.vv b{font-size:21px;font-weight:600;color:var(--accent);letter-spacing:-.02em;min-width:56px}
-.vv.big b{font-size:25px}
-.vnil{font-size:14px;font-style:italic;color:var(--faint);padding:6px 0 4px}
-.bwrap.b .bl .num,.bwrap.b .bl .v{color:var(--blue)}
-.bwrap.b .bl.tot{background:var(--blue-soft)}
-.bl{background:var(--panel);padding:20px 22px}
-.bl .num{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;color:var(--brand);letter-spacing:.11em}
-.bl .t{font-size:14.5px;font-weight:600;margin:8px 0 6px;color:var(--ink)}
-.bl .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
-  font-size:23px;font-weight:600;color:var(--accent);letter-spacing:-.02em}
-.bl .d{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.45}
-.bl.tot{background:var(--accent-soft)} .bl.tot .v{font-size:27px}
-@media (max-width:760px){.blocks{grid-template-columns:1fr}}
-
-.mrows{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:6px 26px 14px}
-.mrow{display:grid;grid-template-columns:250px 1fr 150px;align-items:center;gap:22px;
-  padding:17px 0;border-top:1px solid var(--line-2)}
-.mrow:first-child{border-top:none}
-.mlab{font-size:14.5px;font-weight:600;color:var(--ink)}
-.mlab small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:2px;line-height:1.35}
-.mtrack{position:relative;height:26px;background:var(--panel-2);border-radius:3px;overflow:hidden}
-.mnow{position:absolute;left:0;top:0;height:100%;background:var(--faint);opacity:.5;border-radius:3px}
-.mgoal{position:absolute;top:0;height:100%;border-right:3px solid var(--accent)}
-.mval{display:flex;justify-content:flex-end;align-items:baseline;gap:10px;
-  font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
-.mval .a{font-size:15px;color:var(--muted)}
-.mval .arw{color:var(--faint);font-size:13px}
-.mval .b{font-size:19px;font-weight:600;color:var(--accent)}
-.note{border-left:3px solid var(--blue);background:var(--blue-soft);border-radius:0 6px 6px 0;
-  padding:24px 30px 26px;margin-top:24px}
-.note.g{border-left-color:var(--accent);background:var(--accent-soft)}
-.note.w{border-left-color:var(--gold);background:var(--gold-soft)}
-.note h3{margin:0 0 12px;font-family:"Fraunces","Instrument Serif",Georgia,serif;font-weight:400;
-  font-size:21px;line-height:1.22;letter-spacing:-.01em;color:var(--ink);text-wrap:balance}
-.note p{margin:0;font-size:14.5px;line-height:1.68;color:var(--ink-2)}
-.note p+p{margin-top:12px}
-.note b{color:var(--ink);font-weight:600}
-.foot{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
-  color:var(--faint);font-size:12px;line-height:1.7}
-@media (max-width:860px){.per{grid-template-columns:1fr}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
-
-.eqx{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--panel);margin-top:20px}
-.eqt{border-collapse:collapse;width:100%;min-width:640px;font-variant-numeric:tabular-nums}
-.eqt th{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
- color:var(--faint);font-weight:600;text-align:right;padding:13px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
-.eqt th:first-child{text-align:left}
-.eqt td{padding:13px 14px;text-align:right;font-size:14px;border-top:1px solid var(--line-2);color:var(--ink)}
-.eqt td:first-child{text-align:left;font-weight:500}
-.eqt td.pc{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--muted)}
-.eqt tr.tot td{background:var(--panel-2);border-top:1px solid var(--line);color:var(--ink)}
-.eqt tr.tot td.pc{color:var(--ink-2)}
-.note{color:var(--muted);font-size:13.5px;margin:14px 0 0;line-height:1.65}
-.note b{color:var(--ink-2)}
-.blocks{grid-template-columns:repeat(4,1fr)}
-@media (max-width:1080px){.blocks{grid-template-columns:repeat(2,1fr)}}
-.bl.tot{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:30px 24px 32px;gap:0}
-.bl.tot .t{margin:9px 0 0}
-.bl.tot .d{margin:12px auto 0;font-size:14px;line-height:1.6;max-width:56ch}
-.bl.tot .vv.big{justify-content:center}
-
-.chain{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:5px;overflow:hidden;margin-top:26px}
-.cn{background:var(--panel);padding:20px 18px;display:flex;flex-direction:column;justify-content:flex-start}
-.cn.on{background:var(--panel-2)}
-.cn .k{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;line-height:1.4}
-.cn .k>span{flex:1;min-width:0;display:block}
-.cn .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:27px;
-  font-weight:600;letter-spacing:-.02em;line-height:1.05;margin-top:auto;padding-top:10px;color:var(--ink)}
-.cn .k{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;min-height:30px}
-.cn .mom{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;letter-spacing:0;
-  text-transform:none;white-space:nowrap;flex-shrink:0}
-@media (max-width:940px){.chain{grid-template-columns:repeat(2,1fr)}}
-.unif{background:var(--panel);border:1px solid var(--line);border-radius:5px;overflow:hidden}
-.uhd{display:grid;grid-template-columns:1fr 54px 58px;gap:10px;align-items:center;
-  background:var(--brand);color:#fff;padding:9px 22px;font-size:11.5px;font-weight:600;
-  letter-spacing:.11em;text-transform:uppercase;font-family:"IBM Plex Mono",monospace}
-.uhd.alt{background:var(--blue)}
-.uhd .uc{font-size:9.5px;letter-spacing:.08em;text-align:right;opacity:.75}
-.urow{padding:15px 22px;border-top:1px solid var(--line-2)}
-.utit{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px}
-.utit span{font-size:14px;font-weight:600;color:var(--ink)}
-.utit em{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;white-space:nowrap}
-.uln{display:grid;grid-template-columns:52px 1fr 54px 58px;align-items:center;gap:10px;margin-top:5px}
-.uln .m{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--faint);letter-spacing:.05em}
-.uln .t{height:13px;background:var(--panel-2);border-radius:3px;overflow:hidden}
-.uln .t i{display:block;height:100%;border-radius:3px}
-.uln .v,.uln .tot{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
-  font-size:13.5px;font-weight:600;text-align:right;color:var(--ink)}
-.uln .tot{font-weight:500}
-.wins{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:5px;overflow:hidden}
-.wn{background:var(--panel);padding:20px 22px}
-.wn.bad{background:var(--red-soft)}
-.wn .k{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
-.wn .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:38px;font-weight:600;letter-spacing:-.02em;line-height:1;margin-top:8px}
-.wn .d{font-size:12.5px;color:var(--muted);margin-top:7px;line-height:1.45}
-@media (max-width:760px){.wins{grid-template-columns:1fr}}
-.pan{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media (max-width:940px){.pan{grid-template-columns:1fr}}
-.pg{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--panel)}
-.ph{padding:10px 20px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent)}
-.pg.b .ph{background:var(--red)}
-.pr{display:grid;grid-template-columns:22px 1fr 78px 62px;align-items:center;gap:10px;
-  padding:11px 20px;border-top:1px solid var(--line-2)}
-.pr .i{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--faint)}
-.pr .nm{font-size:13.5px;font-weight:600;color:var(--ink)}
-.pr .nm small{display:block;font-weight:400;font-size:11px;color:var(--faint);margin-top:2px;font-family:"IBM Plex Mono",monospace}
-.pr .bar{height:7px;border-radius:4px;background:var(--panel-2);overflow:hidden}
-.pr .bar i{display:block;height:100%;border-radius:4px}
-.pr .n{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:16px;font-weight:600;text-align:right}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;
-  background:var(--line);border:1px solid var(--line);border-radius:5px;overflow:hidden}
-.sc{background:var(--panel);padding:16px 20px 18px}
-.sc .k{font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:12px}
-.sc .r{display:grid;grid-template-columns:60px 1fr 56px;align-items:center;gap:9px;padding:4px 0;font-size:11.5px;color:var(--muted)}
-.sc .r em{font-style:normal;color:var(--faint);font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.sc .r b{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:14px;font-weight:600;color:var(--ink);text-align:right}
-.sc .r.top b{color:var(--accent)} .sc .r.bot b{color:var(--red)}
-.tcard tr .dot{display:inline-block;width:8px;height:8px;border-radius:3px;margin-right:8px;vertical-align:middle}
-.tcard td .nd{color:var(--faint);font-style:italic}
-.caus{background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:20px}
-.cs{display:grid;grid-template-columns:250px 1fr 46px 92px;align-items:center;gap:16px;
-  padding:15px 22px;border-top:1px solid var(--line-2)}
-.cs:first-child{border-top:none}
-.cs .cn2{font-size:14px;font-weight:600;color:var(--ink)}
-.cs .cb{height:14px;background:var(--panel-2);border-radius:3px;overflow:hidden}
-.cs .cb i{display:block;height:100%;border-radius:3px}
-.cs .cq{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:19px;
-  font-weight:600;text-align:right;color:var(--ink)}
-.cs .cf{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);text-align:right;white-space:nowrap}
-.cs.sr{background:var(--panel-2)}
-.cs.sr .cn2,.cs.sr .cq{color:var(--faint);font-weight:500}
-@media (max-width:760px){.cs{grid-template-columns:1fr 46px;gap:8px}.cs .cb{display:none}.cs .cf{grid-column:1/-1;text-align:left}}
-.tbox{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--panel);margin-top:20px}
-.blocks{grid-template-columns:repeat(4,1fr)}
-@media (max-width:1080px){.blocks{grid-template-columns:repeat(2,1fr)}}
-.bl.tot{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;text-align:center;
-  padding:30px 24px 32px;gap:0}
-.bl.tot .t{margin:9px 0 0}
-.bl.tot .v{font-size:44px;margin-top:8px;line-height:1}
-.bl.tot .d{margin:12px auto 0;font-size:14px;line-height:1.6;max-width:56ch}
-.tbox .tcard{border:none;border-radius:0;background:transparent}
-.flt{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:14px 18px;min-height:58px;
-  background:var(--panel-2);border-bottom:1px solid var(--line);height:auto}
-.fbtn{display:inline-flex;align-items:center;gap:7px;background:var(--panel);border:1px solid var(--line);
-  border-radius:100px;padding:7px 15px;font-size:12.5px;color:var(--muted);cursor:pointer;
-  font-family:inherit;line-height:1;transition:border-color .15s,color .15s,background .15s}
-.fbtn:hover{border-color:var(--faint);color:var(--ink)}
-.fbtn.on{border-color:var(--ink);color:var(--ink);font-weight:600;background:var(--panel-2)}
-.fbtn i{width:8px;height:8px;border-radius:3px;display:block}
-.fbtn em{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--faint)}
-.fbtn.on em{color:var(--ink-2)}
-.fbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.fbtn.sl{border-color:var(--accent);color:var(--accent)}
-.fbtn.x{border-style:dashed}
-.tcard td{padding:12px 13px}
-.tcard th{padding-top:13px;padding-bottom:13px}
-.tcard th:first-child,.tcard td:first-child{padding-left:20px}
-.tcard td:first-child{padding-right:20px}
-.tcard tbody tr{cursor:pointer;transition:background .12s}
-.tcard tbody tr td:first-child{position:relative}
-.tcard tbody tr.sel td{background:var(--accent-soft)}
-
-.tcard tbody tr.sel td:first-child::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
-.tcard tbody tr.sel td:nth-child(2){font-weight:700}
-.tcard tbody tr:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
-.tsel{font-size:11.5px;color:var(--faint);margin:0;padding:12px 18px;line-height:1.5;
-  border-top:1px solid var(--line);background:var(--panel-2)}
-.tcard table{table-layout:auto}
-.tcard th:nth-child(2),.tcard td:nth-child(2){width:230px;min-width:230px;text-align:left}
-.tcard th:first-child,.tcard td:first-child{width:46px;min-width:46px;padding-left:18px;padding-right:8px}
-.tcard td.rkc{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--faint);
-  text-align:right;font-variant-numeric:tabular-nums}
-.tcard tbody tr.sel td.rkc{color:var(--accent)}
-
-.tag.s{background:var(--red-soft);color:var(--red)}
-.dcard.warn .hd{background:var(--gold)}
-.two{align-items:stretch}
-.two .dcard{display:flex;flex-direction:column}
-.two .dcard .bd{flex:1;display:flex;flex-direction:column}
-.two .dcard .qa:last-child{margin-top:auto}
-.note.w{border-left-color:var(--gold);background:var(--gold-soft)}
-
-.uhero h1{font-family:"Fraunces","Instrument Serif",Georgia,serif;font-weight:400;
- font-size:clamp(32px,4.4vw,50px);line-height:1.06;letter-spacing:-.015em;margin:0 0 16px;text-wrap:balance}
-.uhero h1 em{font-style:italic;color:var(--accent)}
-.usec{margin-top:0}
-.usec h2{font-family:"Fraunces","Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(24px,2.8vw,32px);
- line-height:1.12;letter-spacing:-.01em;margin:0 0 9px;text-wrap:balance}
-.usec h2 em{font-style:italic;color:var(--accent)}
-.uln{display:block;height:1px;background:var(--line);margin:54px 0 46px;border:0}
-.ugrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1px;
- background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
-.ugrid .c{background:var(--panel);padding:19px 21px}
-.ugrid .k{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.11em;
- text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:8px;line-height:1.4}
-.ugrid .v{font-size:29px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
-.ugrid .s{font-size:11.5px;color:var(--faint);margin-top:6px;font-family:"IBM Plex Mono",monospace}
-.ugrid .s.up{color:var(--accent)} .ugrid .s.dn{color:var(--red)}
-.ust{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:9px}
-.ust .c{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:15px 16px 13px}
-.ust .k{font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.1em;
- text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:7px;line-height:1.35}
-.ust .v{font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.ust .b{height:4px;border-radius:3px;margin-top:10px}
-.ust .p{font-family:"IBM Plex Mono",monospace;font-size:10.5px;margin-top:8px;color:var(--muted)}
-.ust .p.bad{color:var(--red)}
-.ubox{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:18px 14px 6px}
-.ufun{border:1px solid var(--line);border-radius:6px;background:var(--panel);overflow:hidden}
-.ufr{display:grid;grid-template-columns:minmax(180px,1.15fr) 82px 82px 1.2fr;gap:14px;align-items:center;
- padding:11px 20px;border-top:1px solid var(--line-2)}
-.ufr:first-child{border-top:none}
-.ufr .n{font-size:13.8px;font-weight:500}
-.ufr .a,.ufr .b{font-family:"IBM Plex Mono",monospace;font-size:14.5px;text-align:right;
- font-variant-numeric:tabular-nums}
-.ufr .a{color:var(--muted)} .ufr .b{color:var(--ink);font-weight:600}
-.ufr .w{font-size:12.3px;color:var(--faint)}
-.ufr.hd{background:var(--panel-2)}
-.ufr.hd span,.ufr.hd .a,.ufr.hd .b{font-family:"IBM Plex Mono",monospace;font-size:8.5px;
- letter-spacing:.09em;text-transform:uppercase;color:var(--faint);font-weight:600}
-.ufr.big{background:var(--accent-soft)}
-.ufr.big .n{font-family:"Fraunces","Instrument Serif",Georgia,serif;font-size:19px}
-.ufr.big .a,.ufr.big .b{font-size:22px} .ufr.big .b{color:var(--accent)}
-.ufr.meta .b{color:var(--accent)}
-@media(max-width:760px){.ufr{grid-template-columns:1fr 66px 66px;gap:8px}
- .ufr .w{grid-column:1/-1;padding-top:2px}}
-.upal{display:grid;grid-template-columns:repeat(auto-fit,minmax(208px,1fr));gap:11px}
-.upal.dos{grid-template-columns:repeat(2,1fr);margin-top:11px}
-@media(max-width:760px){.upal.dos{grid-template-columns:1fr}}
-.upal .c{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:15px 17px;
- border-top:3px solid var(--accent)}
-.upal .c.mk{border-top-color:var(--blue)}
-.upal .o{font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.09em;
- text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:7px}
-.upal .h{font-size:14px;font-weight:600;margin-bottom:6px;line-height:1.35}
-.upal .d{font-size:12.5px;color:var(--ink-2);line-height:1.5}
-.upal .g{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--accent);
- font-weight:600;margin-top:9px;display:block}
-.utab{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--panel);margin-top:4px}
-.utab table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;min-width:640px}
-.utab th{font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.09em;
- text-transform:uppercase;color:var(--faint);font-weight:600;text-align:right;padding:12px 12px;
- border-bottom:1px solid var(--line);white-space:nowrap;user-select:none}
-.utab th:first-child{text-align:left}
-.utab th.s{cursor:pointer}
-.utab th.up::after{content:" \2191";color:var(--accent)}
-.utab th.dn::after{content:" \2193";color:var(--accent)}
-.utab td{padding:9px 12px;text-align:right;font-size:13px;border-top:1px solid var(--line-2);color:var(--ink)}
-.utab td:first-child{text-align:left;font-weight:500}
-.utab tr.tot td{background:var(--panel-2);border-top:1px solid var(--line);font-weight:600}
-.utab td.g{color:var(--accent);font-weight:600} .utab td.r{color:var(--red);font-weight:600}
-.utab td.m{color:var(--muted)} .utab td.mono{font-family:"IBM Plex Mono",monospace;font-size:12px}
-.urk{font-family:"IBM Plex Mono",monospace;color:var(--faint);font-size:11.5px;width:34px;text-align:right}
-.utg{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:8px;letter-spacing:.06em;
- padding:2px 5px;border-radius:3px;background:var(--red-soft);color:var(--red);margin-left:6px;vertical-align:middle}
-.udos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.utres{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
-@media(max-width:900px){.udos{grid-template-columns:1fr}}
-.ucard{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
-.ucard.bad{border-color:var(--red)} .ucard.good{border-color:var(--accent)}
-.ucard h4{font-family:"Fraunces","Instrument Serif",Georgia,serif;font-weight:400;font-size:19px;margin:0 0 8px}
-.ucard p{margin:0 0 9px;font-size:13.5px;color:var(--ink-2)} .ucard p:last-child{margin-bottom:0}
-.ubadge{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.09em;
- text-transform:uppercase;padding:3px 8px;border-radius:4px;font-weight:600;margin-bottom:10px}
-.ubadge.r{background:var(--red-soft);color:var(--red)}
-.ubadge.g{background:var(--accent-soft);color:var(--brand)}
-.ubadge.b{background:var(--blue-soft);color:var(--blue)}
-.uwin{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:11px}
-.uwin .c{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:17px 19px}
-.uwin .c.bad{background:var(--red-soft);border-color:var(--red)}
-.uwin .k{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.11em;
- text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:9px}
-.uwin .v{font-size:33px;font-weight:600;letter-spacing:-.02em;line-height:1}
-.uwin .c.bad .v{color:var(--red)} .uwin .c:not(.bad) .v{color:var(--accent)}
-.uwin .d{font-size:12px;color:var(--muted);margin-top:8px}
-.ucaus{border:1px solid var(--line);border-radius:6px;background:var(--panel);overflow:hidden}
-.ucr{display:grid;grid-template-columns:minmax(200px,1.1fr) 1fr 46px 76px;gap:15px;align-items:center;
- padding:13px 20px;border-top:1px solid var(--line-2)}
-.ucr:first-child{border-top:none}
-.ucr .n{font-size:13.8px;font-weight:600}
-.ucr .t{height:13px;background:var(--panel-2);border-radius:3px;overflow:hidden}
-.ucr .t i{display:block;height:100%;border-radius:3px;background:var(--red)}
-.ucr .q{font-family:"IBM Plex Mono",monospace;font-size:18px;font-weight:600;text-align:right}
-.ucr .p{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted);text-align:right;white-space:nowrap}
-.ucr.gris{background:var(--panel-2)} .ucr.gris .n,.ucr.gris .q{color:var(--faint);font-weight:500}
-@media(max-width:760px){.ucr{grid-template-columns:1fr 46px}.ucr .t{display:none}
- .ucr .p{grid-column:1/-1;text-align:left}}
-
-
-
-}
-
-
-
-
-
-
-
- .k8 .m.dn{color:var(--red)} .k8 .m.eq{color:var(--muted)}
-
-
-
-
-
-
-
-.gbox{background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:22px 20px 10px;margin-top:4px}
-.gnota{background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:5px;
- padding:18px 22px;margin-top:16px}
-.gnota p{margin:0 0 10px;font-size:13.6px;color:var(--ink-2);line-height:1.62}
-.gnota p:last-child{margin-bottom:0} .gnota b{color:var(--ink)}
-.cau2{display:grid;grid-template-columns:minmax(190px,1.15fr) 1fr 52px 110px;gap:16px;align-items:center;
- padding:14px 22px;border-top:1px solid var(--line-2)}
-.cau2:first-child{border-top:none}
-.cau2 .n{font-size:14px;font-weight:600}
-.cau2 .t{height:16px;background:var(--panel-2);border-radius:4px;overflow:hidden}
-.cau2 .t i{display:block;height:100%;border-radius:4px}
-.cau2 .q{font-family:"IBM Plex Mono",monospace;font-size:19px;font-weight:600;text-align:right}
-.cau2 .p{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted);text-align:right;white-space:nowrap}
-.cau2.gris{background:var(--panel-2)} .cau2.gris .n,.cau2.gris .q{color:var(--faint);font-weight:500}
-@media(max-width:760px){.cau2{grid-template-columns:1fr 52px}.cau2 .t{display:none}
- .cau2 .p{grid-column:1/-1;text-align:left}}
-.sem{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-.sem .c{flex:1;min-width:118px;background:var(--panel);border:1px solid var(--line);
- border-radius:6px;padding:13px 15px;text-align:center}
-.sem .c.bad{background:var(--red-soft);border-color:var(--red)}
-.sem .c.top{background:var(--accent-soft);border-color:var(--accent)}
-.sem .k{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--muted);
- font-weight:600;margin-bottom:7px;letter-spacing:.06em}
-.sem .v{font-size:22px;font-weight:600;line-height:1}
-.sem .c.bad .v{color:var(--red)} .sem .c.top .v{color:var(--accent)}
-.sem .d{font-size:10.5px;color:var(--faint);margin-top:6px;font-family:"IBM Plex Mono",monospace}
-.ucard .med{color:var(--muted);font-size:12.5px;margin-top:8px}
-.ucard .med b{color:var(--ink-2)}
-.ffil{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 18px;height:auto;overflow:visible;background:none}
-.fb{display:inline-flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);
- border-radius:20px;padding:7px 15px;font-size:12.5px;color:var(--ink-2);cursor:pointer;
- font-family:inherit;transition:all .15s}
-.fb:hover{border-color:var(--faint)}
-.fb.on{background:var(--brand);border-color:var(--brand);color:#fff}
-.fb i{width:7px;height:7px;border-radius:2px;background:var(--faint)}
-.fb.on i{background:#fff}
-.fb[data-f="top"] i{background:var(--accent)} .fb[data-f="mid"] i{background:var(--gold)}
-.fb[data-f="bot"] i{background:var(--red)} .fb[data-f="out"] i{background:var(--faint)}
-.fb[data-f="all"] i{display:none}
-.fb em{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11px;
- color:var(--faint);font-weight:600}
-.fb.on em{color:rgba(255,255,255,.75)}
-.fb:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.pd{display:inline-block;margin-left:5px;font-family:"IBM Plex Mono",monospace;font-size:10px;
- font-weight:600;color:var(--gold);vertical-align:super}
-.utab td.sucio{color:var(--gold)}
-.utab td.nm{text-align:left;font-weight:600;font-size:13.5px;white-space:nowrap;
- position:sticky;left:0;background:var(--panel);z-index:1}
-.utab tr.tot td.nm{background:var(--panel-2)}
-.utab th:first-child{text-align:left;padding-left:20px}
-.utab td.nm{padding-left:20px}
-.utab td.big{font-size:14.5px;font-weight:700}
-.utab tbody tr:hover td{background:var(--panel-2)}
-.utab tbody tr:hover td.nm{background:var(--panel-2)}
-.utab tr.oculto{display:none}
-.ind{border:1px solid var(--line);border-radius:7px;background:var(--panel);overflow:hidden;max-width:1020px;margin-left:0;margin-right:auto}
-.ir{display:grid;grid-template-columns:minmax(215px,1.1fr) 1fr 140px;gap:20px;align-items:center;
- padding:16px 22px;border-top:1px solid var(--line-2)}
-.ir:first-child{border-top:none}
-.il{font-size:14px;font-weight:600;line-height:1.3}
-.il small{display:block;font-weight:400;font-size:11.5px;color:var(--faint);margin-top:4px;
- font-family:"IBM Plex Mono",monospace;line-height:1.45}
-.it{position:relative;height:11px;background:var(--panel-2);border-radius:6px;overflow:visible}
-.inow{position:absolute;left:0;top:0;height:100%;background:var(--accent);opacity:.45;border-radius:6px}
-.igoal{position:absolute;top:-4px;width:2px;height:19px;background:var(--brand);border-radius:1px}
-.iv{display:flex;align-items:baseline;gap:8px;justify-content:flex-end;
- font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
-.iv .a{font-size:16px;color:var(--muted)} .iv .ar{color:var(--faint);font-size:12px}
-.iv .b{font-size:17px;color:var(--accent);font-weight:600}
-@media(max-width:800px){.ir{grid-template-columns:1fr 110px}.it{grid-column:1/-1}}
-
-/* ---------- acabado ---------- */
-.uwrap{max-width:1180px;margin:0 auto;padding:52px 44px 110px;position:relative}
-.uhero{padding-bottom:6px}
-.uhero h1{font-size:clamp(36px,5vw,58px);line-height:1.02;letter-spacing:-.028em;margin-bottom:20px}
-.eyebrow{letter-spacing:.19em;font-size:10.5px}
-.lede{font-size:18px;line-height:1.62;max-width:76ch;color:var(--ink-2)}
-.lede b{color:var(--ink);font-weight:600}
-.usec h2{font-size:clamp(27px,3.2vw,38px);line-height:1.08;letter-spacing:-.022em;margin-bottom:12px}
-.sub{font-size:15px;line-height:1.62;max-width:78ch;margin-bottom:26px}
-.uln{margin:66px 0 52px;background:linear-gradient(90deg,var(--line) 0%,var(--line) 55%,transparent 100%)}
-.step{letter-spacing:.15em;padding:6px 13px;border-radius:4px;font-size:10px}
-
-/* tarjetas con aire y sombra apenas perceptible */
-
-
-@media (prefers-color-scheme:dark){.ugrid,.k8,.ufun,.ucaus,.utab,.gbox,.ind,
- .uwin .c,.ucard,.upal .c,.ust .c{box-shadow:none}}
-
-.ucard,.upal .c,.uwin .c,.ust .c{border-radius:9px}
-
-/* los ocho numeros grandes */
-
-
-
-
-
-
-
-
-
-/* recuadros de nota */
-.gnota{border-radius:8px;padding:22px 26px;margin-top:20px;
- background:linear-gradient(120deg,var(--accent-soft) 0%,var(--panel-2) 150%);border-left-width:4px}
-.gnota p{font-size:14.2px;line-height:1.68;margin-bottom:12px}
-.gnota p:first-child b:first-child{font-size:15px}
-
-/* ventanas del grupo */
-.uwin .c{padding:22px 24px}
-.uwin .v{font-size:44px;letter-spacing:-.035em}
-.uwin .k{font-size:9.5px;letter-spacing:.13em;margin-bottom:12px}
-.uwin .d{font-size:12.5px;margin-top:11px}
-
-/* embudo */
-.ufr{padding:14px 24px}
-.ufr .n{font-size:14.5px}
-.ufr .a,.ufr .b{font-size:16px}
-.ufr.big{background:linear-gradient(120deg,var(--accent-soft) 0%,var(--panel-2) 160%)}
-.ufr.big .n{font-size:21px} .ufr.big .a,.ufr.big .b{font-size:26px}
-
-/* palancas y tarjetas */
-.upal .c{padding:19px 21px;border-top-width:4px}
-.upal .h{font-size:15px;line-height:1.35;margin-bottom:8px}
-.upal .g{font-size:14px;margin-top:13px;letter-spacing:-.01em}
-.ucard{padding:24px 26px}
-.ucard h4{font-size:20px;line-height:1.25}
-.ucard p{font-size:14px;line-height:1.62}
-.ubadge{letter-spacing:.12em;padding:4px 10px;border-radius:5px;margin-bottom:14px}
-
-/* tabla */
-.utab table{min-width:960px}
-.utab th{padding:14px 11px;font-size:8px;letter-spacing:.09em}
-.utab td{padding:11px 11px;font-size:12.8px}
-.utab td.nm{font-size:14px;padding-left:24px}
-.utab th:first-child{padding-left:24px}
-.utab tbody tr{transition:background .12s}
-.utab td.big{font-size:15px;font-weight:700;letter-spacing:-.02em}
-.utab tr.tot td{font-size:13.5px}
-.ffil{margin-bottom:18px}
-.fb{padding:8px 17px;font-size:13px}
-
-/* causas */
-.cau2{padding:16px 26px}
-.cau2 .n{font-size:14.5px}
-.cau2 .q{font-size:21px}
-.cau2 .t{height:18px;border-radius:5px}
-
-/* indicadores */
-.ir{padding:22px 24px}
-.il{font-size:16px}
-.il small{font-size:12.5px;margin-top:7px}
-.it{height:17px;border-radius:9px}
-.inow{border-radius:9px}
-.igoal{top:-5px;height:27px;width:3px}
-.iv .a{font-size:22px} .iv .b{font-size:26px}
-
-/* cadena de pasos */
-.ust .c{padding:18px 19px 16px}
-.ust .v{font-size:27px;letter-spacing:-.028em}
-.ust .b{height:5px;border-radius:4px;margin-top:12px}
-
-.uhero .lede{max-width:74ch;font-size:19px;line-height:1.6}
-.usec>.sub{max-width:82ch}
-.gnota{max-width:none}
-@media(max-width:640px){
- .uwrap{padding:34px 18px 60px}
- .uhero h1{font-size:31px}
- .lede{font-size:16px}
- .uln{margin:42px 0 34px}}
-
-/* --- reglas de dashboard --- */
-
-
-
-
-
-
-
-
-
- .k8 .c .v.hi{color:var(--accent)}
-
- .k8 .c .d.dn{color:var(--red)} .k8 .c .d.eq{color:var(--muted)}
-
-
-
-
-}
-
-
-@media(max-width:760px){}
-
-
-
-
-
-
-
-
- .k8 .top .d.dn{color:var(--red)} .k8 .top .d.eq{color:var(--muted)}
-
-
-
-
-
-
-.udos{max-width:1020px;margin-left:0;margin-right:auto}
-
-
-
-
-
-
-
- .k8 .tri .sep .n{color:var(--gold);font-size:16px}
-
-
-
-
-
-
-
-
-.t5{border:1px solid var(--line);border-radius:9px;background:var(--panel);overflow:hidden;margin-top:16px}
-.t5 .hd{background:var(--panel-2);padding:11px 22px;border-bottom:1px solid var(--line);
- font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
- color:var(--muted);font-weight:600;display:grid;grid-template-columns:1fr 86px 96px 92px;gap:14px}
-.t5 .hd span:not(:first-child){text-align:right}
-.t5 .r{display:grid;grid-template-columns:1fr 86px 96px 92px;gap:14px;align-items:center;
- padding:13px 22px;border-top:1px solid var(--line-2)}
-.t5 .r:first-of-type{border-top:none}
-.t5 .n{font-size:14.5px;font-weight:600;color:var(--ink)}
-.t5 .a,.t5 .b,.t5 .c{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;text-align:right}
-.t5 .a{font-size:19px;font-weight:600;color:var(--red)}
-.t5 .b{font-size:14px;color:var(--muted)}
-.t5 .c{font-size:14px;color:var(--ink-2);font-weight:600}
-.t5 .ft{padding:13px 22px;border-top:1px solid var(--line);background:var(--panel-2);
- font-size:13px;color:var(--muted);line-height:1.6}
-.t5 .ft b{color:var(--ink)}
-@media(max-width:700px){.t5 .hd,.t5 .r{grid-template-columns:1fr 62px 62px}.t5 .hd span:nth-child(4),.t5 .r .c{display:none}}
-
-body{font-size:15.5px;line-height:1.5;letter-spacing:-.003em}
-
-
-
-
-
-
-
-
- .k8 .c .v.hi{color:var(--accent)!important}
- .k8 .c .d{font-size:12px!important}
-
-
-
-
-
-/* ===== KPIs ===== */
-.kc{background:#ffffff;border:1px solid #e2e6e0;border-radius:8px;padding:20px;
- display:flex;flex-direction:column;align-items:flex-start;text-align:left;min-height:130px;height:auto}
-font-size:11px;letter-spacing:.1em;
- text-transform:uppercase;background:#0E5140;color:#ffffff;padding:3px 7px;border-radius:3px;
- font-weight:600;margin:0 0 8px}
-.kn{font-size:36px;font-weight:600;color:#1a1a1a;margin:8px 0 0;line-height:1;
- letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.kg.r2{grid-template-columns:repeat(5,1fr);gap:12px}
-.kd.up{color:#1B6E4A} .kd.dn{color:#B04434} .kd.eq{color:#6b7280}
-.kx{font-size:11px;color:#6b7280;margin:4px 0 0;line-height:1.4}
-.kx.bad{color:#B04434;font-weight:600;font-size:12px}
- .kstep.s2{left:50%} .kstep.s3{left:calc(75% + 11px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .kc{background:#141E19;border-color:#26332C}
- :root:not([data-theme="light"]) .kc.nstar{background:#13291F;border-color:#2c4a3b}
- :root:not([data-theme="light"]) .kn{color:#E8EFE9}}
-:root[data-theme="dark"] .kc{background:#141E19;border-color:#26332C}
-:root[data-theme="dark"] .kc.nstar{background:#13291F;border-color:#2c4a3b}
-:root[data-theme="dark"] .kn{color:#E8EFE9}
-@media(max-width:1000px){.kg{grid-template-columns:repeat(2,1fr);gap:12px}.kstep{display:none}
- .kg.r1{margin-bottom:12px}}
-
-
-.kg{display:grid;grid-template-columns:repeat(4,1fr);column-gap:16px;row-gap:16px}
-.kg.r1{position:relative;margin-bottom:16px;column-gap:40px}
-.kg.r2{grid-template-columns:repeat(4,1fr)}
-.kg.r3{grid-template-columns:repeat(3,1fr);position:relative;column-gap:40px}
-.kg.r2 .kn,.kg.r3 .kn{font-size:28px}
-.kc.nstar{background:#ffffff;border-color:#e2e6e0;border-left:3px solid #1B6E4A}
-.kg.r1 .kc.nstar .kn{font-size:52px}
-.kstep{position:absolute;top:52px;transform:translateX(-50%);text-align:center;z-index:2;white-space:nowrap}
-.kstep i{display:block;font-family:"IBM Plex Mono",monospace;font-size:15px;font-weight:600;color:#1a1a1a;
- line-height:1;font-style:normal}
-.kstep u{display:block;font-family:"IBM Plex Mono",monospace;font-size:9px;text-transform:uppercase;
- letter-spacing:.06em;color:#6b7280;margin-top:4px;text-decoration:none}
-.kg.r1 .kstep.s1{left:calc(25% - 5px)} .kg.r1 .kstep.s2{left:50%} .kg.r1 .kstep.s3{left:calc(75% + 5px)}
-.kg.r3 .kstep.s1{left:calc(33.33% - 7px)} .kg.r3 .kstep.s2{left:calc(66.66% + 7px)}
-@media (prefers-color-scheme:dark){
- :root:not([data-theme="light"]) .kc.nstar{background:#141E19;border-left-color:#63C79A}
- :root:not([data-theme="light"]) .kstep i,:root:not([data-theme="light"]) .km b{color:#E8EFE9}
- :root:not([data-theme="light"]) .km{color:#A2AEB9}
- :root:not([data-theme="light"]) .acc td{color:#B4C2B8;border-color:#202C26}
- :root:not([data-theme="light"]) .acc td.a,:root:not([data-theme="light"]) .acc tr.tot td{color:#E8EFE9}}
-
-.kg.r1 .kn{font-size:40px!important}
-.kg.r1 .kc.nstar .kn{font-size:52px!important}
-table.acc td,table.acc th{text-align:left!important}
-
-.kh{font-family:"IBM Plex Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;
- font-weight:600;color:#4b5563;margin:0 0 14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.kl{font-family:"IBM Plex Mono",monospace;font-size:12px;text-transform:uppercase;letter-spacing:.08em;
- font-weight:600;color:#4b5563;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
- line-height:20px}
-.kd{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500;margin:0;line-height:1.5;color:#4b5563}
-.kd.up{color:#15803d} .kd.dn{color:#b91c1c} .kd.eq{color:#4b5563}
-.km{display:flex;align-items:baseline;gap:7px;background:#f5f5f4;border-radius:4px;padding:6px 10px;
- min-height:32px;box-sizing:border-box;margin:0;font-family:"IBM Plex Mono",monospace;white-space:nowrap;
- overflow:hidden}
-.km em{font-style:normal;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#4b5563;
- font-weight:600}
-.km b{font-size:18px;font-weight:600;color:#15803d;line-height:1}
-.km.plain{background:transparent;padding:6px 0;font-size:13px;color:#4b5563;display:block;line-height:1.5}
-.kc{grid-template-rows:20px auto auto 32px!important;row-gap:7px!important}
-.kn.rate.lo{color:#b91c1c} .kn.rate.hi{color:#15803d}
-.kstep i.lo{color:#b91c1c} .kstep i.hi{color:#15803d}
-.accw{overflow-x:auto;margin-top:6px}
-.acc{width:100%;min-width:820px;border-collapse:collapse}
-.acc td.a,.acc td.m{white-space:normal}
-.acc th{font-family:"IBM Plex Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;
- color:#4b5563;font-weight:600;text-align:left!important;padding:0 14px 11px 0;border-bottom:1px solid #e2e6e0;
- cursor:default;user-select:auto}
-.acc th::after{content:none!important}
-.acc td{font-size:15px;padding:15px 14px 15px 0;border-bottom:1px solid #eef1ec;color:#42504A;
- vertical-align:top;text-align:left!important;line-height:1.5}
-.acc td.p{font-family:"IBM Plex Mono",monospace;color:#4b5563;width:28px}
-.acc td.a{color:#1a1a1a;font-weight:500;width:30%}
-.acc td.d{font-family:"IBM Plex Mono",monospace;white-space:nowrap;width:15%}
-.acc td.v{font-family:"IBM Plex Mono",monospace;font-size:16px;font-weight:600;color:#15803d;
- white-space:nowrap;width:17%}
-.acc td.m{font-size:13px;color:#4b5563}
-.acc tr.tot td{border-top:2px solid #cfd4cb;border-bottom:none;font-weight:600;color:#1a1a1a;
- background:#f5f5f4;padding-top:15px}
-.acc tr.tot td.v{color:#15803d}
-.accn{font-size:14px;color:#42504A;margin:18px 0 0;line-height:1.6}
-@media (prefers-color-scheme:dark){
- :root:not([data-theme="light"]) .km{background:#1A2620}
- :root:not([data-theme="light"]) .km em,:root:not([data-theme="light"]) .kd.eq,
- :root:not([data-theme="light"]) .kl,:root:not([data-theme="light"]) .kh{color:#A2AEB9}
- :root:not([data-theme="light"]) .km b{color:#63C79A}
- :root:not([data-theme="light"]) .acc td{color:#B4C2B8;border-color:#202C26}
- :root:not([data-theme="light"]) .acc td.a,:root:not([data-theme="light"]) .acc tr.tot td{color:#E8EFE9}
- :root:not([data-theme="light"]) .acc tr.tot td{background:#1A2620}}
-
-.km em{font-size:11px!important}
-
-.kb{position:absolute;top:14px;right:14px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.09em;text-transform:uppercase;background:#0E5140;color:#ffffff;padding:4px 9px;border-radius:3px;font-weight:600;line-height:1;z-index:3}
-
-.act{border:1px solid #e2e6e0;border-left:3px solid #0E5140;border-radius:6px;background:#fbfcfa;
- padding:14px 18px;margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.act div{min-width:0}
-.act .k{font-family:"IBM Plex Mono",monospace;font-size:11px;text-transform:uppercase;
- letter-spacing:.08em;color:#4b5563;font-weight:600;margin-bottom:5px}
-.act .v{font-size:14px;color:#1a1a1a;line-height:1.45}
-.act .v.g{color:#15803d;font-weight:600;font-family:"IBM Plex Mono",monospace}
-@media(max-width:900px){.act{grid-template-columns:1fr 1fr}}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .act{background:#141E19;border-color:#26332C}
- :root:not([data-theme="light"]) .act .v{color:#E8EFE9}
- :root:not([data-theme="light"]) .act .k{color:#A2AEB9}}
-.anexo{margin-top:56px;padding-top:26px;border-top:1px solid #e2e6e0}
-.salio-row td{opacity:.55}
-
-
-/* 1 · el texto de portada corre al mismo ancho que la rejilla */
-.uhero h1{max-width:none!important;line-height:1.25!important;padding-top:12px;text-wrap:wrap}
-.uhero .lede{max-width:none!important}
-/* 2 · disclaimer en un renglon */
-.kh{font-size:11px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-/* 4 · pasos del embudo: sin fondo, centrados en el gutter, letras apiladas */
-.kg.r1,.kg.r3{column-gap:60px}
-.kstep{position:absolute;top:50%;transform:translate(-50%,-50%);text-align:center;z-index:2;
- background:none!important;border:0!important;border-radius:0!important;padding:0!important;
- box-shadow:none!important;white-space:normal}
-.kstep i{display:block;font-family:"IBM Plex Mono",monospace;font-size:22px!important;font-weight:600;
- color:#1a1a1a!important;line-height:1;font-style:normal;letter-spacing:-.01em}
-.kstep u{display:block;width:1ch;margin:4px auto 0;font-family:"IBM Plex Mono",monospace;
- font-size:9px!important;text-transform:uppercase;letter-spacing:0!important;line-height:1!important;
- color:#6b7280!important;text-decoration:none;word-break:break-all}
-@media (prefers-color-scheme:dark){
- :root:not([data-theme="light"]) .kstep i{color:#E8EFE9!important}
- :root:not([data-theme="light"]) .kstep u{color:#A2AEB9!important}}
-/* 6 · nota del piso irreducible */
-.kpiso{font-size:11px;line-height:1.5;color:#4b5563;margin:8px 0 0;max-width:none}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .kpiso{color:#A2AEB9}}
-
-
-.cond{border-left:3px solid #4b5563;background:#f7f8f6;border-radius:0 6px 6px 0;
- padding:12px 16px;margin:16px 0 0}
-.cond .k{font-family:"IBM Plex Mono",monospace;font-size:11px;text-transform:uppercase;
- letter-spacing:.08em;color:#4b5563;font-weight:600;margin-bottom:4px}
-.cond .v{font-size:14px;line-height:1.5;color:#1a1a1a}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cond{background:#161d19;
- border-left-color:#5b6b60}
- :root:not([data-theme="light"]) .cond .v{color:#E8EFE9}
- :root:not([data-theme="light"]) .cond .k{color:#A2AEB9}}
-
-
-.kg.r1 .kstep.s1{left:calc(25% - 15px)!important}
-.kg.r1 .kstep.s2{left:50%!important}
-.kg.r1 .kstep.s3{left:calc(75% + 15px)!important}
-.kg.r3 .kstep.s1{left:calc(33.3333% - 10px)!important}
-.kg.r3 .kstep.s2{left:calc(66.6667% + 10px)!important}
-
-.sal{font-family:"IBM Plex Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:#9ca3af;margin-left:7px}
-.kg.r1 .kd,.kg.r1 .kl{white-space:nowrap}
-
-/* fila 1 · rejilla de filas fijas para que las 4 tarjetas compartan linea base
-   pese a que el north star usa 52px */
-.kg.r1 .kc{display:grid!important;grid-template-rows:20px 56px 20px 32px!important;
- row-gap:8px!important;align-content:start}
-.kg.r1 .kn{align-self:end;margin:0!important}
-.kg.r1 .kd,.kg.r1 .km{align-self:center}
-
-
-.act.h{grid-template-columns:40% 15% 22% 23%;background:#ffffff;border:1px solid #e2e6e0;
- border-left:1px solid #e2e6e0;padding:20px;gap:0;align-items:start}
-.act.h>div{padding-right:18px}
-.act.h .k{font-size:10px;letter-spacing:.08em;color:#6b7280}
-.act.h .v{font-size:14px}
-.act.h .v.g{font-size:16px;font-weight:600;text-align:left}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .act.h{background:#141E19;
- border-color:#26332C;border-left-color:#26332C}}
-
-
-.acc td.d{white-space:nowrap}
-.acc td.d .tasa{display:block;font-size:14px;color:#42504A}
-.acc td.d .tasa b{color:#15803d;font-weight:600}
-.acc td.d .vol{display:block;font-size:12px;color:#6b7280;font-weight:400;margin-top:3px}
-.acc td.d .vol.solo{margin-top:0;font-size:14px;color:#1a1a1a;font-weight:600}
-@media (prefers-color-scheme:dark){
- :root:not([data-theme="light"]) .acc td.d .tasa{color:#B4C2B8}
- :root:not([data-theme="light"]) .acc td.d .tasa b{color:#63C79A}
- :root:not([data-theme="light"]) .acc td.d .vol{color:#8B978C}
- :root:not([data-theme="light"]) .acc td.d .vol.solo{color:#E8EFE9}}
-
-.kdisc{font-size:11px;line-height:1.5;color:#6b7280;margin:8px 0 0}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .kdisc{color:#8B978C}}
-.act.h .v.g .singasto{display:block;font-size:12px;font-weight:400;color:#6b7280;margin-top:6px;line-height:1.45;font-family:inherit}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .act.h .v.g .singasto{color:#8B978C}}
-
-.act.h{grid-template-columns:44% 17% 19% 20%!important;margin-top:14px}
-.act.h+.act.h{margin-top:10px}
-.suelta{font-size:15px;line-height:1.65;color:#42504A;margin:14px 0 0;max-width:none}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .suelta{color:#B4C2B8}}
-
-
-/* 1 · el subtitulo corre al ancho de la rejilla */
-.usec .sub{max-width:none}
-/* 2 · tag de la ventana sin grupo, sobre las dos tarjetas rojas.
-   Iba como .uwin .c{grid-row:2} y aplicaba a TODAS las ventanas: al mandar las tarjetas al renglon 2
-   el grid creaba pistas de columna implicitas que ningun grid-template-columns cierra, asi que en el
-   telefono no se apilaban y dejaban 64px de scroll horizontal. Limitado a la ventana que trae el tag. */
-.uwin:has(.tagsin) .c{grid-row:2}
-.tagsin{grid-column:3 / span 2;grid-row:1;align-self:end;font-family:"IBM Plex Mono",monospace;
- font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#b91c1c;background:#fdf0ef;
- border-radius:4px;padding:6px 12px;text-align:center;margin-bottom:6px}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tagsin{background:#2a1a19;
- color:#e88a7d}}
-/* 5 · reparto de responsabilidad */
-.act.h .reparto{display:block;font-size:12px;color:#6b7280;margin-top:6px;line-height:1.45}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .act.h .reparto{color:#8B978C}}
-
-.notavent{font-size:11px;line-height:1.5;color:#6b7280;margin:8px 0 0}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .notavent{color:#8B978C}}
-
-
-/* 5.1 · los dos bloques al ancho completo y con el mismo tratamiento */
-.udos{max-width:none!important;grid-template-columns:1fr 1fr;gap:20px}
-.udos .ucard{border:1px solid #e2e6e0;background:#ffffff}
-.udos .ucard.bad{border-color:#e2e6e0}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .udos .ucard{background:#141E19;
- border-color:#26332C}}
-/* 5.2 · la tabla de los cinco necesita menos ancho a la derecha */
-.t5 .hd,.t5 .r{grid-template-columns:1fr 96px 108px 84px;padding-left:22px;padding-right:26px}
-.t5 .ft{padding-right:26px}
-
-
-/* el accionable de las 51 lleva mas texto: su primera columna necesita 50% */
-.usec:has(.t5) .act.h{grid-template-columns:50% 16% 17% 17%!important}
-
-/* accionable de dos filas: mismo formato, separadas por una hairline */
-.act.dos{border:1px solid #e2e6e0;border-radius:6px;background:#ffffff;padding:0;display:block;
- margin-top:14px}
-.act.dos .fila{display:grid;grid-template-columns:50% 16% 17% 17%;gap:0;padding:20px;
- align-items:start}
-.act.dos .fila+.fila{border-top:1px solid #e2e6e0}
-.act.dos .fila>div{padding-right:18px;min-width:0}
-.act.dos .k{font-family:"IBM Plex Mono",monospace;font-size:10px;text-transform:uppercase;
- letter-spacing:.08em;color:#6b7280;font-weight:600;margin-bottom:5px}
-.act.dos .v{font-size:14px;color:#1a1a1a;line-height:1.45}
-.act.dos .v.g{font-size:16px;font-weight:600;color:#15803d;font-family:"IBM Plex Mono",monospace}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .act.dos{background:#141E19;
- border-color:#26332C}
- :root:not([data-theme="light"]) .act.dos .fila+.fila{border-top-color:#26332C}
- :root:not([data-theme="light"]) .act.dos .v{color:#E8EFE9}
- :root:not([data-theme="light"]) .act.dos .k{color:#A2AEB9}
- :root:not([data-theme="light"]) .act.dos .v.g{color:#63C79A}}
-
-
-.uexp{border:1px solid #e2e6e0;background:#ffffff;border-radius:9px;padding:20px;margin-top:16px}
-.uexp p{margin:0;font-size:14px;line-height:1.6;color:var(--ink-2)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .uexp{background:#141E19;
- border-color:#26332C}}
-.act.dos .v i{font-style:italic}
-
-.notatab{font-size:11px;line-height:1.5;color:#6b7280;margin:10px 0 0}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .notatab{color:#8B978C}}
-
-.utab tr.grp td{padding:0;border-top:1px solid #e2e6e0;background:#f7f8f6}
-.utab tr.grp button{width:100%;text-align:left;background:none;border:0;cursor:pointer;
- padding:12px 14px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.04em;
- color:#4b5563;font-weight:600}
-.utab tr.grp button:hover{color:#1a1a1a}
-.utab tr.grp .ch{display:inline-block;width:14px;color:#9ca3af}
-.utab tr.oculto{display:none}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .utab tr.grp td{background:#1A2620;
- border-top-color:#26332C}
- :root:not([data-theme="light"]) .utab tr.grp button{color:#A2AEB9}}
-
-
-#tcl thead tr.grupos th{font-family:"IBM Plex Mono",monospace;font-size:9px;text-transform:uppercase;
- letter-spacing:.08em;color:#6b7280;font-weight:600;padding:0 12px 5px 0;border-bottom:1px solid #e2e6e0;
- text-align:left;cursor:default}
-#tcl thead tr.grupos th:empty{border-bottom:none}
-#tcl thead tr.grupos th::after{content:none!important}
-#tcl th.orden::before{content:"\2193 ";color:#0E5140}
-#tcl td.orden{font-weight:600;color:#1a1a1a}
-#tcl th.orden,#tcl td.orden{background:#f5f7f4}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #tcl thead tr.grupos th{color:#A2AEB9;
- border-bottom-color:#26332C}
- :root:not([data-theme="light"]) #tcl th.orden,:root:not([data-theme="light"]) #tcl td.orden
- {background:#18231D}
- :root:not([data-theme="light"]) #tcl td.orden{color:#E8EFE9}}
-
-#tcl th{padding-left:8px;padding-right:8px}
-#tcl td{padding-left:8px;padding-right:8px}
-#tcl td.nm,#tcl th:first-child{padding-left:18px}
-#tcl th:last-child,#tcl td:last-child{padding-right:18px}
-
-#tcl td.vp.pos{color:#15803d;font-weight:600}
-#tcl td.vp.neg{color:#8b8f8a}
-#tcl th{padding-left:6px;padding-right:6px}
-#tcl td{padding-left:6px;padding-right:6px}
-#tcl td.nm,#tcl th:first-child{padding-left:16px}
-#tcl th:last-child,#tcl td:last-child{padding-right:16px}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #tcl td.vp.pos{color:#63C79A}
- :root:not([data-theme="light"]) #tcl td.vp.neg{color:#7d867f}}
-
-.nottot{font-size:11px;line-height:1.5;color:#6b7280;margin:8px 0 0}
-#tcl tr.sinprod td{color:#9ca3af}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .nottot{color:#8B978C}
- :root:not([data-theme="light"]) #tcl tr.sinprod td{color:#6b756d}}
-.usec .lab,.hab2 .lab{font-family:"IBM Plex Mono",monospace;font-size:10px;text-transform:uppercase;
- letter-spacing:.08em;color:#6b7280;font-weight:600;margin:22px 0 8px}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .usec .lab,
- :root:not([data-theme="light"]) .hab2 .lab{color:#A2AEB9}}
-.acc td.v.gris{color:#6b7280!important;font-weight:500}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .acc td.v.gris{color:#8B978C!important}}
-
-.mkt{margin-top:26px;padding-top:24px;border-top:1px solid #e2e6e0}
-.mkt .lab{margin:0 0 6px}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mkt{border-top-color:#26332C}}
-
-
-.acc th:nth-child(1),.acc td.p{width:6%}
-.acc th:nth-child(2),.acc td.a{width:44%}
-.acc th:nth-child(3),.acc td.d{width:28%}
-.acc th:nth-child(4),.acc td.v{width:22%}
-.acc{min-width:680px}
-.hab2{margin-top:16px;padding-top:16px;border-top:1px solid #e2e6e0}
-.hab2 .lab{margin:0 0 8px}
-.hab2 p{margin:0 0 6px;font-size:13px;line-height:1.55;color:#42504A;padding-left:14px;
- position:relative}
-.hab2 p.lab{padding-left:0}
-.hab2 p:not(.lab)::before{content:"\00B7";position:absolute;left:2px;color:#9ca3af;font-weight:700}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hab2{border-top-color:#26332C}
- :root:not([data-theme="light"]) .hab2 p{color:#B4C2B8}}
-
-
-/* 5.3 · menos aire entre secciones */
-.usec{margin-top:56px!important}
-.uln{margin:0!important}
-/* 5.4 · el cuerpo no pasa de 90ch */
-/* 5.4 · el limite de linea aplica SOLO a texto que corre libre sobre el fondo.
-   Dentro de una caja con fondo o borde el ancho lo define la caja, no el parrafo:
-   .gnota, .uexp, .ucard y .act quedan fuera a proposito.
-   64ch da ~90 caracteres reales: el ch de CSS mide el cero, mas angosto que la letra media. */
-.notavent,.hab2 p,.nottot,.notatab,.usec>.sub,.metahead,details.met>p{max-width:64ch}
-
-
-.metahead{font-size:12.5px;color:#4b5563;margin:56px 0 14px;max-width:64ch;line-height:1.6}
-details.met{border-top:1px solid #e2e6e0}
-details.met:last-of-type{border-bottom:1px solid #e2e6e0}
-details.met>summary{cursor:pointer;list-style:none;padding:11px 0;font-family:"IBM Plex Mono",monospace;
- font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#4b5563;font-weight:600}
-details.met>summary::-webkit-details-marker{display:none}
-details.met>summary::before{content:"\25B8";display:inline-block;width:16px;color:#9ca3af}
-details.met[open]>summary::before{content:"\25BE"}
-details.met>summary:hover{color:#1a1a1a}
-details.met>p{margin:0 0 14px;padding-left:16px;font-size:12.5px;line-height:1.75;color:#4b5563;
- max-width:64ch}
-details.met>p b{color:#1a1a1a}
-@media (prefers-color-scheme:dark){
- :root:not([data-theme="light"]) .metahead,
- :root:not([data-theme="light"]) details.met>p,
- :root:not([data-theme="light"]) details.met>summary{color:#8B978C}
- :root:not([data-theme="light"]) details.met{border-color:#26332C}
- :root:not([data-theme="light"]) details.met>p b{color:#E8EFE9}}
-
-
-/* AJUSTE FINAL: la columna de lectura se limita en la CAJA, no en el parrafo.
-   Acotar el parrafo dentro de una caja ancha deja hueco a la derecha.
-   Las cajas de rejilla (.act, .ucard) no se tocan. */
-/* reemplazado por el bloque de columnas de abajo */
-.gnota p, .uexp p { max-width: none !important; }
-.usec { margin-top: 64px !important; }
-.gnota { margin-top: 22px !important; }
-.uexp  { margin-top: 18px !important; }
-.gnota p { line-height: 1.7; }
-.gnota p + p { margin-top: 14px; }
-
-/* ventanas del grupo: cuatro tarjetas, no cinco semanas.
-   Verde solo si alcanza la linea base de julio (74%). Ninguna lo hace:
-   la caida va en rojo y la recuperacion parcial en ambar. */
-.uwin.vent { grid-template-columns: repeat(4, 1fr) !important; }
-.uwin.vent .c .k { font-size: 9.5px; letter-spacing: .07em; line-height: 1.35; }
-.uwin.vent .c .v { color: #1a1a1a; }
-.uwin.vent .c.bad .v { color: #b91c1c; }
-.uwin.vent .c.warn .v { color: #b45309; }
-.uwin.vent .c.warn { border-color: #f0e0c4; background: #fdfaf3; }
-
-/* ── CAJAS DE TEXTO: ancho completo, dos columnas ─────────────────────
-   Acotar la caja dejaba margen vacio a la derecha. Acotar el parrafo
-   dentro de una caja ancha deja hueco. La salida es llenar la caja con
-   dos columnas: la linea baja a ~75 caracteres y no queda espacio muerto. */
-.gnota{
-  max-width:none !important;
-  column-count:2;
-  column-gap:44px;
-  column-rule:1px solid rgba(14,81,64,.10);
-}
-.gnota p{
-  max-width:none !important;
-  break-inside:avoid;
-  -webkit-column-break-inside:avoid;
-  page-break-inside:avoid;
-  line-height:1.68;
-}
-.gnota p+p{ margin-top:0; }
-.gnota p:last-child{ margin-bottom:0; }
-
-/* el bloque del expediente es una sola frase: no se parte */
-.uexp{ max-width:none !important; }
-.uexp p{ max-width:none !important; }
-
-@media (max-width:900px){
-  .gnota{ column-count:1; column-rule:none; }
-}
-
-/* ── ANCHO DE LOS BLOQUES DE TEXTO · regla unica ──────────────────────
-   El limite de linea SOLO aplica a la nota metodologica, que es una
-   columna de lectura aislada. Todo lo demas ocupa el ancho de su
-   contenedor: acotar un parrafo dentro de un bloque ancho deja hueco. */
-.notavent, .hab2, .hab2 p, .nottot, .notatab, .suelta,
-.usec > .sub, .lede, .sub, .uhero .lede, .bl.tot .d,
-.gnota, .gnota p, .uexp, .uexp p { max-width: none !important; }
-
-/* la nota metodologica si conserva su columna */
-.metahead, details.met > p { max-width: 64ch !important; }
-
-/* ── CAJAS VERDES · dos columnas para acortar la linea sin dejar hueco */
-.gnota{ column-count:2; column-gap:44px; column-rule:1px solid rgba(14,81,64,.10); }
-.gnota p{ break-inside:avoid; -webkit-column-break-inside:avoid; line-height:1.68; }
-.gnota p+p{ margin-top:0; }
-.gnota p:last-child{ margin-bottom:0; }
-
-/* los habilitadores en dos columnas, uno por columna */
-.hab2{ column-count:2; column-gap:44px; }
-.hab2 p{ break-inside:avoid; }
-
-/* ── RITMO VERTICAL ─────────────────────────────────────────────────── */
-.usec{ margin-top:64px !important; }
-.gnota{ margin-top:22px !important; }
-.uexp { margin-top:18px !important; }
-
-@media (max-width:900px){
-  .gnota, .hab2 { column-count:1; column-rule:none; }
-}
-
-/* la columna "Que lo mueve" es el puente hacia la tabla del plan:
-   el numero de palanca la conecta sin duplicar las tarjetas. */
-.ufr .w b{ color:var(--accent); font-weight:600; letter-spacing:.02em; }
-.ufr .w{ color:#4b5563; }
-
-/* habilitadores: dueno y cifra al frente, el detalle debajo en gris.
-   El ask se escanea sin leer el parrafo. */
-.hab2{ column-count:1 !important; display:grid; grid-template-columns:1fr 1fr;
-       gap:0 44px; margin-top:18px; }
-.hab2 .lab{ grid-column:1/-1; margin:0 0 12px; }
-.hab2 .hb{ border-top:1px solid #e6e4df; padding-top:12px; }
-.hab2 .hbq{ font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase;
-            letter-spacing:.09em; color:#6b7280; margin-bottom:5px; }
-.hab2 .hbn{ font-size:15px; font-weight:600; color:var(--accent); line-height:1.35; margin-bottom:6px; }
-.hab2 .hbd{ font-size:13px; color:#6b7280; line-height:1.6; }
-@media (max-width:900px){ .hab2{ grid-template-columns:1fr; gap:18px; } }
-
-/* ═══ CIERRE: legibilidad de los bloques de accion ═══════════════════ */
-
-/* 1 · TABLA "LO QUE VAMOS A HACER" · era ilegible de tan chica */
-.acct, .acct td, .acct th { font-size:15px !important; }
-.acct th{ font-size:10.5px !important; letter-spacing:.09em; padding-bottom:12px !important; }
-.acct td{ padding:18px 14px !important; vertical-align:top; }
-.acct td.a{ font-size:16px !important; font-weight:600; line-height:1.4; }
-.acct td.v{ font-size:17px !important; font-weight:600; }
-.acct .vol{ font-size:12.5px !important; color:#6b7280; display:block; margin-top:4px; }
-.acct tr.tot td{ font-size:16px !important; font-weight:600; border-top:2px solid #d8d5cf !important; }
-
-/* 2 · TARJETAS DE ACCION · tenian todo del mismo peso */
-.act{ border-left:3px solid var(--accent) !important; padding:20px 22px !important; }
-.act .k{ font-size:9.5px !important; letter-spacing:.09em; color:#9ca3af !important; margin-bottom:7px; }
-.act .v{ font-size:14.5px !important; line-height:1.5; }
-.act > div:first-child .v{ font-size:16px !important; font-weight:600; color:var(--ink) !important; }
-.act > div:last-child .v{ font-size:16px !important; font-weight:600; }
-
-/* 3 · BLOQUE DEL EXPEDIENTE · es un error propio, tiene que verse */
-.uexp{ border-left:3px solid #b45309 !important; background:#fdfaf3 !important;
-       padding:22px 26px !important; }
-.uexp p{ font-size:15px !important; line-height:1.6; }
-
-/* 4 · TARJETAS DE PALANCA en "Donde queremos estar" */
-.upal{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:20px; }
-.upal .pc{ background:#fff; border:1px solid #e6e4df; border-top:3px solid var(--accent);
-           border-radius:6px; padding:18px 20px; }
-.upal .pn{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.1em;
-           color:#9ca3af; margin-bottom:8px; }
-.upal .pt{ font-size:15.5px; font-weight:600; color:var(--ink); line-height:1.35; margin-bottom:8px; }
-.upal .pd{ font-size:12.5px; color:#6b7280; margin-bottom:12px; }
-.upal .pv{ font-family:'IBM Plex Mono',monospace; font-size:16px; font-weight:600; color:var(--accent); }
-
-/* 5 · una caja con un solo parrafo no se parte en dos columnas */
-.gnota:has(p:only-child){ column-count:1; column-rule:none; }
-
-@media (max-width:900px){ .upal{ grid-template-columns:1fr; } }
-
-/* el ask de marketing vive en su seccion: una sola columna, ancho completo */
-.hab2{ grid-template-columns:1fr !important; margin-top:22px; }
-.hab2 .hbn{ font-size:17px; }
-.hab2 .hbd{ font-size:13.5px; }
-/* las palancas van arriba de la tabla del embudo */
-.upal{ margin-top:0 !important; margin-bottom:20px !important; }
-
-/* bloque del ask a marketing: tarjeta propia, no texto suelto al borde */
-.hab2{ background:#fff; border:1px solid #e6e4df; border-left:3px solid var(--accent);
-       border-radius:6px; padding:22px 26px !important; margin-top:22px !important;
-       display:block !important; }
-.hab2 .lab{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; text-transform:uppercase;
-            letter-spacing:.1em; color:#9ca3af; margin:0 0 14px !important; }
-.hab2 .hb{ border-top:none !important; padding-top:0 !important; }
-.hab2 .hbq{ font-size:9.5px; letter-spacing:.09em; color:#9ca3af; margin-bottom:6px; }
-.hab2 .hbn{ font-size:19px; font-weight:600; color:var(--accent); line-height:1.3; margin-bottom:8px; }
-.hab2 .hbd{ font-size:13.5px; color:#6b7280; line-height:1.6; }
-
-/* asks a otras areas: mismo formato que el de marketing */
-.hab2.asr{ border-left-color:#b45309; }
-.hab2.asr .hbn{ color:#b45309; }
-
-.ksec{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b7280;margin:26px 0 10px}
-.kg.r4{grid-template-columns:repeat(5,1fr)}
-.kg.r4 .kc{min-width:0} .kg.r4 .kc.nstar{position:relative}
-tr.cur td{background:#f7f9ff}
-.tagc{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#2563eb;background:#eef2ff;padding:2px 6px;border-radius:9px;margin-left:6px}
-td.sm{font-size:12px;color:#4b5563}
-.kc.bad .kn{color:#b91c1c}
-.ufrw{border:1px solid var(--line);border-radius:6px;background:var(--panel);overflow:hidden}
-.trw{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-.tq{border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:16px 18px 13px}
-.tq.curso{border-color:var(--accent);box-shadow:inset 0 2px 0 var(--accent)}
-.tbs{display:flex;align-items:flex-end;gap:12px;height:132px;margin-bottom:11px}
-.tb{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;min-width:0}
-.tb b{font-family:"IBM Plex Mono",monospace;font-size:14px;font-weight:600;letter-spacing:-.02em;margin-bottom:4px}
-.tb i{display:block;width:100%;background:#cfd8d0;border-radius:3px 3px 0 0;min-height:4px}
-.tb.curso i{background:var(--accent)}
-.tb.curso b{color:var(--accent)}
-.tb u{font-family:"IBM Plex Mono",monospace;text-decoration:none;font-size:9.5px;color:var(--faint);margin-top:6px;letter-spacing:.06em;text-transform:uppercase}
-.tqf{border-top:1px solid var(--line);padding-top:10px;display:flex;flex-wrap:wrap;align-items:baseline;gap:7px}
-.tqf .qn{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);width:100%}
-.tqf .qv{font-family:"IBM Plex Mono",monospace;font-size:27px;font-weight:600;letter-spacing:-.03em}
-.tqf .qk{font-size:12px;color:var(--muted)}
-.tqf .qd{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--faint);width:100%;margin-top:3px}
-.cp{font-family:"IBM Plex Mono",monospace;font-style:normal;font-size:10.5px;font-weight:700;color:var(--accent);background:#e8f0ea;padding:2px 7px;border-radius:9px}
-.cres{font-size:13px;color:var(--ink-2);margin-top:13px;line-height:1.55}
-.cwg{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:18px}
-.cwb{border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:15px 17px 13px}
-.cwb .ksec{margin:0 0 2px}
-.cwsub{font-size:11.5px;color:var(--faint);margin:0 0 11px}
-.cwr{display:grid;grid-template-columns:86px 1fr 40px 30px;gap:8px;align-items:center;padding:4px 0}
-.cwr .l{font-size:12px;color:var(--ink-2)}
-.cwr.top .l{font-weight:700;color:var(--ink)}
-.cwr .bar{background:#eeece6;border-radius:3px;height:8px;overflow:hidden}
-.cwr .bar i{display:block;height:100%;border-radius:3px}
-.cwr .bar i.su-bien{background:#1f7a5c} .cwr .bar i.su-ok{background:#d0a13a} .cwr .bar i.su-mal{background:#c0503f}
-.cwr .v{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:700;text-align:right}
-.cwr .n{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--faint);text-align:right}
-.cbar{margin:6px 0 4px}
-.ctrack{display:flex;height:42px;border-radius:6px;overflow:hidden;background:#e7e4dd}
-.cs{display:flex;align-items:center;justify-content:center;min-width:2px;position:relative}
-.cs em{font-family:"IBM Plex Mono",monospace;font-style:normal;font-size:11px;font-weight:600;white-space:nowrap;padding:0 6px}
-.cs.hecho{background:#1D5C43} .cs.hecho em{color:#fff}
-.cs.comp{background:#8fb8a3} .cs.comp em{color:#123a2c}
-.cs.falta{background:#e7e4dd} .cs.falta em{color:#8a8578}
-.cend{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--faint);margin-top:5px}
-.cleg{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px;margin-top:15px}
-.cleg span{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;font-size:12.5px;color:var(--ink-2)}
-.cleg i.d{width:10px;height:10px;border-radius:2px;display:inline-block}
-.cleg i.d.hecho{background:#1D5C43} .cleg i.d.comp{background:#8fb8a3} .cleg i.d.falta{background:#e7e4dd;border:1px solid #cfcabb}
-.cleg b{font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-.02em}
-.cleg u{width:100%;text-decoration:none;font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--faint);margin-top:2px}
-@media(max-width:760px){.tbs{height:104px;gap:8px}.ctrack{height:34px}.cs em{font-size:10px;padding:0 3px}}
-.ufr{grid-template-columns:minmax(150px,1fr) 78px 86px 1.5fr}
-.ufr .b u.dem{display:block;text-decoration:none;font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--faint);font-weight:400;letter-spacing:.02em;margin-top:2px}
-.ufr .w i.rtrk{display:block;height:9px;border-radius:5px;background:#e7e4dd;overflow:hidden}
-.ufr .w i.rtrk b.rfil{display:block;height:100%;border-radius:5px;min-width:3px}
-.rfil.su-mal{background:#c0503f} .rfil.su-ok{background:#d0a13a} .rfil.su-bien{background:#1f7a5c}
-.ufr .w em s{text-decoration:none;font-weight:700}
-.ufr .w em b{font-weight:700;color:var(--ink)}
-@media(max-width:760px){.ufr{grid-template-columns:1fr 60px 70px}.ufr .w{grid-column:1/-1}}
-.ufr .w{display:flex;flex-direction:column;gap:5px;justify-content:center}
-.ufr .w i.rbar{display:block;height:6px;border-radius:3px;background:var(--accent);min-width:3px}
-.ufr.big .w i.rbar{background:var(--accent)}
-.ufr .w em{font-family:"IBM Plex Mono",monospace;font-style:normal;font-size:10.5px;color:var(--faint);letter-spacing:.01em}
-.leads.sem7{grid-template-columns:repeat(7,1fr)}
-.ksec{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#6b7280;margin:24px 0 9px;font-weight:600}
-.upal .o{color:var(--accent);font-weight:600}
-.upal .c.mk .o{color:var(--blue)}
-.podio{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:16px}
-.pod{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:6px;padding:17px 19px;text-align:center}
-.pod.p1{border-top-color:#C8A227;background:linear-gradient(180deg,#fffdf5,var(--panel))}
-.pod.p2{border-top-color:#9aa3ad} .pod.p3{border-top-color:#b08355}
-.pod .med{font-size:23px;line-height:1}
-.pod .pn{font-size:15.5px;font-weight:600;margin-top:6px;letter-spacing:-.01em}
-.pod .pv{font-family:"IBM Plex Mono",monospace;font-size:34px;font-weight:600;letter-spacing:-.03em;margin-top:6px}
-.pod .pk{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
-.pod .pd{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);margin-top:9px}
-.pod .psm{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--blue);margin-top:5px;min-height:13px}
-td .sm{font-family:"IBM Plex Mono",monospace;font-style:normal;font-size:10px;color:var(--blue);margin-left:3px;vertical-align:super}
-.kn small.pct{font-family:"IBM Plex Mono",monospace;font-size:14px;font-weight:700;margin-left:9px;letter-spacing:.01em;
-padding:3px 9px;border-radius:11px;vertical-align:middle;position:relative;top:-3px}
-.kn small.pct.ok{color:#0E5140;background:#dff1e6;border:1px solid #9fd4b4}
-.kn small.pct.hi{color:#8f2f22;background:#fbe3df;border:1px solid #efb3a8}
-.utab td.gan{font-weight:700;color:#0E5140;font-size:13px}
-.utab td.nxt{font-size:10.5px;color:var(--muted);white-space:nowrap}
-.utab tr.tot td.gan{color:#0E5140}
-.sleg2{font-size:11px;color:var(--faint);line-height:1.5;margin:7px 0 0}
-.utab th.gsep,.utab td.gsep{border-left:2px solid #c9c4b6}
-.utab table{border-collapse:collapse}
-/* la tabla del equipo mide 960px y en el telefono estiraba la pagina entera: 106px de scroll
-   horizontal y los bloques de KPI desalineados. Ahora la tabla scrollea sola. */
-.utab{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.utab th.s{border-bottom:1px solid var(--line)}
-.utab td{border-bottom:1px solid #f0eee9}
-.utab td.nm{border-right:2px solid #c9c4b6}
-.utab td:nth-child(3),.utab th:nth-child(3){padding-left:16px}
-.utab tr:hover td{background:#faf9f6}
-.utab tr.tot td{border-top:2px solid #c9c4b6;background:#f4f2ed}
-.utab td.fir{color:#6b5a2e;font-weight:600}
-.su{font-weight:700}
-.su-mal{color:#8f2f22}
-.su-ok{color:#8a6410}
-.su-bien{color:#0E5140}
-.utab td.su-mal{background:#fbe3df}
-.utab td.su-ok{background:#fdf3dd}
-.utab td.su-bien{background:#dff1e6}
-.sleg{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--muted);margin:9px 0 0;display:flex;gap:14px;flex-wrap:wrap}
-.sleg i{font-style:normal;padding:2px 7px;border-radius:9px;font-weight:700}
-.sleg i.su-mal{background:#fbe3df} .sleg i.su-ok{background:#fdf3dd} .sleg i.su-bien{background:#dff1e6}
-.escn{border:1px solid var(--line);border-radius:6px;background:var(--panel);overflow:hidden}
-.ern{display:grid;grid-template-columns:minmax(150px,1fr) 88px 2fr;gap:14px;align-items:center;padding:13px 19px;border-top:1px solid var(--line)}
-.ern:first-child{border-top:none}
-.ern .en{font-size:13.6px;font-weight:500}
-.ern .ev{font-family:"IBM Plex Mono",monospace;font-size:17px;text-align:right;font-weight:600;color:var(--accent)}
-.ern .ed{font-size:12.2px;color:var(--faint);line-height:1.45}
-.ern.base{background:var(--panel-2)} .ern.base .ev{color:var(--muted)}
-.ern.tot{background:var(--accent-soft)}
-.ern.tot .en{font-family:"Fraunces","Instrument Serif",Georgia,serif;font-size:18px}
-.ern.tot .ev{font-size:26px;letter-spacing:-.02em}
-.ern.tot.miss .ev{color:var(--red)}
-@media(max-width:760px){.er{grid-template-columns:1fr 70px;gap:8px}.ern .ed{grid-column:1/-1}}
-td.pos{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--faint);text-align:center;width:34px}
-@media(max-width:760px){.podio{grid-template-columns:1fr}}
-.kg .kc{min-width:0} .kg.r4 .km{white-space:normal}
-.kc.nstar{position:relative}
-.kg .kc{min-width:0}
-@media(max-width:1000px){.kg.r4{grid-template-columns:repeat(2,1fr)}}
-.kn.rate.lo{color:#B04434}
-.leads{display:grid;grid-template-columns:repeat(14,1fr);gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:20px 18px 14px;align-items:end}
-.lb{text-align:center}
-.lbar{height:110px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px}
-.lbar i{display:block;border-radius:2px;min-height:1px}
-.lbar i.u{background:#1E8A5F} .lbar i.d{background:#e2e6e0}
-.lb b{display:block;font-family:"IBM Plex Mono",monospace;font-size:13px;margin-top:6px;color:#1a1a1a}
-.lb small{display:block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:#6b7280}
-.lb span{display:block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:#9ca3af;margin-top:3px;text-transform:uppercase}
-@media (max-width:860px){.leads{grid-template-columns:repeat(7,1fr)}}
-td.neg{color:#B04434;font-weight:600}
-details.anx{border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:0 22px;margin-top:14px}
-details.anx>summary{cursor:pointer;list-style:none;padding:16px 0;font-family:"IBM Plex Mono",monospace;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#0E5140;font-weight:600}
-details.anx>summary::-webkit-details-marker{display:none}
-details.anx>summary::before{content:"\25B8";display:inline-block;width:16px;color:#9ca3af}
-details.anx[open]>summary::before{content:"\25BE"}
-details.anx[open]{padding-bottom:18px}
-
-/* El media query de .kg vive en diario_css_agosto.txt ANTES de la regla base .kg{...4 columnas},
-   y un media query NO suma especificidad: la regla base ganaba y el telefono se quedaba en cuatro
-   columnas. Resultado: 106px de scroll horizontal y los KPI cortados. Esto va al final del CSS,
-   asi que ahora si aplica. No cambia nada en escritorio. */
-@media(max-width:1000px){
- .kg,.kg.r1,.kg.r2,.kg.r3{grid-template-columns:repeat(2,1fr);column-gap:12px;row-gap:12px}
- .kstep{display:none}
-}
-@media(max-width:760px){
- .uwin,.upal,.upal.dos{grid-template-columns:1fr}
-}
-@media(max-width:560px){
- .kg,.kg.r1,.kg.r2,.kg.r3{grid-template-columns:1fr}
-}
-/* --- columnas de decision de la tabla del equipo --- */
-.su-sd{color:#6b7280}
-.utab td.su-sd{background:#f1efe9}
-.sleg i.su-sd{background:#f1efe9}
-.sleg i.alarma{background:#fbe3df;color:#8f2f22}
-.utab td.lds{white-space:nowrap;color:var(--ink-2)}
-.utab td.lds em{display:block;font-style:normal;font-size:9.5px;color:var(--faint);letter-spacing:.02em;margin-top:1px}
-.utab td.lds.flaco em{color:#8f2f22}
-.utab td.e100{font-weight:600}
-.utab td.rch{text-align:center;color:var(--muted)}
-.utab td.rch.alarma{background:#fbe3df;color:#8f2f22;font-weight:700}
-.utab td.rch em{display:block;font-style:normal;font-size:8.5px;color:var(--faint);letter-spacing:.04em;text-transform:uppercase;font-weight:400}
-.utab td.spkc{padding-top:6px;padding-bottom:6px}
-/* la linea punteada es el piso: una barra que la pasa es una semana en piso, en cualquier closer */
-.spk{display:inline-flex;align-items:flex-end;gap:2px;height:26px;position:relative;padding-top:2px}
-.spk::before{content:"";position:absolute;left:0;right:0;bottom:66.6%;border-top:1px dashed #c9c4b6}
-.spk i{display:block;width:7px;border-radius:2px 2px 0 0;min-height:3px;background:#d8cfc6}
-.spk i.ok{background:#1f7a5c}
-/* El numero grande de la tarjeta lleva letter-spacing -.035em, que a 44px son -1.5px. El <small>
-   de al lado lo heredaba y a 14px se comia los espacios: se leia "vs67%entresemana". */
-.uwin .c .v small{letter-spacing:normal}
-/* --- palancas con adopcion --- */
-.adbar{height:7px;border-radius:4px;background:#e7e4dd;overflow:hidden;margin:10px 0 5px}
-.adbar i{display:block;height:100%;border-radius:4px;background:var(--accent);min-width:3px}
-.adop{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint)}
-.adop b{color:var(--ink);font-size:11.5px}
-/* El semaforo de show-up solo tenia fondos claros: en modo oscuro la columna quedaba con fondo
-   rosa palido y texto claro encima, o sea ilegible de arriba abajo. */
-@media (prefers-color-scheme:dark){
- :root:not([data-theme="light"]) .utab td.su-mal{background:#2a1a19;color:#e8a79c}
- :root:not([data-theme="light"]) .utab td.su-ok{background:#2a2415;color:#e3c583}
- :root:not([data-theme="light"]) .utab td.su-bien{background:#14281f;color:#8fd4b0}
- :root:not([data-theme="light"]) .sleg i.su-mal{background:#2a1a19;color:#e8a79c}
- :root:not([data-theme="light"]) .sleg i.su-ok{background:#2a2415;color:#e3c583}
- :root:not([data-theme="light"]) .sleg i.su-bien{background:#14281f;color:#8fd4b0}
- :root:not([data-theme="light"]) .utab td.fir{color:#c9b47e}}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .utab td.su-sd{background:#1b211d}
- :root:not([data-theme="light"]) .su-sd{color:#9aa5a0}
- :root:not([data-theme="light"]) .sleg i.su-sd{background:#1b211d}
- :root:not([data-theme="light"]) .utab td.rch.alarma{background:#2a1a19;color:#e8a79c}
- :root:not([data-theme="light"]) .sleg i.alarma{background:#2a1a19;color:#e8a79c}
- :root:not([data-theme="light"]) .utab td.lds.flaco em{color:#e8a79c}
- :root:not([data-theme="light"]) .spk i{background:#3a4440}
- :root:not([data-theme="light"]) .spk::before{border-top-color:#39443e}
- :root:not([data-theme="light"]) .adbar{background:#26332C}}
-@media(max-width:760px){.spk{height:20px}.spk i{width:5px}.utab td.lds em{font-size:9px}}
-/* 18-nov-2026: las graficas de 14 dias empujaban la pagina a 471px en el telefono. min-width:0 deja que
-   la columna 1fr se encoja; se oculta "utiles" y se achica el texto. En escritorio no cambia nada. */
-@media(max-width:560px){.leads{gap:2px;padding:14px 6px 10px}.lb{min-width:0;overflow:hidden}
- .lb small{display:none}.lb b{font-size:10px}.lb span{font-size:7.5px;letter-spacing:0}}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 56px}
+h1,h2,h3{font-weight:600;margin:0}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:28px 0 6px;border-bottom:1px solid var(--line)}
+.ey{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.top h1{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:30px;letter-spacing:-.01em;margin-top:4px}
+.top .up{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);white-space:nowrap}
+.hoy{margin:12px 0 0;color:var(--ink-2);font-size:14px}
+.hoy b{font-family:"IBM Plex Mono",monospace;color:var(--ink)}
+ul.al{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+ul.al li{background:var(--red-soft);border-left:3px solid var(--red);padding:7px 12px;border-radius:4px;font-size:13px}
+.kps{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:12px;margin-top:22px}
+.kp{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.kp .k{font-size:11.5px;color:var(--muted);font-weight:500}
+.kp .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:30px;font-weight:600;line-height:1.15;margin-top:4px}
+.kp.hero .v{font-size:40px}
+.kp .s{font-size:12px;color:var(--muted);margin-top:2px}
+.kp .s b.g{color:var(--accent)} .kp .s b.r{color:var(--red)}
+.kp.ctx .v{color:var(--ink-2)}
+.pb{display:flex;height:6px;border-radius:3px;background:var(--line-2);overflow:hidden;margin-top:10px;gap:2px}
+.pb i{display:block;background:var(--accent)} .pb i.c{background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.dl{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted)}
+.dl.up{color:var(--accent)} .dl.dn{color:var(--red)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-top:16px}
+.card h2{font-size:17px} .card h3{font-size:14px}
+.card p.d{color:var(--muted);font-size:12.5px;margin:4px 0 12px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.g3 .card{margin-top:16px}
+svg{display:block;width:100%;height:auto}
+svg .b{fill:var(--accent)} svg .bc{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1;stroke-dasharray:3 2}
+svg .ax{stroke:var(--line);stroke-width:1}
+svg .ln{fill:none;stroke:var(--blue);stroke-width:2;stroke-linejoin:round}
+svg .dt{fill:var(--blue);stroke:var(--panel);stroke-width:2} svg .dt.cu{fill:var(--panel);stroke:var(--blue)}
+svg .rf{stroke:var(--faint);stroke-width:1;stroke-dasharray:4 3}
+svg text{font-family:"IBM Plex Mono",monospace;font-size:10px}
+svg .vl{fill:var(--ink);text-anchor:middle;font-weight:600} svg .xl{fill:var(--faint);text-anchor:middle;font-size:9px}
+svg .rl{fill:var(--faint);text-anchor:end;font-size:9px}
+.hbs{display:grid;gap:10px}
+.hb{display:grid;grid-template-columns:260px 1fr 48px;gap:14px;align-items:center}
+.hl b{display:block;font-size:13.5px} .hl i{font-style:normal;font-size:12px;color:var(--muted)}
+.ht{height:14px;background:var(--line-2);border-radius:4px;overflow:hidden}
+.ht span{display:block;height:100%;background:var(--faint);border-radius:4px} .ht span.top{background:var(--red)}
+.hv{font-family:"IBM Plex Mono",monospace;font-size:18px;font-weight:600;text-align:right}
+.tw{overflow-x:auto}
+table.t{width:100%;border-collapse:collapse;font-size:13px}
+table.t th{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);
+  font-weight:500;text-align:right;padding:6px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.t th:first-child,table.t td:first-child{text-align:left}
+table.t td{padding:7px 10px;border-top:1px solid var(--line-2);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.t td:first-child{font-weight:600}
+table.t td.m{font-family:"IBM Plex Mono",monospace}
+table.t td.cu{background:var(--red-soft);color:var(--red);font-weight:600}
+table.t td.hi{color:var(--accent)}
+table.t td.tn{text-align:left;color:var(--ink-2);font-size:12.5px}
+table.t tr.cu td{color:var(--muted);font-style:italic}
+table.t tfoot td{border-top:2px solid var(--line);font-weight:600;color:var(--ink-2)}
+table.cl td:nth-child(7){text-align:left}
+.na{color:var(--faint);font-size:11.5px} .ok{color:var(--accent);font-size:12px} .w{color:var(--gold)}
+button.cp{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;
+  background:var(--panel-2);color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:3px 8px;margin-left:6px}
+button.cp:hover{color:var(--ink);border-color:var(--faint)} button.cp.ok{color:var(--accent);border-color:var(--accent)}
+tr.ms td{background:var(--panel-2);white-space:normal;text-align:left} tr.ms p{margin:2px 0;font-size:13px;color:var(--ink-2)}
+tr.ms[hidden]{display:none}
+.pie{color:var(--faint);font-size:11.5px;margin-top:20px;line-height:1.6}
+@media(max-width:980px){.kps{grid-template-columns:repeat(2,1fr)}.kp.hero{grid-column:1/-1}.g3{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{padding:0 14px 40px}.top{flex-direction:column;align-items:flex-start}.top h1{font-size:24px}
+ .hb{grid-template-columns:1fr 40px}.hb .ht{grid-column:1/-1;grid-row:2}.card{padding:14px}}
+/* embudo y fugas (18-nov) */
+.fn{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.fn>div{background:var(--panel-2);padding:12px 14px;position:relative}
+.fn .k{font-size:11.5px;color:var(--muted);font-weight:500}
+.fn .v{font-family:"IBM Plex Mono",monospace;font-size:26px;font-weight:600}
+.fn .s{font-size:12px;color:var(--muted)} .fn .s b{color:var(--ink)}
+.fgs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+.fg{border:1px solid var(--line);border-left:3px solid var(--faint);border-radius:6px;padding:10px 14px}
+.fg.f1{border-left-color:var(--red);background:var(--red-soft)}
+.fh{display:flex;justify-content:space-between;align-items:baseline}
+.fh span{font-weight:600;font-size:14px} .fh b{font-family:"IBM Plex Mono",monospace;font-size:20px}
+.fg p{margin:4px 0 0;font-size:12.5px;color:var(--ink-2)} .fg p.qn{color:var(--ink)}
+table.t td small{color:var(--faint);font-size:10.5px;margin-left:3px}
+table.t td.lo{color:var(--faint)}
+@media(max-width:820px){.fn{grid-template-columns:repeat(2,1fr)}.fgs{grid-template-columns:1fr}}
+table.t td.tn{white-space:normal;min-width:220px}
+.kp .v .pm{font-size:12.5px;font-weight:500;color:var(--muted);margin-left:8px;letter-spacing:0}
+details.msg{margin-top:12px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 14px}
+details.msg summary{cursor:pointer;font-weight:600;font-size:13.5px}
+details.msg pre{white-space:pre-wrap;font-family:"Instrument Sans",system-ui,sans-serif;font-size:13.5px;color:var(--ink-2);margin:10px 0 4px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.g2 .card{margin-top:16px}
+.t.ll td{white-space:normal;text-align:left;vertical-align:top}
+.t.ll td.c{text-align:right;white-space:nowrap}
+ul.li{margin:6px 0 0;padding-left:18px;font-size:13px;line-height:1.5}
+ul.li li{margin:0 0 6px}
+ul.li u{text-decoration:none;color:var(--muted);font-size:11.5px;margin-left:4px}
+@media (max-width:760px){.g2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="uwrap">
-<div class="uhero">
-<div class="eyebrow">Direcci&oacute;n de Closers &middot; noviembre 2026 en curso &middot; corte vie 20</div>
-<h1>Closers de financiamiento: <em>noviembre 2026</em></h1>
-<p class="lede"><b>El objetivo del closer es la asesor&iacute;a efectiva:</b> que el prospecto califique, asista y necesite el financiamiento. Al 20 de noviembre el equipo lleva <b>434 asesor&iacute;as efectivas</b>, 18% m&aacute;s que en los mismos d&iacute;as de octubre. De ah&iacute; van <b>89 firmas</b> y <b>0 pr&eacute;stamos</b>, que es el objetivo final. <b>Son piso, no cierre:</b> 45 asesor&iacute;as del mes con fecha ya pasada, el 6%, siguen sin asistencia marcada y valen otras <b>28 efectivas</b> que ya se ganaron.</p>
-<p class="kh">1 al 20 de noviembre &middot; closers activos &middot; vs mismos d&iacute;as de octubre &middot; Tracker y CFA del 20 &middot; se actualiza cada ma&ntilde;ana</p>
-<div class="gnota"><p><b>El Tracker trae 501 renglones con asistencia, firma o monto y sin lead.</b> Las columnas del Sheet se desalinearon de sus renglones, as&iacute; que esos casos no tienen a qui&eacute;n contarse y quedan fuera de este tablero. Todo lo de agendas, asistencia, efectivas, firmas y monto va <b>por debajo de lo real</b> hasta que el Sheet se restaure. Lo de leads y etapas sale del CF-A y no est&aacute; afectado.</p></div>
-<div class="kg r1">
-<div class="kc"><div class="kl">Leads &uacute;tiles</div><div class="kn">2,272</div><div class="kd eq">0% vs octubre</div><div class="km"><em>meta nov</em><b>4,000</b></div></div>
-<div class="kc"><div class="kl">Agendadas</div><div class="kn">797</div><div class="kd up">+23% vs octubre</div><div class="km"><em>meta nov</em><b>1,143</b></div></div>
-<div class="kc"><div class="kl">Asistidas</div><div class="kn">487</div><div class="kd up">+16% vs octubre</div><div class="km"><em>meta nov</em><b>800</b></div></div>
-<div class="kc nstar"><span class="kb">North star</span><div class="kl">Efectivas</div><div class="kn">434</div><div class="kd up">+18% vs octubre</div><div class="km"><em>meta nov</em><b>736</b></div></div>
-<span class="kstep s1"><i>35%</i><u>pasan</u></span><span class="kstep s2"><i>69%</i><u>llegan</u></span><span class="kstep s3"><i>89%</i><u>sirven</u></span>
-</div>
-<p class="ksec">Operaci&oacute;n</p>
-<div class="kg r2">
-<div class="kc"><div class="kl">Show-up rate</div><div class="kn">69%</div><div class="kd up">+2 pts vs octubre</div><div class="km"><em>meta nov</em><b>70%</b></div></div>
-<div class="kc"><div class="kl">Agendas/closer sem</div><div class="kn">12.8</div><div class="kd eq">mediana de los 22</div><div class="km"><em>piso efec.</em><b>10</b></div></div>
-<div class="kc"><div class="kl">No efectivas</div><div class="kn">53 <small class="pct hi">11%</small></div><div class="kd up">-2 pts vs oct &middot; de asistidas</div><div class="km"><em>meta nov</em><b>8%</b></div></div>
-<div class="kc"><div class="kl">Asesor&iacute;as sin marcar</div><div class="kn">45</div><div class="kd eq">con m&aacute;s de 24 h &middot; 95 sin marcar en total</div><div class="km"><em>regla</em><b>24 h</b></div></div>
-</div>
-<p class="ksec">Despu&eacute;s de la asesor&iacute;a &middot; fuera del control del closer</p>
-<div class="kg r3">
-<div class="kc"><div class="kl">Efectivas entregadas</div><div class="kn">434</div><div class="kd eq">del closer al asesor</div></div>
-<div class="kc"><div class="kl">Firmas de solicitud</div><div class="kn rate lo">21%</div><div class="kd eq">38% sep &middot; 38% ago</div><div class="km plain">345 sin firma todav&iacute;a</div></div>
-<div class="kc"><div class="kl">Pr&eacute;stamos ejecutados</div><div class="kn rate lo">0%</div><div class="kd eq">cohorte de noviembre madurando</div></div>
-<span class="kstep s1"><i>89</i><u>firman</u></span><span class="kstep s2"><i>0</i><u>ejecutan</u></span>
-</div>
-</div>
+<div class="wrap">
+<header class="top">
+ <div><div class="ey">Direcci&oacute;n de closers &middot; noviembre 2026</div><h1>D&oacute;nde est&aacute;n las efectivas que faltan</h1></div>
+ <div class="up">corte vie 20 &middot; quedan 10 d&iacute;as</div>
+</header>
+<p class="hoy"><b>52</b> citas hoy &middot; <b>15</b> ma&ntilde;ana &middot; <b>135</b> leads ayer, 12 sin due&ntilde;o &middot; el motor calific&oacute; <b>28%</b></p><details class="msg"><summary>Mensaje al equipo de hoy <button class="cp" data-m="Team, 434 efectivas de 736 y quedan 10 días. Lo de hoy es agendar: hay 273 leads que ya califican y no tienen cita.
 
-<div class="uln"></div>
-<section class="usec">
-<h2>El trimestre</h2>
-<p class="sub">Cada barra es un mes, agrupadas por trimestre. La altura son asesor&iacute;as efectivas.</p>
-<div class="trw"><div class="tq"><div class="tbs"><div class="tb" title="julio: 195 efectivas &middot; 291 agendas &middot; show 75% &middot; 84 firmas"><b>195</b><i style="height:37%"></i><u>jul.</u></div><div class="tb" title="agosto: 281 efectivas &middot; 535 agendas &middot; show 68% &middot; 103 firmas"><b>281</b><i style="height:53%"></i><u>ago.</u></div><div class="tb" title="septiembre: 456 efectivas &middot; 744 agendas &middot; show 65% &middot; 170 firmas"><b>456</b><i style="height:87%"></i><u>sep.</u></div></div><div class="tqf"><span class="qn">Q3 2026</span><span class="qv">932</span><span class="qk">efectivas</span><span class="qd">1570 agendas &middot; show 68% &middot; 357 firmas</span></div></div><div class="tq curso"><div class="tbs"><div class="tb" title="octubre: 527 efectivas &middot; 970 agendas &middot; show 65% &middot; 193 firmas"><b>527</b><i style="height:100%"></i><u>oct.</u></div><div class="tb curso" title="noviembre: 434 efectivas &middot; 797 agendas &middot; show 69% &middot; 89 firmas"><b>434</b><i style="height:82%"></i><u>nov.</u></div></div><div class="tqf"><span class="qn">Q4 2026 &middot; en curso</span><span class="qv">961</span><span class="qk">efectivas</span><span class="qd">1767 agendas &middot; show 66% &middot; 282 firmas</span></div></div></div>
-<div class="gnota"><p><b>Q4 va en 961 asesor&iacute;as efectivas, el 103% de las 932 del Q3</b>, con 2 meses de tres y 10 d&iacute;as por delante. Si noviembre cierra en 651 y los meses que siguen lo repiten, el Q4 termina cerca de <b>1,829</b> contra 932 del Q3. El show-up baj&oacute; de 68% a 66%: el volumen creci&oacute; m&aacute;s r&aacute;pido que la confirmaci&oacute;n.</p></div>
+Agendar hoy los que ya califican
+Axel: 31
+Stephanie: 28
+Franco L.: 24
+Tomás: 21
+Álvaro: 16
+Paola: 8
+John: 7
+María Gladis: 7
+Malena: 6
+Jesica Á.: 2
+
+Confirmar con audio en la tarde y llamada en la mañana
+Rosa: le llega el 47% de sus citas
+Albert: 61%
+Carina: 61%
+
+Pedirle al asesor que marque las que ya pasaron
+Pablo: 9
+Franco P.: 6
+Gonza: 6
+Jessica T.: 2
+Lenis: 2
+Verónica: 2
+
+A seguir así, efectivas del mes
+Lina: 60
+Matías: 25
+Silvia: 24">copiar</button></summary><pre>Team, 434 efectivas de 736 y quedan 10 días. Lo de hoy es agendar: hay 273 leads que ya califican y no tienen cita.
+
+Agendar hoy los que ya califican
+Axel: 31
+Stephanie: 28
+Franco L.: 24
+Tomás: 21
+Álvaro: 16
+Paola: 8
+John: 7
+María Gladis: 7
+Malena: 6
+Jesica Á.: 2
+
+Confirmar con audio en la tarde y llamada en la mañana
+Rosa: le llega el 47% de sus citas
+Albert: 61%
+Carina: 61%
+
+Pedirle al asesor que marque las que ya pasaron
+Pablo: 9
+Franco P.: 6
+Gonza: 6
+Jessica T.: 2
+Lenis: 2
+Verónica: 2
+
+A seguir así, efectivas del mes
+Lina: 60
+Matías: 25
+Silvia: 24</pre></details>
+
+<section class="kps"><div class="kp hero"><div class="k">Efectivas del mes</div><div class="v">434<span class="pm">59% de la meta</span></div><div class="s">meta 736 &middot; cierre proyectado <b class="r">651</b> (&minus;85)</div><div class="pb"><i style="width:59%"></i><i class="c" style="width:29%"></i></div></div><div class="kp"><div class="k">Agendas del mes</div><div class="v">797<span class="pm">70% de la meta</span></div><div class="s">meta 1,143 &middot; cierre proyectado <b class="g">1,196</b></div></div><div class="kp"><div class="k">Show-up del mes</div><div class="v">69%<span class="pm">&minus;1 pts vs meta</span></div><div class="s">llegaron 487 de 706 marcadas &middot; meta 70%</div></div><div class="kp"><div class="k">Agendas, lun 16 a jue 19</div><div class="v">205</div><div class="s"><span class="dl up">+41%</span> vs 145 el mismo tramo de la semana pasada</div></div><div class="kp"><div class="k">Efectivas, lun 16 a jue 19</div><div class="v">77</div><div class="s"><span class="dl dn">&minus;45%</span> vs 141 la semana pasada &middot; <b class="w">39 citas sin marcar todav&iacute;a</b></div></div></section>
+
+<section class="card">
+<h2>De 2,176 leads &uacute;tiles salieron 424 efectivas. La fuga m&aacute;s grande es agendar: +71 si se corrige</h2>
+<p class="d">Closers activos, del 1 al vie 20. Cada caja de abajo dice cu&aacute;ntas efectivas m&aacute;s ser&iacute;an si los que van abajo del equipo en ese paso fueran al ritmo del equipo, y qui&eacute;n deja m&aacute;s.</p>
+<div class="fn"><div><div class="k">Leads &uacute;tiles</div><div class="v">2,176</div><div class="s">no descalificados</div></div><div><div class="k">Agendas</div><div class="v">787</div><div class="s"><b>36 de cada 100</b> leads</div></div><div><div class="k">Llegaron</div><div class="v">477</div><div class="s"><b>69%</b> de 696 marcadas &middot; 45 sin marcar</div></div><div><div class="k">Efectivas</div><div class="v">424</div><div class="s"><b>89%</b> de las que llegaron</div></div></div>
+<div class="fgs"><div class="fg f1"><div class="fh"><span>Agendar</span><b>+71</b></div><p>El equipo agenda 36 de cada 100 leads &uacute;tiles. Si los que van abajo agendaran igual, ser&iacute;an <b>+71 efectivas</b>. Hay 273 leads que ya califican sin cita para recuperarlas.</p><p class="qn">Qui&eacute;n deja m&aacute;s: <b>Franco Luna</b> agenda 22 de 100 (&minus;21), <b>Paola Soto</b> agenda 16 de 100 (&minus;15), <b>Tomás Puertas</b> agenda 5 de 100 (&minus;11), <b>Stephanie Duque</b> agenda 29 de 100 (&minus;7)</p></div><div class="fg"><div class="fh"><span>Sin marcar</span><b>+28</b></div><p>45 asesor&iacute;as ya pasaron y el asesor no las marc&oacute;: valen unas <b>28 efectivas</b> que no cuentan. Es pedido a Francisco.</p></div><div class="fg"><div class="fh"><span>Show-up</span><b>+25</b></div><p>Al equipo le llega el 69% de las citas. Si los que van abajo llegaran a eso, ser&iacute;an <b>+25 efectivas</b>.</p><p class="qn">Qui&eacute;n deja m&aacute;s: <b>Rosa Salazar</b> le llega 47% (&minus;7), <b>Axel Cisterna</b> le llega 48% (&minus;6), <b>Franco Luna</b> le llega 58% (&minus;4), <b>Carina Cabral</b> le llega 61% (&minus;3)</p></div><div class="fg"><div class="fh"><span>Efectiva</span><b>+4</b></div><p>De las que llegan, el 89% sale efectiva. Lo que se pierde aqu&iacute;: <b>+4 efectivas</b>.</p><p class="qn">Qui&eacute;n deja m&aacute;s: <b>Franco Luna</b> 82% efectiva (&minus;2), <b>Franco Pererson</b> 83% efectiva (&minus;2)</p></div></div>
+</section>
+
+<section class="g3">
+ <div class="card"><h3>Efectivas por semana</h3><p class="d">La &uacute;ltima semana cerrada: 177, +2% contra la anterior.</p><svg viewBox="0 0 330 150" role="img" aria-label="Efectivas por semana"><g><title>5/10: 127</title><rect class="b" x="14.2" y="47.6" width="29.1" height="80.4" rx="3"/><text class="vl" x="28.7" y="43.6">127</text><text class="xl" x="28.7" y="144">5/10</text></g><g><title>12/10: 162</title><rect class="b" x="59.6" y="25.5" width="29.1" height="102.5" rx="3"/><text class="vl" x="74.1" y="21.5">162</text><text class="xl" x="74.1" y="144">12/10</text></g><g><title>19/10: 120</title><rect class="b" x="105.0" y="52.1" width="29.1" height="75.9" rx="3"/><text class="vl" x="119.6" y="48.1">120</text><text class="xl" x="119.6" y="144">19/10</text></g><g><title>26/10: 91</title><rect class="b" x="150.5" y="70.4" width="29.1" height="57.6" rx="3"/><text class="vl" x="165.0" y="66.4">91</text><text class="xl" x="165.0" y="144">26/10</text></g><g><title>2/11: 173</title><rect class="b" x="195.9" y="18.5" width="29.1" height="109.5" rx="3"/><text class="vl" x="210.4" y="14.5">173</text><text class="xl" x="210.4" y="144">2/11</text></g><g><title>9/11: 177</title><rect class="b" x="241.3" y="16.0" width="29.1" height="112.0" rx="3"/><text class="vl" x="255.9" y="12.0">177</text><text class="xl" x="255.9" y="144">9/11</text></g><g><title>en curso: 77</title><rect class="bc" x="286.7" y="79.3" width="29.1" height="48.7" rx="3"/><text class="vl" x="301.3" y="75.3">77</text><text class="xl" x="301.3" y="144">en curso</text></g><line class="ax" x1="6" x2="324" y1="128" y2="128"/></svg></div>
+ <div class="card"><h3>Agendas por cada 100 leads &uacute;tiles</h3><p class="d">Equipo en el mes: 36 de cada 100. M&aacute;s bajos del mes: <b>Tomás Puertas</b> 5, <b>Paola Soto</b> 16, <b>Franco Luna</b> 22.</p><svg viewBox="0 0 330 150" role="img" aria-label="Agendas por cada 100 leads utiles"><polyline class="ln" points="26.0,105.7 72.3,80.1 118.7,104.2 165.0,86.1 211.3,38.3 257.7,102.2 304.0,36.8"/><g><title>5/10: 26</title><circle class="dt" cx="26.0" cy="105.7" r="4.5"/><text class="vl" x="26.0" y="96.7">26</text></g><g><title>12/10: 31</title><circle class="dt" cx="72.3" cy="80.1" r="4.5"/><text class="vl" x="72.3" y="71.1">31</text></g><g><title>19/10: 26</title><circle class="dt" cx="118.7" cy="104.2" r="4.5"/><text class="vl" x="118.7" y="95.2">26</text></g><g><title>26/10: 30</title><circle class="dt" cx="165.0" cy="86.1" r="4.5"/><text class="vl" x="165.0" y="77.1">30</text></g><g><title>2/11: 39</title><circle class="dt" cx="211.3" cy="38.3" r="4.5"/><text class="vl" x="211.3" y="29.3">39</text></g><g><title>9/11: 27</title><circle class="dt" cx="257.7" cy="102.2" r="4.5"/><text class="vl" x="257.7" y="93.2">27</text></g><g><title>en curso: 40</title><circle class="dt cu" cx="304.0" cy="36.8" r="4.5"/><text class="vl" x="304.0" y="27.8">40</text></g><text class="xl" x="26.0" y="144">5/10</text><text class="xl" x="72.3" y="144">12/10</text><text class="xl" x="118.7" y="144">19/10</text><text class="xl" x="165.0" y="144">26/10</text><text class="xl" x="211.3" y="144">2/11</text><text class="xl" x="257.7" y="144">9/11</text><text class="xl" x="304.0" y="144">en curso</text></svg></div>
+ <div class="card"><h3>Show-up por semana</h3><p class="d">Del vie 13 al jue 19: 62%. M&aacute;s bajos esos 7 d&iacute;as: <b>Rosa Salazar</b> 3 de 9, <b>Gonza Semelman</b> 5 de 12, <b>María Gladis González</b> 5 de 11.</p><svg viewBox="0 0 330 150" role="img" aria-label="Show-up por semana"><line class="rf" x1="26" x2="304" y1="47.5" y2="47.5"/><text class="rl" x="304" y="59.5">meta 70%</text><polyline class="ln" points="26.0,52.8 72.3,52.8 118.7,105.6 165.0,95.0 211.3,37.0 257.7,47.5 304.0,89.8"/><g><title>5/10: 69%</title><circle class="dt" cx="26.0" cy="52.8" r="4.5"/><text class="vl" x="26.0" y="43.8">69%</text></g><g><title>12/10: 69%</title><circle class="dt" cx="72.3" cy="52.8" r="4.5"/><text class="vl" x="72.3" y="43.8">69%</text></g><g><title>19/10: 59%</title><circle class="dt" cx="118.7" cy="105.6" r="4.5"/><text class="vl" x="118.7" y="96.6">59%</text></g><g><title>26/10: 61%</title><circle class="dt" cx="165.0" cy="95.0" r="4.5"/><text class="vl" x="165.0" y="86.0">61%</text></g><g><title>2/11: 72%</title><circle class="dt" cx="211.3" cy="37.0" r="4.5"/><text class="vl" x="211.3" y="28.0">72%</text></g><g><title>9/11: 70%</title><circle class="dt" cx="257.7" cy="47.5" r="4.5"/><text class="vl" x="257.7" y="38.5">70%</text></g><g><title>en curso: 62%</title><circle class="dt cu" cx="304.0" cy="89.8" r="4.5"/><text class="vl" x="304.0" y="80.8">62%</text></g><text class="xl" x="26.0" y="144">5/10</text><text class="xl" x="72.3" y="144">12/10</text><text class="xl" x="118.7" y="144">19/10</text><text class="xl" x="165.0" y="144">26/10</text><text class="xl" x="211.3" y="144">2/11</text><text class="xl" x="257.7" y="144">9/11</text><text class="xl" x="304.0" y="144">en curso</text></svg></div>
+</section>
+
+<section class="card">
+<h2>Semana contra semana</h2>
+<div class="tw"><table class="t">
+<thead><tr><th>Semana</th><th>Leads &uacute;tiles</th><th>Agendas</th><th>Ag/100</th><th>Asesor&iacute;as</th><th>Show-up</th><th>Efectivas</th><th>Efec/asist.</th><th>Firmas</th></tr></thead>
+<tbody><tr class="cu"><td>en curso, lun 16 a jue 19</td><td>517</td><td>205</td><td>40</td><td>175</td><td>62%</td><td><b>77</b></td><td>92%</td><td>21</td></tr><tr class=""><td>lun 9 a dom 15</td><td>689</td><td>184</td><td>27</td><td>298</td><td>70%</td><td><b>177</b></td><td>87%</td><td>29</td></tr><tr class=""><td>lun 2 a dom 8</td><td>977</td><td>385</td><td>39</td><td>268</td><td>72%</td><td><b>173</b></td><td>90%</td><td>35</td></tr><tr class=""><td>lun 26 a dom 1</td><td>665</td><td>199</td><td>30</td><td>173</td><td>61%</td><td><b>91</b></td><td>87%</td><td>29</td></tr><tr class=""><td>lun 19 a dom 25</td><td>868</td><td>228</td><td>26</td><td>237</td><td>59%</td><td><b>120</b></td><td>86%</td><td>44</td></tr><tr class=""><td>lun 12 a dom 18</td><td>834</td><td>259</td><td>31</td><td>262</td><td>69%</td><td><b>162</b></td><td>89%</td><td>57</td></tr><tr class=""><td>lun 5 a dom 11</td><td>823</td><td>214</td><td>26</td><td>214</td><td>69%</td><td><b>127</b></td><td>87%</td><td>55</td></tr></tbody></table></div>
 </section>
 
 
+<section class="card">
+<h2>A qui&eacute;n moverle qu&eacute;</h2>
+<p class="d">Arriba, quien m&aacute;s efectivas deja en el mes. <b>Agenda</b>: agendas entre leads &uacute;tiles. <b>Show-up</b>: llegaron entre citas marcadas.
+<b>Efectiva</b>: efectivas entre las que llegaron. En rojo, su fuga m&aacute;s grande; en verde, donde va arriba del equipo; en gris, menos de 25 casos.
+<b>Semana</b>: efectivas del lun 16 a jue 19 y, al lado, las del mismo tramo de la semana pasada.
+<button class="cp" id="vm">ver mensajes</button></p>
+<div class="tw"><table class="t cl">
+<thead><tr><th>Closer</th><th>Efec. mes</th><th>Semana</th><th>Agenda</th><th>Show-up</th><th>Efectiva</th><th>Su fuga m&aacute;s grande</th><th>Tiene hoy</th><th></th></tr></thead>
+<tbody><tr><td>Franco Luna</td><td class="m"><b>23</b></td><td class="m">8 <small>ant. 7</small></td><td class="m cu">22% <small>56/252</small></td><td class="m">58% <small>28/48</small></td><td class="m">82% <small>23/28</small></td><td><b>Agendar</b>: &minus;21 efectivas</td><td class="tn">24 califican sin cita &middot; <span class="w">5 sin marcar</span></td><td><button class="cp" data-m="Franco, vas en 23 efectivas este mes y 8 esta semana. De cada 100 leads útiles agendas 22; el equipo, 36. Ahí se te fueron unas 21 efectivas este mes. Hoy tienes 24 leads que ya califican y no tienen cita: llámalos hoy y agéndalos para mañana. Tienes 5 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Franco, vas en 23 efectivas este mes y 8 esta semana. De cada 100 leads útiles agendas 22; el equipo, 36. Ahí se te fueron unas 21 efectivas este mes. Hoy tienes 24 leads que ya califican y no tienen cita: llámalos hoy y agéndalos para mañana. Tienes 5 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.</p></td></tr><tr><td>Paola Soto</td><td class="m"><b>15</b></td><td class="m">4 <small>ant. 4</small></td><td class="m cu">16% <small>20/125</small></td><td class="m lo">80% <small>16/20</small></td><td class="m lo">94% <small>15/16</small></td><td><b>Agendar</b>: &minus;15 efectivas</td><td class="tn">8 califican sin cita</td><td><button class="cp" data-m="Paola, vas en 15 efectivas este mes y 4 esta semana. De cada 100 leads útiles agendas 16; el equipo, 36. Ahí se te fueron unas 15 efectivas este mes. Hoy tienes 8 leads que ya califican y no tienen cita: llámalos hoy y agéndalos para mañana.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Paola, vas en 15 efectivas este mes y 4 esta semana. De cada 100 leads útiles agendas 16; el equipo, 36. Ahí se te fueron unas 15 efectivas este mes. Hoy tienes 8 leads que ya califican y no tienen cita: llámalos hoy y agéndalos para mañana.</p></td></tr><tr><td>Axel Cisterna</td><td class="m"><b>14</b></td><td class="m">4 <small>ant. 3</small></td><td class="m cu">28% <small>33/118</small></td><td class="m">48% <small>15/31</small></td><td class="m lo">93% <small>14/15</small></td><td><b>Agendar</b>: &minus;6 efectivas</td><td class="tn">31 califican sin cita &middot; 2 citas ma&ntilde;ana &middot; <span class="w">1 sin marcar</span></td><td><button class="cp" data-m="Axel, vas en 14 efectivas este mes y 4 esta semana. De cada 100 leads útiles agendas 28; el equipo, 36. Ahí se te fueron unas 6 efectivas este mes. Hoy tienes 31 leads que ya califican y no tienen cita: llámalos hoy y agéndalos para mañana. Tienes 1 asesoría sin marcar: pídele al asesor que la marque, sin eso no cuenta.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Axel, vas en 14 efectivas este mes y 4 esta semana. De cada 100 leads útiles agendas 28; el equipo, 36. Ahí se te fueron unas 6 efectivas este mes. Hoy tienes 31 leads que ya califican y no tienen cita: llámalos hoy y agéndalos para mañana. Tienes 1 asesoría sin marcar: pídele al asesor que la marque, sin eso no cuenta.</p></td></tr><tr><td>Tomás Puertas</td><td class="m"><b>2</b></td><td class="m">1 <small>ant. 0</small></td><td class="m cu">5% <small>3/58</small></td><td class="m lo">67% <small>2/3</small></td><td class="m lo">100% <small>2/2</small></td><td><b>Agendar</b>: &minus;11 efectivas</td><td class="tn">21 califican sin cita</td><td><button class="cp" data-m="Tomás, vas en 2 efectivas este mes y 1 esta semana. De cada 100 leads útiles agendas 5; el equipo, 36. Ahí se te fueron unas 11 efectivas este mes. Hoy tienes 21 leads que ya califican y no tienen cita: llámalos hoy y agéndalos para mañana.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Tomás, vas en 2 efectivas este mes y 1 esta semana. De cada 100 leads útiles agendas 5; el equipo, 36. Ahí se te fueron unas 11 efectivas este mes. Hoy tienes 21 leads que ya califican y no tienen cita: llámalos hoy y agéndalos para mañana.</p></td></tr><tr><td>Rosa Salazar</td><td class="m"><b>12</b></td><td class="m">2 <small>ant. 8</small></td><td class="m hi">61% <small>46/75</small></td><td class="m cu">47% <small>18/38</small></td><td class="m lo">67% <small>12/18</small></td><td><b>Show-up</b>: &minus;7 efectivas</td><td class="tn">4 califican sin cita &middot; 1 cita ma&ntilde;ana</td><td><button class="cp" data-m="Rosa, vas en 12 efectivas este mes y 2 esta semana. Tu show-up va en 47% y el del equipo en 69%: entre agendar y llegar se te fueron unas 7 efectivas. Mañana tienes 1 cita: audio hoy en la tarde y llamada mañana temprano a cada una.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Rosa, vas en 12 efectivas este mes y 2 esta semana. Tu show-up va en 47% y el del equipo en 69%: entre agendar y llegar se te fueron unas 7 efectivas. Mañana tienes 1 cita: audio hoy en la tarde y llamada mañana temprano a cada una.</p></td></tr><tr><td>Stephanie Duque</td><td class="m"><b>30</b></td><td class="m">4 <small>ant. 9</small></td><td class="m cu">29% <small>48/164</small></td><td class="m">70% <small>32/46</small></td><td class="m hi">94% <small>30/32</small></td><td><b>Agendar</b>: &minus;7 efectivas</td><td class="tn">28 califican sin cita &middot; <span class="w">3 sin marcar</span></td><td><button class="cp" data-m="Stephanie, vas en 30 efectivas este mes y 4 esta semana. De cada 100 leads útiles agendas 29; el equipo, 36. Ahí se te fueron unas 7 efectivas este mes. Hoy tienes 28 leads que ya califican y no tienen cita: llámalos hoy y agéndalos para mañana. Tienes 3 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Stephanie, vas en 30 efectivas este mes y 4 esta semana. De cada 100 leads útiles agendas 29; el equipo, 36. Ahí se te fueron unas 7 efectivas este mes. Hoy tienes 28 leads que ya califican y no tienen cita: llámalos hoy y agéndalos para mañana. Tienes 3 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.</p></td></tr><tr><td>John Salamanca</td><td class="m"><b>19</b></td><td class="m">6 <small>ant. 2</small></td><td class="m cu">28% <small>32/114</small></td><td class="m hi">78% <small>21/27</small></td><td class="m lo">90% <small>19/21</small></td><td><b>Agendar</b>: &minus;6 efectivas</td><td class="tn">7 califican sin cita &middot; 2 citas ma&ntilde;ana &middot; <span class="w">2 sin marcar</span></td><td><button class="cp" data-m="John, vas en 19 efectivas este mes y 6 esta semana. De cada 100 leads útiles agendas 28; el equipo, 36. Ahí se te fueron unas 6 efectivas este mes. Hoy tienes 7 leads que ya califican y no tienen cita: llámalos hoy y agéndalos para mañana. Tienes 2 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>John, vas en 19 efectivas este mes y 6 esta semana. De cada 100 leads útiles agendas 28; el equipo, 36. Ahí se te fueron unas 6 efectivas este mes. Hoy tienes 7 leads que ya califican y no tienen cita: llámalos hoy y agéndalos para mañana. Tienes 2 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.</p></td></tr><tr><td>María Gladis González</td><td class="m"><b>16</b></td><td class="m">4 <small>ant. 8</small></td><td class="m cu">32% <small>27/84</small></td><td class="m">62% <small>16/26</small></td><td class="m lo">100% <small>16/16</small></td><td><b>Agendar</b>: &minus;2 efectivas</td><td class="tn">7 califican sin cita &middot; <span class="w">2 sin marcar</span></td><td><button class="cp" data-m="María, vas en 16 efectivas este mes y 4 esta semana. De cada 100 leads útiles agendas 32; el equipo, 36. Ahí se te fueron unas 2 efectivas este mes. Hoy tienes 7 leads que ya califican y no tienen cita: llámalos hoy y agéndalos para mañana. Tienes 2 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>María, vas en 16 efectivas este mes y 4 esta semana. De cada 100 leads útiles agendas 32; el equipo, 36. Ahí se te fueron unas 2 efectivas este mes. Hoy tienes 7 leads que ya califican y no tienen cita: llámalos hoy y agéndalos para mañana. Tienes 2 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.</p></td></tr><tr><td>Carina Cabral</td><td class="m"><b>26</b></td><td class="m">7 <small>ant. 3</small></td><td class="m">38% <small>39/104</small></td><td class="m cu">61% <small>28/46</small></td><td class="m">93% <small>26/28</small></td><td><b>Show-up</b>: &minus;3 efectivas</td><td class="tn">18 califican sin cita</td><td><button class="cp" data-m="Carina, vas en 26 efectivas este mes y 7 esta semana. Tu show-up va en 61% y el del equipo en 69%: entre agendar y llegar se te fueron unas 3 efectivas. A cada cita que agendes: audio la tarde anterior y llamada la mañana de la cita.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Carina, vas en 26 efectivas este mes y 7 esta semana. Tu show-up va en 61% y el del equipo en 69%: entre agendar y llegar se te fueron unas 3 efectivas. A cada cita que agendes: audio la tarde anterior y llamada la mañana de la cita.</p></td></tr><tr><td>Albert Paz</td><td class="m"><b>15</b></td><td class="m">2 <small>ant. 6</small></td><td class="m hi">64% <small>39/61</small></td><td class="m cu">61% <small>20/33</small></td><td class="m lo">75% <small>15/20</small></td><td><b>Show-up</b>: &minus;2 efectivas</td><td class="tn">6 califican sin cita &middot; 1 cita ma&ntilde;ana &middot; <span class="w">1 sin marcar</span></td><td><button class="cp" data-m="Albert, vas en 15 efectivas este mes y 2 esta semana. Tu show-up va en 61% y el del equipo en 69%: entre agendar y llegar se te fueron unas 2 efectivas. Mañana tienes 1 cita: audio hoy en la tarde y llamada mañana temprano a cada una. Tienes 1 asesoría sin marcar: pídele al asesor que la marque, sin eso no cuenta.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Albert, vas en 15 efectivas este mes y 2 esta semana. Tu show-up va en 61% y el del equipo en 69%: entre agendar y llegar se te fueron unas 2 efectivas. Mañana tienes 1 cita: audio hoy en la tarde y llamada mañana temprano a cada una. Tienes 1 asesoría sin marcar: pídele al asesor que la marque, sin eso no cuenta.</p></td></tr><tr><td>Jessica Turón</td><td class="m"><b>6</b></td><td class="m">1 <small>ant. 1</small></td><td class="m">31% <small>19/61</small></td><td class="m lo">29% <small>6/21</small></td><td class="m lo">100% <small>6/6</small></td><td><span class="na">pocos casos para juzgar</span></td><td class="tn">4 califican sin cita &middot; <span class="w">2 sin marcar</span></td><td><button class="cp" data-m="Jessica, vas en 6 efectivas este mes y 1 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 4 leads que ya califican sin cita: eso es lo que sigue. Tienes 2 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Jessica, vas en 6 efectivas este mes y 1 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 4 leads que ya califican sin cita: eso es lo que sigue. Tienes 2 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.</p></td></tr><tr><td>Franco Pererson</td><td class="m"><b>25</b></td><td class="m">3 <small>ant. 6</small></td><td class="m hi">40% <small>54/135</small></td><td class="m hi">81% <small>30/37</small></td><td class="m">83% <small>25/30</small></td><td><span class="ok">al ritmo del equipo</span></td><td class="tn">2 califican sin cita &middot; 2 citas ma&ntilde;ana &middot; <span class="w">6 sin marcar</span></td><td><button class="cp" data-m="Franco, vas en 25 efectivas este mes y 3 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 2 leads que ya califican sin cita: eso es lo que sigue. Tienes 6 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Franco, vas en 25 efectivas este mes y 3 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 2 leads que ya califican sin cita: eso es lo que sigue. Tienes 6 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.</p></td></tr><tr><td>Malena Cantarini</td><td class="m"><b>17</b></td><td class="m">2 <small>ant. 3</small></td><td class="m">34% <small>27/80</small></td><td class="m lo">77% <small>17/22</small></td><td class="m lo">100% <small>17/17</small></td><td><span class="na">pocos casos para juzgar</span></td><td class="tn">6 califican sin cita &middot; 1 cita ma&ntilde;ana &middot; <span class="w">1 sin marcar</span></td><td><button class="cp" data-m="Malena, vas en 17 efectivas este mes y 2 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 6 leads que ya califican sin cita: eso es lo que sigue. Tienes 1 asesoría sin marcar: pídele al asesor que la marque, sin eso no cuenta.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Malena, vas en 17 efectivas este mes y 2 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 6 leads que ya califican sin cita: eso es lo que sigue. Tienes 1 asesoría sin marcar: pídele al asesor que la marque, sin eso no cuenta.</p></td></tr><tr><td>Gonza Semelman</td><td class="m"><b>25</b></td><td class="m">1 <small>ant. 9</small></td><td class="m">37% <small>59/161</small></td><td class="m">67% <small>28/42</small></td><td class="m">89% <small>25/28</small></td><td><span class="ok">al ritmo del equipo</span></td><td class="tn">16 califican sin cita &middot; 1 cita ma&ntilde;ana &middot; <span class="w">6 sin marcar</span></td><td><button class="cp" data-m="Gonza, vas en 25 efectivas este mes y 1 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 16 leads que ya califican sin cita: eso es lo que sigue. Tienes 6 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Gonza, vas en 25 efectivas este mes y 1 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 16 leads que ya califican sin cita: eso es lo que sigue. Tienes 6 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.</p></td></tr><tr><td>Lenis Donado</td><td class="m"><b>20</b></td><td class="m">4 <small>ant. 6</small></td><td class="m hi">72% <small>39/54</small></td><td class="m">67% <small>22/33</small></td><td class="m lo">91% <small>20/22</small></td><td><span class="ok">al ritmo del equipo</span></td><td class="tn">7 califican sin cita &middot; 2 citas ma&ntilde;ana &middot; <span class="w">2 sin marcar</span></td><td><button class="cp" data-m="Lenis, vas en 20 efectivas este mes y 4 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 7 leads que ya califican sin cita: eso es lo que sigue. Tienes 2 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Lenis, vas en 20 efectivas este mes y 4 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 7 leads que ya califican sin cita: eso es lo que sigue. Tienes 2 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.</p></td></tr><tr><td>Lina López</td><td class="m"><b>60</b></td><td class="m">10 <small>ant. 29</small></td><td class="m hi">51% <small>85/167</small></td><td class="m hi">83% <small>68/82</small></td><td class="m">88% <small>60/68</small></td><td><span class="ok">al ritmo del equipo</span></td><td class="tn">1 cita ma&ntilde;ana &middot; <span class="w">1 sin marcar</span></td><td><button class="cp" data-m="Lina, vas en 60 efectivas este mes y 10 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Tienes 1 asesoría sin marcar: pídele al asesor que la marque, sin eso no cuenta.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Lina, vas en 60 efectivas este mes y 10 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Tienes 1 asesoría sin marcar: pídele al asesor que la marque, sin eso no cuenta.</p></td></tr><tr><td>Pablo Dilascio</td><td class="m"><b>45</b></td><td class="m">6 <small>ant. 14</small></td><td class="m hi">41% <small>79/192</small></td><td class="m hi">76% <small>51/67</small></td><td class="m">88% <small>45/51</small></td><td><span class="ok">al ritmo del equipo</span></td><td class="tn">29 califican sin cita &middot; 1 cita ma&ntilde;ana &middot; <span class="w">9 sin marcar</span></td><td><button class="cp" data-m="Pablo, vas en 45 efectivas este mes y 6 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 29 leads que ya califican sin cita: eso es lo que sigue. Tienes 9 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Pablo, vas en 45 efectivas este mes y 6 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 29 leads que ya califican sin cita: eso es lo que sigue. Tienes 9 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.</p></td></tr><tr><td>Matías García</td><td class="m"><b>25</b></td><td class="m">2 <small>ant. 12</small></td><td class="m hi">56% <small>34/61</small></td><td class="m hi">85% <small>28/33</small></td><td class="m">89% <small>25/28</small></td><td><span class="ok">al ritmo del equipo</span></td><td class="tn">7 califican sin cita &middot; <span class="w">1 sin marcar</span></td><td><button class="cp" data-m="Matías, vas en 25 efectivas este mes y 2 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 7 leads que ya califican sin cita: eso es lo que sigue. Tienes 1 asesoría sin marcar: pídele al asesor que la marque, sin eso no cuenta.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Matías, vas en 25 efectivas este mes y 2 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 7 leads que ya califican sin cita: eso es lo que sigue. Tienes 1 asesoría sin marcar: pídele al asesor que la marque, sin eso no cuenta.</p></td></tr><tr><td>Silvia Díaz</td><td class="m"><b>24</b></td><td class="m">3 <small>ant. 8</small></td><td class="m hi">48% <small>31/64</small></td><td class="m hi">81% <small>25/31</small></td><td class="m hi">96% <small>24/25</small></td><td><span class="ok">al ritmo del equipo</span></td><td class="tn">5 califican sin cita &middot; 1 cita ma&ntilde;ana &middot; <span class="w">1 sin marcar</span></td><td><button class="cp" data-m="Silvia, vas en 24 efectivas este mes y 3 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 5 leads que ya califican sin cita: eso es lo que sigue. Tienes 1 asesoría sin marcar: pídele al asesor que la marque, sin eso no cuenta.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Silvia, vas en 24 efectivas este mes y 3 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 5 leads que ya califican sin cita: eso es lo que sigue. Tienes 1 asesoría sin marcar: pídele al asesor que la marque, sin eso no cuenta.</p></td></tr><tr><td>Verónica Yantz</td><td class="m"><b>5</b></td><td class="m">2 <small>ant. 1</small></td><td class="m hi">41% <small>17/41</small></td><td class="m lo">60% <small>6/10</small></td><td class="m lo">83% <small>5/6</small></td><td><span class="na">pocos casos para juzgar</span></td><td class="tn">25 califican sin cita &middot; <span class="w">2 sin marcar</span></td><td><button class="cp" data-m="Verónica, vas en 5 efectivas este mes y 2 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 25 leads que ya califican sin cita: eso es lo que sigue. Tienes 2 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Verónica, vas en 5 efectivas este mes y 2 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 25 leads que ya califican sin cita: eso es lo que sigue. Tienes 2 asesorías sin marcar: pídele al asesor que las marque, sin eso no cuentan.</p></td></tr><tr><td>Álvaro Toro</td><td class="m"><b>0</b></td><td class="m">0 <small>ant. 0</small></td><td class="m lo">0% <small>0/4</small></td><td class="m"><span class="na">&middot;</span></td><td class="m"><span class="na">&middot;</span></td><td><span class="na">pocos casos para juzgar</span></td><td class="tn">16 califican sin cita</td><td><button class="cp" data-m="Álvaro, vas en 0 efectivas este mes y 0 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 16 leads que ya califican sin cita: eso es lo que sigue.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Álvaro, vas en 0 efectivas este mes y 0 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 16 leads que ya califican sin cita: eso es lo que sigue.</p></td></tr><tr><td>Jesica Álvaro</td><td class="m"><b>0</b></td><td class="m">0 <small>ant. 0</small></td><td class="m lo">0% <small>0/1</small></td><td class="m"><span class="na">&middot;</span></td><td class="m"><span class="na">&middot;</span></td><td><span class="na">pocos casos para juzgar</span></td><td class="tn">2 califican sin cita</td><td><button class="cp" data-m="Jesica, vas en 0 efectivas este mes y 0 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 2 leads que ya califican sin cita: eso es lo que sigue.">copiar</button></td></tr><tr class="ms" hidden><td colspan="9"><p>Jesica, vas en 0 efectivas este mes y 0 esta semana. Agendas y show-up van al ritmo del equipo o arriba. Hoy tienes 2 leads que ya califican sin cita: eso es lo que sigue.</p></td></tr></tbody><tfoot><tr class="tot"><td>Activos</td><td class="m"><b>424</b></td><td class="m">77</td><td class="m">36%</td><td class="m">69%</td><td class="m">89%</td><td>&minus;101 efectivas</td><td class="tn">273 califican sin cita</td><td></td></tr></tfoot></table></div>
+</section>
 
-<div class="uln"></div>
-<section class="usec">
-<h2>C&oacute;mo vamos a cerrar el mes</h2>
-<p class="sub">Lo que ya cuenta, lo que ya est&aacute; agendado y lo que falta por agendar, contra la meta de 736.</p>
-<div class="cbar">
-<div class="ctrack"><i class="cs hecho" style="width:59%"><em>434 hechas</em></i><i class="cs comp" style="width:9%"><em>63 agendadas</em></i><i class="cs falta" style="width:32%"><em>239 por agendar</em></i></div>
-<div class="cend"><span>0</span><span>meta 736</span></div>
+<p class="pie"><b>Operaci&oacute;n ALLMK.</b> Casi sin leads del mar 17 al jue 19, cuando la mediana del equipo fue 19: Verónica Yantz 0, Álvaro Toro 0, Jesica Álvaro 1, Jessica Turón 1, Albert Paz 3, Tomás Puertas 3. Revisar su ficha en ALLMK, no el peso. 45 asesor&iacute;as del mes con fecha pasada y sin marcar. Es pedido a Francisco: sin marcar no cuentan ni se pagan. El Tracker sigue desalineado: 501 renglones con asistencia, firma o monto y sin lead. Agendas, asistencia y efectivas van por debajo de lo real. <b>C&oacute;mo se calcula.</b> Agenda = agendas del mes entre leads &uacute;tiles (no descalificados).
+Show-up = asistidas entre marcadas. Efectiva = asisti&oacute;, califica y necesita financiamiento. Un paso se juzga con 25 casos o m&aacute;s.
+Los leads salen del CF-A con el due&ntilde;o de hoy: a quien recibi&oacute; leads reasignados se le cargan en el denominador.
+Fuentes: CFA_201126.csv y Tracker_201126.csv. </p>
 </div>
-<div class="cleg">
-<span><i class="d hecho"></i><b>434</b> ya hechas <em class="cp">59% de la meta</em><u>nadie te las quita</u></span>
-<span><i class="d comp"></i><b>63</b> ya agendadas <em class="cp">9% m&aacute;s</em><u>103 citas cargadas &middot; solo falta que lleguen</u></span>
-<span><i class="d falta"></i><b>239</b> por agendar <em class="cp">32% que falta</em><u>389 citas &middot; 17.7 por closer</u></span>
-</div>
-<p class="cres">Con lo hecho m&aacute;s lo agendado vamos en <b>68%</b> de la meta de 736. Contra el mismo corte del mes pasado (367 efectivas) vamos <b>+18%</b>.</p>
-<h3 class="ksec">Lo que ya est&aacute; en el calendario</h3>
-<div class="leads" style="grid-template-columns:repeat(11,1fr)"><div class="lb"><div class="lbar"><i class="u" style="height:100%"></i></div><b>52</b><small>citas</small><span>vie 20</span></div><div class="lb"><div class="lbar"><i class="u" style="height:29%"></i></div><b>15</b><small>citas</small><span>sáb 21</span></div><div class="lb"><div class="lbar"><i class="u" style="height:15%"></i></div><b>8</b><small>citas</small><span>dom 22</span></div><div class="lb"><div class="lbar"><i class="u" style="height:40%"></i></div><b>21</b><small>citas</small><span>lun 23</span></div><div class="lb"><div class="lbar"><i class="u" style="height:12%"></i></div><b>6</b><small>citas</small><span>mar 24</span></div><div class="lb"><div class="lbar"><i class="u" style="height:0%"></i></div><b>0</b><small>citas</small><span>mié 25</span></div><div class="lb"><div class="lbar"><i class="u" style="height:0%"></i></div><b>0</b><small>citas</small><span>jue 26</span></div><div class="lb"><div class="lbar"><i class="u" style="height:0%"></i></div><b>0</b><small>citas</small><span>vie 27</span></div><div class="lb"><div class="lbar"><i class="u" style="height:0%"></i></div><b>0</b><small>citas</small><span>sáb 28</span></div><div class="lb"><div class="lbar"><i class="u" style="height:2%"></i></div><b>1</b><small>cita</small><span>dom 29</span></div><div class="lb"><div class="lbar"><i class="u" style="height:0%"></i></div><b>0</b><small>citas</small><span>lun 30</span></div></div>
-<div class="gnota"><p><b>Al ritmo de hoy cerramos en 651</b>, 85 abajo de la meta. Quedan 10 d&iacute;as.
-Dos cosas que este mes costaron efectivas: el show-up de <b>69%</b> en vez de 70% son <b>6 efectivas</b> que se perdieron entre agendar y llegar, y las <b>45 asesor&iacute;as sin marcar</b> valen otras <b>28</b> que ya se ganaron y no est&aacute;n contadas.</p></div>
-</section>
-
-<div class="uln"></div>
-<section class="usec">
-<h2>Qu&eacute; hacer hoy</h2>
-<p class="sub">Lo que ya est&aacute; en el pipe listo para trabajar, y qui&eacute;n lo tiene. Las dos &uacute;ltimas, en azul, las marca el asesor: el closer tiene que ped&iacute;rselo.</p>
-<div class="upal"><div class="c"><div class="o">15 citas</div><div class="h">Confirmar las citas de ma&ntilde;ana</div><div class="d">Audio en la tarde y llamada en la ma&ntilde;ana de la cita. El show-up del mes va en 69%: cada punto que sube son efectivas sin agendar una cita de m&aacute;s.</div><div class="g">John 2 &middot; Axel 2 &middot; Lenis 2 &middot; Franco P. 2</div></div><div class="c"><div class="o">273 leads</div><div class="h">Califican y no tienen cita</div><div class="d">Ya tienen resultado del sistema. Es llamada de hoy y cita para ma&ntilde;ana.</div><div class="g">Axel 31 &middot; Pablo 29 &middot; Stephanie 28 &middot; Verónica 25</div></div><div class="c"><div class="o">48 leads</div><div class="h">En Lead (con CURP) pero sin CURP</div><div class="d">No esperan calificaci&oacute;n: esperan que les pidan el CURP. Es un mensaje; califican hoy y se agendan ma&ntilde;ana.</div><div class="g">Franco L. 19 &middot; Axel 17 &middot; Pablo 6 &middot; Verónica 2</div></div></div>
-<div class="upal dos"><div class="c mk"><div class="o">45 asesor&iacute;as &middot; lo marca el asesor</div><div class="h">Asesor&iacute;as sin marcar</div><div class="d">Efectivas que ya pasaron y no est&aacute;n contadas. Lo marca el asesor: el closer se lo tiene que pedir hoy, sin marcar no cuenta ni se paga.</div><div class="g">Pablo 9 &middot; Franco P. 6 &middot; Gonza 6 &middot; Franco L. 5</div></div><div class="c mk"><div class="o">53 asesor&iacute;as &middot; lo marca el asesor</div><div class="h">Asistieron y no cuentan por el tracker</div><div class="d">S&iacute; asistieron: al asesor le falta marcar calificaci&oacute;n o necesita financiamiento. Ped&iacute;rselo hoy.</div><div class="g">Lina 8 &middot; Rosa 6 &middot; Pablo 6 &middot; Albert 5</div></div></div>
-</section>
-<div class="uln"></div>
-<section class="usec">
-<h2>Cu&aacute;ndo agendar</h2>
-<p class="sub">De 2357 citas marcadas de los &uacute;ltimos dos meses: qu&eacute; porcentaje lleg&oacute; en cada caso. La columna de la derecha es cu&aacute;ntas citas respaldan cada rengl&oacute;n.</p>
-<div class="cwg"><div class="cwb"><h3 class="ksec">Con cu&aacute;ntos d&iacute;as de anticipaci&oacute;n</h3><p class="cwsub">D&iacute;as entre que agendas y la cita</p><div class="cwr top"><span class="l">Mismo día</span><span class="bar"><i class="su-bien" style="width:76%"></i></span><span class="v su-bien">76%</span><span class="n">160</span></div><div class="cwr"><span class="l">1 día</span><span class="bar"><i class="su-ok" style="width:68%"></i></span><span class="v su-ok">68%</span><span class="n">876</span></div><div class="cwr"><span class="l">2 días</span><span class="bar"><i class="su-mal" style="width:62%"></i></span><span class="v su-mal">62%</span><span class="n">473</span></div><div class="cwr"><span class="l">3 a 7 días</span><span class="bar"><i class="su-ok" style="width:65%"></i></span><span class="v su-ok">65%</span><span class="n">791</span></div><div class="cwr"><span class="l">Más de 7</span><span class="bar"><i class="su-mal" style="width:51%"></i></span><span class="v su-mal">51%</span><span class="n">55</span></div></div><div class="cwb"><h3 class="ksec">A qu&eacute; hora</h3><p class="cwsub">Hora de la asesor&iacute;a</p><div class="cwr"><span class="l">Antes de 10</span><span class="bar"><i class="su-ok" style="width:70%"></i></span><span class="v su-ok">70%</span><span class="n">174</span></div><div class="cwr"><span class="l">10 a 12</span><span class="bar"><i class="su-ok" style="width:66%"></i></span><span class="v su-ok">66%</span><span class="n">535</span></div><div class="cwr top"><span class="l">12 a 14</span><span class="bar"><i class="su-ok" style="width:72%"></i></span><span class="v su-ok">72%</span><span class="n">459</span></div><div class="cwr"><span class="l">14 a 16</span><span class="bar"><i class="su-mal" style="width:64%"></i></span><span class="v su-mal">64%</span><span class="n">394</span></div><div class="cwr"><span class="l">16 a 18</span><span class="bar"><i class="su-mal" style="width:64%"></i></span><span class="v su-mal">64%</span><span class="n">524</span></div><div class="cwr"><span class="l">Después de 18</span><span class="bar"><i class="su-mal" style="width:61%"></i></span><span class="v su-mal">61%</span><span class="n">256</span></div></div><div class="cwb"><h3 class="ksec">Qu&eacute; d&iacute;a</h3><p class="cwsub">D&iacute;a de la semana de la cita</p><div class="cwr"><span class="l">Lunes</span><span class="bar"><i class="su-ok" style="width:65%"></i></span><span class="v su-ok">65%</span><span class="n">452</span></div><div class="cwr"><span class="l">Martes</span><span class="bar"><i class="su-mal" style="width:63%"></i></span><span class="v su-mal">63%</span><span class="n">450</span></div><div class="cwr"><span class="l">Miércoles</span><span class="bar"><i class="su-ok" style="width:68%"></i></span><span class="v su-ok">68%</span><span class="n">423</span></div><div class="cwr"><span class="l">Jueves</span><span class="bar"><i class="su-ok" style="width:69%"></i></span><span class="v su-ok">69%</span><span class="n">402</span></div><div class="cwr"><span class="l">Viernes</span><span class="bar"><i class="su-ok" style="width:65%"></i></span><span class="v su-ok">65%</span><span class="n">366</span></div><div class="cwr"><span class="l">Sábado</span><span class="bar"><i class="su-mal" style="width:63%"></i></span><span class="v su-mal">63%</span><span class="n">164</span></div><div class="cwr top"><span class="l">Domingo</span><span class="bar"><i class="su-ok" style="width:70%"></i></span><span class="v su-ok">70%</span><span class="n">100</span></div></div></div>
-<div class="gnota"><p>Esto no es opini&oacute;n, es lo que pas&oacute; con 2357 citas. Agendar para el mismo d&iacute;a o para ma&ntilde;ana vale m&aacute;s que cualquier otra cosa que hagas con un lead. Si el lead no puede pronto, no lo mandes a la semana que entra: consigue el hueco cercano.</p></div>
-</section>
-
-
-
-
-
-
-<div class="uln"></div>
-<section class="usec">
-<h2>El equipo, mes a la fecha</h2>
-<p class="sub">Ordenado por efectivas del mes. <b>Leads</b> son los que recibi&oacute; en el mes y abajo su flujo por semana: es el denominador que faltaba, porque un cero con 12 leads y un cero con 200 no son lo mismo. <b>Efec/100</b> son efectivas por cada 100 leads recibidos, la &uacute;nica columna que compara closers con repartos distintos. <b>Racha</b> son semanas cerradas seguidas abajo del piso de 10. Las dos &uacute;ltimas columnas son la semana en curso. Haz clic en un encabezado para ordenar.</p>
-<div class="podio"><div class="pod p1"><div class="med">&#129351;</div><div class="pn">Lina López</div><div class="pv">60</div><div class="pk">efectivas del mes</div><div class="pd">85 agendas &middot; show <b class="su su-ok">83%</b> &middot; 21.0 por semana</div><div class="psm">esta semana 11 efectivas &middot; 6 sin marcar</div></div><div class="pod p2"><div class="med">&#129352;</div><div class="pn">Pablo Dilascio</div><div class="pv">45</div><div class="pk">efectivas del mes</div><div class="pd">79 agendas &middot; show <b class="su su-ok">76%</b> &middot; 15.8 por semana</div><div class="psm">esta semana 6 efectivas &middot; 15 sin marcar</div></div><div class="pod p3"><div class="med">&#129353;</div><div class="pn">Stephanie Duque</div><div class="pv">30</div><div class="pk">efectivas del mes</div><div class="pd">48 agendas &middot; show <b class="su su-ok">70%</b> &middot; 10.5 por semana</div><div class="psm">esta semana 4 efectivas &middot; 7 sin marcar</div></div></div>
-<div class="utab"><table id="tcl"><thead><tr class="grupos"><th colspan="2"></th><th colspan="9">Producci&oacute;n &middot; 1 de noviembre al 20 de noviembre</th><th colspan="2" class="gsep">Semana lun 16 al vie 20</th></tr><tr><th class="s"></th><th class="s">Closer</th><th class="s">Leads</th><th class="s">Agendas</th><th class="s">Show-up</th><th class="s orden">Efectivas</th><th class="s">Efec/100</th><th class="s">vs piso</th><th class="s">6 semanas cerradas</th><th class="s">Racha</th><th class="s">Firmas</th><th class="s">Efectivas</th><th class="s">vs piso</th></tr></thead><tbody><tr data-g="top"><td class="pos">1</td><td class="nm">Lina López</td><td class="mono lds">212<em>74.2/sem</em></td><td>85</td><td class="mono su su-ok">83%</td><td class="big orden">60</td><td class="mono e100">28.3</td><td class="mono vp pos">&plus;11.0</td><td class="spkc"><span class="spk"><i class="ok" style="height:100%" title="lun 5 al dom 11: 15 efectivas"></i><i class="ok" style="height:100%" title="lun 12 al dom 18: 15 efectivas"></i><i class="lo" style="height:53%" title="lun 19 al dom 25: 8 efectivas"></i><i class="ok" style="height:67%" title="lun 26 al dom 1: 10 efectivas"></i><i class="ok" style="height:100%" title="lun 2 al dom 8: 17 efectivas"></i><i class="ok" style="height:100%" title="lun 9 al dom 15: 32 efectivas"></i></span></td><td class="mono rch">&middot;</td><td class="mono fir">7</td><td class="big gsep">11<i class="sm">+6</i></td><td class="mono vp pos">&plus;1</td></tr><tr data-g="top"><td class="pos">2</td><td class="nm">Pablo Dilascio</td><td class="mono lds">269<em>94.1/sem</em></td><td>79</td><td class="mono su su-ok">76%</td><td class="big orden">45</td><td class="mono e100">16.7</td><td class="mono vp pos">&plus;5.8</td><td class="spkc"><span class="spk"><i class="ok" style="height:93%" title="lun 5 al dom 11: 14 efectivas"></i><i class="ok" style="height:100%" title="lun 12 al dom 18: 22 efectivas"></i><i class="ok" style="height:80%" title="lun 19 al dom 25: 12 efectivas"></i><i class="ok" style="height:93%" title="lun 26 al dom 1: 14 efectivas"></i><i class="ok" style="height:100%" title="lun 2 al dom 8: 19 efectivas"></i><i class="ok" style="height:100%" title="lun 9 al dom 15: 18 efectivas"></i></span></td><td class="mono rch">&middot;</td><td class="mono fir">13</td><td class="big gsep">6<i class="sm">+15</i></td><td class="mono vp neg">&minus;4</td></tr><tr data-g="top"><td class="pos">3</td><td class="nm">Stephanie Duque</td><td class="mono lds">231<em>80.8/sem</em></td><td>48</td><td class="mono su su-ok">70%</td><td class="big orden">30</td><td class="mono e100">13.0</td><td class="mono vp pos">&plus;0.5</td><td class="spkc"><span class="spk"><i class="ok" style="height:93%" title="lun 5 al dom 11: 14 efectivas"></i><i class="ok" style="height:100%" title="lun 12 al dom 18: 16 efectivas"></i><i class="ok" style="height:80%" title="lun 19 al dom 25: 12 efectivas"></i><i class="lo" style="height:20%" title="lun 26 al dom 1: 3 efectivas"></i><i class="ok" style="height:100%" title="lun 2 al dom 8: 15 efectivas"></i><i class="ok" style="height:73%" title="lun 9 al dom 15: 11 efectivas"></i></span></td><td class="mono rch">&middot;</td><td class="mono fir">5</td><td class="big gsep">4<i class="sm">+7</i></td><td class="mono vp neg">&minus;6</td></tr><tr data-g="top"><td class="pos">4</td><td class="nm">Carina Cabral</td><td class="mono lds">152<em>53.2/sem</em></td><td>39</td><td class="mono su su-mal">61%</td><td class="big orden">26</td><td class="mono e100">17.1</td><td class="mono vp neg">&minus;0.9</td><td class="spkc"><span class="spk"><i class="lo" style="height:40%" title="lun 5 al dom 11: 6 efectivas"></i><i class="lo" style="height:40%" title="lun 12 al dom 18: 6 efectivas"></i><i class="ok" style="height:67%" title="lun 19 al dom 25: 10 efectivas"></i><i class="lo" style="height:47%" title="lun 26 al dom 1: 7 efectivas"></i><i class="ok" style="height:80%" title="lun 2 al dom 8: 12 efectivas"></i><i class="lo" style="height:47%" title="lun 9 al dom 15: 7 efectivas"></i></span></td><td class="mono rch">1</td><td class="mono fir">2</td><td class="big gsep">7<i class="sm">+2</i></td><td class="mono vp neg">&minus;3</td></tr><tr data-g="top"><td class="pos">5</td><td class="nm">Gonza Semelman</td><td class="mono lds">222<em>77.7/sem</em></td><td>59</td><td class="mono su su-mal">67%</td><td class="big orden">25</td><td class="mono e100">11.3</td><td class="mono vp neg">&minus;1.2</td><td class="spkc"><span class="spk"><i class="ok" style="height:93%" title="lun 5 al dom 11: 14 efectivas"></i><i class="lo" style="height:53%" title="lun 12 al dom 18: 8 efectivas"></i><i class="lo" style="height:53%" title="lun 19 al dom 25: 8 efectivas"></i><i class="lo" style="height:27%" title="lun 26 al dom 1: 4 efectivas"></i><i class="ok" style="height:80%" title="lun 2 al dom 8: 12 efectivas"></i><i class="ok" style="height:80%" title="lun 9 al dom 15: 12 efectivas"></i></span></td><td class="mono rch">&middot;</td><td class="mono fir">1</td><td class="big gsep">1<i class="sm">+10</i></td><td class="mono vp neg">&minus;9</td></tr><tr data-g="top"><td class="pos">6</td><td class="nm">Franco Pererson</td><td class="mono lds">198<em>69.3/sem</em></td><td>54</td><td class="mono su su-ok">81%</td><td class="big orden">25</td><td class="mono e100">12.6</td><td class="mono vp neg">&minus;1.2</td><td class="spkc"><span class="spk"><i class="lo" style="height:40%" title="lun 5 al dom 11: 6 efectivas"></i><i class="ok" style="height:87%" title="lun 12 al dom 18: 13 efectivas"></i><i class="ok" style="height:73%" title="lun 19 al dom 25: 11 efectivas"></i><i class="lo" style="height:40%" title="lun 26 al dom 1: 6 efectivas"></i><i class="ok" style="height:100%" title="lun 2 al dom 8: 15 efectivas"></i><i class="lo" style="height:47%" title="lun 9 al dom 15: 7 efectivas"></i></span></td><td class="mono rch">1</td><td class="mono fir">7</td><td class="big gsep">3<i class="sm">+8</i></td><td class="mono vp neg">&minus;7</td></tr><tr data-g="top"><td class="pos">7</td><td class="nm">Matías García</td><td class="mono lds flaco">79<em>27.6/sem</em></td><td>34</td><td class="mono su su-ok">85%</td><td class="big orden">25</td><td class="mono e100">31.6</td><td class="mono vp neg">&minus;1.2</td><td class="spkc"><span class="spk"><i class="lo" style="height:3%" title="lun 5 al dom 11: 0 efectivas"></i><i class="lo" style="height:3%" title="lun 12 al dom 18: 0 efectivas"></i><i class="lo" style="height:7%" title="lun 19 al dom 25: 1 efectivas"></i><i class="lo" style="height:7%" title="lun 26 al dom 1: 1 efectivas"></i><i class="ok" style="height:67%" title="lun 2 al dom 8: 10 efectivas"></i><i class="ok" style="height:87%" title="lun 9 al dom 15: 13 efectivas"></i></span></td><td class="mono rch">&middot;</td><td class="mono fir">3</td><td class="big gsep">2<i class="sm">+1</i></td><td class="mono vp neg">&minus;8</td></tr><tr data-g="mid"><td class="pos">8</td><td class="nm">Silvia Díaz</td><td class="mono lds flaco">66<em>23.1/sem</em></td><td>31</td><td class="mono su su-ok">81%</td><td class="big orden">24</td><td class="mono e100">36.4</td><td class="mono vp neg">&minus;1.6</td><td class="spkc"><span class="spk"><i class="lo" style="height:20%" title="lun 5 al dom 11: 3 efectivas"></i><i class="lo" style="height:33%" title="lun 12 al dom 18: 5 efectivas"></i><i class="lo" style="height:53%" title="lun 19 al dom 25: 8 efectivas"></i><i class="lo" style="height:7%" title="lun 26 al dom 1: 1 efectivas"></i><i class="ok" style="height:87%" title="lun 2 al dom 8: 13 efectivas"></i><i class="lo" style="height:53%" title="lun 9 al dom 15: 8 efectivas"></i></span></td><td class="mono rch">1</td><td class="mono fir">9</td><td class="big gsep">3<i class="sm">+2</i></td><td class="mono vp neg">&minus;7</td></tr><tr data-g="mid"><td class="pos">9</td><td class="nm">Franco Luna</td><td class="mono lds">290<em>101.5/sem</em></td><td>56</td><td class="mono su su-mal">58%</td><td class="big orden">23</td><td class="mono e100">7.9</td><td class="mono vp neg">&minus;2.0</td><td class="spkc"><span class="spk"><i class="lo" style="height:40%" title="lun 5 al dom 11: 6 efectivas"></i><i class="lo" style="height:60%" title="lun 12 al dom 18: 9 efectivas"></i><i class="lo" style="height:33%" title="lun 19 al dom 25: 5 efectivas"></i><i class="lo" style="height:47%" title="lun 26 al dom 1: 7 efectivas"></i><i class="lo" style="height:33%" title="lun 2 al dom 8: 5 efectivas"></i><i class="lo" style="height:53%" title="lun 9 al dom 15: 8 efectivas"></i></span></td><td class="mono rch alarma">6</td><td class="mono fir">8</td><td class="big gsep">8<i class="sm">+8</i></td><td class="mono vp neg">&minus;2</td></tr><tr data-g="mid"><td class="pos">10</td><td class="nm">Lenis Donado</td><td class="mono lds">122<em>42.7/sem</em></td><td>39</td><td class="mono su su-mal">67%</td><td class="big orden">20</td><td class="mono e100">16.4</td><td class="mono vp neg">&minus;3.0</td><td class="spkc"><span class="spk"><i class="lo" style="height:40%" title="lun 5 al dom 11: 6 efectivas"></i><i class="lo" style="height:47%" title="lun 12 al dom 18: 7 efectivas"></i><i class="lo" style="height:20%" title="lun 19 al dom 25: 3 efectivas"></i><i class="lo" style="height:27%" title="lun 26 al dom 1: 4 efectivas"></i><i class="lo" style="height:53%" title="lun 2 al dom 8: 8 efectivas"></i><i class="lo" style="height:40%" title="lun 9 al dom 15: 6 efectivas"></i></span></td><td class="mono rch alarma">6</td><td class="mono fir">4</td><td class="big gsep">4<i class="sm">+5</i></td><td class="mono vp neg">&minus;6</td></tr><tr data-g="mid"><td class="pos">11</td><td class="nm">John Salamanca</td><td class="mono lds">200<em>70.0/sem</em></td><td>32</td><td class="mono su su-ok">78%</td><td class="big orden">19</td><td class="mono e100">9.5</td><td class="mono vp neg">&minus;3.4</td><td class="spkc"><span class="spk"><i class="ok" style="height:73%" title="lun 5 al dom 11: 11 efectivas"></i><i class="lo" style="height:40%" title="lun 12 al dom 18: 6 efectivas"></i><i class="ok" style="height:100%" title="lun 19 al dom 25: 15 efectivas"></i><i class="lo" style="height:3%" title="lun 26 al dom 1: 0 efectivas"></i><i class="lo" style="height:40%" title="lun 2 al dom 8: 6 efectivas"></i><i class="lo" style="height:47%" title="lun 9 al dom 15: 7 efectivas"></i></span></td><td class="mono rch alarma">3</td><td class="mono fir">2</td><td class="big gsep">6<i class="sm">+4</i></td><td class="mono vp neg">&minus;4</td></tr><tr data-g="mid"><td class="pos">12</td><td class="nm">Malena Cantarini</td><td class="mono lds">120<em>42.0/sem</em></td><td>27</td><td class="mono su su-sd">77%<i class="sm">n=22</i></td><td class="big orden">17</td><td class="mono e100">14.2</td><td class="mono vp neg">&minus;4.0</td><td class="spkc"><span class="spk"><i class="lo" style="height:20%" title="lun 5 al dom 11: 3 efectivas"></i><i class="ok" style="height:67%" title="lun 12 al dom 18: 10 efectivas"></i><i class="lo" style="height:13%" title="lun 19 al dom 25: 2 efectivas"></i><i class="lo" style="height:13%" title="lun 26 al dom 1: 2 efectivas"></i><i class="lo" style="height:47%" title="lun 2 al dom 8: 7 efectivas"></i><i class="lo" style="height:53%" title="lun 9 al dom 15: 8 efectivas"></i></span></td><td class="mono rch alarma">4</td><td class="mono fir">3</td><td class="big gsep">2<i class="sm">+4</i></td><td class="mono vp neg">&minus;8</td></tr><tr data-g="mid"><td class="pos">13</td><td class="nm">María Gladis González</td><td class="mono lds flaco">104<em>36.4/sem</em></td><td>27</td><td class="mono su su-mal">62%</td><td class="big orden">16</td><td class="mono e100">15.4</td><td class="mono vp neg">&minus;4.4</td><td class="spkc"><span class="spk"><i class="lo" style="height:7%" title="lun 5 al dom 11: 1 efectivas"></i><i class="ok" style="height:73%" title="lun 12 al dom 18: 11 efectivas"></i><i class="lo" style="height:27%" title="lun 19 al dom 25: 4 efectivas"></i><i class="lo" style="height:3%" title="lun 26 al dom 1: 0 efectivas"></i><i class="lo" style="height:20%" title="lun 2 al dom 8: 3 efectivas"></i><i class="lo" style="height:60%" title="lun 9 al dom 15: 9 efectivas"></i></span></td><td class="mono rch alarma">4</td><td class="mono fir">8</td><td class="big gsep">4<i class="sm">+3</i></td><td class="mono vp neg">&minus;6</td></tr><tr data-g="mid"><td class="pos">14</td><td class="nm">Albert Paz</td><td class="mono lds flaco">81<em>28.3/sem</em></td><td>39</td><td class="mono su su-mal">61%</td><td class="big orden">15</td><td class="mono e100">18.5</td><td class="mono vp neg">&minus;4.8</td><td class="spkc"><span class="spk"><i class="lo" style="height:3%" title="lun 5 al dom 11: 0 efectivas"></i><i class="lo" style="height:7%" title="lun 12 al dom 18: 1 efectivas"></i><i class="lo" style="height:7%" title="lun 19 al dom 25: 1 efectivas"></i><i class="lo" style="height:7%" title="lun 26 al dom 1: 1 efectivas"></i><i class="lo" style="height:40%" title="lun 2 al dom 8: 6 efectivas"></i><i class="lo" style="height:47%" title="lun 9 al dom 15: 7 efectivas"></i></span></td><td class="mono rch">5<em>sin leads</em></td><td class="mono fir">2</td><td class="big gsep">2<i class="sm">+6</i></td><td class="mono vp neg">&minus;8</td></tr><tr data-g="mid"><td class="pos">15</td><td class="nm">Paola Soto</td><td class="mono lds">203<em>71.0/sem</em></td><td>20</td><td class="mono su su-sd">80%<i class="sm">n=20</i></td><td class="big orden">15</td><td class="mono e100">7.4</td><td class="mono vp neg">&minus;4.8</td><td class="spkc"><span class="spk"><i class="lo" style="height:60%" title="lun 5 al dom 11: 9 efectivas"></i><i class="ok" style="height:87%" title="lun 12 al dom 18: 13 efectivas"></i><i class="lo" style="height:40%" title="lun 19 al dom 25: 6 efectivas"></i><i class="lo" style="height:60%" title="lun 26 al dom 1: 9 efectivas"></i><i class="lo" style="height:47%" title="lun 2 al dom 8: 7 efectivas"></i><i class="lo" style="height:27%" title="lun 9 al dom 15: 4 efectivas"></i></span></td><td class="mono rch alarma">4</td><td class="mono fir">0</td><td class="big gsep">4</td><td class="mono vp neg">&minus;6</td></tr><tr data-g="bot"><td class="pos">16</td><td class="nm">Axel Cisterna</td><td class="mono lds">143<em>50.0/sem</em></td><td>33</td><td class="mono su su-mal">48%</td><td class="big orden">14</td><td class="mono e100">9.8</td><td class="mono vp neg">&minus;5.1</td><td class="spkc"><span class="spk"><i class="lo" style="height:53%" title="lun 5 al dom 11: 8 efectivas"></i><i class="lo" style="height:47%" title="lun 12 al dom 18: 7 efectivas"></i><i class="lo" style="height:27%" title="lun 19 al dom 25: 4 efectivas"></i><i class="lo" style="height:27%" title="lun 26 al dom 1: 4 efectivas"></i><i class="lo" style="height:27%" title="lun 2 al dom 8: 4 efectivas"></i><i class="lo" style="height:40%" title="lun 9 al dom 15: 6 efectivas"></i></span></td><td class="mono rch alarma">6</td><td class="mono fir">5</td><td class="big gsep">4<i class="sm">+1</i></td><td class="mono vp neg">&minus;6</td></tr><tr data-g="bot"><td class="pos">17</td><td class="nm">Rosa Salazar</td><td class="mono lds flaco">92<em>32.2/sem</em></td><td>46</td><td class="mono su su-mal">47%</td><td class="big orden">12</td><td class="mono e100">13.0</td><td class="mono vp neg">&minus;5.8</td><td class="spkc"><span class="spk"><i class="lo" style="height:27%" title="lun 5 al dom 11: 4 efectivas"></i><i class="lo" style="height:27%" title="lun 12 al dom 18: 4 efectivas"></i><i class="lo" style="height:20%" title="lun 19 al dom 25: 3 efectivas"></i><i class="lo" style="height:40%" title="lun 26 al dom 1: 6 efectivas"></i><i class="lo" style="height:13%" title="lun 2 al dom 8: 2 efectivas"></i><i class="lo" style="height:53%" title="lun 9 al dom 15: 8 efectivas"></i></span></td><td class="mono rch">6<em>sin leads</em></td><td class="mono fir">4</td><td class="big gsep">2<i class="sm">+4</i></td><td class="mono vp neg">&minus;8</td></tr><tr data-g="bot"><td class="pos">18</td><td class="nm">Jessica Turón</td><td class="mono lds flaco">76<em>26.6/sem</em></td><td>19</td><td class="mono su su-sd">29%<i class="sm">n=21</i></td><td class="big orden">6</td><td class="mono e100">7.9</td><td class="mono vp neg">&minus;7.9</td><td class="spkc"><span class="spk"><i class="lo" style="height:3%" title="lun 5 al dom 11: 0 efectivas"></i><i class="lo" style="height:3%" title="lun 12 al dom 18: 0 efectivas"></i><i class="lo" style="height:13%" title="lun 19 al dom 25: 2 efectivas"></i><i class="lo" style="height:47%" title="lun 26 al dom 1: 7 efectivas"></i><i class="lo" style="height:20%" title="lun 2 al dom 8: 3 efectivas"></i><i class="lo" style="height:13%" title="lun 9 al dom 15: 2 efectivas"></i></span></td><td class="mono rch">4<em>sin leads</em></td><td class="mono fir">1</td><td class="big gsep">1</td><td class="mono vp neg">&minus;9</td></tr><tr data-g="bot"><td class="pos">19</td><td class="nm">Verónica Yantz</td><td class="mono lds flaco">45<em>15.8/sem</em></td><td>17</td><td class="mono su su-sd">60%<i class="sm">n=10</i></td><td class="big orden">5</td><td class="mono e100">11.1</td><td class="mono vp neg">&minus;8.2</td><td class="spkc"><span class="spk"><i class="lo" style="height:3%" title="lun 5 al dom 11: 0 efectivas"></i><i class="lo" style="height:13%" title="lun 12 al dom 18: 2 efectivas"></i><i class="lo" style="height:13%" title="lun 19 al dom 25: 2 efectivas"></i><i class="lo" style="height:20%" title="lun 26 al dom 1: 3 efectivas"></i><i class="lo" style="height:13%" title="lun 2 al dom 8: 2 efectivas"></i><i class="lo" style="height:7%" title="lun 9 al dom 15: 1 efectivas"></i></span></td><td class="mono rch">5<em>sin leads</em></td><td class="mono fir">2</td><td class="big gsep">2<i class="sm">+3</i></td><td class="mono vp neg">&minus;8</td></tr><tr data-g="bot"><td class="pos">20</td><td class="nm">Tomás Puertas</td><td class="mono lds flaco">79<em>27.6/sem</em></td><td>3</td><td class="mono su su-sd">67%<i class="sm">n=3</i></td><td class="big orden">2</td><td class="mono e100">2.5</td><td class="mono vp neg">&minus;9.3</td><td class="spkc"><span class="spk"><i class="lo" style="height:3%" title="lun 5 al dom 11: 0 efectivas"></i><i class="lo" style="height:3%" title="lun 12 al dom 18: 0 efectivas"></i><i class="lo" style="height:13%" title="lun 19 al dom 25: 2 efectivas"></i><i class="lo" style="height:3%" title="lun 26 al dom 1: 0 efectivas"></i><i class="lo" style="height:7%" title="lun 2 al dom 8: 1 efectivas"></i><i class="lo" style="height:3%" title="lun 9 al dom 15: 0 efectivas"></i></span></td><td class="mono rch">6<em>sin leads</em></td><td class="mono fir">1</td><td class="big gsep">1</td><td class="mono vp neg">&minus;9</td></tr><tr data-g="bot"><td class="pos">21</td><td class="nm">Jesica Álvaro</td><td class="mono lds flaco">1<em>0.3/sem</em></td><td>0</td><td class="mono su">&middot;</td><td class="big orden">0</td><td class="mono e100">&middot;</td><td class="mono vp neg">&minus;10.0</td><td class="spkc"><span class="spk"><i class="lo" style="height:3%" title="lun 5 al dom 11: 0 efectivas"></i><i class="lo" style="height:3%" title="lun 12 al dom 18: 0 efectivas"></i><i class="lo" style="height:3%" title="lun 19 al dom 25: 0 efectivas"></i><i class="lo" style="height:3%" title="lun 26 al dom 1: 0 efectivas"></i><i class="lo" style="height:3%" title="lun 2 al dom 8: 0 efectivas"></i><i class="lo" style="height:3%" title="lun 9 al dom 15: 0 efectivas"></i></span></td><td class="mono rch">&middot;</td><td class="mono fir">0</td><td class="big gsep">0</td><td class="mono vp neg">&minus;10</td></tr><tr data-g="bot"><td class="pos">22</td><td class="nm">Álvaro Toro</td><td class="mono lds flaco">4<em>1.4/sem</em></td><td>0</td><td class="mono su">&middot;</td><td class="big orden">0</td><td class="mono e100">&middot;</td><td class="mono vp neg">&minus;10.0</td><td class="spkc"><span class="spk"><i class="lo" style="height:3%" title="lun 5 al dom 11: 0 efectivas"></i><i class="lo" style="height:3%" title="lun 12 al dom 18: 0 efectivas"></i><i class="lo" style="height:3%" title="lun 19 al dom 25: 0 efectivas"></i><i class="lo" style="height:3%" title="lun 26 al dom 1: 0 efectivas"></i><i class="lo" style="height:3%" title="lun 2 al dom 8: 0 efectivas"></i><i class="lo" style="height:3%" title="lun 9 al dom 15: 0 efectivas"></i></span></td><td class="mono rch">6<em>sin leads</em></td><td class="mono fir">0</td><td class="big gsep">0</td><td class="mono vp neg">&minus;10</td></tr><tr class="tot"><td></td><td class="nm">Equipo, 22 closers</td><td class="mono lds">2,989<em>47.6/sem c/u</em></td><td>787</td><td class="mono su su-mal">69%</td><td class="big orden">424</td><td class="mono e100">14.2</td><td></td><td></td><td></td><td class="mono fir">87</td><td class="gsep">77</td><td></td></tr></tbody></table><p class="sleg">Show-up: <i class="su su-mal">0 a 69 mal</i> <i class="su su-ok">70 a 85 bien</i> <i class="su su-bien">86 a 100 muy bien</i> <i class="su su-sd">menos de 25 citas, sin dato</i> &nbsp; <i class="su alarma">racha: 2 semanas seguidas abajo del piso con leads suficientes</i></p></div>
-<p class="nottot">Agendas por fecha de agenda; efectivas por fecha de asesor&iacute;a. <b>vs piso</b> son las efectivas por semana menos 10, sobre 2.9 semanas del mes; a quien entr&oacute; despu&eacute;s del 1 se le cuenta desde su primer lead. Efec/100 y show-up no se publican con menos de 25 casos. La racha solo se marca en rojo cuando esas semanas trajeron al menos 40 leads: con menos, el piso no es exigible y el cero es reparto, no resultado. El total del mes (434 efectivas) cuenta al equipo completo: 10 son de closers que ya no est&aacute;n en el roster y por eso no aparecen arriba.</p>
-</section>
-
-<div class="uln"></div>
-<section class="usec">
-<h2>Las 53 asesor&iacute;as que no llegaron a efectiva</h2>
-<p class="sub">De las 487 asistidas del mes, 53 no fueron efectivas: el 11%. Meta: 8% de las asistidas.</p>
-<div class="uwin">
-<div class="c"><div class="k">No calific&oacute;, pero s&iacute; necesitaba el financiamiento</div><div class="v">10</div><div class="d">19% de las 53</div></div>
-<div class="c"><div class="k">No calific&oacute; y tampoco lo necesitaba</div><div class="v">23</div><div class="d">43% de las 53</div></div>
-<div class="c"><div class="k">Calific&oacute;, pero no necesitaba el financiamiento</div><div class="v">20</div><div class="d">38% de las 53</div></div>
-</div>
-<div class="utab" style="margin-top:14px"><table><thead><tr><th class="s">Los que m&aacute;s acumulan</th><th class="s">No efectivas</th><th class="s">De sus asistidas</th><th class="s">Proporci&oacute;n</th></tr></thead><tbody>
-<tr><td class="nm">Lina López</td><td class="mono neg">8</td><td>de 68</td><td class="mono">12%</td></tr><tr><td class="nm">Rosa Salazar</td><td class="mono neg">6</td><td>de 18</td><td class="mono">33%</td></tr><tr><td class="nm">Pablo Dilascio</td><td class="mono neg">6</td><td>de 51</td><td class="mono">12%</td></tr><tr><td class="nm">Albert Paz</td><td class="mono neg">5</td><td>de 20</td><td class="mono">25%</td></tr><tr><td class="nm">Franco Pererson</td><td class="mono neg">5</td><td>de 30</td><td class="mono">17%</td></tr>
-</tbody></table></div>
-<h3 class="ksec">Qu&eacute; hacer para que no vuelva a pasar</h3>
-<div class="upal"><div class="c mk"><div class="o">43 de 53</div><div class="h">No necesitaba el financiamiento</div><div class="d">Llegó buscando información, no dinero. El asesor lo descubrió en la llamada.</div><div class="g">Preguntar antes de agendar: ¿buscas el financiamiento o solo la asesoría? Sin un sí claro, no se agenda.</div><div class="d" style="margin-top:7px;color:var(--faint);font-size:11.5px">Lina 6 &middot; Pablo 6 &middot; Rosa 5</div></div><div class="c"><div class="o">2 de 53</div><div class="h">Traía un descalificador duro</div><div class="d">Negativa de pensión, simulación laboral, demanda o ya pensionado.</div><div class="g">Son las tres preguntas del guión. Hacerlas completas en la llamada, no asumirlas.</div><div class="d" style="margin-top:7px;color:var(--faint);font-size:11.5px">Rosa 1 &middot; Franco L. 1</div></div><div class="c mk"><div class="o">8 de 53</div><div class="h">No calificó por perfil</div><div class="d">Semanas, edad o modalidad no daban; se supo hasta la asesoría.</div><div class="g">Revisar el reporte de semanas antes de agendar, no después.</div><div class="d" style="margin-top:7px;color:var(--faint);font-size:11.5px">Lina 2 &middot; Carina 1 &middot; Albert 1</div></div></div>
-<p class="nottot">Asistidas del mes por fecha de asesor&iacute;a; no efectiva = asisti&oacute; y no calific&oacute;, o calific&oacute; y no necesita financiamiento. Las causas salen de las columnas de calificaci&oacute;n y de la observaci&oacute;n del asesor.</p>
-</section>
-<div class="uln"></div>
-<section class="usec">
-<h2>Las palancas, y cu&aacute;nto margen queda</h2>
-<p class="sub">Medidas con nuestros propios datos del mes. La barra es qu&eacute; parte de la operaci&oacute;n ya usa la palanca: lo que falta para el 100% es el margen que queda por ganar.</p>
-<div class="uwin"><div class="c"><div class="k">Agendar a 1 d&iacute;a o menos</div><div class="v">69% <small style="font-size:14px;color:var(--faint)">vs 68%</small></div><div class="adbar"><i style="width:24%"></i></div><span class="adop"><b>24%</b> de la operaci&oacute;n ya lo hace</span><div class="d">De las 696 citas marcadas del mes de los closers activos, <b>164</b> se agendaron a un d&iacute;a o menos y llegaron en <b>69%</b>; las otras 532 llegaron en 68%. Si las lejanas llegaran como las cercanas ser&iacute;an <b>5 asistidas m&aacute;s</b> y unas <b>4 efectivas</b>. Es la palanca con m&aacute;s margen: 76% de las citas todav&iacute;a se agenda lejos.</div></div><div class="c mk"><div class="k">Llegar con el AFORE</div><div class="v">29% <small style="font-size:14px;color:var(--faint)">vs 14%</small></div><div class="adbar"><i style="width:43%"></i></div><span class="adop"><b>43%</b> de la operaci&oacute;n ya lo hace</span><div class="d">De las 424 efectivas del mes de los closers activos, <b>182</b> llegaron con su AFORE y firmaron en <b>29%</b>; las 242 que no, en 14%. Si todas llegaran con AFORE ser&iacute;an <b>36 firmas m&aacute;s</b> con las mismas efectivas. Se pide en la confirmaci&oacute;n, no en la asesor&iacute;a.</div></div><div class="c"><div class="k">Citas en fin de semana</div><div class="v">72% <small style="font-size:14px;color:var(--faint)">vs 68% entre semana</small></div><div class="adbar"><i style="width:11%"></i></div><span class="adop"><b>11%</b> de la operaci&oacute;n ya lo hace</span><div class="d">Las citas de s&aacute;bado y domingo llegan en <b>72%</b> contra 68% de lunes a viernes, y solo son <b>11%</b> de las citas del mes (74 de 696). Es capacidad sin usar: el lead est&aacute; libre y el closer compite con menos citas.</div></div></div>
-<div class="gnota"><p>Saber que una palanca sirve no alcanza; lo que decide d&oacute;nde meter la semana es cu&aacute;nta de la operaci&oacute;n todav&iacute;a no la usa. Una palanca con adopci&oacute;n alta ya est&aacute; exprimida aunque el porcentaje se vea bien.</p></div>
-</section>
-
-<p class="foot"><b>C&oacute;mo se calcula.</b> Archivos: CFA_201126.csv y Tracker_201126.csv, los m&aacute;s recientes por fecha en el nombre; el corte es el m&aacute;s nuevo. Roster: 22 closers activos; las bajas no aparecen; los nombres del CRM y del tracker se unifican antes de contar. Leads: oportunidades del CF-A por fecha de creaci&oacute;n en hora de M&eacute;xico; &uacute;tiles = fuera de No califica, N.C. asesor&iacute;a PP y Ya pensionado. Agendadas: filas del tracker por fecha de agenda (columna A). Asistidas y efectivas: por fecha de asesor&iacute;a (columna B); asistida = Asistencia Si; efectiva = Asistencia Si, Calificaci&oacute;n Si y Necesita financiamiento Si. Show-up: asistidas entre asistidas m&aacute;s no asistidas; las sin marcar no cuentan. Firmas: fecha exacta de firma; pr&eacute;stamos: fecha de ejecuci&oacute;n. Pasan, llegan, sirven: agendas entre &uacute;tiles, show-up, efectivas entre asistidas. Comparaci&oacute;n del mes: mismos d&iacute;as del mes anterior; de la semana: mismos d&iacute;as de la semana anterior. Metas del mes: &uacute;tiles 4,000, agendas 1,143, asistidas 800 y efectivas 736. Por hacer: etapas del CF-A tal cual est&aacute;n al momento del export. Cargas en bloque excluidas: horas con 300 o m&aacute;s oportunidades y 90% sin closer. Tableros: <a href="../direccion/">la consola de direcci&oacute;n</a> &middot; <a href="../closers/">agosto</a> &middot; <a href="../asesores/">el handoff</a>.</p>
-</div>
-
 <script>
 (function(){
- function sortable(id){
-  var t=document.getElementById(id); if(!t) return;
-  var ths=t.querySelectorAll('thead tr:last-child th');
-  ths.forEach(function(th,i){
-   th.tabIndex=0;
-   function go(){
-    var asc=!th.classList.contains('dn');
-    ths.forEach(function(x){x.classList.remove('up','dn')});
-    th.classList.add(asc?'dn':'up');
-    var tb=t.tBodies[0]; var rows=[].slice.call(tb.rows);
-    var tot=rows.filter(function(r){return r.classList.contains('tot')});
-    rows=rows.filter(function(r){return !r.classList.contains('tot')});
-    function val(td){var x=td.textContent.trim().replace('%','').replace('\u2212','-'); if(x==='\u00b7') return -1; var v=parseFloat(x); return isNaN(v)?x.toLowerCase():v;}
-    rows.sort(function(a,b){var vx=val(a.cells[i]),vy=val(b.cells[i]); if(vx<vy) return asc?1:-1; if(vx>vy) return asc?-1:1; return 0;});
-    rows.concat(tot).forEach(function(r){tb.appendChild(r)});
-   }
-   th.addEventListener('click',go);
-   th.addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();go()}});
-  });
- }
- ['tcl'].forEach(sortable);
+ document.querySelectorAll('button.cp[data-m]').forEach(function(b){
+  b.addEventListener('click',function(){
+   navigator.clipboard.writeText(b.dataset.m).then(function(){
+    b.textContent='copiado';b.classList.add('ok');
+    setTimeout(function(){b.textContent='copiar';b.classList.remove('ok')},1600);});});});
+ var vm=document.getElementById('vm'),on=false;
+ if(vm)vm.addEventListener('click',function(){on=!on;
+  document.querySelectorAll('tr.ms').forEach(function(r){r.hidden=!on});
+  vm.textContent=on?'ocultar mensajes':'ver mensajes';vm.classList.toggle('ok',on);});
 })();
 </script>
 </body></html>

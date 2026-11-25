@@ -591,9 +591,9 @@ a_duda40:{eyebrow:"Pregúntale a Franco",h:"Dejó de cotizar hace más de un añ
   opts:[{t:"Me dijeron que sí es Gestión",set:"gestion",ir:"apertura"},
         {t:"Volver al paso 0",ir:"producto"}]},
 
-f_cotiza:{eyebrow:"Task, no descarte",h:"Sigue cotizando",
-  say:[["Qué le dices","Mientras sigas dado de alta en el IMSS no te puedes pensionar. En cuanto causes baja me avisas y ahí sí te agendo con el experto. Te lo dejo anotado."]],
-  fin:{t:"Qué registras",l:["<b>Task con la fecha</b> en que calcula darse de baja","No lo descartes: este vuelve"]},
+f_cotiza:{eyebrow:"Descarte",h:"Sigue cotizando",
+  say:[["Qué le dices","Mientras sigas dado de alta en el IMSS no te puedes pensionar, así que por ahora no podemos avanzar. Cuando causes baja, con gusto te vuelves a registrar y te atendemos. Te agradezco mucho tu tiempo."]],
+  fin:{t:"Qué registras",l:["<b>No califica</b>","Motivo: sigue vigente/cotizando","Sin task: cuando cause baja, se vuelve a registrar"]},
   opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
 
 /* ───────────── 1 · apertura ───────────── */
@@ -636,9 +636,9 @@ f_temporal:{eyebrow:"Task, no descarte",h:"Pensión temporal por invalidez",
   fin:{t:"Qué registras",l:["<b>Task con el mes</b> en que termina la temporal","La nota dice que es pensión temporal por invalidez","No lo descartes: hay que volver a preguntar qué le dieron al terminar"]},
   opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
 
-f_demanda:{eyebrow:"Task, no descarte",h:"Demanda en curso",
-  say:[["Qué le dices","Para pensionarte tiene que definirse la demanda, porque pueden cambiar tus semanas y tu promedio salarial. En cuanto finalice me avisas y ahí sí te agendo con el experto. Te lo dejo anotado."]],
-  fin:{t:"Qué registras",l:["<b>Task con la fecha</b> en que calcula que concluye","No lo descartes: este vuelve"]},
+f_demanda:{eyebrow:"Descarte",h:"Demanda en curso",
+  say:[["Qué le dices","Para pensionarte primero tiene que definirse la demanda, porque pueden cambiar tus semanas y tu promedio salarial. Cuando termine, con gusto te vuelves a registrar y te atendemos. Te agradezco mucho tu tiempo."]],
+  fin:{t:"Qué registras",l:["<b>No califica</b>","Motivo: tiene demandado al patrón, o al IMSS, Infonavit o AFORE","Sin task: cuando termine, se vuelve a registrar"]},
   opts:[{t:"Listo, nueva llamada",ir:"__reinicia"}]},
 
 q_busca:{bloque:"calif",eyebrow:"Pregunta 3 de 5",corto:"Busca financiamiento",
